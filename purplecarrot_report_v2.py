@@ -46,9 +46,9 @@ UPLOAD_SECRET = os.environ.get("UPLOAD_SECRET", "dev-secret-key")
 
 # Programmatic CPM by DLVE placement (StackAdapt)
 PLACEMENT_CONFIG = {
+    "6001": {"channel": "ctv", "cpm": 28.00},
     "6010": {"channel": "display", "cpm": 6.00},
     "6011": {"channel": "video", "cpm": 7.50},
-    "6012": {"channel": "ctv", "cpm": 28.00},
 }
 DEFAULT_CPM = 6.00  # fallback for unknown placements
 
