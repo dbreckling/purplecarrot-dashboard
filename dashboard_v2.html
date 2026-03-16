@@ -400,7 +400,7 @@ tr:hover{background:#fbfcff}
       <div class="tactic-card" data-channel="display">
         <div class="tactic-pill">Display</div>
         <div class="tactic-roas" id="roasDisplay">-</div>
-        <div class="tactic-cpm" id="cpmDisplay">CPM $10.00 &bull; Est. Spend -</div>
+        <div class="tactic-cpm" id="cpmDisplay">CPM $6.00 &bull; Est. Spend -</div>
         <div class="tactic-meta">
           <div><span>Impressions</span><strong id="impsDisplay">-</strong></div>
           <div><span>Reach</span><strong id="reachDisplay">-</strong></div>
@@ -412,7 +412,7 @@ tr:hover{background:#fbfcff}
       <div class="tactic-card" data-channel="video">
         <div class="tactic-pill">Display Video</div>
         <div class="tactic-roas" id="roasVideo">-</div>
-        <div class="tactic-cpm" id="cpmVideo">CPM $18.00 &bull; Est. Spend -</div>
+        <div class="tactic-cpm" id="cpmVideo">CPM $7.50 &bull; Est. Spend -</div>
         <div class="tactic-meta">
           <div><span>Impressions</span><strong id="impsVideo">-</strong></div>
           <div><span>Reach</span><strong id="reachVideo">-</strong></div>
@@ -965,14 +965,14 @@ function renderOverview() {
     reach: Math.round(totalReach * 0.50),
     attrOrders: Math.round(totalAttrOrders * 0.50),
     attrRevenue: Math.round(totalAttrRev * 0.50 * 100) / 100,
-    cpm: 10.00
+    cpm: 6.00
   };
   const ovVideoData = channels.video || {
     impressions: Math.round(totalImp * 0.30),
     reach: Math.round(totalReach * 0.30),
     attrOrders: Math.round(totalAttrOrders * 0.30),
     attrRevenue: Math.round(totalAttrRev * 0.30 * 100) / 100,
-    cpm: 18.00
+    cpm: 7.50
   };
   const ovCtvData = channels.ctv || {
     impressions: Math.round(totalImp * 0.15),
@@ -1144,20 +1144,20 @@ function renderProgrammatic() {
   const totalAttrRev = prog.attrRevenue || 0;
   const totalReach = prog.reach || 0;
 
-  // Default channel splits if no per-channel data (estimate based on typical programmatic mix)
+  // Default channel splits if no per-channel data (fallback uses real DLVE placement CPMs)
   const displayData = channels.display || {
     impressions: Math.round(totalImp * 0.55),
     reach: Math.round(totalReach * 0.50),
     attrOrders: Math.round(totalAttrOrders * 0.50),
     attrRevenue: Math.round(totalAttrRev * 0.50 * 100) / 100,
-    cpm: 10.00
+    cpm: 6.00
   };
   const videoData = channels.video || {
     impressions: Math.round(totalImp * 0.30),
     reach: Math.round(totalReach * 0.30),
     attrOrders: Math.round(totalAttrOrders * 0.30),
     attrRevenue: Math.round(totalAttrRev * 0.30 * 100) / 100,
-    cpm: 18.00
+    cpm: 7.50
   };
   const ctvData = channels.ctv || {
     impressions: Math.round(totalImp * 0.15),

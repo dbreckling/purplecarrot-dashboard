@@ -44,9 +44,13 @@ MAX_RETRIES = 3
 DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "")
 UPLOAD_SECRET = os.environ.get("UPLOAD_SECRET", "dev-secret-key")
 
-# Programmatic CPM estimate (StackAdapt)
-DEFAULT_CPM = 10
-CPM_BY_TACTIC = {"PROSP": 10, "RT": 10}
+# Programmatic CPM by DLVE placement (StackAdapt)
+PLACEMENT_CONFIG = {
+    "6010": {"channel": "display", "cpm": 6.00},
+    "6011": {"channel": "video", "cpm": 7.50},
+    "6012": {"channel": "ctv", "cpm": 28.00},
+}
+DEFAULT_CPM = 6.00  # fallback for unknown placements
 
 # SA pixel keys (for reference in reporting)
 SAQ_CONV_KEY = "xt5chVHtrnw0wJZcvE7Ael"
@@ -656,12 +660,12 @@ def main():
 
         # Impressions (StackAdapt programmatic)
         imp_nodes, imp_total = run_impressions_query(day_start, day_end)
-        all_impressions.extend([(n.get("campaignId", ""), n) for n in imp_nodes])
+        all_impressions.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in imp_nodes])
         total_impressions_count += len(imp_nodes)
 
         # Clicks
         click_nodes, click_total = run_clicks_query(day_start, day_end)
-        all_clicks.extend([(n.get("campaignId", ""), n) for n in click_nodes])
+        all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
         total_clicks_count += len(click_nodes)
 
         # Attributed conversions
@@ -713,8 +717,8 @@ def main():
     # -------------------------
     # Process impressions and clicks (US-only filtering)
     # -------------------------
-    raw_imp_nodes = [n for _, n in all_impressions]
-    raw_click_nodes = [n for _, n in all_clicks]
+    raw_imp_nodes = [n for _, _, n in all_impressions]
+    raw_click_nodes = [n for _, _, n in all_clicks]
     clean_impressions_list, filtered_imp = filter_clean_impressions(raw_imp_nodes)
     clean_clicks_list, filtered_click = filter_clean_clicks(raw_click_nodes)
 
@@ -724,13 +728,13 @@ def main():
     # Build clean click set (by id(node)) for fast lookup, and
     # rebuild all_clicks_clean with campaign association for downstream use
     clean_click_ids = set(id(n) for n in clean_clicks_list)
-    all_clicks_clean = [(cid, n) for cid, n in all_clicks if id(n) in clean_click_ids]
+    all_clicks_clean = [(cid, pid, n) for cid, pid, n in all_clicks if id(n) in clean_click_ids]
 
     print(f"  Click filtering: {len(raw_click_nodes)} raw → {click_count} clean (US-only, no bots, IP deduped)")
 
     # Discover campaigns from impressions
     campaign_info = {}
-    for _, n in all_impressions:
+    for _, _, n in all_impressions:
         cid = n.get("campaignId", "")
         if cid and cid not in campaign_info:
             cname = n.get("campaignName", "")
@@ -738,7 +742,7 @@ def main():
                 "name": cname or f"Campaign {cid}",
                 "label": cname or f"Campaign {cid}",
             }
-    for _, n in all_clicks_clean:
+    for _, _, n in all_clicks_clean:
         cid = n.get("campaignId", "")
         if cid and cid not in campaign_info:
             cname = n.get("campaignName", "")
@@ -827,7 +831,7 @@ def main():
 
     # Build click visitor set for CT vs VT classification (clean US clicks only)
     click_visitor_set = set()
-    for _, n in all_clicks_clean:
+    for _, _, n in all_clicks_clean:
         vid = n.get("visitorId") or n.get("ip", "")
         if vid:
             click_visitor_set.add(vid)
@@ -846,8 +850,14 @@ def main():
     prog_reach = len(unique_ips)
     prog_frequency = round(imp_count / prog_reach, 2) if prog_reach > 0 else 0
 
-    # Spend estimate
-    prog_spend = round((imp_count / 1000) * DEFAULT_CPM, 2)
+    # Spend estimate (per-placement CPM)
+    clean_imp_ids = set(id(n) for n in clean_impressions_list)
+    prog_spend = 0
+    for _, pid, n in all_impressions:
+        if id(n) in clean_imp_ids:
+            cpm = PLACEMENT_CONFIG.get(pid, {}).get("cpm", DEFAULT_CPM)
+            prog_spend += cpm / 1000
+    prog_spend = round(prog_spend, 2)
     prog_roas = round(attr_revenue / prog_spend, 2) if prog_spend > 0 else 0
     prog_cpa = round(prog_spend / attr_count, 2) if attr_count > 0 else 0
 
@@ -999,7 +1009,7 @@ def main():
         elif vs == "returning":
             daily_data[day_key]["returningOrders"] += 1
 
-    for _, imp in all_impressions:
+    for _, _, imp in all_impressions:
         t = imp.get("time", "")
         if not t:
             continue
@@ -1010,7 +1020,7 @@ def main():
             continue
         daily_data[day_key]["impressions"] += 1
 
-    for _, click in all_clicks_clean:
+    for _, _, click in all_clicks_clean:
         t = click.get("time", "")
         if not t:
             continue
@@ -1120,17 +1130,22 @@ def main():
     campaigns_output = {}
     if campaign_info:
         for cid, cinfo in campaign_info.items():
-            camp_imps = [n for c, n in all_impressions if c == cid]
-            camp_clicks = [n for c, n in all_clicks_clean if c == cid]
+            camp_imps_with_pid = [(pid, n) for c, pid, n in all_impressions if c == cid]
+            camp_clicks = [n for c, _, n in all_clicks_clean if c == cid]
             camp_attr = [a for a in unique_attributed if a.get("impressionCampaignId") == cid]
 
+            camp_imps = [n for _, n in camp_imps_with_pid]
             c_imp_count = len(camp_imps)
             c_click_count = len(camp_clicks)
             c_attr_count = len(camp_attr)
             c_attr_revenue = sum(float(a.get("revenue") or 0) for a in camp_attr)
             c_reach = len(set(n.get("ip") for n in camp_imps if n.get("ip")))
             c_frequency = round(c_imp_count / c_reach, 2) if c_reach > 0 else 0
-            c_spend = round((c_imp_count / 1000) * DEFAULT_CPM, 2)
+            c_spend = 0
+            for pid, n in camp_imps_with_pid:
+                cpm = PLACEMENT_CONFIG.get(pid, {}).get("cpm", DEFAULT_CPM)
+                c_spend += cpm / 1000
+            c_spend = round(c_spend, 2)
             c_roas = round(c_attr_revenue / c_spend, 2) if c_spend > 0 else 0
 
             campaigns_output[f"campaign_{cid}"] = {
@@ -1146,6 +1161,58 @@ def main():
                 "spend": c_spend,
                 "roas": c_roas,
             }
+
+    # -------------------------
+    # Build channel breakdown from placement data
+    # -------------------------
+    channel_data = {}
+    if has_programmatic:
+        channel_imps = defaultdict(list)   # channel -> [(pid, node)]
+        channel_clicks = defaultdict(list)  # channel -> [node]
+        for _, pid, n in all_impressions:
+            if id(n) in clean_imp_ids:
+                ch = PLACEMENT_CONFIG.get(pid, {}).get("channel", "display")
+                channel_imps[ch].append((pid, n))
+        for _, pid, n in all_clicks_clean:
+            ch = PLACEMENT_CONFIG.get(pid, {}).get("channel", "display")
+            channel_clicks[ch].append(n)
+
+        # Map attributed conversions to channels via impressionPlacementId or fallback
+        channel_attr = defaultdict(list)
+        for a in unique_attributed:
+            a_pid = a.get("impressionPlacementId") or a.get("placementId", "")
+            ch = PLACEMENT_CONFIG.get(a_pid, {}).get("channel", "display")
+            channel_attr[ch].append(a)
+
+        for ch_name in ["display", "video", "ctv"]:
+            ch_imps = channel_imps.get(ch_name, [])
+            ch_clks = channel_clicks.get(ch_name, [])
+            ch_attrs = channel_attr.get(ch_name, [])
+            ch_imp_count = len(ch_imps)
+            ch_click_count = len(ch_clks)
+            ch_reach = len(set(n.get("ip") for _, n in ch_imps if n.get("ip")))
+            ch_attr_count = len(ch_attrs)
+            ch_attr_revenue = round(sum(float(a.get("revenue") or 0) for a in ch_attrs), 2)
+            ch_cpm = PLACEMENT_CONFIG.get(
+                next((pid for pid, _ in ch_imps), ""), {}
+            ).get("cpm", DEFAULT_CPM)
+            ch_spend = round(ch_imp_count / 1000 * ch_cpm, 2)
+            ch_roas = round(ch_attr_revenue / ch_spend, 2) if ch_spend > 0 else 0
+
+            channel_data[ch_name] = {
+                "impressions": ch_imp_count,
+                "clicks": ch_click_count,
+                "reach": ch_reach,
+                "attrOrders": ch_attr_count,
+                "attrRevenue": ch_attr_revenue,
+                "cpm": ch_cpm,
+                "spend": ch_spend,
+                "roas": ch_roas,
+            }
+
+        print(f"\n  Channel breakdown:")
+        for ch_name, ch in channel_data.items():
+            print(f"    {ch_name}: {ch['impressions']:,} imp, ${ch['cpm']:.2f} CPM, ${ch['spend']:.2f} spend, {ch['attrOrders']} attr orders, ROAS {ch['roas']:.2f}x")
 
     # -------------------------
     # Assemble final JSON
@@ -1225,6 +1292,7 @@ def main():
                 "converterDetails": converter_details,
             },
         },
+        "channels": channel_data,
         "campaigns": campaigns_output,
         "dailyData": serialized_daily,
     }
