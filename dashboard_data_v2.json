@@ -4,48 +4,48 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-17T07:11:59.543032Z",
+  "lastUpdated": "2026-03-17T07:42:16.147347Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-17"
   },
   "global": {
-    "totalOrders": 13190,
-    "totalRevenue": 1316803.55,
-    "aov": 99.83,
+    "totalOrders": 13194,
+    "totalRevenue": 1317312.05,
+    "aov": 99.84,
     "uniqueVisitors": 7642,
     "repeatPurchaseRate": 41.4,
-    "newOrders": 13178,
+    "newOrders": 13182,
     "returningOrders": 0,
     "newCustomerPct": 99.9,
     "avgCartSize": 4.3
   },
   "identity": {
     "emailHashCoverage": 41.9,
-    "customerIdCoverage": 41.9,
+    "customerIdCoverage": 42.0,
     "zipCodeCoverage": 41.1,
     "loggedInBreakdown": {
-      "yes": 2759,
+      "yes": 2763,
       "no": 1531,
       "unknown": 8900
     }
   },
   "orderSources": {
-    "ordersuccess": 7985,
+    "ordersuccess": 7989,
     "cartFallback": 5178,
     "unknown": 27
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 10252,
-      "revenue": 1031989.36,
-      "aov": 100.66,
+      "orders": 10255,
+      "revenue": 1032390.86,
+      "aov": 100.67,
       "pctOfOrders": 77.7
     },
     "Direct": {
-      "orders": 1297,
-      "revenue": 130380.39,
-      "aov": 100.52,
+      "orders": 1298,
+      "revenue": 130487.39,
+      "aov": 100.53,
       "pctOfOrders": 9.8
     },
     "Google Organic": {
@@ -99,8 +99,8 @@
   },
   "geographic": {
     "CA": {
-      "orders": 1837,
-      "revenue": 185465.55
+      "orders": 1840,
+      "revenue": 185867.05
     },
     "NY": {
       "orders": 1147,
@@ -139,8 +139,8 @@
       "revenue": 44851.23
     },
     "OH": {
-      "orders": 442,
-      "revenue": 44136.62
+      "orders": 443,
+      "revenue": 44243.62
     },
     "NJ": {
       "orders": 442,
@@ -201,15 +201,15 @@
   },
   "devices": {
     "iOS": {
-      "orders": 5183,
+      "orders": 5185,
       "pctOfOrders": 39.3
     },
     "Mac OS": {
-      "orders": 3125,
+      "orders": 3126,
       "pctOfOrders": 23.7
     },
     "Windows": {
-      "orders": 2367,
+      "orders": 2368,
       "pctOfOrders": 17.9
     },
     "Android": {
@@ -781,16 +781,16 @@
     "2026-03-17": {
       "impressions": 3602,
       "clicks": 1,
-      "purchases": 61,
-      "revenue": 6349.33,
+      "purchases": 65,
+      "revenue": 6857.83,
       "conversions": 1,
       "attrRevenue": 94.5,
-      "newOrders": 61,
+      "newOrders": 65,
       "returningOrders": 0,
       "trafficSources": {
-        "Direct / Internal": 46,
+        "Direct / Internal": 49,
+        "Direct": 6,
         "Referral": 4,
-        "Direct": 5,
         "Google Organic": 4,
         "Email": 1,
         "Google Ads": 1
