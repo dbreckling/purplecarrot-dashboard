@@ -688,22 +688,53 @@ def main():
             seen_ids.add(did)
             unique_purchases.append(p)
 
-    # Dedupe attributed — include both ordersuccess and cart fallback
-    # Cart fallback orders are real unique purchases (different visitors/revenue)
+    # Stage 1: Dedupe by dedupeId, ordersuccess only (7+ digit numeric DLV-transactionId)
+    # Cart fallback IDs are cart add/remove activity, not completed transactions
     seen_attr_ids = set()
-    unique_attributed = []
-    attr_by_source = {"ordersuccess": 0, "cart_fallback": 0}
+    ordersuccess_attributed = []
+    skipped_cart_fallback = 0
     for a in all_attributed:
         did = a.get("dedupeId")
         if did and did not in seen_attr_ids:
             seen_attr_ids.add(did)
-            unique_attributed.append(a)
-            src = classify_order_source(did)
-            if src in attr_by_source:
-                attr_by_source[src] += 1
+            if classify_order_source(did) == "ordersuccess":
+                ordersuccess_attributed.append(a)
+            else:
+                skipped_cart_fallback += 1
+
+    # Stage 2: Visitor-window dedup (30-min window, keep last event per window)
+    # Same visitor firing multiple ordersuccess events within minutes = same order
+    # with minor tax/fee recalculations. Keep the last event (final transaction amount).
+    DEDUP_WINDOW_SECONDS = 1800  # 30 minutes
+    visitor_groups = defaultdict(list)
+    for a in ordersuccess_attributed:
+        vid = a.get("visitorId") or a.get("ip", "unknown")
+        visitor_groups[vid].append(a)
+
+    unique_attributed = []
+    visitor_dedup_removed = 0
+    for vid, events in visitor_groups.items():
+        events.sort(key=lambda x: x.get("time", ""))
+        current_window = [events[0]]
+        for e in events[1:]:
+            try:
+                prev_time = datetime.fromisoformat(current_window[-1].get("time", "").replace("Z", "+00:00"))
+                curr_time = datetime.fromisoformat(e.get("time", "").replace("Z", "+00:00"))
+                gap = (curr_time - prev_time).total_seconds()
+            except Exception:
+                gap = 99999
+            if gap <= DEDUP_WINDOW_SECONDS:
+                current_window.append(e)
+            else:
+                unique_attributed.append(current_window[-1])
+                visitor_dedup_removed += len(current_window) - 1
+                current_window = [e]
+        unique_attributed.append(current_window[-1])
+        visitor_dedup_removed += len(current_window) - 1
 
     print(f"\n  Total unique purchases: {len(unique_purchases)}")
-    print(f"  Total unique attributed: {len(unique_attributed)} ({attr_by_source['ordersuccess']} ordersuccess, {attr_by_source['cart_fallback']} cart fallback)")
+    print(f"  Attributed: {len(ordersuccess_attributed)} ordersuccess, {skipped_cart_fallback} cart fallback skipped")
+    print(f"  Visitor-window dedup (30min): removed {visitor_dedup_removed} re-fires, final: {len(unique_attributed)}")
 
     # -------------------------
     # Enrich purchases with data blob
