@@ -1295,17 +1295,6 @@ def main():
         "channels": channel_data,
         "campaigns": campaigns_output,
         "dailyData": serialized_daily,
-        "orders": [
-            {
-                "dedupeId": p.get("dedupeId", ""),
-                "revenue": round(float(p.get("revenue") or 0), 2),
-                "date": (lambda t: pd.to_datetime(t, utc=True).astimezone(LOCAL_TZ).strftime("%Y-%m-%d") if t else "")(p.get("time", "")),
-                "source": p.get("_order_source", ""),
-                "region": p.get("region", ""),
-                "trafficSource": p.get("_traffic_source", ""),
-            }
-            for p in unique_purchases
-        ],
     }
 
     # -------------------------
