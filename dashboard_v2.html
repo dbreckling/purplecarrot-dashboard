@@ -370,7 +370,10 @@ tr:hover{background:#fbfcff}
 
         <!-- Attributed Orders table -->
         <div class="card">
-          <h3>Attributed Orders</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3 style="margin:0">Attributed Orders</h3>
+            <button onclick="exportAttrCSV()" style="background:#7c3aed;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export CSV</button>
+          </div>
           <div style="max-height:420px;overflow-y:auto">
             <table>
               <thead style="position:sticky;top:0;background:var(--card-bg);z-index:1"><tr><th>Order ID</th><th class="numeric">Revenue</th><th>Conversion Date</th><th>Type</th><th class="numeric">Impressions</th></tr></thead>
@@ -911,6 +914,24 @@ function renderPage(pageId) {
   else if (pageId === 'analytics') renderAnalytics();
   else if (pageId === 'attribution') renderAttribution();
   else if (pageId === 'connectors') renderConnectors();
+}
+
+// CSV Export for attributed orders
+function exportAttrCSV() {
+  const details = (DATA.attribution || {}).impressionsToConversion?.converterDetails || [];
+  if (!details.length) { alert('No attributed order data to export.'); return; }
+  let csv = 'Order ID,Revenue,Conversion Date,Attribution Type,Impressions Seen\n';
+  for (const d of details) {
+    const dt = d.conversionTime ? d.conversionTime.slice(0, 10) : '';
+    csv += `${d.dedupeId || ''},${(d.revenue || 0).toFixed(2)},${dt},${d.type || ''},${d.impressionsSeen || 0}\n`;
+  }
+  const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'purple_carrot_attributed_orders.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 // ==================== EXECUTIVE OVERVIEW ====================

@@ -688,17 +688,22 @@ def main():
             seen_ids.add(did)
             unique_purchases.append(p)
 
-    # Dedupe attributed
+    # Dedupe attributed — ordersuccess only (7+ digit numeric DLV-transactionId)
+    # Client confirmed: only numeric order IDs from ordersuccess event are valid
     seen_attr_ids = set()
     unique_attributed = []
+    skipped_cart_fallback = 0
     for a in all_attributed:
         did = a.get("dedupeId")
         if did and did not in seen_attr_ids:
+            if classify_order_source(did) != "ordersuccess":
+                skipped_cart_fallback += 1
+                continue
             seen_attr_ids.add(did)
             unique_attributed.append(a)
 
     print(f"\n  Total unique purchases: {len(unique_purchases)}")
-    print(f"  Total unique attributed: {len(unique_attributed)}")
+    print(f"  Total unique attributed: {len(unique_attributed)} (ordersuccess only, skipped {skipped_cart_fallback} cart fallback)")
 
     # -------------------------
     # Enrich purchases with data blob
