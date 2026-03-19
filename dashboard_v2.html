@@ -364,13 +364,26 @@ tr:hover{background:#fbfcff}
           <p style="font-size:11px;color:var(--muted);margin-top:4px">ordersuccess = dataLayer primary &bull; cart fallback = fetch intercept</p>
         </div>
 
-        <!-- Top States mini table -->
+        <!-- All Orders paginated table -->
         <div class="card">
-          <h3>Top States</h3>
-          <table>
-            <thead><tr><th>State</th><th class="numeric">Orders</th><th class="numeric">Revenue</th></tr></thead>
-            <tbody id="overviewGeoTable"></tbody>
-          </table>
+          <h3>All Orders</h3>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap">
+            <input type="text" id="orderSearchInput" placeholder="Search Order ID..." style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;width:180px;background:var(--card-bg);color:var(--fg)">
+            <span id="orderCount" style="font-size:11px;color:var(--muted)"></span>
+          </div>
+          <div style="max-height:400px;overflow-y:auto" id="orderTableWrap">
+            <table>
+              <thead style="position:sticky;top:0;background:var(--card-bg);z-index:1"><tr><th>#</th><th>Order ID</th><th class="numeric">Revenue</th><th>Date</th><th>Source</th><th>State</th></tr></thead>
+              <tbody id="overviewOrdersTable"></tbody>
+            </table>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;font-size:12px">
+            <div>
+              <button id="orderPrevBtn" onclick="changeOrderPage(-1)" style="padding:4px 12px;border:1px solid var(--border);border-radius:4px;background:var(--card-bg);color:var(--fg);cursor:pointer">&laquo; Prev</button>
+              <button id="orderNextBtn" onclick="changeOrderPage(1)" style="padding:4px 12px;border:1px solid var(--border);border-radius:4px;background:var(--card-bg);color:var(--fg);cursor:pointer;margin-left:4px">Next &raquo;</button>
+            </div>
+            <span id="orderPageInfo" style="color:var(--muted)"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -728,6 +741,52 @@ const fmtPct = (n) => n.toFixed(1) + '%';
 const fmtMoney = (n) => '$' + fmt(Math.abs(n), 2);
 const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
 
+// ==================== ORDERS PAGINATION ====================
+function renderOrdersPage() {
+  const orders = window._filteredOrders || [];
+  const page = window._orderPage || 0;
+  const size = window._orderPageSize || 25;
+  const start = page * size;
+  const pageOrders = orders.slice(start, start + size);
+  const totalPages = Math.max(1, Math.ceil(orders.length / size));
+
+  const tbody = document.getElementById('overviewOrdersTable');
+  if (!tbody) return;
+
+  let rows = '';
+  for (let i = 0; i < pageOrders.length; i++) {
+    const o = pageOrders[i];
+    rows += `<tr>
+      <td style="color:var(--muted);font-size:11px">${start + i + 1}</td>
+      <td><strong>${o.dedupeId || '-'}</strong></td>
+      <td class="numeric">${fmtMoney(o.revenue || 0)}</td>
+      <td style="font-size:11px">${o.date || '-'}</td>
+      <td style="font-size:11px">${o.source || '-'}</td>
+      <td style="font-size:11px">${o.region || '-'}</td>
+    </tr>`;
+  }
+  tbody.innerHTML = rows || '<tr><td colspan="6" style="text-align:center;color:var(--muted)">No orders found</td></tr>';
+
+  const info = document.getElementById('orderPageInfo');
+  if (info) info.textContent = `Page ${page + 1} of ${totalPages} (${orders.length.toLocaleString()} orders)`;
+
+  const countEl = document.getElementById('orderCount');
+  if (countEl) countEl.textContent = `${orders.length.toLocaleString()} total orders`;
+
+  const prevBtn = document.getElementById('orderPrevBtn');
+  const nextBtn = document.getElementById('orderNextBtn');
+  if (prevBtn) prevBtn.disabled = page === 0;
+  if (nextBtn) nextBtn.disabled = start + size >= orders.length;
+}
+
+function changeOrderPage(delta) {
+  const orders = window._filteredOrders || [];
+  const size = window._orderPageSize || 25;
+  const totalPages = Math.max(1, Math.ceil(orders.length / size));
+  window._orderPage = Math.max(0, Math.min(totalPages - 1, (window._orderPage || 0) + delta));
+  renderOrdersPage();
+}
+
 // ==================== LOGIN ====================
 document.getElementById('btnLogin').addEventListener('click', doLogin);
 document.getElementById('loginPassword').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
@@ -1056,19 +1115,24 @@ function renderOverview() {
   </tr>`;
   tsTbody.innerHTML = tsRows;
 
-  // Top States mini table on Overview
-  const geo = DATA.geographic || {};
-  const geoTbody = document.getElementById('overviewGeoTable');
-  const geoSorted = Object.entries(geo).sort((a, b) => (b[1].orders || 0) - (a[1].orders || 0)).slice(0, 10);
-  let geoRows = '';
-  for (const [state, data] of geoSorted) {
-    geoRows += `<tr>
-      <td><strong>${state}</strong></td>
-      <td class="numeric">${fmt(data.orders || 0)}</td>
-      <td class="numeric">${fmtMoney(data.revenue || 0)}</td>
-    </tr>`;
+  // All Orders paginated table on Overview
+  window._allOrders = (DATA.orders || []).slice();
+  window._filteredOrders = window._allOrders;
+  window._orderPage = 0;
+  window._orderPageSize = 25;
+
+  const orderSearch = document.getElementById('orderSearchInput');
+  if (orderSearch) {
+    orderSearch.addEventListener('input', function() {
+      const q = this.value.trim().toLowerCase();
+      window._filteredOrders = q
+        ? window._allOrders.filter(o => (o.dedupeId || '').toLowerCase().includes(q))
+        : window._allOrders;
+      window._orderPage = 0;
+      renderOrdersPage();
+    });
   }
-  geoTbody.innerHTML = geoRows;
+  renderOrdersPage();
 }
 
 // ==================== OVERVIEW TREND CHART ====================
