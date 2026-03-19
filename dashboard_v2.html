@@ -376,7 +376,7 @@ tr:hover{background:#fbfcff}
           </div>
           <div style="max-height:420px;overflow-y:auto">
             <table>
-              <thead style="position:sticky;top:0;background:var(--card-bg);z-index:1"><tr><th>Order ID</th><th class="numeric">Revenue</th><th>Conversion Date</th><th>Type</th><th class="numeric">Impressions</th></tr></thead>
+              <thead style="position:sticky;top:0;background:var(--card-bg);z-index:1"><tr><th>Order ID</th><th class="numeric">Revenue</th><th>Conversion Date</th><th>Type</th><th>Source</th><th class="numeric">Impressions</th></tr></thead>
               <tbody id="attrOrdersTable"></tbody>
             </table>
           </div>
@@ -920,10 +920,10 @@ function renderPage(pageId) {
 function exportAttrCSV() {
   const details = (DATA.attribution || {}).impressionsToConversion?.converterDetails || [];
   if (!details.length) { alert('No attributed order data to export.'); return; }
-  let csv = 'Order ID,Revenue,Conversion Date,Attribution Type,Impressions Seen\n';
+  let csv = 'Order ID,Revenue,Conversion Date,Attribution Type,Order Source,Impressions Seen\n';
   for (const d of details) {
     const dt = d.conversionTime ? d.conversionTime.slice(0, 10) : '';
-    csv += `${d.dedupeId || ''},${(d.revenue || 0).toFixed(2)},${dt},${d.type || ''},${d.impressionsSeen || 0}\n`;
+    csv += `${d.dedupeId || ''},${(d.revenue || 0).toFixed(2)},${dt},${d.type || ''},${d.orderSource || ''},${d.impressionsSeen || 0}\n`;
   }
   const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
   const a = document.createElement('a');
@@ -1104,18 +1104,22 @@ function renderOverview() {
     const typePill = o.type === 'click-through'
       ? '<span class="pill orange">click-through</span>'
       : '<span class="pill">view-through</span>';
+    const srcPill = o.orderSource === 'ordersuccess'
+      ? '<span class="pill green" style="font-size:10px">ordersuccess</span>'
+      : '<span class="pill orange" style="font-size:10px">cart fallback</span>';
     attrORows += `<tr>
       <td><strong>${o.dedupeId || '-'}</strong></td>
       <td class="numeric">${fmtMoney(o.revenue || 0)}</td>
       <td style="font-size:11px">${dt}</td>
       <td>${typePill}</td>
+      <td>${srcPill}</td>
       <td class="numeric">${o.impressionsSeen || 0}</td>
     </tr>`;
   }
   attrORows += `<tr style="font-weight:bold;border-top:2px solid #333;background:#f8f9fc">
     <td>TOTAL (${attrOrdersList.length})</td>
     <td class="numeric">${fmtMoney(attrOTotalRev)}</td>
-    <td colspan="3"></td>
+    <td colspan="4"></td>
   </tr>`;
   if (attrOTbody) attrOTbody.innerHTML = attrORows;
 }

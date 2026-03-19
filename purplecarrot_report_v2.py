@@ -688,22 +688,22 @@ def main():
             seen_ids.add(did)
             unique_purchases.append(p)
 
-    # Dedupe attributed — ordersuccess only (7+ digit numeric DLV-transactionId)
-    # Client confirmed: only numeric order IDs from ordersuccess event are valid
+    # Dedupe attributed — include both ordersuccess and cart fallback
+    # Cart fallback orders are real unique purchases (different visitors/revenue)
     seen_attr_ids = set()
     unique_attributed = []
-    skipped_cart_fallback = 0
+    attr_by_source = {"ordersuccess": 0, "cart_fallback": 0}
     for a in all_attributed:
         did = a.get("dedupeId")
         if did and did not in seen_attr_ids:
-            if classify_order_source(did) != "ordersuccess":
-                skipped_cart_fallback += 1
-                continue
             seen_attr_ids.add(did)
             unique_attributed.append(a)
+            src = classify_order_source(did)
+            if src in attr_by_source:
+                attr_by_source[src] += 1
 
     print(f"\n  Total unique purchases: {len(unique_purchases)}")
-    print(f"  Total unique attributed: {len(unique_attributed)} (ordersuccess only, skipped {skipped_cart_fallback} cart fallback)")
+    print(f"  Total unique attributed: {len(unique_attributed)} ({attr_by_source['ordersuccess']} ordersuccess, {attr_by_source['cart_fallback']} cart fallback)")
 
     # -------------------------
     # Enrich purchases with data blob
@@ -940,6 +940,7 @@ def main():
             "impressionsSeen": pre_conv_count,
             "revenue": float(a.get("revenue") or 0),
             "type": "click-through" if vid in click_visitor_set else "view-through",
+            "orderSource": classify_order_source(did),
         })
 
     avg_imps_to_convert = round(sum(converter_impression_counts) / len(converter_impression_counts), 1) if converter_impression_counts else 0

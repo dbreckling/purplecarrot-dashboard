@@ -4,42 +4,42 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-19T20:13:25.240410Z",
+  "lastUpdated": "2026-03-19T20:20:52.172309Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-19"
   },
   "global": {
-    "totalOrders": 15972,
-    "totalRevenue": 1584923.22,
-    "aov": 99.23,
-    "uniqueVisitors": 9023,
-    "repeatPurchaseRate": 42.3,
-    "newOrders": 15952,
+    "totalOrders": 15976,
+    "totalRevenue": 1585393.22,
+    "aov": 99.24,
+    "uniqueVisitors": 9024,
+    "repeatPurchaseRate": 42.4,
+    "newOrders": 15956,
     "returningOrders": 2,
     "newCustomerPct": 99.9,
     "avgCartSize": 4.3
   },
   "identity": {
     "emailHashCoverage": 43.5,
-    "customerIdCoverage": 43.5,
+    "customerIdCoverage": 43.6,
     "zipCodeCoverage": 42.7,
     "loggedInBreakdown": {
-      "yes": 4822,
-      "no": 2242,
+      "yes": 4825,
+      "no": 2243,
       "unknown": 8908
     }
   },
   "orderSources": {
-    "ordersuccess": 9984,
-    "cartFallback": 5960,
+    "ordersuccess": 9987,
+    "cartFallback": 5961,
     "unknown": 28
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 12328,
-      "revenue": 1233841.78,
-      "aov": 100.08,
+      "orders": 12332,
+      "revenue": 1234311.78,
+      "aov": 100.09,
       "pctOfOrders": 77.2
     },
     "Direct": {
@@ -135,8 +135,8 @@
       "revenue": 57220.73
     },
     "CO": {
-      "orders": 549,
-      "revenue": 52814.58
+      "orders": 552,
+      "revenue": 53183.58
     },
     "OH": {
       "orders": 545,
@@ -209,11 +209,11 @@
       "pctOfOrders": 23.3
     },
     "Windows": {
-      "orders": 2895,
+      "orders": 2898,
       "pctOfOrders": 18.1
     },
     "Android": {
-      "orders": 2725,
+      "orders": 2726,
       "pctOfOrders": 17.1
     },
     "Chromium OS": {
@@ -235,15 +235,15 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 461510,
+    "impressions": 462169,
     "clicks": 60,
-    "reach": 110028,
+    "reach": 110216,
     "frequency": 4.19,
-    "attrOrders": 14,
-    "attrRevenue": 1350.5,
-    "spend": 4027.49,
-    "roas": 0.34,
-    "costPerSubscription": 287.68,
+    "attrOrders": 22,
+    "attrRevenue": 2157.96,
+    "spend": 4033.25,
+    "roas": 0.54,
+    "costPerSubscription": 183.33,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -252,10 +252,10 @@
   "attribution": {
     "byType": {
       "clickThrough": 0,
-      "viewThrough": 14
+      "viewThrough": 22
     },
     "conversionTimeline": {
-      "sameDay": 8,
+      "sameDay": 16,
       "1day": 5,
       "2to3days": 1,
       "4to7days": 0,
@@ -264,42 +264,82 @@
     },
     "lookbackData": {
       "1": {
-        "orders": 8,
-        "revenue": 820.5
+        "orders": 16,
+        "revenue": 1627.96
       },
       "3": {
-        "orders": 13,
-        "revenue": 1242.5
+        "orders": 21,
+        "revenue": 2049.96
       },
       "7": {
-        "orders": 14,
-        "revenue": 1350.5
+        "orders": 22,
+        "revenue": 2157.96
       },
       "14": {
-        "orders": 14,
-        "revenue": 1350.5
+        "orders": 22,
+        "revenue": 2157.96
       },
       "30": {
-        "orders": 14,
-        "revenue": 1350.5
+        "orders": 22,
+        "revenue": 2157.96
       }
     },
-    "avgDaysToConversion": 1.1,
-    "sameDayConversions": 8,
-    "sameDayConversionRate": 57.1,
+    "avgDaysToConversion": 0.7,
+    "sameDayConversions": 16,
+    "sameDayConversionRate": 72.7,
     "impressionsToConversion": {
-      "avgImpressions": 9.1,
+      "avgImpressions": 7.0,
       "minImpressions": 1,
       "maxImpressions": 59,
-      "medianImpressions": 2,
+      "medianImpressions": 3,
       "frequencyBuckets": {
-        "1-3": 8,
-        "4-7": 0,
+        "1-3": 12,
+        "4-7": 4,
         "8-14": 5,
         "15-30": 0,
         "31+": 1
       },
       "converterDetails": [
+        {
+          "dedupeId": "ABO7mKAB",
+          "visitorId": "VID245E97A1B5AF49CFAB",
+          "ip": "2600:404***",
+          "conversionTime": "2026-03-13T01:27:30.041000+00:00",
+          "impressionsSeen": 2,
+          "revenue": 131.99,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
+        },
+        {
+          "dedupeId": "7BKdY1EM",
+          "visitorId": "VIDDB965567599D4CEBB9",
+          "ip": "2600:387***",
+          "conversionTime": "2026-03-14T17:00:25.327000+00:00",
+          "impressionsSeen": 4,
+          "revenue": 95.99,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
+        },
+        {
+          "dedupeId": "DMvkRYdn",
+          "visitorId": "VIDDB965567599D4CEBB9",
+          "ip": "2600:387***",
+          "conversionTime": "2026-03-14T17:20:14.957000+00:00",
+          "impressionsSeen": 4,
+          "revenue": 80.0,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
+        },
+        {
+          "dedupeId": "qMdPQo6M",
+          "visitorId": "VIDDB965567599D4CEBB9",
+          "ip": "2600:387***",
+          "conversionTime": "2026-03-14T17:21:31.536000+00:00",
+          "impressionsSeen": 4,
+          "revenue": 89.0,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
+        },
         {
           "dedupeId": "10115607",
           "visitorId": "VIDMLV51DU2CKQDH",
@@ -307,7 +347,8 @@
           "conversionTime": "2026-03-15T17:00:19.823000+00:00",
           "impressionsSeen": 1,
           "revenue": 112.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10095223",
@@ -316,7 +357,8 @@
           "conversionTime": "2026-03-15T17:03:48.764000+00:00",
           "impressionsSeen": 1,
           "revenue": 108.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10073158",
@@ -325,7 +367,8 @@
           "conversionTime": "2026-03-15T17:06:29.801000+00:00",
           "impressionsSeen": 1,
           "revenue": 112.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10051787",
@@ -334,7 +377,18 @@
           "conversionTime": "2026-03-15T22:17:18.719000+00:00",
           "impressionsSeen": 9,
           "revenue": 70.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
+        },
+        {
+          "dedupeId": "KMokZJxM",
+          "visitorId": "VID0AF3E6F3DD6044E3B6",
+          "ip": "2600:387***",
+          "conversionTime": "2026-03-16T08:07:10.886000+00:00",
+          "impressionsSeen": 6,
+          "revenue": 97.49,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
         },
         {
           "dedupeId": "10114861",
@@ -343,7 +397,8 @@
           "conversionTime": "2026-03-16T10:44:16.332000+00:00",
           "impressionsSeen": 59,
           "revenue": 93.5,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10099551",
@@ -352,7 +407,18 @@
           "conversionTime": "2026-03-16T13:36:17.900000+00:00",
           "impressionsSeen": 11,
           "revenue": 112.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
+        },
+        {
+          "dedupeId": "GMzOLKKn",
+          "visitorId": "VID839C90440647408185",
+          "ip": "2600:404***",
+          "conversionTime": "2026-03-17T00:12:21.847000+00:00",
+          "impressionsSeen": 3,
+          "revenue": 94.5,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
         },
         {
           "dedupeId": "10048974",
@@ -361,7 +427,8 @@
           "conversionTime": "2026-03-17T19:00:44.516000+00:00",
           "impressionsSeen": 2,
           "revenue": 67.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10111504",
@@ -370,7 +437,8 @@
           "conversionTime": "2026-03-17T19:03:20.050000+00:00",
           "impressionsSeen": 2,
           "revenue": 69.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10046376",
@@ -379,7 +447,8 @@
           "conversionTime": "2026-03-17T20:42:17.513000+00:00",
           "impressionsSeen": 2,
           "revenue": 104.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10056307",
@@ -388,7 +457,8 @@
           "conversionTime": "2026-03-17T23:41:42.998000+00:00",
           "impressionsSeen": 2,
           "revenue": 108.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10137901",
@@ -397,7 +467,28 @@
           "conversionTime": "2026-03-18T18:20:12.685000+00:00",
           "impressionsSeen": 2,
           "revenue": 110.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
+        },
+        {
+          "dedupeId": "0n7JXx0M",
+          "visitorId": "VID6E24175657BD4987B5",
+          "ip": "2600:387***",
+          "conversionTime": "2026-03-19T02:31:31.663000+00:00",
+          "impressionsSeen": 1,
+          "revenue": 120.49,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
+        },
+        {
+          "dedupeId": "9nRZ73on",
+          "visitorId": "VID6E24175657BD4987B5",
+          "ip": "2600:387***",
+          "conversionTime": "2026-03-19T02:35:30.507000+00:00",
+          "impressionsSeen": 1,
+          "revenue": 98.0,
+          "type": "view-through",
+          "orderSource": "cart_fallback"
         },
         {
           "dedupeId": "10113670",
@@ -406,7 +497,8 @@
           "conversionTime": "2026-03-19T13:10:29.960000+00:00",
           "impressionsSeen": 14,
           "revenue": 110.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10147327",
@@ -415,7 +507,8 @@
           "conversionTime": "2026-03-19T13:13:31.779000+00:00",
           "impressionsSeen": 14,
           "revenue": 106.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         },
         {
           "dedupeId": "10131641",
@@ -424,40 +517,41 @@
           "conversionTime": "2026-03-19T15:05:56.559000+00:00",
           "impressionsSeen": 8,
           "revenue": 69.0,
-          "type": "view-through"
+          "type": "view-through",
+          "orderSource": "ordersuccess"
         }
       ]
     }
   },
   "channels": {
     "display": {
-      "impressions": 287301,
+      "impressions": 287785,
       "clicks": 59,
-      "reach": 74242,
-      "attrOrders": 3,
-      "attrRevenue": 307.5,
+      "reach": 74401,
+      "attrOrders": 10,
+      "attrRevenue": 1017.47,
       "cpm": 6.0,
-      "spend": 1723.81,
-      "roas": 0.18
+      "spend": 1726.71,
+      "roas": 0.59
     },
     "video": {
-      "impressions": 125569,
+      "impressions": 125669,
       "clicks": 0,
-      "reach": 48518,
-      "attrOrders": 10,
-      "attrRevenue": 973.0,
+      "reach": 48559,
+      "attrOrders": 11,
+      "attrRevenue": 1070.49,
       "cpm": 7.5,
-      "spend": 941.77,
-      "roas": 1.03
+      "spend": 942.52,
+      "roas": 1.14
     },
     "ctv": {
-      "impressions": 48640,
+      "impressions": 48715,
       "clicks": 1,
-      "reach": 13763,
+      "reach": 13775,
       "attrOrders": 1,
       "attrRevenue": 70.0,
       "cpm": 28.0,
-      "spend": 1361.92,
+      "spend": 1364.02,
       "roas": 0.05
     }
   },
@@ -466,14 +560,14 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 461508,
+      "impressions": 462167,
       "clicks": 60,
-      "reach": 110027,
+      "reach": 110215,
       "frequency": 4.19,
-      "attrOrders": 14,
-      "attrRevenue": 1350.5,
-      "spend": 4027.48,
-      "roas": 0.34
+      "attrOrders": 22,
+      "attrRevenue": 2157.96,
+      "spend": 4033.24,
+      "roas": 0.54
     }
   },
   "dailyData": {
@@ -836,16 +930,16 @@
       }
     },
     "2026-03-19": {
-      "impressions": 27539,
+      "impressions": 28198,
       "clicks": 5,
-      "purchases": 678,
-      "revenue": 64674.06,
+      "purchases": 682,
+      "revenue": 65144.06,
       "conversions": 5,
       "attrRevenue": 503.49,
-      "newOrders": 676,
+      "newOrders": 680,
       "returningOrders": 2,
       "trafficSources": {
-        "Direct / Internal": 547,
+        "Direct / Internal": 551,
         "Google Ads": 16,
         "Direct": 48,
         "Referral": 19,
