@@ -270,12 +270,13 @@ tr:hover{background:#fbfcff}
     </div>
 
     <!-- Top KPIs - 6 cards -->
-    <div class="kpi-grid" style="grid-template-columns:repeat(6,1fr)" id="overviewKpis">
+    <div class="kpi-grid" style="grid-template-columns:repeat(7,1fr)" id="overviewKpis">
       <div class="kpi-card"><div class="label">Media Spend</div><div class="value" id="gSpend">-</div><div class="sub" id="gSpendSub">-</div></div>
       <div class="kpi-card"><div class="label">Impressions</div><div class="value" id="gImpressions">-</div><div class="sub" id="gImpSub">-</div></div>
       <div class="kpi-card"><div class="label">Website Visits</div><div class="value" id="gWebVisits">-</div><div class="sub" id="gWebVisitsSub">-</div></div>
       <div class="kpi-card"><div class="label">Attributed Revenue</div><div class="value" id="gAttrRev">-</div><div class="sub" id="gAttrRevSub">-</div></div>
       <div class="kpi-card"><div class="label">New Customers</div><div class="value" id="gNewPct">-</div><div class="sub" id="gNewSub">-</div></div>
+      <div class="kpi-card"><div class="label">CAC</div><div class="value" id="gCAC">-</div><div class="sub" id="gCACSub">-</div></div>
       <div class="kpi-card highlight"><div class="label">Blended ROAS</div><div class="value" id="gRoas">-</div><div class="sub" id="gRoasSub">-</div></div>
     </div>
 
@@ -290,6 +291,7 @@ tr:hover{background:#fbfcff}
           <div><span>Reach</span><strong id="ovReachDisplay">-</strong></div>
           <div><span>Revenue</span><strong id="ovRevDisplay">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ovOrdersDisplay">-</strong></div>
+          <div><span>CAC</span><strong id="ovCacDisplay">-</strong></div>
         </div>
         <div class="tactic-note">Standard display banners &bull; 300x250, 728x90, 160x600</div>
       </div>
@@ -302,6 +304,7 @@ tr:hover{background:#fbfcff}
           <div><span>Reach</span><strong id="ovReachVideo">-</strong></div>
           <div><span>Revenue</span><strong id="ovRevVideo">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ovOrdersVideo">-</strong></div>
+          <div><span>CAC</span><strong id="ovCacVideo">-</strong></div>
         </div>
         <div class="tactic-note">In-stream &amp; outstream video pre-roll &bull; :15 and :30</div>
       </div>
@@ -314,6 +317,7 @@ tr:hover{background:#fbfcff}
           <div><span>Reach</span><strong id="ovReachCTV">-</strong></div>
           <div><span>Revenue</span><strong id="ovRevCTV">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ovOrdersCTV">-</strong></div>
+          <div><span>CAC</span><strong id="ovCacCTV">-</strong></div>
         </div>
         <div class="tactic-note">Connected TV &amp; streaming &bull; Roku, Fire TV, Apple TV</div>
       </div>
@@ -408,6 +412,7 @@ tr:hover{background:#fbfcff}
           <div><span>Reach</span><strong id="reachDisplay">-</strong></div>
           <div><span>Revenue</span><strong id="revDisplay">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ordersDisplay">-</strong></div>
+          <div><span>CAC</span><strong id="cacDisplay">-</strong></div>
         </div>
         <div class="tactic-note">Standard display banners &bull; 300x250, 728x90, 160x600</div>
       </div>
@@ -420,6 +425,7 @@ tr:hover{background:#fbfcff}
           <div><span>Reach</span><strong id="reachVideo">-</strong></div>
           <div><span>Revenue</span><strong id="revVideo">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ordersVideo">-</strong></div>
+          <div><span>CAC</span><strong id="cacVideo">-</strong></div>
         </div>
         <div class="tactic-note">In-stream &amp; outstream video pre-roll &bull; :15 and :30</div>
       </div>
@@ -432,6 +438,7 @@ tr:hover{background:#fbfcff}
           <div><span>Reach</span><strong id="reachCTV">-</strong></div>
           <div><span>Revenue</span><strong id="revCTV">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ordersCTV">-</strong></div>
+          <div><span>CAC</span><strong id="cacCTV">-</strong></div>
         </div>
         <div class="tactic-note">Connected TV &amp; streaming platforms &bull; Roku, Fire TV, Apple TV</div>
       </div>
@@ -951,6 +958,11 @@ function renderOverview() {
   setText('gNewPct', fmtPct(newAttrPct));
   setText('gNewSub', newAttrCount + ' new / ' + (attrTotal - newAttrCount) + ' returning');
 
+  // CAC (Customer Acquisition Cost)
+  const cac = prog.costPerSubscription || 0;
+  setText('gCAC', cac > 0 ? fmtMoney(cac) : '-');
+  setText('gCACSub', 'cost per attributed order');
+
   // Blended ROAS
   setText('gRoas', (prog.roas || 0).toFixed(2) + 'x');
   setText('gRoasSub', 'Revenue / Spend');
@@ -987,12 +999,14 @@ function renderOverview() {
   function populateOvCard(prefix, data) {
     const spend = (data.impressions / 1000) * data.cpm;
     const roas = spend > 0 ? ((data.attrRevenue || 0) / spend) : 0;
+    const chCac = (data.attrOrders > 0 && spend > 0) ? spend / data.attrOrders : 0;
     setText('ovRoas' + prefix, roas > 0 ? roas.toFixed(2) + 'x' : '-');
     setText('ovCpm' + prefix, 'CPM $' + data.cpm.toFixed(2) + ' \u2022 Est. Spend ' + fmtMoney(spend));
     setText('ovImps' + prefix, fmt(data.impressions || 0));
     setText('ovReach' + prefix, fmt(data.reach || 0));
     setText('ovRev' + prefix, fmtMoney(data.attrRevenue || 0));
     setText('ovOrders' + prefix, fmt(data.attrOrders || 0));
+    setText('ovCac' + prefix, chCac > 0 ? fmtMoney(chCac) : '-');
   }
 
   populateOvCard('Display', ovDisplayData);
@@ -1184,12 +1198,14 @@ function renderProgrammatic() {
   function populateChannelCard(prefix, data) {
     const spend = (data.impressions / 1000) * data.cpm;
     const roas = spend > 0 ? ((data.attrRevenue || 0) / spend) : 0;
+    const chCac = (data.attrOrders > 0 && spend > 0) ? spend / data.attrOrders : 0;
     setText('roas' + prefix, roas > 0 ? roas.toFixed(2) + 'x' : '-');
     setText('cpm' + prefix, 'CPM $' + data.cpm.toFixed(2) + ' \u2022 Est. Spend ' + fmtMoney(spend));
     setText('imps' + prefix, fmt(data.impressions || 0));
     setText('reach' + prefix, fmt(data.reach || 0));
     setText('rev' + prefix, fmtMoney(data.attrRevenue || 0));
     setText('orders' + prefix, fmt(data.attrOrders || 0));
+    setText('cac' + prefix, chCac > 0 ? fmtMoney(chCac) : '-');
   }
 
   populateChannelCard('Display', displayData);
