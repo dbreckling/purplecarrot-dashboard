@@ -1102,8 +1102,8 @@ function renderOverview() {
     attrOTotalRev += o.revenue || 0;
     const dt = o.conversionTime ? o.conversionTime.slice(0, 10) : '-';
     const typePill = o.type === 'click-through'
-      ? '<span class="pill orange">click-through</span>'
-      : '<span class="pill">view-through</span>';
+      ? '<span class="pill orange" style="font-size:10px">click-through</span>'
+      : '<span class="pill" style="font-size:10px">view-through</span>';
     const srcPill = o.orderSource === 'ordersuccess'
       ? '<span class="pill green" style="font-size:10px">ordersuccess</span>'
       : '<span class="pill orange" style="font-size:10px">cart fallback</span>';

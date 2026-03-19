@@ -1334,43 +1334,10 @@ def main():
         "dailyData": serialized_daily,
     }
 
-    # -------------------------
-    # Preserve existing data if present
-    # -------------------------
-    existing_v2_path = os.path.join(DATA_DIR, "dashboard_data_v2.json")
-    if os.path.exists(existing_v2_path):
-        try:
-            with open(existing_v2_path, "r") as f:
-                prev = json.load(f)
-
-            attr_preserved_count = 0
-            prev_daily = prev.get("dailyData", {})
-            new_daily = output.get("dailyData", {})
-
-            for day_key in set(list(prev_daily.keys()) + list(new_daily.keys())):
-                old_day = prev_daily.get(day_key, {})
-                new_day = new_daily.get(day_key, {})
-                old_conv = old_day.get("conversions", 0)
-                new_conv = new_day.get("conversions", 0)
-
-                if old_conv > new_conv:
-                    if day_key not in new_daily:
-                        new_daily[day_key] = dict(old_day)
-                    else:
-                        new_daily[day_key]["conversions"] = old_conv
-                        new_daily[day_key]["attrRevenue"] = max(
-                            old_day.get("attrRevenue", 0),
-                            new_day.get("attrRevenue", 0),
-                        )
-                    attr_preserved_count += 1
-
-            output["dailyData"] = {k: v for k, v in sorted(new_daily.items())}
-
-            if attr_preserved_count > 0:
-                print(f"  Attribution preservation: kept higher values for {attr_preserved_count} day(s)")
-
-        except Exception as e:
-            print(f"  Attribution preservation skipped: {e}")
+    # NOTE: Attribution preservation removed — daily conversions now always reflect
+    # the current dedup pipeline (ordersuccess-only + visitor-window dedup).
+    # Previously this kept higher historical values, but that conflicted with
+    # the stricter dedup logic.
 
     # -------------------------
     # Write output
