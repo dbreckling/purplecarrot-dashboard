@@ -676,17 +676,55 @@ def main():
         current += timedelta(days=1)
 
     # -------------------------
-    # Dedupe purchases
+    # Dedupe purchases — ordersuccess only + visitor-window dedup
+    # Same pipeline as attributed orders: filter out cart fallback (not real transactions),
+    # then collapse same-visitor events within 30-min window (keep last = final amount)
     # -------------------------
+    # Stage 1: Dedupe by dedupeId, ordersuccess only
     seen_ids = set()
-    unique_purchases = []
+    ordersuccess_purchases = []
+    skipped_purchases = 0
     for p in all_purchases:
         did = p.get("dedupeId")
         if not did or not is_real_order_id(did):
             continue
         if did not in seen_ids:
             seen_ids.add(did)
-            unique_purchases.append(p)
+            if classify_order_source(did) == "ordersuccess":
+                ordersuccess_purchases.append(p)
+            else:
+                skipped_purchases += 1
+
+    # Stage 2: Visitor-window dedup (30-min window, keep last event = final transaction amount)
+    PURCHASE_DEDUP_WINDOW = 1800  # 30 minutes
+    purchase_visitor_groups = defaultdict(list)
+    for p in ordersuccess_purchases:
+        vid = p.get("visitorId") or p.get("ip", "unknown")
+        purchase_visitor_groups[vid].append(p)
+
+    unique_purchases = []
+    purchase_dedup_removed = 0
+    for vid, events in purchase_visitor_groups.items():
+        events.sort(key=lambda x: x.get("time", ""))
+        current_window = [events[0]]
+        for e in events[1:]:
+            try:
+                prev_time = datetime.fromisoformat(current_window[-1].get("time", "").replace("Z", "+00:00"))
+                curr_time = datetime.fromisoformat(e.get("time", "").replace("Z", "+00:00"))
+                gap = (curr_time - prev_time).total_seconds()
+            except:
+                gap = 99999
+            if gap <= PURCHASE_DEDUP_WINDOW:
+                current_window.append(e)  # same window
+            else:
+                unique_purchases.append(current_window[-1])
+                purchase_dedup_removed += len(current_window) - 1
+                current_window = [e]
+        unique_purchases.append(current_window[-1])
+        purchase_dedup_removed += len(current_window) - 1
+
+    print(f"\n  Purchases: {len(ordersuccess_purchases)} ordersuccess, {skipped_purchases} cart fallback skipped")
+    print(f"  Visitor-window dedup: removed {purchase_dedup_removed} re-fires, final: {len(unique_purchases)}")
 
     # Stage 1: Dedupe by dedupeId, ordersuccess only (7+ digit numeric DLV-transactionId)
     # Cart fallback IDs are cart add/remove activity, not completed transactions
