@@ -66,7 +66,10 @@ def is_real_order_id(x):
     x = str(x).strip()
     if not x:
         return False
-    # Purple Carrot ordersuccess IDs: numeric, 7-8 digits (e.g. 10051255)
+    # Real Purple Carrot transactionId: 7-digit numeric starting with 297/298/299
+    if x.isdigit() and len(x) == 7 and x[:3] in ("297", "298", "299"):
+        return True
+    # Also accept other numeric 7-8 digit IDs (cart.id from fetch intercept)
     if x.isdigit() and len(x) >= 7:
         return True
     # Cart fallback IDs: short alphanumeric (e.g. DBA4zjPy, GMzOxoEn)
@@ -75,13 +78,27 @@ def is_real_order_id(x):
     return False
 
 
+def is_real_transaction_id(x):
+    """Check if a dedupeId is a real Purple Carrot transactionId (from ordersuccess dataLayer event).
+    Real transactionIds are 7-digit numeric starting with 297/298/299."""
+    if not x:
+        return False
+    d = str(x).strip()
+    return d.isdigit() and len(d) == 7 and d[:3] in ("297", "298", "299")
+
+
 def classify_order_source(dedupe_id):
     """Classify whether order came via ordersuccess or cart fallback."""
     if not dedupe_id:
         return "unknown"
     d = str(dedupe_id).strip()
-    if d.isdigit() and len(d) >= 7:
+    # Real transactionId from ordersuccess dataLayer event (297/298/299 prefix)
+    if is_real_transaction_id(d):
         return "ordersuccess"
+    # Cart.id from fetch intercept (100xxxxx format — NOT real transactions)
+    if d.isdigit() and len(d) >= 7:
+        return "cart_save"
+    # Alpha IDs from cart fallback (e.g. DBA4zjPy)
     if len(d) <= 10 and d.isalnum() and not d.isdigit():
         return "cart_fallback"
     return "unknown"
@@ -677,50 +694,33 @@ def main():
 
     # -------------------------
     # Dedupe purchases:
-    #   Stage 1: dedupeId dedup (both ordersuccess + cart commit — both are real)
-    #   Stage 2: visitor-window dedup (24h window, keep last per visitor)
-    #     Same visitor firing multiple events within 24h = same transaction
+    #   Only count real ordersuccess transactions (297/298/299 prefix transactionIds)
+    #   These are confirmed new subscription events from the dataLayer.
+    #   Cart.id (100xxxxx) and cart fallback (alpha) are cart save/modify activity.
     # -------------------------
     seen_ids = set()
-    deduped_by_id = []
+    unique_purchases = []
+    skipped_cart_saves = 0
+    skipped_cart_fallback_purchases = 0
     for p in all_purchases:
         did = p.get("dedupeId")
-        if not did or not is_real_order_id(did):
+        if not did:
             continue
-        if did not in seen_ids:
-            seen_ids.add(did)
-            deduped_by_id.append(p)
+        if did in seen_ids:
+            continue
+        seen_ids.add(did)
+        source = classify_order_source(did)
+        if source == "ordersuccess":
+            unique_purchases.append(p)
+        elif source == "cart_save":
+            skipped_cart_saves += 1
+        elif source == "cart_fallback":
+            skipped_cart_fallback_purchases += 1
 
-    # Stage 2: Visitor-window dedup (24h window, keep last event per window)
-    PURCHASE_DEDUP_WINDOW = 86400  # 24 hours
-    purchase_visitor_groups = defaultdict(list)
-    for p in deduped_by_id:
-        vid = p.get("visitorId") or p.get("ip", "unknown")
-        purchase_visitor_groups[vid].append(p)
-
-    unique_purchases = []
-    purchase_dedup_removed = 0
-    for vid, events in purchase_visitor_groups.items():
-        events.sort(key=lambda x: x.get("time", ""))
-        current_window = [events[0]]
-        for e in events[1:]:
-            try:
-                prev_time = datetime.fromisoformat(current_window[-1].get("time", "").replace("Z", "+00:00"))
-                curr_time = datetime.fromisoformat(e.get("time", "").replace("Z", "+00:00"))
-                gap = (curr_time - prev_time).total_seconds()
-            except:
-                gap = 99999
-            if gap <= PURCHASE_DEDUP_WINDOW:
-                current_window.append(e)
-            else:
-                unique_purchases.append(current_window[-1])
-                purchase_dedup_removed += len(current_window) - 1
-                current_window = [e]
-        unique_purchases.append(current_window[-1])
-        purchase_dedup_removed += len(current_window) - 1
-
-    print(f"\n  Purchases: {len(deduped_by_id)} unique dedupeIds → {len(unique_purchases)} after visitor-window dedup (24h)")
-    print(f"  Visitor-window dedup removed: {purchase_dedup_removed}")
+    print(f"\n  Purchases: {len(seen_ids)} unique dedupeIds")
+    print(f"  Real ordersuccess (297/298/299): {len(unique_purchases)}")
+    print(f"  Skipped cart saves (100xxxxx): {skipped_cart_saves}")
+    print(f"  Skipped cart fallback (alpha): {skipped_cart_fallback_purchases}")
 
     # Stage 1: Dedupe by dedupeId, ordersuccess only (7+ digit numeric DLV-transactionId)
     # Cart fallback IDs are cart add/remove activity, not completed transactions
