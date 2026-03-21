@@ -860,9 +860,18 @@ def main():
     cart_sizes = [int(p.get("cartQty") or 0) for p in unique_purchases if p.get("cartQty")]
     avg_cart_size = round(sum(cart_sizes) / len(cart_sizes), 1) if cart_sizes else 0
 
-    # New vs returning (from visitor status)
-    new_orders = sum(1 for p in unique_purchases if normalize_visitor_status(p.get("visitorStatus")) == "new")
-    returning_orders = sum(1 for p in unique_purchases if normalize_visitor_status(p.get("visitorStatus")) == "returning")
+    # New vs returning (by visitor — first order = new, subsequent = returning)
+    seen_visitors = set()
+    new_orders = 0
+    returning_orders = 0
+    for p in sorted(unique_purchases, key=lambda x: x.get("time", "")):
+        vid = p.get("visitorId", "")
+        if vid and vid in seen_visitors:
+            returning_orders += 1
+        else:
+            new_orders += 1
+            if vid:
+                seen_visitors.add(vid)
     new_pct = round(new_orders / total_orders * 100, 1) if total_orders > 0 else 0
 
     # Geographic breakdown (from city/region)
