@@ -4,18 +4,18 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-22T20:45:50.610684Z",
+  "lastUpdated": "2026-03-22T21:15:01.593710Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-22"
   },
   "global": {
-    "totalOrders": 547,
-    "totalRevenue": 49649.78,
-    "aov": 90.77,
-    "uniqueVisitors": 529,
+    "totalOrders": 548,
+    "totalRevenue": 49661.78,
+    "aov": 90.62,
+    "uniqueVisitors": 530,
     "repeatPurchaseRate": 1.3,
-    "newOrders": 529,
+    "newOrders": 530,
     "returningOrders": 18,
     "newCustomerPct": 96.7,
     "avgCartSize": 1.0
@@ -23,15 +23,15 @@
   "identity": {
     "emailHashCoverage": 98.2,
     "customerIdCoverage": 98.2,
-    "zipCodeCoverage": 95.8,
+    "zipCodeCoverage": 95.6,
     "loggedInBreakdown": {
-      "yes": 96,
+      "yes": 97,
       "no": 139,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 547,
+    "ordersuccess": 548,
     "cartFallback": 0,
     "unknown": 0
   },
@@ -40,13 +40,13 @@
       "orders": 376,
       "revenue": 37922.93,
       "aov": 100.86,
-      "pctOfOrders": 68.7
+      "pctOfOrders": 68.6
     },
     "Google Organic": {
-      "orders": 56,
-      "revenue": 3834.5,
-      "aov": 68.47,
-      "pctOfOrders": 10.2
+      "orders": 57,
+      "revenue": 3846.5,
+      "aov": 67.48,
+      "pctOfOrders": 10.4
     },
     "Email": {
       "orders": 39,
@@ -81,8 +81,8 @@
   },
   "geographic": {
     "CA": {
-      "orders": 67,
-      "revenue": 5801.48
+      "orders": 68,
+      "revenue": 5813.48
     },
     "TX": {
       "orders": 35,
@@ -183,8 +183,8 @@
   },
   "devices": {
     "iOS": {
-      "orders": 226,
-      "pctOfOrders": 41.3
+      "orders": 227,
+      "pctOfOrders": 41.4
     },
     "Mac OS": {
       "orders": 137,
@@ -205,13 +205,13 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 670213,
+    "impressions": 672325,
     "clicks": 88,
-    "reach": 154038,
+    "reach": 154504,
     "frequency": 4.35,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 5749.91,
+    "spend": 5766.78,
     "roas": 0.0,
     "costPerSubscription": 0,
     "stackadapt": {
@@ -274,33 +274,33 @@
   },
   "channels": {
     "display": {
-      "impressions": 424095,
+      "impressions": 425703,
       "clicks": 87,
-      "reach": 107261,
+      "reach": 107664,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 2544.57,
+      "spend": 2554.22,
       "roas": 0.0
     },
     "video": {
-      "impressions": 179803,
+      "impressions": 180139,
       "clicks": 0,
-      "reach": 65447,
+      "reach": 65576,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 7.5,
-      "spend": 1348.52,
+      "spend": 1351.04,
       "roas": 0.0
     },
     "ctv": {
-      "impressions": 66315,
+      "impressions": 66483,
       "clicks": 1,
-      "reach": 16682,
+      "reach": 16701,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 1856.82,
+      "spend": 1861.52,
       "roas": 0.0
     }
   },
@@ -309,13 +309,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 670211,
+      "impressions": 672323,
       "clicks": 88,
-      "reach": 154037,
+      "reach": 154503,
       "frequency": 4.35,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 5749.9,
+      "spend": 5766.77,
       "roas": 0.0
     }
   },
@@ -670,19 +670,19 @@
       }
     },
     "2026-03-22": {
-      "impressions": 30072,
+      "impressions": 32184,
       "clicks": 3,
-      "purchases": 16,
-      "revenue": 1840.45,
+      "purchases": 17,
+      "revenue": 1852.45,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 16,
+      "newOrders": 17,
       "returningOrders": 0,
       "trafficSources": {
+        "Google Organic": 2,
         "Direct / Internal": 12,
         "Referral": 1,
-        "Direct": 2,
-        "Google Organic": 1
+        "Direct": 2
       }
     }
   }
