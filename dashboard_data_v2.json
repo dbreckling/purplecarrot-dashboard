@@ -4,20 +4,20 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-22T11:14:54.235667Z",
+  "lastUpdated": "2026-03-22T11:46:41.269073Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-22"
   },
   "global": {
-    "totalOrders": 536,
-    "totalRevenue": 48230.81,
-    "aov": 89.98,
-    "uniqueVisitors": 519,
-    "repeatPurchaseRate": 1.2,
-    "newOrders": 519,
-    "returningOrders": 17,
-    "newCustomerPct": 96.8,
+    "totalOrders": 539,
+    "totalRevenue": 48557.31,
+    "aov": 90.09,
+    "uniqueVisitors": 521,
+    "repeatPurchaseRate": 1.3,
+    "newOrders": 521,
+    "returningOrders": 18,
+    "newCustomerPct": 96.7,
     "avgCartSize": 1.0
   },
   "identity": {
@@ -26,20 +26,20 @@
     "zipCodeCoverage": 95.7,
     "loggedInBreakdown": {
       "yes": 94,
-      "no": 130,
+      "no": 133,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 536,
+    "ordersuccess": 539,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 367,
-      "revenue": 36766.96,
-      "aov": 100.18,
+      "orders": 369,
+      "revenue": 36993.46,
+      "aov": 100.25,
       "pctOfOrders": 68.5
     },
     "Google Organic": {
@@ -52,19 +52,19 @@
       "orders": 39,
       "revenue": 827.26,
       "aov": 21.21,
-      "pctOfOrders": 7.3
+      "pctOfOrders": 7.2
     },
     "Direct": {
-      "orders": 33,
-      "revenue": 2944.86,
-      "aov": 89.24,
-      "pctOfOrders": 6.2
+      "orders": 34,
+      "revenue": 3044.86,
+      "aov": 89.55,
+      "pctOfOrders": 6.3
     },
     "Referral": {
       "orders": 32,
       "revenue": 2877.83,
       "aov": 89.93,
-      "pctOfOrders": 6.0
+      "pctOfOrders": 5.9
     },
     "Google Ads": {
       "orders": 6,
@@ -96,13 +96,13 @@
       "orders": 31,
       "revenue": 3114.35
     },
+    "NY": {
+      "orders": 31,
+      "revenue": 3159.47
+    },
     "PA": {
       "orders": 30,
       "revenue": 2771.34
-    },
-    "NY": {
-      "orders": 29,
-      "revenue": 2959.47
     },
     "MA": {
       "orders": 25,
@@ -164,13 +164,13 @@
       "orders": 8,
       "revenue": 660.98
     },
+    "CT": {
+      "orders": 8,
+      "revenue": 706.5
+    },
     "AL": {
       "orders": 7,
       "revenue": 799.47
-    },
-    "CT": {
-      "orders": 7,
-      "revenue": 580.0
     },
     "WI": {
       "orders": 6,
@@ -183,20 +183,20 @@
   },
   "devices": {
     "iOS": {
-      "orders": 221,
-      "pctOfOrders": 41.2
+      "orders": 224,
+      "pctOfOrders": 41.6
     },
     "Mac OS": {
       "orders": 133,
-      "pctOfOrders": 24.8
+      "pctOfOrders": 24.7
     },
     "Windows": {
       "orders": 119,
-      "pctOfOrders": 22.2
+      "pctOfOrders": 22.1
     },
     "Android": {
       "orders": 59,
-      "pctOfOrders": 11.0
+      "pctOfOrders": 10.9
     },
     "Chromium OS": {
       "orders": 4,
@@ -205,13 +205,13 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 643758,
+    "impressions": 644111,
     "clicks": 86,
-    "reach": 148055,
+    "reach": 148116,
     "frequency": 4.35,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 5501.03,
+    "spend": 5503.24,
     "roas": 0.0,
     "costPerSubscription": 0,
     "stackadapt": {
@@ -274,33 +274,33 @@
   },
   "channels": {
     "display": {
-      "impressions": 405233,
+      "impressions": 405543,
       "clicks": 85,
-      "reach": 102237,
+      "reach": 102293,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 2431.4,
+      "spend": 2433.26,
       "roas": 0.0
     },
     "video": {
-      "impressions": 176052,
+      "impressions": 176094,
       "clicks": 0,
-      "reach": 64152,
+      "reach": 64164,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 7.5,
-      "spend": 1320.39,
+      "spend": 1320.7,
       "roas": 0.0
     },
     "ctv": {
-      "impressions": 62473,
+      "impressions": 62474,
       "clicks": 1,
       "reach": 16065,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 1749.24,
+      "spend": 1749.27,
       "roas": 0.0
     }
   },
@@ -309,13 +309,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 643756,
+      "impressions": 644109,
       "clicks": 86,
-      "reach": 148054,
+      "reach": 148115,
       "frequency": 4.35,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 5501.02,
+      "spend": 5503.22,
       "roas": 0.0
     }
   },
@@ -670,17 +670,17 @@
       }
     },
     "2026-03-22": {
-      "impressions": 3617,
+      "impressions": 3970,
       "clicks": 1,
-      "purchases": 5,
-      "revenue": 421.48,
+      "purchases": 8,
+      "revenue": 747.98,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 5,
+      "newOrders": 8,
       "returningOrders": 0,
       "trafficSources": {
-        "Direct / Internal": 3,
-        "Direct": 1,
+        "Direct": 2,
+        "Direct / Internal": 5,
         "Google Organic": 1
       }
     }
