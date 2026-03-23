@@ -4,18 +4,18 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-23T19:46:36.681425Z",
+  "lastUpdated": "2026-03-23T20:17:17.072365Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-23"
   },
   "global": {
-    "totalOrders": 565,
-    "totalRevenue": 51484.38,
-    "aov": 91.12,
-    "uniqueVisitors": 547,
+    "totalOrders": 566,
+    "totalRevenue": 51586.87,
+    "aov": 91.14,
+    "uniqueVisitors": 548,
     "repeatPurchaseRate": 1.3,
-    "newOrders": 547,
+    "newOrders": 548,
     "returningOrders": 18,
     "newCustomerPct": 96.8,
     "avgCartSize": 1.0
@@ -25,20 +25,20 @@
     "customerIdCoverage": 98.2,
     "zipCodeCoverage": 95.8,
     "loggedInBreakdown": {
-      "yes": 105,
+      "yes": 106,
       "no": 148,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 565,
+    "ordersuccess": 566,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 384,
-      "revenue": 38629.42,
+      "orders": 385,
+      "revenue": 38731.91,
       "aov": 100.6,
       "pctOfOrders": 68.0
     },
@@ -46,7 +46,7 @@
       "orders": 58,
       "revenue": 3918.5,
       "aov": 67.56,
-      "pctOfOrders": 10.3
+      "pctOfOrders": 10.2
     },
     "Email": {
       "orders": 39,
@@ -104,13 +104,13 @@
       "orders": 30,
       "revenue": 2771.34
     },
+    "VA": {
+      "orders": 28,
+      "revenue": 2976.03
+    },
     "MA": {
       "orders": 27,
       "revenue": 2324.9
-    },
-    "VA": {
-      "orders": 27,
-      "revenue": 2873.54
     },
     "IL": {
       "orders": 25,
@@ -183,12 +183,12 @@
   },
   "devices": {
     "iOS": {
-      "orders": 236,
-      "pctOfOrders": 41.8
+      "orders": 237,
+      "pctOfOrders": 41.9
     },
     "Mac OS": {
       "orders": 140,
-      "pctOfOrders": 24.8
+      "pctOfOrders": 24.7
     },
     "Windows": {
       "orders": 126,
@@ -205,13 +205,13 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 737477,
+    "impressions": 739435,
     "clicks": 92,
-    "reach": 168350,
+    "reach": 168878,
     "frequency": 4.38,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 6296.32,
+    "spend": 6316.11,
     "roas": 0.0,
     "costPerSubscription": 0,
     "stackadapt": {
@@ -274,33 +274,33 @@
   },
   "channels": {
     "display": {
-      "impressions": 465857,
+      "impressions": 466949,
       "clicks": 91,
-      "reach": 117822,
+      "reach": 118199,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 2795.14,
+      "spend": 2801.69,
       "roas": 0.0
     },
     "video": {
-      "impressions": 200204,
+      "impressions": 200741,
       "clicks": 0,
-      "reach": 71817,
+      "reach": 72059,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 7.5,
-      "spend": 1501.53,
+      "spend": 1505.56,
       "roas": 0.0
     },
     "ctv": {
-      "impressions": 71416,
+      "impressions": 71745,
       "clicks": 1,
-      "reach": 17435,
+      "reach": 17461,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 1999.65,
+      "spend": 2008.86,
       "roas": 0.0
     }
   },
@@ -309,13 +309,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 737475,
+      "impressions": 739433,
       "clicks": 92,
-      "reach": 168349,
+      "reach": 168877,
       "frequency": 4.38,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 6296.31,
+      "spend": 6316.1,
       "roas": 0.0
     }
   },
@@ -687,17 +687,17 @@
       }
     },
     "2026-03-23": {
-      "impressions": 21687,
+      "impressions": 23645,
       "clicks": 0,
-      "purchases": 10,
-      "revenue": 1045.97,
+      "purchases": 11,
+      "revenue": 1148.46,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 10,
+      "newOrders": 11,
       "returningOrders": 0,
       "trafficSources": {
+        "Direct / Internal": 6,
         "Referral": 2,
-        "Direct / Internal": 5,
         "Google Organic": 1,
         "Google Ads": 2
       }
