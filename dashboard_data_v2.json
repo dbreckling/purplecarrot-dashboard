@@ -4,18 +4,18 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-23T03:46:17.549668Z",
+  "lastUpdated": "2026-03-23T04:15:34.218788Z",
   "dateRange": {
     "start": "2026-03-01",
-    "end": "2026-03-22"
+    "end": "2026-03-23"
   },
   "global": {
-    "totalOrders": 554,
-    "totalRevenue": 50338.41,
-    "aov": 90.86,
-    "uniqueVisitors": 536,
+    "totalOrders": 555,
+    "totalRevenue": 50438.41,
+    "aov": 90.88,
+    "uniqueVisitors": 537,
     "repeatPurchaseRate": 1.3,
-    "newOrders": 536,
+    "newOrders": 537,
     "returningOrders": 18,
     "newCustomerPct": 96.8,
     "avgCartSize": 1.0
@@ -26,21 +26,21 @@
     "zipCodeCoverage": 95.7,
     "loggedInBreakdown": {
       "yes": 101,
-      "no": 141,
+      "no": 142,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 554,
+    "ordersuccess": 555,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 378,
-      "revenue": 38077.43,
+      "orders": 379,
+      "revenue": 38177.43,
       "aov": 100.73,
-      "pctOfOrders": 68.2
+      "pctOfOrders": 68.3
     },
     "Google Organic": {
       "orders": 57,
@@ -104,13 +104,13 @@
       "orders": 30,
       "revenue": 2771.34
     },
+    "VA": {
+      "orders": 27,
+      "revenue": 2873.54
+    },
     "MA": {
       "orders": 26,
       "revenue": 2224.9
-    },
-    "VA": {
-      "orders": 26,
-      "revenue": 2773.54
     },
     "IL": {
       "orders": 24,
@@ -183,12 +183,12 @@
   },
   "devices": {
     "iOS": {
-      "orders": 230,
-      "pctOfOrders": 41.5
+      "orders": 231,
+      "pctOfOrders": 41.6
     },
     "Mac OS": {
       "orders": 139,
-      "pctOfOrders": 25.1
+      "pctOfOrders": 25.0
     },
     "Windows": {
       "orders": 122,
@@ -205,13 +205,13 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 714699,
+    "impressions": 715807,
     "clicks": 92,
-    "reach": 162947,
+    "reach": 163110,
     "frequency": 4.39,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 6078.9,
+    "spend": 6086.39,
     "roas": 0.0,
     "costPerSubscription": 0,
     "stackadapt": {
@@ -274,23 +274,23 @@
   },
   "channels": {
     "display": {
-      "impressions": 450541,
+      "impressions": 451089,
       "clicks": 91,
-      "reach": 113447,
+      "reach": 113537,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 2703.25,
+      "spend": 2706.53,
       "roas": 0.0
     },
     "video": {
-      "impressions": 196135,
+      "impressions": 196695,
       "clicks": 0,
-      "reach": 70343,
+      "reach": 70469,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 7.5,
-      "spend": 1471.01,
+      "spend": 1475.21,
       "roas": 0.0
     },
     "ctv": {
@@ -309,13 +309,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 714697,
+      "impressions": 715805,
       "clicks": 92,
-      "reach": 162946,
+      "reach": 163109,
       "frequency": 4.39,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 6078.89,
+      "spend": 6086.38,
       "roas": 0.0
     }
   },
@@ -670,21 +670,32 @@
       }
     },
     "2026-03-22": {
-      "impressions": 74558,
+      "impressions": 75649,
       "clicks": 7,
-      "purchases": 23,
-      "revenue": 2529.08,
+      "purchases": 24,
+      "revenue": 2629.08,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 23,
+      "newOrders": 24,
       "returningOrders": 0,
       "trafficSources": {
+        "Direct / Internal": 15,
         "Direct": 4,
-        "Direct / Internal": 14,
         "Referral": 2,
         "Google Ads": 1,
         "Google Organic": 2
       }
+    },
+    "2026-03-23": {
+      "impressions": 17,
+      "clicks": 0,
+      "purchases": 0,
+      "revenue": 0.0,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 0,
+      "returningOrders": 0,
+      "trafficSources": {}
     }
   }
 }
