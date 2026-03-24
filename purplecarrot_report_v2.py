@@ -982,37 +982,57 @@ def main():
             purchase_by_dedupe[did] = p
 
     # -------------------------
-    # Count ad-exposed site visitors (click-through + view-through visits)
+    # Count ad-exposed site visitors from Visit & VwVisit tables
     # -------------------------
+    # Click-through visits: allVisits with impressionId (user clicked an ad and landed on site)
     ct_visit_count = 0
+    ct_unique_visitors = 0
     vt_visit_count = 0
-    seen_vt_visitors = set()
+    vt_unique_visitors = 0
 
-    for p in unique_purchases:
-        p_ip = p.get("ip", "")
-        p_vid = p.get("visitorId", "")
-        p_time_str = p.get("time", "")
+    try:
+        range_start_utc = datetime.combine(run_start_date, datetime.min.time(), tzinfo=LOCAL_TZ).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
+        range_end_utc = end_date_exclusive.astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
+        ct_visit_query = """query {
+          allVisits(
+            filter: { advertiserId: { equalTo: "%s" } impressionId: { isNull: false }
+              time: { greaterThanOrEqualTo: "%s" lessThan: "%s" } }
+            first: 5000
+          ) { totalCount nodes { visitorId } }
+        }""" % (ADVERTISER_ID, range_start_utc, range_end_utc)
+        ct_result = run_query_graphql(ct_visit_query)
+        ct_data = ct_result.get("allVisits", {}) if ct_result else {}
+        ct_visit_count = ct_data.get("totalCount", 0)
+        ct_vids = set(n.get("visitorId", "") for n in ct_data.get("nodes", []) if n.get("visitorId"))
+        ct_unique_visitors = len(ct_vids)
+    except Exception as e:
+        print(f"  Warning: Failed to fetch click-through visits: {e}")
 
-        # Check if this purchaser clicked an ad (click-through visit)
-        check_id = p_vid or p_ip
-        if check_id and check_id in click_visitor_set:
-            ct_visit_count += 1
-            continue
+    # View-through visits: allVwVisits with campaignId matching our campaigns
+    try:
+        campaign_ids = list(campaign_info.keys()) if campaign_info else []
+        if campaign_ids:
+            # Query VwVisits for each campaign
+            vt_vids = set()
+            for cid in campaign_ids:
+                vt_query = """query {
+                  allVwVisits(
+                    filter: { advertiserId: { equalTo: "%s" } campaignId: { equalTo: "%s" } }
+                    first: 5000
+                  ) { totalCount nodes { visitorId } }
+                }""" % (ADVERTISER_ID, cid)
+                vt_result = run_query_graphql(vt_query)
+                vt_data = vt_result.get("allVwVisits", {}) if vt_result else {}
+                vt_visit_count += vt_data.get("totalCount", 0)
+                for n in vt_data.get("nodes", []):
+                    vid = n.get("visitorId", "")
+                    if vid:
+                        vt_vids.add(vid)
+            vt_unique_visitors = len(vt_vids)
+    except Exception as e:
+        print(f"  Warning: Failed to fetch view-through visits: {e}")
 
-        # Check if this purchaser's IP was served an impression before purchase (view-through visit)
-        if p_ip and p_ip in imp_by_ip and p_time_str:
-            try:
-                p_time = pd.to_datetime(p_time_str, utc=True)
-                pre_imps = [t for t in imp_by_ip[p_ip] if t is not None and t <= p_time]
-                if pre_imps:
-                    visitor_key = p_vid or p_ip
-                    if visitor_key not in seen_vt_visitors:
-                        vt_visit_count += 1
-                        seen_vt_visitors.add(visitor_key)
-            except Exception:
-                pass
-
-    print(f"  Ad-exposed visits: {ct_visit_count} click-through, {vt_visit_count} view-through")
+    print(f"  Ad-exposed visits: {ct_visit_count} click-through ({ct_unique_visitors} unique), {vt_visit_count} view-through ({vt_unique_visitors} unique)")
 
     # For each attributed order, count impressions seen by that IP before conversion
     converter_impression_counts = []
@@ -1381,8 +1401,10 @@ def main():
             "spend": prog_spend,
             "roas": prog_roas,
             "costPerSubscription": prog_cpa,
-            "ctVisits": ct_visit_count,
-            "vtVisits": vt_visit_count,
+            "ctVisits": ct_unique_visitors,
+            "ctVisitPages": ct_visit_count,
+            "vtVisits": vt_unique_visitors,
+            "vtVisitPages": vt_visit_count,
             "stackadapt": {
                 "convPixel": SAQ_CONV_KEY,
                 "rtPixel": SAQ_RT_SID,
