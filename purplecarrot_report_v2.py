@@ -982,53 +982,52 @@ def main():
             purchase_by_dedupe[did] = p
 
     # -------------------------
-    # Count ad-exposed site visitors via IP matching (impressions ↔ visits)
+    # Count ad-exposed site visitors from allVisits where impressionId is set
     # -------------------------
-    # Impressions don't have visitorId (served on different domain), so we match by IP.
-    # Click-through = visit record has impressionId (user clicked the ad)
-    # View-through = visit IP matches an impression IP (user saw ad, visited later organically)
+    # DLVE matches visits back to impressions and populates impressionId on the visit record.
+    # These are confirmed ad-exposed site visitors (both click-through and view-through).
+    # Split using our click IP set: if the visitor's IP is in click_ip_set → click-through, else view-through.
     ct_unique_visitors = 0
     vt_unique_visitors = 0
 
     try:
         range_start_utc = datetime.combine(run_start_date, datetime.min.time(), tzinfo=LOCAL_TZ).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
-        range_end_utc = end_date_exclusive.astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-        # Build set of impression IPs (already have this from earlier processing)
-        imp_ip_set = set(n.get("ip") for n in clean_impressions_list if n.get("ip"))
+        ad_visit_query = """query {
+          allVisits(
+            filter: { advertiserId: { equalTo: "%s" }
+              time: { greaterThanOrEqualTo: "%s" }
+              impressionId: { isNull: false } }
+            first: 5000
+          ) { totalCount nodes { ip visitorId } }
+        }""" % (ADVERTISER_ID, range_start_utc)
 
-        # Pull all site visits and classify
-        ct_ips = set()
-        visit_ips = set()
-        visit_offset = 0
-        while True:
-            visit_query = """query {
-              allVisits(
-                filter: { advertiserId: { equalTo: "%s" }
-                  time: { greaterThanOrEqualTo: "%s" lessThan: "%s" } }
-                first: 5000 offset: %d
-              ) { totalCount nodes { ip impressionId } }
-            }""" % (ADVERTISER_ID, range_start_utc, range_end_utc, visit_offset)
-            visit_result = run_query_graphql(visit_query)
-            if not visit_result:
-                break
-            visit_data = visit_result.get("allVisits", {})
-            visit_nodes = visit_data.get("nodes", [])
-            visit_total = visit_data.get("totalCount", 0)
-            for n in visit_nodes:
+        ad_visit_result = run_query_graphql(ad_visit_query)
+        if ad_visit_result:
+            ad_visit_data = ad_visit_result.get("allVisits", {})
+            ad_visit_nodes = ad_visit_data.get("nodes", [])
+
+            # Build click IP set from our clean clicks
+            click_ip_set = set()
+            for _, _, n in all_clicks_clean:
                 ip = n.get("ip", "")
                 if ip:
-                    visit_ips.add(ip)
-                    if n.get("impressionId"):
-                        ct_ips.add(ip)
-            visit_offset += len(visit_nodes)
-            if visit_offset >= visit_total or not visit_nodes:
-                break
+                    click_ip_set.add(ip)
 
-        # View-through = visited site AND was served an impression, but didn't click
-        vt_ips = (visit_ips & imp_ip_set) - ct_ips
-        ct_unique_visitors = len(ct_ips)
-        vt_unique_visitors = len(vt_ips)
+            # Dedupe by IP, classify as CT or VT
+            ct_ips = set()
+            vt_ips = set()
+            for n in ad_visit_nodes:
+                ip = n.get("ip", "")
+                if not ip:
+                    continue
+                if ip in click_ip_set:
+                    ct_ips.add(ip)
+                else:
+                    vt_ips.add(ip)
+
+            ct_unique_visitors = len(ct_ips)
+            vt_unique_visitors = len(vt_ips)
 
     except Exception as e:
         print(f"  Warning: Failed to compute ad-exposed visits: {e}")
