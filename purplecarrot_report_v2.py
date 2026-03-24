@@ -982,57 +982,58 @@ def main():
             purchase_by_dedupe[did] = p
 
     # -------------------------
-    # Count ad-exposed site visitors from Visit & VwVisit tables
+    # Count ad-exposed site visitors via IP matching (impressions ↔ visits)
     # -------------------------
-    # Click-through visits: allVisits with impressionId (user clicked an ad and landed on site)
-    ct_visit_count = 0
+    # Impressions don't have visitorId (served on different domain), so we match by IP.
+    # Click-through = visit record has impressionId (user clicked the ad)
+    # View-through = visit IP matches an impression IP (user saw ad, visited later organically)
     ct_unique_visitors = 0
-    vt_visit_count = 0
     vt_unique_visitors = 0
 
     try:
         range_start_utc = datetime.combine(run_start_date, datetime.min.time(), tzinfo=LOCAL_TZ).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
         range_end_utc = end_date_exclusive.astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
-        ct_visit_query = """query {
-          allVisits(
-            filter: { advertiserId: { equalTo: "%s" } impressionId: { isNull: false }
-              time: { greaterThanOrEqualTo: "%s" lessThan: "%s" } }
-            first: 5000
-          ) { totalCount nodes { visitorId } }
-        }""" % (ADVERTISER_ID, range_start_utc, range_end_utc)
-        ct_result = run_query_graphql(ct_visit_query)
-        ct_data = ct_result.get("allVisits", {}) if ct_result else {}
-        ct_visit_count = ct_data.get("totalCount", 0)
-        ct_vids = set(n.get("visitorId", "") for n in ct_data.get("nodes", []) if n.get("visitorId"))
-        ct_unique_visitors = len(ct_vids)
-    except Exception as e:
-        print(f"  Warning: Failed to fetch click-through visits: {e}")
 
-    # View-through visits: allVwVisits with campaignId matching our campaigns
-    try:
-        campaign_ids = list(campaign_info.keys()) if campaign_info else []
-        if campaign_ids:
-            # Query VwVisits for each campaign
-            vt_vids = set()
-            for cid in campaign_ids:
-                vt_query = """query {
-                  allVwVisits(
-                    filter: { advertiserId: { equalTo: "%s" } campaignId: { equalTo: "%s" } }
-                    first: 5000
-                  ) { totalCount nodes { visitorId } }
-                }""" % (ADVERTISER_ID, cid)
-                vt_result = run_query_graphql(vt_query)
-                vt_data = vt_result.get("allVwVisits", {}) if vt_result else {}
-                vt_visit_count += vt_data.get("totalCount", 0)
-                for n in vt_data.get("nodes", []):
-                    vid = n.get("visitorId", "")
-                    if vid:
-                        vt_vids.add(vid)
-            vt_unique_visitors = len(vt_vids)
-    except Exception as e:
-        print(f"  Warning: Failed to fetch view-through visits: {e}")
+        # Build set of impression IPs (already have this from earlier processing)
+        imp_ip_set = set(n.get("ip") for n in clean_impressions_list if n.get("ip"))
 
-    print(f"  Ad-exposed visits: {ct_visit_count} click-through ({ct_unique_visitors} unique), {vt_visit_count} view-through ({vt_unique_visitors} unique)")
+        # Pull all site visits and classify
+        ct_ips = set()
+        visit_ips = set()
+        visit_offset = 0
+        while True:
+            visit_query = """query {
+              allVisits(
+                filter: { advertiserId: { equalTo: "%s" }
+                  time: { greaterThanOrEqualTo: "%s" lessThan: "%s" } }
+                first: 5000 offset: %d
+              ) { totalCount nodes { ip impressionId } }
+            }""" % (ADVERTISER_ID, range_start_utc, range_end_utc, visit_offset)
+            visit_result = run_query_graphql(visit_query)
+            if not visit_result:
+                break
+            visit_data = visit_result.get("allVisits", {})
+            visit_nodes = visit_data.get("nodes", [])
+            visit_total = visit_data.get("totalCount", 0)
+            for n in visit_nodes:
+                ip = n.get("ip", "")
+                if ip:
+                    visit_ips.add(ip)
+                    if n.get("impressionId"):
+                        ct_ips.add(ip)
+            visit_offset += len(visit_nodes)
+            if visit_offset >= visit_total or not visit_nodes:
+                break
+
+        # View-through = visited site AND was served an impression, but didn't click
+        vt_ips = (visit_ips & imp_ip_set) - ct_ips
+        ct_unique_visitors = len(ct_ips)
+        vt_unique_visitors = len(vt_ips)
+
+    except Exception as e:
+        print(f"  Warning: Failed to compute ad-exposed visits: {e}")
+
+    print(f"  Ad-exposed visits: {ct_unique_visitors} click-through, {vt_unique_visitors} view-through")
 
     # For each attributed order, count impressions seen by that IP before conversion
     converter_impression_counts = []
@@ -1402,9 +1403,7 @@ def main():
             "roas": prog_roas,
             "costPerSubscription": prog_cpa,
             "ctVisits": ct_unique_visitors,
-            "ctVisitPages": ct_visit_count,
             "vtVisits": vt_unique_visitors,
-            "vtVisitPages": vt_visit_count,
             "stackadapt": {
                 "convPixel": SAQ_CONV_KEY,
                 "rtPixel": SAQ_RT_SID,
