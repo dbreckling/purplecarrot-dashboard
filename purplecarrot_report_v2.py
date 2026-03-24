@@ -981,6 +981,39 @@ def main():
         if did:
             purchase_by_dedupe[did] = p
 
+    # -------------------------
+    # Count ad-exposed site visitors (click-through + view-through visits)
+    # -------------------------
+    ct_visit_count = 0
+    vt_visit_count = 0
+    seen_vt_visitors = set()
+
+    for p in unique_purchases:
+        p_ip = p.get("ip", "")
+        p_vid = p.get("visitorId", "")
+        p_time_str = p.get("time", "")
+
+        # Check if this purchaser clicked an ad (click-through visit)
+        check_id = p_vid or p_ip
+        if check_id and check_id in click_visitor_set:
+            ct_visit_count += 1
+            continue
+
+        # Check if this purchaser's IP was served an impression before purchase (view-through visit)
+        if p_ip and p_ip in imp_by_ip and p_time_str:
+            try:
+                p_time = pd.to_datetime(p_time_str, utc=True)
+                pre_imps = [t for t in imp_by_ip[p_ip] if t is not None and t <= p_time]
+                if pre_imps:
+                    visitor_key = p_vid or p_ip
+                    if visitor_key not in seen_vt_visitors:
+                        vt_visit_count += 1
+                        seen_vt_visitors.add(visitor_key)
+            except Exception:
+                pass
+
+    print(f"  Ad-exposed visits: {ct_visit_count} click-through, {vt_visit_count} view-through")
+
     # For each attributed order, count impressions seen by that IP before conversion
     converter_impression_counts = []
     converter_details = []
@@ -1348,6 +1381,8 @@ def main():
             "spend": prog_spend,
             "roas": prog_roas,
             "costPerSubscription": prog_cpa,
+            "ctVisits": ct_visit_count,
+            "vtVisits": vt_visit_count,
             "stackadapt": {
                 "convPixel": SAQ_CONV_KEY,
                 "rtPixel": SAQ_RT_SID,
