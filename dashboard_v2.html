@@ -1141,10 +1141,12 @@ function renderOverviewTrend() {
 
   const labels = days.map(d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric', timeZone:'America/New_York'}));
   const impData = days.map(d => daily[d]?.impressions || 0);
+  const subsData = days.map(d => daily[d]?.purchases || 0);
   const attrData = days.map(d => daily[d]?.conversions || 0);
 
   const datasets = [
     { label: 'Impressions', data: impData, borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.12)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#f59e0b', yAxisID: 'y' },
+    { label: 'New Subscriptions', data: subsData, borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.12)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#10b981', yAxisID: 'y1' },
     { label: 'Attributed Conversions', data: attrData, borderColor: '#7c3aed', backgroundColor: 'rgba(124,58,237,0.12)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#7c3aed', yAxisID: 'y1' },
   ];
 
@@ -1170,7 +1172,7 @@ function renderOverviewTrend() {
       scales: {
         x: {grid:{display:false}, ticks:{font:{size:11}, color:'#64748b'}},
         y: {position:'left', title:{display:true, text:'Impressions', font:{size:11}, color:'#f59e0b'}, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{font:{size:11}, color:'#f59e0b'}},
-        y1: {position:'right', title:{display:true, text:'Attributed Conversions', font:{size:11}, color:'#7c3aed'}, grid:{drawOnChartArea:false}, ticks:{font:{size:11}, color:'#7c3aed', stepSize:1}}
+        y1: {position:'right', title:{display:true, text:'Subscriptions / Conversions', font:{size:11}, color:'#10b981'}, grid:{drawOnChartArea:false}, ticks:{font:{size:11}, color:'#10b981'}}
       }
     }
   });
