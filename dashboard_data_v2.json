@@ -4,18 +4,18 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-25T07:17:38.456015Z",
+  "lastUpdated": "2026-03-25T07:49:48.443172Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-25"
   },
   "global": {
-    "totalOrders": 595,
-    "totalRevenue": 53814.34,
-    "aov": 90.44,
-    "uniqueVisitors": 577,
+    "totalOrders": 596,
+    "totalRevenue": 53890.33,
+    "aov": 90.42,
+    "uniqueVisitors": 578,
     "repeatPurchaseRate": 1.2,
-    "newOrders": 577,
+    "newOrders": 578,
     "returningOrders": 18,
     "newCustomerPct": 97.0,
     "avgCartSize": 1.0
@@ -26,20 +26,20 @@
     "zipCodeCoverage": 95.8,
     "loggedInBreakdown": {
       "yes": 123,
-      "no": 160,
+      "no": 161,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 595,
+    "ordersuccess": 596,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 405,
-      "revenue": 40233.41,
-      "aov": 99.34,
+      "orders": 406,
+      "revenue": 40309.4,
+      "aov": 99.28,
       "pctOfOrders": 68.1
     },
     "Google Organic": {
@@ -52,7 +52,7 @@
       "orders": 39,
       "revenue": 827.26,
       "aov": 21.21,
-      "pctOfOrders": 6.6
+      "pctOfOrders": 6.5
     },
     "Direct": {
       "orders": 38,
@@ -81,8 +81,8 @@
   },
   "geographic": {
     "CA": {
-      "orders": 73,
-      "revenue": 6228.97
+      "orders": 74,
+      "revenue": 6304.96
     },
     "NY": {
       "orders": 41,
@@ -184,7 +184,7 @@
   "devices": {
     "iOS": {
       "orders": 251,
-      "pctOfOrders": 42.2
+      "pctOfOrders": 42.1
     },
     "Mac OS": {
       "orders": 149,
@@ -195,8 +195,8 @@
       "pctOfOrders": 21.8
     },
     "Android": {
-      "orders": 61,
-      "pctOfOrders": 10.3
+      "orders": 62,
+      "pctOfOrders": 10.4
     },
     "Chromium OS": {
       "orders": 4,
@@ -205,17 +205,17 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 848992,
+    "impressions": 848996,
     "clicks": 102,
     "reach": 191620,
     "frequency": 4.43,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 7196.48,
+    "spend": 7196.53,
     "roas": 0.0,
     "costPerSubscription": 0,
     "ctVisits": 0,
-    "vtVisits": 87,
+    "vtVisits": 0,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -276,33 +276,33 @@
   },
   "channels": {
     "display": {
-      "impressions": 537972,
+      "impressions": 537973,
       "clicks": 101,
       "reach": 134916,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 3227.83,
+      "spend": 3227.84,
       "roas": 0.0
     },
     "video": {
-      "impressions": 231215,
+      "impressions": 231217,
       "clicks": 0,
       "reach": 81676,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 7.5,
-      "spend": 1734.11,
+      "spend": 1734.13,
       "roas": 0.0
     },
     "ctv": {
-      "impressions": 79805,
+      "impressions": 79806,
       "clicks": 1,
       "reach": 18556,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 2234.54,
+      "spend": 2234.57,
       "roas": 0.0
     }
   },
@@ -311,13 +311,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 848989,
+      "impressions": 848993,
       "clicks": 102,
       "reach": 191618,
       "frequency": 4.43,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 7196.47,
+      "spend": 7196.52,
       "roas": 0.0
     }
   },
@@ -723,16 +723,16 @@
       }
     },
     "2026-03-25": {
-      "impressions": 2428,
+      "impressions": 2432,
       "clicks": 1,
-      "purchases": 1,
-      "revenue": 86.5,
+      "purchases": 2,
+      "revenue": 162.49,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 1,
+      "newOrders": 2,
       "returningOrders": 0,
       "trafficSources": {
-        "Direct / Internal": 1
+        "Direct / Internal": 2
       }
     }
   }
