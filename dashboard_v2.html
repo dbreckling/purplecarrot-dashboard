@@ -1026,27 +1026,27 @@ function renderOverview() {
   setText('gRoasSub', 'Revenue / Spend');
 
   // Overview ROAS Cards — same channel split logic as Programmatic page
-  const channels = DATA.channels || {};
+  const ovChannels = DATA.channels || {};
   const totalImp = prog.impressions || 0;
   const totalAttrOrders = prog.attrOrders || 0;
   const totalAttrRev = prog.attrRevenue || 0;
   const totalReach = prog.reach || 0;
 
-  const ovDisplayData = channels.display || {
+  const ovDisplayData = ovChannels.display || {
     impressions: Math.round(totalImp * 0.55),
     reach: Math.round(totalReach * 0.50),
     attrOrders: Math.round(totalAttrOrders * 0.50),
     attrRevenue: Math.round(totalAttrRev * 0.50 * 100) / 100,
     cpm: 6.00
   };
-  const ovVideoData = channels.video || {
+  const ovVideoData = ovChannels.video || {
     impressions: Math.round(totalImp * 0.30),
     reach: Math.round(totalReach * 0.30),
     attrOrders: Math.round(totalAttrOrders * 0.30),
     attrRevenue: Math.round(totalAttrRev * 0.30 * 100) / 100,
     cpm: 7.50
   };
-  const ovCtvData = channels.ctv || {
+  const ovCtvData = ovChannels.ctv || {
     impressions: Math.round(totalImp * 0.15),
     reach: Math.round(totalReach * 0.20),
     attrOrders: totalAttrOrders - (ovDisplayData.attrOrders + ovVideoData.attrOrders),

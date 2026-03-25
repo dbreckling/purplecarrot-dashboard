@@ -1195,6 +1195,7 @@ def main():
             "attrRevenue": round(day["attrRevenue"], 2),
             "newOrders": day["newOrders"],
             "returningOrders": day["returningOrders"],
+            "nyPurchases": day["nyPurchases"],
             "trafficSources": dict(day["trafficSources"]),
         }
 
