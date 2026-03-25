@@ -982,60 +982,54 @@ def main():
             purchase_by_dedupe[did] = p
 
     # -------------------------
-    # Count ad-exposed site visitors from allVisits where impressionId is set
+    # Count view-through site visitors from allVwVisits (DLVE native VT table)
     # -------------------------
-    # DLVE matches visits back to impressions and populates impressionId on the visit record.
-    # These are confirmed ad-exposed site visitors (both click-through and view-through).
-    # Split using our click IP set: if the visitor's IP is in click_ip_set → click-through, else view-through.
+    # allVwVisits contains visits from users who were previously served an impression
+    # and later visited the site. Filtered to US only, deduped by visitorId.
     ct_unique_visitors = 0
     vt_unique_visitors = 0
 
     try:
-        # Query day by day to avoid server timeout on large date ranges
-        ad_visit_nodes = []
+        vt_visitor_ids = set()
         day_cursor = datetime.combine(run_start_date, datetime.min.time(), tzinfo=LOCAL_TZ)
         while day_cursor < end_date_exclusive:
             day_start_utc = day_cursor.astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
             day_end_utc = (day_cursor + timedelta(days=1)).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-            ad_visit_query = """query {
-              allVisits(
-                filter: { advertiserId: { equalTo: "%s" }
-                  time: { greaterThanOrEqualTo: "%s" lessThan: "%s" }
-                  impressionId: { isNull: false } }
-                first: 5000
-              ) { totalCount nodes { ip visitorId } }
-            }""" % (ADVERTISER_ID, day_start_utc, day_end_utc)
+            offset = 0
+            while True:
+                vw_query = """query {
+                  allVwVisits(
+                    filter: { advertiserId: { equalTo: "%s" }
+                      eventTime: { greaterThanOrEqualTo: "%s" lessThan: "%s" }
+                      countryCode: { equalTo: "US" } }
+                    first: 5000 offset: %d
+                  ) { totalCount nodes { visitorId } }
+                }""" % (ADVERTISER_ID, day_start_utc, day_end_utc, offset)
 
-            ad_visit_result = run_query_graphql(ad_visit_query)
-            if ad_visit_result:
-                nodes = ad_visit_result.get("allVisits", {}).get("nodes", [])
-                ad_visit_nodes.extend(nodes)
+                vw_result = run_query_graphql(vw_query)
+                if not vw_result:
+                    break
+                vw_data = vw_result.get("allVwVisits", {})
+                vw_nodes = vw_data.get("nodes", [])
+                vw_total = vw_data.get("totalCount", 0)
+                for n in vw_nodes:
+                    vid = n.get("visitorId", "")
+                    if vid:
+                        vt_visitor_ids.add(vid)
+                offset += len(vw_nodes)
+                if offset >= vw_total or not vw_nodes:
+                    break
             day_cursor += timedelta(days=1)
 
-        print(f"  Ad-exposed visits (impressionId set): {len(ad_visit_nodes)} total records")
-
-        # Build click IP set from our clean clicks
-        click_ip_set = set()
+        vt_unique_visitors = len(vt_visitor_ids)
+        # Click-through = clean ad clicks (already tracked separately)
+        click_visitor_ids = set()
         for _, _, n in all_clicks_clean:
-            ip = n.get("ip", "")
-            if ip:
-                click_ip_set.add(ip)
-
-        # Dedupe by IP, classify as CT or VT
-        ct_ips = set()
-        vt_ips = set()
-        for n in ad_visit_nodes:
-            ip = n.get("ip", "")
-            if not ip:
-                continue
-            if ip in click_ip_set:
-                ct_ips.add(ip)
-            else:
-                vt_ips.add(ip)
-
-        ct_unique_visitors = len(ct_ips)
-        vt_unique_visitors = len(vt_ips)
+            vid = n.get("visitorId") or n.get("ip", "")
+            if vid:
+                click_visitor_ids.add(vid)
+        ct_unique_visitors = len(click_visitor_ids)
         print(f"  Click-through visitors: {ct_unique_visitors}, View-through visitors: {vt_unique_visitors}")
 
     except Exception as e:
