@@ -948,12 +948,12 @@ function renderOverview() {
   setText('gImpressions', fmt(prog.impressions || 0));
   setText('gImpSub', fmt(prog.reach || 0) + ' unique reach');
 
-  // Website Visits = click-through visits + view-through visits (ad-exposed subscribers)
-  const ctVisits = prog.ctVisits || 0;
-  const vtVisits = prog.vtVisits || 0;
-  const webVisits = (ctVisits + vtVisits) || prog.clicks || 0;
+  // Website Visits = click-through visits + view-through visits (ad-exposed site visitors)
+  const ctVisits = typeof prog.ctVisits === 'number' ? prog.ctVisits : (prog.clicks || 0);
+  const vtVisits = typeof prog.vtVisits === 'number' ? prog.vtVisits : 0;
+  const webVisits = ctVisits + vtVisits;
   setText('gWebVisits', fmt(webVisits));
-  setText('gWebVisitsSub', (ctVisits || prog.clicks || 0) + ' click-thru \u00B7 ' + vtVisits + ' view-thru');
+  setText('gWebVisitsSub', ctVisits + ' click-thru \u00B7 ' + vtVisits + ' view-thru');
 
   // Attributed Revenue
   setText('gAttrRev', fmtMoney(prog.attrRevenue || 0));
