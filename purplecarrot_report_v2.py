@@ -991,43 +991,52 @@ def main():
     vt_unique_visitors = 0
 
     try:
-        range_start_utc = datetime.combine(run_start_date, datetime.min.time(), tzinfo=LOCAL_TZ).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
+        # Query day by day to avoid server timeout on large date ranges
+        ad_visit_nodes = []
+        day_cursor = datetime.combine(run_start_date, datetime.min.time(), tzinfo=LOCAL_TZ)
+        while day_cursor < end_date_exclusive:
+            day_start_utc = day_cursor.astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
+            day_end_utc = (day_cursor + timedelta(days=1)).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-        ad_visit_query = """query {
-          allVisits(
-            filter: { advertiserId: { equalTo: "%s" }
-              time: { greaterThanOrEqualTo: "%s" }
-              impressionId: { isNull: false } }
-            first: 5000
-          ) { totalCount nodes { ip visitorId } }
-        }""" % (ADVERTISER_ID, range_start_utc)
+            ad_visit_query = """query {
+              allVisits(
+                filter: { advertiserId: { equalTo: "%s" }
+                  time: { greaterThanOrEqualTo: "%s" lessThan: "%s" }
+                  impressionId: { isNull: false } }
+                first: 5000
+              ) { totalCount nodes { ip visitorId } }
+            }""" % (ADVERTISER_ID, day_start_utc, day_end_utc)
 
-        ad_visit_result = run_query_graphql(ad_visit_query)
-        if ad_visit_result:
-            ad_visit_data = ad_visit_result.get("allVisits", {})
-            ad_visit_nodes = ad_visit_data.get("nodes", [])
+            ad_visit_result = run_query_graphql(ad_visit_query)
+            if ad_visit_result:
+                nodes = ad_visit_result.get("allVisits", {}).get("nodes", [])
+                ad_visit_nodes.extend(nodes)
+            day_cursor += timedelta(days=1)
 
-            # Build click IP set from our clean clicks
-            click_ip_set = set()
-            for _, _, n in all_clicks_clean:
-                ip = n.get("ip", "")
-                if ip:
-                    click_ip_set.add(ip)
+        print(f"  Ad-exposed visits (impressionId set): {len(ad_visit_nodes)} total records")
 
-            # Dedupe by IP, classify as CT or VT
-            ct_ips = set()
-            vt_ips = set()
-            for n in ad_visit_nodes:
-                ip = n.get("ip", "")
-                if not ip:
-                    continue
-                if ip in click_ip_set:
-                    ct_ips.add(ip)
-                else:
-                    vt_ips.add(ip)
+        # Build click IP set from our clean clicks
+        click_ip_set = set()
+        for _, _, n in all_clicks_clean:
+            ip = n.get("ip", "")
+            if ip:
+                click_ip_set.add(ip)
 
-            ct_unique_visitors = len(ct_ips)
-            vt_unique_visitors = len(vt_ips)
+        # Dedupe by IP, classify as CT or VT
+        ct_ips = set()
+        vt_ips = set()
+        for n in ad_visit_nodes:
+            ip = n.get("ip", "")
+            if not ip:
+                continue
+            if ip in click_ip_set:
+                ct_ips.add(ip)
+            else:
+                vt_ips.add(ip)
+
+        ct_unique_visitors = len(ct_ips)
+        vt_unique_visitors = len(vt_ips)
+        print(f"  Click-through visitors: {ct_unique_visitors}, View-through visitors: {vt_unique_visitors}")
 
     except Exception as e:
         print(f"  Warning: Failed to compute ad-exposed visits: {e}")
