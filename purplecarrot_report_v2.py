@@ -1122,6 +1122,7 @@ def main():
         "impressions": 0, "clicks": 0, "purchases": 0, "revenue": 0.0,
         "conversions": 0, "attrRevenue": 0.0,
         "newOrders": 0, "returningOrders": 0,
+        "nyPurchases": 0,
         "trafficSources": defaultdict(int),
     })
 
@@ -1138,6 +1139,8 @@ def main():
         daily_data[day_key]["purchases"] += 1
         daily_data[day_key]["revenue"] += rev
         daily_data[day_key]["trafficSources"][p["_traffic_source"]] += 1
+        if p.get("region") == "NY":
+            daily_data[day_key]["nyPurchases"] += 1
 
         vs = normalize_visitor_status(p.get("visitorStatus"))
         if vs == "new":

@@ -939,25 +939,64 @@ function renderOverview() {
   const g = DATA.global || {};
   const prog = DATA.programmatic || {};
 
-  // Top 6 KPI Cards
+  // Date range filtering — recalculate programmatic KPIs from dailyData
+  const fromDate = document.getElementById('dateFrom')?.value || '';
+  const toDate = document.getElementById('dateTo')?.value || '';
+  const daily = DATA.dailyData || {};
+  const allDays = Object.keys(daily).sort();
+  const filteredDays = allDays.filter(d => {
+    if (fromDate && d < fromDate) return false;
+    if (toDate && d > toDate) return false;
+    return true;
+  });
+
+  // Sum filtered daily data for programmatic metrics
+  let fImp = 0, fClicks = 0, fPurchases = 0, fRevenue = 0, fConv = 0, fAttrRev = 0;
+  for (const d of filteredDays) {
+    const dd = daily[d] || {};
+    fImp += dd.impressions || 0;
+    fClicks += dd.clicks || 0;
+    fPurchases += dd.purchases || 0;
+    fRevenue += dd.revenue || 0;
+    fConv += dd.conversions || 0;
+    fAttrRev += dd.attrRevenue || 0;
+  }
+
+  // Use filtered values if date range is set, otherwise use full programmatic totals
+  const useFiltered = fromDate || toDate;
+  const dispImp = useFiltered ? fImp : (prog.impressions || 0);
+  const dispClicks = useFiltered ? fClicks : (prog.clicks || 0);
+  const dispConv = useFiltered ? fConv : (prog.attrOrders || 0);
+  const dispAttrRev = useFiltered ? fAttrRev : (prog.attrRevenue || 0);
+
+  // Recalculate spend from filtered impressions using channel CPMs
+  const channels = DATA.channels || {};
+  let dispSpend = prog.spend || 0;
+  if (useFiltered && dispImp > 0) {
+    // Scale spend proportionally to filtered impressions
+    const totalImp = prog.impressions || 1;
+    dispSpend = (prog.spend || 0) * (dispImp / totalImp);
+  }
+
+  // Top KPI Cards
   // Media Spend
-  setText('gSpend', fmtMoney(prog.spend || 0));
+  setText('gSpend', fmtMoney(dispSpend));
   setText('gSpendSub', 'Programmatic');
 
   // Impressions
-  setText('gImpressions', fmt(prog.impressions || 0));
+  setText('gImpressions', fmt(dispImp));
   setText('gImpSub', fmt(prog.reach || 0) + ' unique reach');
 
   // Website Visits = ad clicks (click-through) + view-through visits (saw ad, visited organically)
-  const clicks = prog.clicks || 0;
+  const clicks = useFiltered ? dispClicks : (prog.clicks || 0);
   const vtVisits = prog.vtVisits || 0;
   const webVisits = clicks + vtVisits;
   setText('gWebVisits', fmt(webVisits));
   setText('gWebVisitsSub', clicks + ' click-thru \u00B7 ' + vtVisits + ' view-thru');
 
   // Attributed Revenue
-  setText('gAttrRev', fmtMoney(prog.attrRevenue || 0));
-  setText('gAttrRevSub', fmt(prog.attrOrders || 0) + ' attributed orders');
+  setText('gAttrRev', fmtMoney(dispAttrRev));
+  setText('gAttrRevSub', fmt(dispConv) + ' attributed orders');
 
   // New Customers — % of attributed purchases that were new
   const attrDetails = (DATA.attribution?.impressionsToConversion?.converterDetails) || [];
@@ -1032,14 +1071,17 @@ function renderOverview() {
   populateOvCard('Video', ovVideoData);
   populateOvCard('CTV', ovCtvData);
 
-  // Site Totals (below chart)
-  setText('gOrders', fmt(g.totalOrders || 0));
-  setText('gOrdersSub', fmt(g.newOrders || 0) + ' new / ' + fmt(g.returningOrders || 0) + ' returning');
-  setText('gRevenue', fmtMoney(g.totalRevenue || 0));
-  setText('gRevSub', 'from ' + fmt(g.uniqueVisitors || 0) + ' unique visitors');
-  setText('gAOV2', fmtMoney(g.aov || 0));
-  setText('gVisitors2', fmt(g.uniqueVisitors || 0));
-  setText('gVisitors2Sub', fmtPct(g.repeatPurchaseRate || 0) + ' repeat purchase rate');
+  // Site Totals (below chart) — filtered by date range
+  const dispOrders = useFiltered ? fPurchases : (g.totalOrders || 0);
+  const dispRevenue = useFiltered ? Math.round(fRevenue * 100) / 100 : (g.totalRevenue || 0);
+  const dispAov = dispOrders > 0 ? dispRevenue / dispOrders : 0;
+  setText('gOrders', fmt(dispOrders));
+  setText('gOrdersSub', useFiltered ? (filteredDays.length + ' days selected') : (fmt(g.newOrders || 0) + ' new / ' + fmt(g.returningOrders || 0) + ' returning'));
+  setText('gRevenue', fmtMoney(dispRevenue));
+  setText('gRevSub', useFiltered ? (filteredDays.length + ' days selected') : ('from ' + fmt(g.uniqueVisitors || 0) + ' unique visitors'));
+  setText('gAOV2', fmtMoney(dispAov));
+  setText('gVisitors2', fmt(useFiltered ? '-' : (g.uniqueVisitors || 0)));
+  setText('gVisitors2Sub', useFiltered ? '' : (fmtPct(g.repeatPurchaseRate || 0) + ' repeat purchase rate'));
   setText('gCartSize', (g.avgCartSize || 0).toFixed(1));
 
   // Order Source Bar
@@ -1140,11 +1182,13 @@ function renderOverviewTrend() {
   const labels = days.map(d => new Date(d + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric', timeZone:'America/New_York'}));
   const impData = days.map(d => daily[d]?.impressions || 0);
   const subsData = days.map(d => daily[d]?.purchases || 0);
+  const nyData = days.map(d => daily[d]?.nyPurchases || 0);
   const attrData = days.map(d => daily[d]?.conversions || 0);
 
   const datasets = [
     { label: 'Impressions', data: impData, borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.12)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#f59e0b', yAxisID: 'y' },
-    { label: 'New Subscriptions', data: subsData, borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.12)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#10b981', yAxisID: 'y1' },
+    { label: 'New Subscriptions (National)', data: subsData, borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.06)', borderWidth: 2, borderDash: [6, 3], fill: true, tension: 0.4, pointRadius: 2, pointBackgroundColor: '#10b981', yAxisID: 'y1' },
+    { label: 'New Subscriptions (New York)', data: nyData, borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.12)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#06b6d4', yAxisID: 'y1' },
     { label: 'Attributed Conversions', data: attrData, borderColor: '#7c3aed', backgroundColor: 'rgba(124,58,237,0.12)', borderWidth: 2, fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#7c3aed', yAxisID: 'y1' },
   ];
 
