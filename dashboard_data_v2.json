@@ -4,18 +4,18 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-25T05:19:53.935339Z",
+  "lastUpdated": "2026-03-25T05:48:49.282257Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-25"
   },
   "global": {
-    "totalOrders": 594,
-    "totalRevenue": 53727.84,
-    "aov": 90.45,
-    "uniqueVisitors": 576,
+    "totalOrders": 595,
+    "totalRevenue": 53814.34,
+    "aov": 90.44,
+    "uniqueVisitors": 577,
     "repeatPurchaseRate": 1.2,
-    "newOrders": 576,
+    "newOrders": 577,
     "returningOrders": 18,
     "newCustomerPct": 97.0,
     "avgCartSize": 1.0
@@ -26,21 +26,21 @@
     "zipCodeCoverage": 95.8,
     "loggedInBreakdown": {
       "yes": 123,
-      "no": 159,
+      "no": 160,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 594,
+    "ordersuccess": 595,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 404,
-      "revenue": 40146.91,
-      "aov": 99.37,
-      "pctOfOrders": 68.0
+      "orders": 405,
+      "revenue": 40233.41,
+      "aov": 99.34,
+      "pctOfOrders": 68.1
     },
     "Google Organic": {
       "orders": 60,
@@ -70,7 +70,7 @@
       "orders": 11,
       "revenue": 1400.83,
       "aov": 127.35,
-      "pctOfOrders": 1.9
+      "pctOfOrders": 1.8
     },
     "Meta Organic": {
       "orders": 4,
@@ -145,8 +145,8 @@
       "revenue": 998.0
     },
     "TN": {
-      "orders": 11,
-      "revenue": 764.21
+      "orders": 12,
+      "revenue": 850.71
     },
     "DC": {
       "orders": 10,
@@ -183,16 +183,16 @@
   },
   "devices": {
     "iOS": {
-      "orders": 250,
-      "pctOfOrders": 42.1
+      "orders": 251,
+      "pctOfOrders": 42.2
     },
     "Mac OS": {
       "orders": 149,
-      "pctOfOrders": 25.1
+      "pctOfOrders": 25.0
     },
     "Windows": {
       "orders": 130,
-      "pctOfOrders": 21.9
+      "pctOfOrders": 21.8
     },
     "Android": {
       "orders": 61,
@@ -205,17 +205,17 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 848950,
+    "impressions": 848972,
     "clicks": 102,
-    "reach": 191614,
+    "reach": 191615,
     "frequency": 4.43,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 7195.54,
+    "spend": 7196.09,
     "roas": 0.0,
     "costPerSubscription": 0,
     "ctVisits": 0,
-    "vtVisits": 0,
+    "vtVisits": 87,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -276,13 +276,13 @@
   },
   "channels": {
     "display": {
-      "impressions": 537965,
+      "impressions": 537968,
       "clicks": 101,
       "reach": 134914,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 3227.79,
+      "spend": 3227.81,
       "roas": 0.0
     },
     "video": {
@@ -296,13 +296,13 @@
       "roas": 0.0
     },
     "ctv": {
-      "impressions": 79774,
+      "impressions": 79793,
       "clicks": 1,
-      "reach": 18551,
+      "reach": 18553,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 2233.67,
+      "spend": 2234.2,
       "roas": 0.0
     }
   },
@@ -311,13 +311,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 848948,
+      "impressions": 848970,
       "clicks": 102,
-      "reach": 191613,
+      "reach": 191614,
       "frequency": 4.43,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 7195.53,
+      "spend": 7196.08,
       "roas": 0.0
     }
   },
@@ -723,15 +723,17 @@
       }
     },
     "2026-03-25": {
-      "impressions": 2386,
+      "impressions": 2408,
       "clicks": 1,
-      "purchases": 0,
-      "revenue": 0.0,
+      "purchases": 1,
+      "revenue": 86.5,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 0,
+      "newOrders": 1,
       "returningOrders": 0,
-      "trafficSources": {}
+      "trafficSources": {
+        "Direct / Internal": 1
+      }
     }
   }
 }
