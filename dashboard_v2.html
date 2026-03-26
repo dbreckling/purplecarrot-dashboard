@@ -987,12 +987,10 @@ function renderOverview() {
   setText('gImpressions', fmt(dispImp));
   setText('gImpSub', fmt(prog.reach || 0) + ' unique reach');
 
-  // Website Visits = ad clicks (click-through) + view-through visits (saw ad, visited organically)
+  // Website Visits = ad clicks only (view-through pending proper GraphQL source)
   const clicks = useFiltered ? dispClicks : (prog.clicks || 0);
-  const vtVisits = prog.vtVisits || 0;
-  const webVisits = clicks + vtVisits;
-  setText('gWebVisits', fmt(webVisits));
-  setText('gWebVisitsSub', clicks + ' click-thru \u00B7 ' + vtVisits + ' view-thru');
+  setText('gWebVisits', fmt(clicks));
+  setText('gWebVisitsSub', clicks + ' click-thru');
 
   // Attributed Revenue
   setText('gAttrRev', fmtMoney(dispAttrRev));
