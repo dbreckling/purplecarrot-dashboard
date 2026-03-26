@@ -4,20 +4,20 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-26T05:20:27.445886Z",
+  "lastUpdated": "2026-03-26T05:50:34.858203Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-26"
   },
   "global": {
-    "totalOrders": 610,
-    "totalRevenue": 55039.79,
-    "aov": 90.23,
-    "uniqueVisitors": 592,
+    "totalOrders": 611,
+    "totalRevenue": 55138.28,
+    "aov": 90.24,
+    "uniqueVisitors": 593,
     "repeatPurchaseRate": 1.2,
-    "newOrders": 592,
+    "newOrders": 593,
     "returningOrders": 18,
-    "newCustomerPct": 97.0,
+    "newCustomerPct": 97.1,
     "avgCartSize": 1.0
   },
   "identity": {
@@ -26,19 +26,19 @@
     "zipCodeCoverage": 95.9,
     "loggedInBreakdown": {
       "yes": 128,
-      "no": 170,
+      "no": 171,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 610,
+    "ordersuccess": 611,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 414,
-      "revenue": 41006.36,
+      "orders": 415,
+      "revenue": 41104.85,
       "aov": 99.05,
       "pctOfOrders": 67.9
     },
@@ -46,19 +46,19 @@
       "orders": 62,
       "revenue": 4244.5,
       "aov": 68.46,
-      "pctOfOrders": 10.2
+      "pctOfOrders": 10.1
     },
     "Email": {
       "orders": 40,
       "revenue": 839.26,
       "aov": 20.98,
-      "pctOfOrders": 6.6
+      "pctOfOrders": 6.5
     },
     "Direct": {
       "orders": 40,
       "revenue": 3545.05,
       "aov": 88.63,
-      "pctOfOrders": 6.6
+      "pctOfOrders": 6.5
     },
     "Referral": {
       "orders": 39,
@@ -176,9 +176,9 @@
       "orders": 7,
       "revenue": 496.97
     },
-    "SC": {
+    "AZ": {
       "orders": 6,
-      "revenue": 469.49
+      "revenue": 515.46
     }
   },
   "devices": {
@@ -187,12 +187,12 @@
       "pctOfOrders": 41.6
     },
     "Mac OS": {
-      "orders": 151,
-      "pctOfOrders": 24.8
+      "orders": 152,
+      "pctOfOrders": 24.9
     },
     "Windows": {
       "orders": 137,
-      "pctOfOrders": 22.5
+      "pctOfOrders": 22.4
     },
     "Android": {
       "orders": 64,
@@ -205,17 +205,17 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 907602,
+    "impressions": 907630,
     "clicks": 106,
-    "reach": 203681,
+    "reach": 203685,
     "frequency": 4.46,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 7685.38,
+    "spend": 7686.1,
     "roas": 0.0,
     "costPerSubscription": 0,
     "ctVisits": 86,
-    "vtVisits": 104979,
+    "vtVisits": 109233,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -276,13 +276,13 @@
   },
   "channels": {
     "display": {
-      "impressions": 578700,
+      "impressions": 578703,
       "clicks": 105,
       "reach": 144665,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 3472.2,
+      "spend": 3472.22,
       "roas": 0.0
     },
     "video": {
@@ -296,13 +296,13 @@
       "roas": 0.0
     },
     "ctv": {
-      "impressions": 85191,
+      "impressions": 85216,
       "clicks": 1,
-      "reach": 19144,
+      "reach": 19148,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 2385.35,
+      "spend": 2386.05,
       "roas": 0.0
     }
   },
@@ -311,13 +311,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 907599,
+      "impressions": 907627,
       "clicks": 106,
-      "reach": 203679,
+      "reach": 203683,
       "frequency": 4.46,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 7685.36,
+      "spend": 7686.08,
       "roas": 0.0
     }
   },
@@ -765,16 +765,18 @@
       }
     },
     "2026-03-26": {
-      "impressions": 2116,
+      "impressions": 2144,
       "clicks": 0,
-      "purchases": 0,
-      "revenue": 0.0,
+      "purchases": 1,
+      "revenue": 98.49,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 0,
+      "newOrders": 1,
       "returningOrders": 0,
       "nyPurchases": 0,
-      "trafficSources": {}
+      "trafficSources": {
+        "Direct / Internal": 1
+      }
     }
   }
 }
