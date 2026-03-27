@@ -952,6 +952,7 @@ function renderOverview() {
 
   // Sum filtered daily data for programmatic metrics
   let fImp = 0, fClicks = 0, fPurchases = 0, fRevenue = 0, fConv = 0, fAttrRev = 0;
+  let fTrafficSources = {};
   for (const d of filteredDays) {
     const dd = daily[d] || {};
     fImp += dd.impressions || 0;
@@ -960,6 +961,10 @@ function renderOverview() {
     fRevenue += dd.revenue || 0;
     fConv += dd.conversions || 0;
     fAttrRev += dd.attrRevenue || 0;
+    const dayTS = dd.trafficSources || {};
+    for (const [src, count] of Object.entries(dayTS)) {
+      fTrafficSources[src] = (fTrafficSources[src] || 0) + count;
+    }
   }
 
   // Use filtered values if date range is set, otherwise use full programmatic totals
@@ -1102,8 +1107,28 @@ function renderOverview() {
   // Trend Chart
   renderOverviewTrend();
 
-  // Traffic Sources Table
-  const ts = DATA.trafficSources || {};
+  // Traffic Sources Table — respects date range filter
+  const ts = useFiltered ? (function() {
+    const filtered = {};
+    const globalTS = DATA.trafficSources || {};
+    let totalFiltered = 0;
+    for (const [src, count] of Object.entries(fTrafficSources)) {
+      const globalData = globalTS[src] || {};
+      const globalOrders = globalData.orders || 1;
+      const avgRev = (globalData.revenue || 0) / globalOrders;
+      filtered[src] = {
+        orders: count,
+        revenue: Math.round(count * avgRev * 100) / 100,
+        aov: Math.round(avgRev * 100) / 100,
+      };
+      totalFiltered += count;
+    }
+    for (const src in filtered) {
+      filtered[src].pctOfOrders = totalFiltered > 0
+        ? Math.round(filtered[src].orders / totalFiltered * 1000) / 10 : 0;
+    }
+    return filtered;
+  })() : DATA.trafficSources || {};
   const tsTbody = document.getElementById('trafficTable');
   let tsRows = '';
   let tsTotalOrders = 0, tsTotalRev = 0;
