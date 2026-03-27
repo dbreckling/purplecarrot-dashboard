@@ -4,18 +4,18 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-03-27T22:22:42.140538Z",
+  "lastUpdated": "2026-03-27T22:51:40.918242Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-03-27"
   },
   "global": {
-    "totalOrders": 640,
-    "totalRevenue": 57479.65,
-    "aov": 89.81,
-    "uniqueVisitors": 620,
+    "totalOrders": 641,
+    "totalRevenue": 57522.15,
+    "aov": 89.74,
+    "uniqueVisitors": 621,
     "repeatPurchaseRate": 1.3,
-    "newOrders": 620,
+    "newOrders": 621,
     "returningOrders": 20,
     "newCustomerPct": 96.9,
     "avgCartSize": 1.0
@@ -26,12 +26,12 @@
     "zipCodeCoverage": 95.9,
     "loggedInBreakdown": {
       "yes": 144,
-      "no": 184,
+      "no": 185,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 640,
+    "ordersuccess": 641,
     "cartFallback": 0,
     "unknown": 0
   },
@@ -40,7 +40,7 @@
       "orders": 433,
       "revenue": 42826.29,
       "aov": 98.91,
-      "pctOfOrders": 67.7
+      "pctOfOrders": 67.6
     },
     "Google Organic": {
       "orders": 66,
@@ -67,10 +67,10 @@
       "pctOfOrders": 6.1
     },
     "Google Ads": {
-      "orders": 12,
-      "revenue": 1497.83,
-      "aov": 124.82,
-      "pctOfOrders": 1.9
+      "orders": 13,
+      "revenue": 1540.33,
+      "aov": 118.49,
+      "pctOfOrders": 2.0
     },
     "Meta Organic": {
       "orders": 4,
@@ -183,8 +183,8 @@
   },
   "devices": {
     "iOS": {
-      "orders": 263,
-      "pctOfOrders": 41.1
+      "orders": 264,
+      "pctOfOrders": 41.2
     },
     "Mac OS": {
       "orders": 162,
@@ -192,7 +192,7 @@
     },
     "Windows": {
       "orders": 145,
-      "pctOfOrders": 22.7
+      "pctOfOrders": 22.6
     },
     "Android": {
       "orders": 66,
@@ -205,17 +205,17 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 1011931,
+    "impressions": 1014948,
     "clicks": 118,
-    "reach": 230930,
+    "reach": 231828,
     "frequency": 4.38,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 8600.37,
+    "spend": 8625.45,
     "roas": 0.0,
     "costPerSubscription": 0,
     "ctVisits": 97,
-    "vtVisits": 111720,
+    "vtVisits": 111863,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -276,33 +276,33 @@
   },
   "channels": {
     "display": {
-      "impressions": 625558,
+      "impressions": 626161,
       "clicks": 117,
-      "reach": 157116,
+      "reach": 157332,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 3753.35,
+      "spend": 3756.97,
       "roas": 0.0
     },
     "video": {
-      "impressions": 291289,
+      "impressions": 293539,
       "clicks": 0,
-      "reach": 103144,
+      "reach": 103907,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 7.5,
-      "spend": 2184.67,
+      "spend": 2201.54,
       "roas": 0.0
     },
     "ctv": {
-      "impressions": 95084,
+      "impressions": 95248,
       "clicks": 1,
-      "reach": 20530,
+      "reach": 20554,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 2662.35,
+      "spend": 2666.94,
       "roas": 0.0
     }
   },
@@ -311,13 +311,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 1011928,
+      "impressions": 1014945,
       "clicks": 118,
-      "reach": 230928,
+      "reach": 231826,
       "frequency": 4.38,
       "attrOrders": 0,
       "attrRevenue": 0,
-      "spend": 8600.35,
+      "spend": 8625.43,
       "roas": 0.0
     }
   },
@@ -781,17 +781,17 @@
       }
     },
     "2026-03-27": {
-      "impressions": 49553,
+      "impressions": 52570,
       "clicks": 5,
-      "purchases": 9,
-      "revenue": 876.4,
+      "purchases": 10,
+      "revenue": 918.9,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 9,
+      "newOrders": 10,
       "returningOrders": 0,
       "nyPurchases": 1,
       "trafficSources": {
-        "Google Ads": 1,
+        "Google Ads": 2,
         "Direct / Internal": 4,
         "Google Organic": 4
       }
@@ -5845,6 +5845,14 @@
       "time": "2026-03-26T05:27:34",
       "region": "AZ",
       "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2980890",
+      "revenue": 42.5,
+      "date": "2026-03-27",
+      "time": "2026-03-27T22:30:24",
+      "region": "MO",
+      "trafficSource": "Google Ads"
     },
     {
       "orderId": "2980846",
