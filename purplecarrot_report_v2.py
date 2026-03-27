@@ -1437,6 +1437,17 @@ def main():
         "channels": channel_data,
         "campaigns": campaigns_output,
         "dailyData": serialized_daily,
+        "allOrders": [
+            {
+                "orderId": p.get("dedupeId", ""),
+                "revenue": round(float(p.get("revenue") or 0), 2),
+                "date": (p.get("time") or "")[:10],
+                "time": (p.get("time") or "")[:19],
+                "region": p.get("region", ""),
+                "trafficSource": p.get("_traffic_source", ""),
+            }
+            for p in unique_purchases
+        ],
     }
 
     # NOTE: Attribution preservation removed — daily conversions now always reflect

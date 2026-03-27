@@ -372,7 +372,10 @@ tr:hover{background:#fbfcff}
         <div class="card">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <h3 style="margin:0">Attributed Orders</h3>
-            <button onclick="exportAttrCSV()" style="background:#7c3aed;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export CSV</button>
+            <div style="display:flex;gap:8px">
+              <button onclick="exportAllOrdersCSV()" style="background:#1e1b4b;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export All Orders</button>
+              <button onclick="exportAttrCSV()" style="background:#7c3aed;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export Attributed</button>
+            </div>
           </div>
           <div style="max-height:420px;overflow-y:auto">
             <table>
@@ -515,15 +518,8 @@ tr:hover{background:#fbfcff}
       </div>
     </div>
 
-    <!-- Logged-in Breakdown -->
-    <div class="card">
-      <h3>Logged-In Status at Purchase</h3>
-      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
-        <div class="kpi-card"><div class="label">Logged In</div><div class="value" id="liYes">-</div><div class="sub">identity enriched</div></div>
-        <div class="kpi-card"><div class="label">Not Logged In</div><div class="value" id="liNo">-</div><div class="sub">anonymous</div></div>
-        <div class="kpi-card"><div class="label">Unknown</div><div class="value" id="liUnknown">-</div><div class="sub">status not captured</div></div>
-      </div>
-    </div>
+    <!-- Logged-in Breakdown — hidden: ordersuccess only fires for new subscribers (not logged in) -->
+    <!-- Per Mike: all ordersuccess events are new subscriptions, logged_in status is unreliable -->
 
     <!-- Device Breakdown -->
     <div class="two-col">
@@ -934,6 +930,23 @@ function exportAttrCSV() {
   document.body.removeChild(a);
 }
 
+// Export ALL orders CSV
+function exportAllOrdersCSV() {
+  const orders = DATA.allOrders || [];
+  if (!orders.length) { alert('No order data to export.'); return; }
+  let csv = 'Order ID,Revenue,Date,Time,Region,Traffic Source\n';
+  for (const o of orders) {
+    csv += `${o.orderId || ''},${(o.revenue || 0).toFixed(2)},${o.date || ''},${o.time || ''},${o.region || ''},${(o.trafficSource || '').replace(/,/g, ';')}\n`;
+  }
+  const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'purple_carrot_all_orders.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 // ==================== EXECUTIVE OVERVIEW ====================
 function renderOverview() {
   const g = DATA.global || {};
@@ -1087,21 +1100,14 @@ function renderOverview() {
   setText('gVisitors2Sub', useFiltered ? '' : (fmtPct(g.repeatPurchaseRate || 0) + ' repeat purchase rate'));
   setText('gCartSize', (g.avgCartSize || 0).toFixed(1));
 
-  // Order Source Bar
-  const os = DATA.orderSources || {};
-  const totalSrc = (os.ordersuccess || 0) + (os.cartFallback || 0) + (os.unknown || 0);
-  const pctOS = totalSrc > 0 ? ((os.ordersuccess || 0) / totalSrc * 100) : 0;
-  const pctCF = totalSrc > 0 ? ((os.cartFallback || 0) / totalSrc * 100) : 0;
-  const pctUK = totalSrc > 0 ? ((os.unknown || 0) / totalSrc * 100) : 0;
+  // Order Source Bar — use filtered purchase count when date range is active
+  const dispOSCount = useFiltered ? fPurchases : (DATA.orderSources?.ordersuccess || 0);
   document.getElementById('sourceBar').innerHTML = `
-    <div class="seg primary" style="width:${pctOS}%">${pctOS.toFixed(0)}%</div>
-    <div class="seg secondary" style="width:${pctCF}%">${pctCF.toFixed(0)}%</div>
-    ${pctUK > 0 ? `<div class="seg tertiary" style="width:${pctUK}%">${pctUK.toFixed(0)}%</div>` : ''}
+    <div class="seg primary" style="width:100%">100%</div>
   `;
   document.getElementById('sourceLegend').innerHTML = `
-    <span><strong style="color:var(--brand)">\u25CF</strong> ordersuccess: ${fmt(os.ordersuccess || 0)}</span>
-    <span><strong style="color:var(--purple)">\u25CF</strong> cart fallback: ${fmt(os.cartFallback || 0)}</span>
-    ${(os.unknown || 0) > 0 ? `<span><strong style="color:#c4b5fd">\u25CF</strong> unknown: ${fmt(os.unknown || 0)}</span>` : ''}
+    <span><strong style="color:var(--brand)">\u25CF</strong> ordersuccess: ${fmt(dispOSCount)}</span>
+    <span><strong style="color:var(--purple)">\u25CF</strong> cart fallback: 0</span>
   `;
 
   // Trend Chart
