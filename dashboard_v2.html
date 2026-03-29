@@ -611,11 +611,11 @@ tr:hover{background:#fbfcff}
       <h3>Subscription Formation Funnel</h3>
       <p style="font-size:11px;color:var(--muted);margin:-10px 0 14px 0">Exposure to subscription decision path</p>
       <div class="funnel" style="border:none;padding:0;margin:0;box-shadow:none">
-        <div class="funnel-step"><div class="step-label">Ad Exposure</div><div class="step-value" id="fpExp">-</div><div class="step-rate">&nbsp;</div></div>
+        <div class="funnel-step"><div class="step-label">Unique Reach</div><div class="step-value" id="fpExp">-</div><div class="step-rate">&nbsp;</div></div>
         <div class="funnel-arrow">&rarr;</div>
-        <div class="funnel-step"><div class="step-label">Site Visits</div><div class="step-value" id="fpVisit">-</div><div class="step-rate" id="fpVisitRate">-</div></div>
+        <div class="funnel-step"><div class="step-label">Ad-Driven Visits</div><div class="step-value" id="fpVisit">-</div><div class="step-rate" id="fpVisitRate">-</div></div>
         <div class="funnel-arrow">&rarr;</div>
-        <div class="funnel-step"><div class="step-label">Total Orders</div><div class="step-value" id="fpOrders">-</div><div class="step-rate" id="fpOrderRate">-</div></div>
+        <div class="funnel-step"><div class="step-label">New Subscriptions</div><div class="step-value" id="fpOrders">-</div><div class="step-rate" id="fpOrderRate">-</div></div>
         <div class="funnel-arrow">&rarr;</div>
         <div class="funnel-step"><div class="step-label">Attributed Subscriptions</div><div class="step-value" id="fpAttr">-</div><div class="step-rate" id="fpAttrRate">-</div></div>
       </div>
@@ -1613,15 +1613,19 @@ function renderAttribution() {
   // Timeline chart
   renderTimelineChart();
 
-  // Funnel path
-  setText('fpExp', fmt(prog.impressions || 0));
-  setText('fpVisit', fmt(g.uniqueVisitors || 0));
-  const visitRate = prog.impressions > 0 ? ((g.uniqueVisitors || 0) / prog.impressions * 100) : 0;
-  setText('fpVisitRate', visitRate > 0 ? fmtPct(visitRate) : '-');
-  setText('fpOrders', fmt(g.totalOrders || 0));
-  setText('fpOrderRate', g.uniqueVisitors > 0 ? fmtPct(g.totalOrders / g.uniqueVisitors * 100) : '-');
-  setText('fpAttr', fmt(prog.attrOrders || 0));
-  setText('fpAttrRate', (g.totalOrders || 0) > 0 ? fmtPct((prog.attrOrders || 0) / g.totalOrders * 100) + ' of total' : '-');
+  // Funnel path — Unique Reach → Ad-Driven Visits → New Subscriptions → Attributed
+  const reach = prog.reach || 0;
+  const adVisits = (prog.clicks || 0) + (prog.vtVisits || 0);
+  const totalSubs = g.totalOrders || 0;
+  const attrSubs = prog.attrOrders || 0;
+
+  setText('fpExp', fmt(reach));
+  setText('fpVisit', fmt(adVisits));
+  setText('fpVisitRate', reach > 0 ? fmtPct(adVisits / reach * 100) : '-');
+  setText('fpOrders', fmt(totalSubs));
+  setText('fpOrderRate', adVisits > 0 ? fmtPct(totalSubs / adVisits * 100) : '-');
+  setText('fpAttr', fmt(attrSubs));
+  setText('fpAttrRate', totalSubs > 0 ? fmtPct(attrSubs / totalSubs * 100) + ' of total' : '-');
 }
 
 function renderLookbackData(lb) {

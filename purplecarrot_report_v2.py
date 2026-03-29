@@ -965,6 +965,12 @@ def main():
                     same_day_count += 1
             except Exception:
                 pass
+        elif a.get("daysBetween") is not None:
+            # Fallback: use daysBetween from allPurchaseAttributions when impressionTime is missing
+            delta_days = float(a.get("daysBetween", 0))
+            days_to_conversion.append(delta_days)
+            if delta_days < 1:
+                same_day_count += 1
 
     avg_days_to_conv = round(sum(days_to_conversion) / len(days_to_conversion), 1) if days_to_conversion else 0
 
@@ -1227,17 +1233,21 @@ def main():
         lb_orders = 0
         lb_revenue = 0.0
         for a in unique_attributed:
+            delta_days = None
             imp_time_str = a.get("impressionTime")
             conv_time_str = a.get("time")
-            if not imp_time_str or not conv_time_str:
-                lb_orders += 1
-                lb_revenue += float(a.get("revenue") or 0)
-                continue
-            try:
-                imp_time = pd.to_datetime(imp_time_str, utc=True)
-                conv_time = pd.to_datetime(conv_time_str, utc=True)
-                delta_days = (conv_time - imp_time).total_seconds() / 86400
-            except Exception:
+            if imp_time_str and conv_time_str:
+                try:
+                    imp_time = pd.to_datetime(imp_time_str, utc=True)
+                    conv_time = pd.to_datetime(conv_time_str, utc=True)
+                    delta_days = (conv_time - imp_time).total_seconds() / 86400
+                except Exception:
+                    pass
+            # Fallback: use daysBetween from allPurchaseAttributions
+            if delta_days is None and a.get("daysBetween") is not None:
+                delta_days = float(a.get("daysBetween", 0))
+            # If no data at all, include in all windows
+            if delta_days is None:
                 lb_orders += 1
                 lb_revenue += float(a.get("revenue") or 0)
                 continue
