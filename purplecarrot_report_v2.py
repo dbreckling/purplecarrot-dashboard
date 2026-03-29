@@ -477,6 +477,14 @@ def run_attributed_query(date_from, date_to, max_retries=MAX_RETRIES):
               revenue
               time
               dedupeId
+              campaignId
+              placementId
+              creativeName
+              creativeWidth
+              creativeHeight
+              matchingImpressions
+              isClickThrough
+              daysBetween
             }}
             totalCount
           }}
@@ -1062,6 +1070,13 @@ def main():
         pre_conv_count = sum(1 for t in ip_impressions if t is not None and t <= conv_time)
 
         converter_impression_counts.append(pre_conv_count)
+        # Determine campaign/placement info for this attributed order
+        a_pid = a.get("impressionPlacementId") or a.get("placementId", "")
+        a_ch = PLACEMENT_CONFIG.get(a_pid, {}).get("channel", "unknown")
+        a_camp = a.get("impressionCampaignName") or ""
+        a_days = a.get("daysBetween", "")
+        a_matching = a.get("matchingImpressions", pre_conv_count)
+
         converter_details.append({
             "dedupeId": did,
             "visitorId": vid,
@@ -1071,6 +1086,10 @@ def main():
             "revenue": float(a.get("revenue") or 0),
             "type": "click-through" if vid in click_visitor_set else "view-through",
             "orderSource": classify_order_source(did),
+            "channel": a_ch,
+            "placementId": a_pid,
+            "daysBetween": a_days,
+            "matchingImpressions": a_matching,
         })
 
     avg_imps_to_convert = round(sum(converter_impression_counts) / len(converter_impression_counts), 1) if converter_impression_counts else 0
@@ -1399,19 +1418,60 @@ def main():
             creative_key = f"{creative}|{size}" if size else creative
             hier[ch][camp_name][creative_key]["clicks"] += 1
 
-        # Map attributed conversions — use impressionPlacementId + look up campaign from attr data blob
+        # Build a lookup of placementId -> most common dlve_campaign name (for fallback)
+        pid_to_campaigns = defaultdict(Counter)
+        for _, pid, n in all_impressions:
+            if id(n) not in clean_imp_ids:
+                continue
+            blob = {}
+            try:
+                raw = n.get("data", "{}")
+                blob = json.loads(raw) if isinstance(raw, str) else (raw or {})
+            except Exception:
+                pass
+            camp = blob.get("dlve_campaign", "")
+            if camp and pid:
+                pid_to_campaigns[pid][camp] += 1
+
+        # Map attributed conversions to hierarchy
+        # Priority: 1) LTM-enriched impressionData, 2) attribution's campaignId/placementId
         for a in unique_attributed:
             a_pid = a.get("impressionPlacementId") or a.get("placementId", "")
             ch = PLACEMENT_CONFIG.get(a_pid, {}).get("channel", "display")
+
+            # Try LTM data blob first (has dlve_campaign from impression)
             blob = {}
             try:
                 raw = a.get("data", "{}")
                 blob = json.loads(raw) if isinstance(raw, str) else (raw or {})
             except Exception:
                 pass
-            camp_name = blob.get("dlve_campaign", "Unknown")
-            creative = blob.get("dlve_creative", "Unknown")
+
+            camp_name = blob.get("dlve_campaign", "")
+            creative = blob.get("dlve_creative", "")
             size = blob.get("dlve_size", "")
+
+            # Fallback: use placementId to find most common campaign name
+            if not camp_name and a_pid:
+                top_camps = pid_to_campaigns.get(a_pid, {})
+                if top_camps:
+                    camp_name = top_camps.most_common(1)[0][0]
+
+            # Final fallback
+            if not camp_name:
+                cid = a.get("impressionCampaignId") or a.get("campaignId", "")
+                camp_name = f"Campaign {cid}" if cid else "Unknown"
+
+            if not creative:
+                cr_name = a.get("creativeName") or ""
+                cr_w = a.get("creativeWidth") or 0
+                cr_h = a.get("creativeHeight") or 0
+                if cr_name:
+                    creative = cr_name
+                    size = f"{cr_w}x{cr_h}" if cr_w and cr_h else ""
+                else:
+                    creative = "Unknown Creative"
+
             creative_key = f"{creative}|{size}" if size else creative
             hier[ch][camp_name][creative_key]["attrOrders"] += 1
             hier[ch][camp_name][creative_key]["attrRevenue"] += float(a.get("revenue") or 0)
