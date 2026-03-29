@@ -1355,6 +1355,134 @@ def main():
             print(f"    {ch_name}: {ch['impressions']:,} imp, ${ch['cpm']:.2f} CPM, ${ch['spend']:.2f} spend, {ch['attrOrders']} attr orders, ROAS {ch['roas']:.2f}x")
 
     # -------------------------
+    # Build channel → campaign → creative hierarchy from data blob
+    # -------------------------
+    CHANNEL_LABELS = {"display": "Display", "video": "Display Video", "ctv": "CTV / OTT"}
+    channel_hierarchy = {}
+    if has_programmatic:
+        # Nested accumulator: channel -> campaign -> creative -> {ips, impressions, clicks, ...}
+        hier = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {
+            "ips": set(), "impressions": 0, "clicks": 0, "attrOrders": 0, "attrRevenue": 0.0
+        })))
+
+        for _, pid, n in all_impressions:
+            if id(n) not in clean_imp_ids:
+                continue
+            ch = PLACEMENT_CONFIG.get(pid, {}).get("channel", "display")
+            blob = {}
+            try:
+                raw = n.get("data", "{}")
+                blob = json.loads(raw) if isinstance(raw, str) else (raw or {})
+            except Exception:
+                pass
+            camp_name = blob.get("dlve_campaign", "Unknown")
+            creative = blob.get("dlve_creative", "Unknown")
+            size = blob.get("dlve_size", "")
+            creative_key = f"{creative}|{size}" if size else creative
+            entry = hier[ch][camp_name][creative_key]
+            entry["impressions"] += 1
+            ip = n.get("ip", "")
+            if ip:
+                entry["ips"].add(ip)
+
+        for _, pid, n in all_clicks_clean:
+            ch = PLACEMENT_CONFIG.get(pid, {}).get("channel", "display")
+            blob = {}
+            try:
+                raw = n.get("data", "{}")
+                blob = json.loads(raw) if isinstance(raw, str) else (raw or {})
+            except Exception:
+                pass
+            camp_name = blob.get("dlve_campaign", "Unknown")
+            creative = blob.get("dlve_creative", "Unknown")
+            size = blob.get("dlve_size", "")
+            creative_key = f"{creative}|{size}" if size else creative
+            hier[ch][camp_name][creative_key]["clicks"] += 1
+
+        # Map attributed conversions — use impressionPlacementId + look up campaign from attr data blob
+        for a in unique_attributed:
+            a_pid = a.get("impressionPlacementId") or a.get("placementId", "")
+            ch = PLACEMENT_CONFIG.get(a_pid, {}).get("channel", "display")
+            blob = {}
+            try:
+                raw = a.get("data", "{}")
+                blob = json.loads(raw) if isinstance(raw, str) else (raw or {})
+            except Exception:
+                pass
+            camp_name = blob.get("dlve_campaign", "Unknown")
+            creative = blob.get("dlve_creative", "Unknown")
+            size = blob.get("dlve_size", "")
+            creative_key = f"{creative}|{size}" if size else creative
+            hier[ch][camp_name][creative_key]["attrOrders"] += 1
+            hier[ch][camp_name][creative_key]["attrRevenue"] += float(a.get("revenue") or 0)
+
+        # Serialize hierarchy
+        for ch_key in ["display", "video", "ctv"]:
+            ch_cpm = PLACEMENT_CONFIG.get(
+                next((pid for pid, cfg in PLACEMENT_CONFIG.items() if cfg["channel"] == ch_key), ""), {}
+            ).get("cpm", DEFAULT_CPM)
+            campaigns_hier = {}
+            for camp_name, creatives in sorted(hier.get(ch_key, {}).items()):
+                creatives_out = {}
+                camp_totals = {"impressions": 0, "clicks": 0, "reach": 0, "attrOrders": 0, "attrRevenue": 0.0}
+                camp_ips = set()
+                for cr_key, cr_data in sorted(creatives.items()):
+                    cr_imps = cr_data["impressions"]
+                    cr_reach = len(cr_data["ips"])
+                    cr_spend = round(cr_imps / 1000 * ch_cpm, 2)
+                    cr_roas = round(cr_data["attrRevenue"] / cr_spend, 2) if cr_spend > 0 else 0
+                    parts = cr_key.split("|", 1)
+                    cr_name = parts[0]
+                    cr_size = parts[1] if len(parts) > 1 else ""
+                    creatives_out[cr_key] = {
+                        "creativeName": cr_name,
+                        "creativeSize": cr_size,
+                        "impressions": cr_imps,
+                        "clicks": cr_data["clicks"],
+                        "reach": cr_reach,
+                        "frequency": round(cr_imps / cr_reach, 1) if cr_reach > 0 else 0,
+                        "attrOrders": cr_data["attrOrders"],
+                        "attrRevenue": round(cr_data["attrRevenue"], 2),
+                        "spend": cr_spend,
+                        "roas": cr_roas,
+                    }
+                    camp_totals["impressions"] += cr_imps
+                    camp_totals["clicks"] += cr_data["clicks"]
+                    camp_totals["attrOrders"] += cr_data["attrOrders"]
+                    camp_totals["attrRevenue"] += cr_data["attrRevenue"]
+                    camp_ips |= cr_data["ips"]
+
+                camp_reach = len(camp_ips)
+                camp_spend = round(camp_totals["impressions"] / 1000 * ch_cpm, 2)
+                camp_roas = round(camp_totals["attrRevenue"] / camp_spend, 2) if camp_spend > 0 else 0
+                campaigns_hier[camp_name] = {
+                    "impressions": camp_totals["impressions"],
+                    "clicks": camp_totals["clicks"],
+                    "reach": camp_reach,
+                    "frequency": round(camp_totals["impressions"] / camp_reach, 1) if camp_reach > 0 else 0,
+                    "attrOrders": camp_totals["attrOrders"],
+                    "attrRevenue": round(camp_totals["attrRevenue"], 2),
+                    "spend": camp_spend,
+                    "roas": camp_roas,
+                    "creatives": creatives_out,
+                }
+
+            if campaigns_hier:
+                channel_hierarchy[ch_key] = {
+                    "label": CHANNEL_LABELS.get(ch_key, ch_key),
+                    "cpm": ch_cpm,
+                    "campaigns": campaigns_hier,
+                }
+
+        print(f"\n  Channel hierarchy:")
+        for ch_key, ch_data in channel_hierarchy.items():
+            print(f"    {ch_data['label']}:")
+            for camp_name, camp in ch_data["campaigns"].items():
+                print(f"      {camp_name}: {camp['impressions']:,} imp, {camp['clicks']} clicks, ${camp['spend']:.2f} spend")
+                for cr_key, cr in camp["creatives"].items():
+                    print(f"        {cr['creativeName']} {cr['creativeSize']}: {cr['impressions']:,} imp")
+
+    # -------------------------
     # Assemble final JSON
     # -------------------------
     output = {
@@ -1435,6 +1563,7 @@ def main():
             },
         },
         "channels": channel_data,
+        "channelHierarchy": channel_hierarchy,
         "campaigns": campaigns_output,
         "dailyData": serialized_daily,
         "allOrders": [

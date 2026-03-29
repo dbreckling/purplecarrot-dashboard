@@ -461,13 +461,13 @@ tr:hover{background:#fbfcff}
       <div class="funnel-step"><div class="step-label">Attributed Revenue</div><div class="step-value" id="pf-revenue">-</div><div class="step-rate" id="pf-roas">-</div></div>
     </div>
 
-    <!-- Campaign Breakdown -->
+    <!-- Campaign Breakdown — Channel → Campaign → Creative -->
     <div class="card">
       <h3>Campaign Breakdown</h3>
       <table>
         <thead>
           <tr>
-            <th>Campaign</th>
+            <th style="min-width:260px">Channel / Campaign / Creative</th>
             <th class="numeric">Impressions</th>
             <th class="numeric">Clicks</th>
             <th class="numeric">Reach</th>
@@ -912,6 +912,27 @@ function renderPage(pageId) {
   else if (pageId === 'connectors') renderConnectors();
 }
 
+// Toggle hierarchy expand/collapse for campaign breakdown
+function toggleHier(row, cls) {
+  const arrow = row.querySelector('.hier-arrow');
+  const isOpen = arrow && arrow.textContent === '▼';
+  if (isOpen) {
+    // Collapse: hide all rows with this class AND any sub-children
+    document.querySelectorAll('.' + cls).forEach(r => {
+      r.style.display = 'none';
+      const sub = r.querySelector('.hier-arrow');
+      if (sub && sub.textContent === '▼') sub.textContent = '▶';
+    });
+    // Also hide deeper levels (e.g., closing channel hides campaign's creatives too)
+    document.querySelectorAll('[class*="' + cls + 'c"]').forEach(r => { r.style.display = 'none'; });
+    if (arrow) arrow.textContent = '▶';
+  } else {
+    // Expand: show direct children only
+    document.querySelectorAll('.' + cls).forEach(r => { r.style.display = ''; });
+    if (arrow) arrow.textContent = '▼';
+  }
+}
+
 // CSV Export for attributed orders
 function exportAttrCSV() {
   const details = (DATA.attribution || {}).impressionsToConversion?.converterDetails || [];
@@ -1321,44 +1342,100 @@ function renderProgrammatic() {
   setText('pf-revenue', fmtMoney(prog.attrRevenue || 0));
   setText('pf-roas', prog.spend > 0 ? (prog.attrRevenue / prog.spend).toFixed(2) + 'x ROAS' : '-');
 
-  // Campaign Table
+  // Campaign Table — Channel → Campaign → Creative hierarchy
   const campTbody = document.getElementById('campaignTable');
+  const hier = DATA.channelHierarchy || {};
   let campRows = '';
   let tImp = 0, tClicks = 0, tReach = 0, tAttr = 0, tAttrRev = 0, tSpend = 0;
+  const chColors = {display:'#7c3aed', video:'#f59e0b', ctv:'#10b981'};
+  const chOrder = ['display','video','ctv'];
+  let chIdx = 0;
 
-  for (const [ckey, cdata] of Object.entries(campaigns)) {
-    tImp += cdata.impressions || 0;
-    tClicks += cdata.clicks || 0;
-    tReach += cdata.reach || 0;
-    tAttr += cdata.attrOrders || 0;
-    tAttrRev += cdata.attrRevenue || 0;
-    tSpend += cdata.spend || 0;
-    const cRoas = cdata.spend > 0 ? (cdata.attrRevenue / cdata.spend).toFixed(2) + 'x' : '-';
+  for (const chKey of chOrder) {
+    const chData = hier[chKey];
+    if (!chData || !chData.campaigns) continue;
+    const chLabel = chData.label || chKey;
+    const chColor = chColors[chKey] || '#7c3aed';
+    const camps = chData.campaigns;
+    // Aggregate channel totals
+    let chImp=0, chClk=0, chReach=0, chAttr=0, chAttrRev=0, chSpend=0;
+    for (const c of Object.values(camps)) {
+      chImp += c.impressions||0; chClk += c.clicks||0; chReach += c.reach||0;
+      chAttr += c.attrOrders||0; chAttrRev += c.attrRevenue||0; chSpend += c.spend||0;
+    }
+    const chFreq = chReach > 0 ? (chImp/chReach).toFixed(1)+'x' : '-';
+    const chRoas = chSpend > 0 ? (chAttrRev/chSpend).toFixed(2)+'x' : '-';
+    tImp+=chImp; tClicks+=chClk; tReach+=chReach; tAttr+=chAttr; tAttrRev+=chAttrRev; tSpend+=chSpend;
 
-    campRows += `<tr>
-      <td><strong>${cdata.label || ckey}</strong></td>
-      <td class="numeric">${fmt(cdata.impressions || 0)}</td>
-      <td class="numeric">${fmt(cdata.clicks || 0)}</td>
-      <td class="numeric">${fmt(cdata.reach || 0)}</td>
-      <td class="numeric">${(cdata.frequency || 0).toFixed(1)}x</td>
-      <td class="numeric"><span class="pill purple">${cdata.attrOrders || 0}</span></td>
-      <td class="numeric">${fmtMoney(cdata.attrRevenue || 0)}</td>
-      <td class="numeric">${fmtMoney(cdata.spend || 0)}</td>
-      <td class="numeric">${cRoas}</td>
+    // Channel row (expandable)
+    campRows += `<tr class="hier-channel" style="cursor:pointer;background:#f8f9fc" onclick="toggleHier(this,'ch${chIdx}')">
+      <td><span class="hier-arrow">▶</span> <span class="tactic-pill" style="font-size:10px;padding:2px 8px;background:${chColor};color:#fff">${chLabel}</span></td>
+      <td class="numeric">${fmt(chImp)}</td><td class="numeric">${fmt(chClk)}</td>
+      <td class="numeric">${fmt(chReach)}</td><td class="numeric">${chFreq}</td>
+      <td class="numeric"><span class="pill purple">${chAttr}</span></td>
+      <td class="numeric">${fmtMoney(chAttrRev)}</td><td class="numeric">${fmtMoney(chSpend)}</td>
+      <td class="numeric">${chRoas}</td>
     </tr>`;
+
+    let campIdx = 0;
+    for (const [campName, campData] of Object.entries(camps)) {
+      const cRoas = campData.spend > 0 ? (campData.attrRevenue/campData.spend).toFixed(2)+'x' : '-';
+      const cFreq = campData.reach > 0 ? (campData.impressions/campData.reach).toFixed(1)+'x' : '-';
+      const creatKeys = Object.keys(campData.creatives||{});
+      const hasCreatives = creatKeys.length > 0;
+
+      // Campaign row (hidden by default, expandable if has creatives)
+      campRows += `<tr class="hier-camp ch${chIdx}" style="display:none;${hasCreatives?'cursor:pointer':''}" ${hasCreatives?`onclick="toggleHier(this,'ch${chIdx}c${campIdx}')"`:''}>
+        <td style="padding-left:32px"><span class="hier-arrow">${hasCreatives?'▶':''}</span> ${campName}</td>
+        <td class="numeric">${fmt(campData.impressions||0)}</td><td class="numeric">${fmt(campData.clicks||0)}</td>
+        <td class="numeric">${fmt(campData.reach||0)}</td><td class="numeric">${cFreq}</td>
+        <td class="numeric"><span class="pill purple">${campData.attrOrders||0}</span></td>
+        <td class="numeric">${fmtMoney(campData.attrRevenue||0)}</td><td class="numeric">${fmtMoney(campData.spend||0)}</td>
+        <td class="numeric">${cRoas}</td>
+      </tr>`;
+
+      // Creative rows (hidden by default)
+      for (const [crKey, cr] of Object.entries(campData.creatives||{})) {
+        const crRoas = cr.spend > 0 ? (cr.attrRevenue/cr.spend).toFixed(2)+'x' : '-';
+        const crFreq = cr.reach > 0 ? (cr.impressions/cr.reach).toFixed(1)+'x' : '-';
+        const crLabel = cr.creativeName + (cr.creativeSize ? ' · '+cr.creativeSize : '');
+        campRows += `<tr class="hier-creative ch${chIdx}c${campIdx}" style="display:none;color:#64748b;font-size:12px">
+          <td style="padding-left:56px">${crLabel}</td>
+          <td class="numeric">${fmt(cr.impressions||0)}</td><td class="numeric">${fmt(cr.clicks||0)}</td>
+          <td class="numeric">${fmt(cr.reach||0)}</td><td class="numeric">${crFreq}</td>
+          <td class="numeric"><span class="pill purple">${cr.attrOrders||0}</span></td>
+          <td class="numeric">${fmtMoney(cr.attrRevenue||0)}</td><td class="numeric">${fmtMoney(cr.spend||0)}</td>
+          <td class="numeric">${crRoas}</td>
+        </tr>`;
+      }
+      campIdx++;
+    }
+    chIdx++;
+  }
+
+  // Fallback to old flat campaign table if no hierarchy data
+  if (!campRows) {
+    for (const [ckey, cdata] of Object.entries(campaigns)) {
+      tImp += cdata.impressions||0; tClicks += cdata.clicks||0; tReach += cdata.reach||0;
+      tAttr += cdata.attrOrders||0; tAttrRev += cdata.attrRevenue||0; tSpend += cdata.spend||0;
+      const cRoas = cdata.spend > 0 ? (cdata.attrRevenue/cdata.spend).toFixed(2)+'x' : '-';
+      campRows += `<tr><td><strong>${cdata.label||ckey}</strong></td>
+        <td class="numeric">${fmt(cdata.impressions||0)}</td><td class="numeric">${fmt(cdata.clicks||0)}</td>
+        <td class="numeric">${fmt(cdata.reach||0)}</td><td class="numeric">${(cdata.frequency||0).toFixed(1)}x</td>
+        <td class="numeric"><span class="pill purple">${cdata.attrOrders||0}</span></td>
+        <td class="numeric">${fmtMoney(cdata.attrRevenue||0)}</td><td class="numeric">${fmtMoney(cdata.spend||0)}</td>
+        <td class="numeric">${cRoas}</td></tr>`;
+    }
   }
 
   const totalRoas = tSpend > 0 ? (tAttrRev / tSpend).toFixed(2) + 'x' : '-';
   const totalFreq = tReach > 0 ? (tImp / tReach).toFixed(1) + 'x' : '-';
   campRows += `<tr style="font-weight:bold;border-top:2px solid #333;background:#f8f9fc">
     <td>TOTAL</td>
-    <td class="numeric">${fmt(tImp)}</td>
-    <td class="numeric">${fmt(tClicks)}</td>
-    <td class="numeric">${fmt(tReach)}</td>
-    <td class="numeric">${totalFreq}</td>
+    <td class="numeric">${fmt(tImp)}</td><td class="numeric">${fmt(tClicks)}</td>
+    <td class="numeric">${fmt(tReach)}</td><td class="numeric">${totalFreq}</td>
     <td class="numeric"><span class="pill">${tAttr}</span></td>
-    <td class="numeric">${fmtMoney(tAttrRev)}</td>
-    <td class="numeric">${fmtMoney(tSpend)}</td>
+    <td class="numeric">${fmtMoney(tAttrRev)}</td><td class="numeric">${fmtMoney(tSpend)}</td>
     <td class="numeric">${totalRoas}</td>
   </tr>`;
   campTbody.innerHTML = campRows || '<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:16px">No campaign data available yet</td></tr>';
