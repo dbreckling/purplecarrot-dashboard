@@ -4,53 +4,218 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-04-01T13:34:44.554678Z",
+  "lastUpdated": "2026-04-01T15:23:52.305349Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-04-01"
   },
   "global": {
-    "totalOrders": 0,
-    "totalRevenue": 0,
-    "aov": 0,
-    "uniqueVisitors": 0,
-    "repeatPurchaseRate": 0,
-    "newOrders": 0,
-    "returningOrders": 0,
-    "newCustomerPct": 0,
-    "avgCartSize": 0
+    "totalOrders": 343,
+    "totalRevenue": 30552.49,
+    "aov": 89.07,
+    "uniqueVisitors": 335,
+    "repeatPurchaseRate": 0.9,
+    "newOrders": 335,
+    "returningOrders": 8,
+    "newCustomerPct": 97.7,
+    "avgCartSize": 1.0
   },
   "identity": {
-    "emailHashCoverage": 0,
-    "customerIdCoverage": 0,
-    "zipCodeCoverage": 0,
+    "emailHashCoverage": 97.7,
+    "customerIdCoverage": 97.7,
+    "zipCodeCoverage": 94.8,
     "loggedInBreakdown": {
-      "yes": 0,
-      "no": 0,
-      "unknown": 0
+      "yes": 15,
+      "no": 16,
+      "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 0,
+    "ordersuccess": 343,
     "cartFallback": 0,
     "unknown": 0
   },
-  "trafficSources": {},
-  "geographic": {},
-  "devices": {},
+  "trafficSources": {
+    "Direct / Internal": {
+      "orders": 238,
+      "revenue": 24181.33,
+      "aov": 101.6,
+      "pctOfOrders": 69.4
+    },
+    "Google Organic": {
+      "orders": 36,
+      "revenue": 2356.57,
+      "aov": 65.46,
+      "pctOfOrders": 10.5
+    },
+    "Email": {
+      "orders": 29,
+      "revenue": 556.26,
+      "aov": 19.18,
+      "pctOfOrders": 8.5
+    },
+    "Direct": {
+      "orders": 22,
+      "revenue": 2081.42,
+      "aov": 94.61,
+      "pctOfOrders": 6.4
+    },
+    "Referral": {
+      "orders": 14,
+      "revenue": 996.46,
+      "aov": 71.18,
+      "pctOfOrders": 4.1
+    },
+    "Google Ads": {
+      "orders": 3,
+      "revenue": 287.96,
+      "aov": 95.99,
+      "pctOfOrders": 0.9
+    },
+    "Meta Organic": {
+      "orders": 1,
+      "revenue": 92.49,
+      "aov": 92.49,
+      "pctOfOrders": 0.3
+    }
+  },
+  "geographic": {
+    "CA": {
+      "orders": 41,
+      "revenue": 3394.59
+    },
+    "TX": {
+      "orders": 23,
+      "revenue": 2255.47
+    },
+    "FL": {
+      "orders": 21,
+      "revenue": 1971.38
+    },
+    "NY": {
+      "orders": 21,
+      "revenue": 1969.9
+    },
+    "PA": {
+      "orders": 18,
+      "revenue": 1789.91
+    },
+    "IL": {
+      "orders": 18,
+      "revenue": 1200.42
+    },
+    "VA": {
+      "orders": 16,
+      "revenue": 1804.43
+    },
+    "CO": {
+      "orders": 15,
+      "revenue": 918.5
+    },
+    "WA": {
+      "orders": 15,
+      "revenue": 1474.48
+    },
+    "NJ": {
+      "orders": 13,
+      "revenue": 1148.93
+    },
+    "MA": {
+      "orders": 12,
+      "revenue": 837.45
+    },
+    "NC": {
+      "orders": 11,
+      "revenue": 934.45
+    },
+    "OH": {
+      "orders": 10,
+      "revenue": 877.48
+    },
+    "MI": {
+      "orders": 10,
+      "revenue": 971.97
+    },
+    "IN": {
+      "orders": 8,
+      "revenue": 696.43
+    },
+    "MD": {
+      "orders": 8,
+      "revenue": 725.0
+    },
+    "DC": {
+      "orders": 7,
+      "revenue": 733.49
+    },
+    "CT": {
+      "orders": 7,
+      "revenue": 580.0
+    },
+    "AL": {
+      "orders": 6,
+      "revenue": 787.47
+    },
+    "TN": {
+      "orders": 6,
+      "revenue": 382.47
+    },
+    "GA": {
+      "orders": 5,
+      "revenue": 372.99
+    },
+    "OR": {
+      "orders": 5,
+      "revenue": 512.0
+    },
+    "UT": {
+      "orders": 5,
+      "revenue": 422.49
+    },
+    "NH": {
+      "orders": 4,
+      "revenue": 381.98
+    },
+    "SC": {
+      "orders": 4,
+      "revenue": 294.5
+    }
+  },
+  "devices": {
+    "iOS": {
+      "orders": 143,
+      "pctOfOrders": 41.7
+    },
+    "Mac OS": {
+      "orders": 79,
+      "pctOfOrders": 23.0
+    },
+    "Windows": {
+      "orders": 77,
+      "pctOfOrders": 22.4
+    },
+    "Android": {
+      "orders": 41,
+      "pctOfOrders": 12.0
+    },
+    "Chromium OS": {
+      "orders": 3,
+      "pctOfOrders": 0.9
+    }
+  },
   "programmatic": {
-    "enabled": false,
-    "impressions": 0,
+    "enabled": true,
+    "impressions": 10003,
     "clicks": 0,
-    "reach": 0,
-    "frequency": 0,
+    "reach": 4271,
+    "frequency": 2.34,
     "attrOrders": 0,
     "attrRevenue": 0,
-    "spend": 0,
-    "roas": 0,
+    "spend": 138.55,
+    "roas": 0.0,
     "costPerSubscription": 0,
     "ctVisits": 0,
-    "vtVisits": 0,
+    "vtVisits": 60106,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -109,9 +274,3692 @@
       "converterDetails": []
     }
   },
-  "channels": {},
-  "channelHierarchy": {},
-  "campaigns": {},
-  "dailyData": {},
-  "allOrders": []
+  "channels": {
+    "display": {
+      "impressions": 4115,
+      "clicks": 0,
+      "reach": 1355,
+      "attrOrders": 0,
+      "attrRevenue": 0,
+      "cpm": 6.0,
+      "spend": 24.69,
+      "roas": 0.0
+    },
+    "video": {
+      "impressions": 2488,
+      "clicks": 0,
+      "reach": 1453,
+      "attrOrders": 0,
+      "attrRevenue": 0,
+      "cpm": 7.5,
+      "spend": 18.66,
+      "roas": 0.0
+    },
+    "ctv": {
+      "impressions": 3400,
+      "clicks": 0,
+      "reach": 2100,
+      "attrOrders": 0,
+      "attrRevenue": 0,
+      "cpm": 28.0,
+      "spend": 95.2,
+      "roas": 0.0
+    }
+  },
+  "channelHierarchy": {
+    "display": {
+      "label": "Display",
+      "cpm": 6.0,
+      "campaigns": {
+        "4079_Display_PROSP_Aud": {
+          "impressions": 164,
+          "clicks": 0,
+          "reach": 134,
+          "frequency": 1.2,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.98,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_display|300x250": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x250",
+              "impressions": 149,
+              "clicks": 0,
+              "reach": 127,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.89,
+              "roas": 0.0
+            },
+            "EatBetter_display|300x600": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x600",
+              "impressions": 9,
+              "clicks": 0,
+              "reach": 8,
+              "frequency": 1.1,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.05,
+              "roas": 0.0
+            },
+            "EatBetter_display|320x480": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "320x480",
+              "impressions": 6,
+              "clicks": 0,
+              "reach": 5,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.04,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_Display_PROSP_RTE": {
+          "impressions": 2642,
+          "clicks": 0,
+          "reach": 490,
+          "frequency": 5.4,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 15.85,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_display|300x250": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x250",
+              "impressions": 2515,
+              "clicks": 0,
+              "reach": 466,
+              "frequency": 5.4,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 15.09,
+              "roas": 0.0
+            },
+            "EatBetter_display|300x600": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x600",
+              "impressions": 104,
+              "clicks": 0,
+              "reach": 50,
+              "frequency": 2.1,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.62,
+              "roas": 0.0
+            },
+            "EatBetter_display|320x480": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "320x480",
+              "impressions": 23,
+              "clicks": 0,
+              "reach": 19,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.14,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_Display_PROSP_RTW": {
+          "impressions": 41,
+          "clicks": 0,
+          "reach": 29,
+          "frequency": 1.4,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.25,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_display|300x250": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x250",
+              "impressions": 32,
+              "clicks": 0,
+              "reach": 22,
+              "frequency": 1.5,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.19,
+              "roas": 0.0
+            },
+            "EatBetter_display|300x600": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x600",
+              "impressions": 7,
+              "clicks": 0,
+              "reach": 7,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.04,
+              "roas": 0.0
+            },
+            "EatBetter_display|320x480": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "320x480",
+              "impressions": 2,
+              "clicks": 0,
+              "reach": 2,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.01,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_Display_PROSP_Seg": {
+          "impressions": 1252,
+          "clicks": 0,
+          "reach": 864,
+          "frequency": 1.4,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 7.51,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_display|300x250": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x250",
+              "impressions": 1157,
+              "clicks": 0,
+              "reach": 802,
+              "frequency": 1.4,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 6.94,
+              "roas": 0.0
+            },
+            "EatBetter_display|300x600": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "300x600",
+              "impressions": 63,
+              "clicks": 0,
+              "reach": 54,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.38,
+              "roas": 0.0
+            },
+            "EatBetter_display|320x480": {
+              "creativeName": "EatBetter_display",
+              "creativeSize": "320x480",
+              "impressions": 32,
+              "clicks": 0,
+              "reach": 25,
+              "frequency": 1.3,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.19,
+              "roas": 0.0
+            }
+          }
+        },
+        "{SA_CAMPAIGN_NAME}": {
+          "impressions": 16,
+          "clicks": 0,
+          "reach": 6,
+          "frequency": 2.7,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.1,
+          "roas": 0.0,
+          "creatives": {
+            "{SA_CREATIVE_NAME}|{SA_WIDTH}x{SA_HEIGHT}": {
+              "creativeName": "{SA_CREATIVE_NAME}",
+              "creativeSize": "{SA_WIDTH}x{SA_HEIGHT}",
+              "impressions": 16,
+              "clicks": 0,
+              "reach": 6,
+              "frequency": 2.7,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.1,
+              "roas": 0.0
+            }
+          }
+        }
+      }
+    },
+    "video": {
+      "label": "Display Video",
+      "cpm": 7.5,
+      "campaigns": {
+        "4079_BannerVideo_PROSP_Aud": {
+          "impressions": 512,
+          "clicks": 0,
+          "reach": 320,
+          "frequency": 1.6,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 3.84,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_bannervideo|300x250": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x250",
+              "impressions": 474,
+              "clicks": 0,
+              "reach": 301,
+              "frequency": 1.6,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 3.55,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|300x600": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x600",
+              "impressions": 28,
+              "clicks": 0,
+              "reach": 23,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.21,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|320x480": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "320x480",
+              "impressions": 10,
+              "clicks": 0,
+              "reach": 9,
+              "frequency": 1.1,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.07,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_BannerVideo_PROSP_RTE": {
+          "impressions": 140,
+          "clicks": 0,
+          "reach": 57,
+          "frequency": 2.5,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 1.05,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_bannervideo|300x250": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x250",
+              "impressions": 130,
+              "clicks": 0,
+              "reach": 53,
+              "frequency": 2.5,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.98,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|300x600": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x600",
+              "impressions": 7,
+              "clicks": 0,
+              "reach": 5,
+              "frequency": 1.4,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.05,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|320x480": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "320x480",
+              "impressions": 3,
+              "clicks": 0,
+              "reach": 3,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.02,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_BannerVideo_PROSP_RTW": {
+          "impressions": 115,
+          "clicks": 0,
+          "reach": 50,
+          "frequency": 2.3,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.86,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_bannervideo|300x250": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x250",
+              "impressions": 94,
+              "clicks": 0,
+              "reach": 35,
+              "frequency": 2.7,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.7,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|300x600": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x600",
+              "impressions": 15,
+              "clicks": 0,
+              "reach": 14,
+              "frequency": 1.1,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.11,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|320x480": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "320x480",
+              "impressions": 6,
+              "clicks": 0,
+              "reach": 3,
+              "frequency": 2.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.04,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_BannerVideo_PROSP_Seg": {
+          "impressions": 1714,
+          "clicks": 0,
+          "reach": 1092,
+          "frequency": 1.6,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 12.86,
+          "roas": 0.0,
+          "creatives": {
+            "EatBetter_bannervideo|300x250": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x250",
+              "impressions": 1546,
+              "clicks": 0,
+              "reach": 1010,
+              "frequency": 1.5,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 11.6,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|300x600": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "300x600",
+              "impressions": 147,
+              "clicks": 0,
+              "reach": 98,
+              "frequency": 1.5,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 1.1,
+              "roas": 0.0
+            },
+            "EatBetter_bannervideo|320x480": {
+              "creativeName": "EatBetter_bannervideo",
+              "creativeSize": "320x480",
+              "impressions": 21,
+              "clicks": 0,
+              "reach": 17,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.16,
+              "roas": 0.0
+            }
+          }
+        },
+        "{SA_CAMPAIGN_NAME}": {
+          "impressions": 7,
+          "clicks": 0,
+          "reach": 3,
+          "frequency": 2.3,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.05,
+          "roas": 0.0,
+          "creatives": {
+            "{SA_CREATIVE_NAME}|{SA_WIDTH}x{SA_HEIGHT}": {
+              "creativeName": "{SA_CREATIVE_NAME}",
+              "creativeSize": "{SA_WIDTH}x{SA_HEIGHT}",
+              "impressions": 7,
+              "clicks": 0,
+              "reach": 3,
+              "frequency": 2.3,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.05,
+              "roas": 0.0
+            }
+          }
+        }
+      }
+    },
+    "ctv": {
+      "label": "CTV / OTT",
+      "cpm": 28.0,
+      "campaigns": {
+        "4079_AllOTT_PROSP_Aud": {
+          "impressions": 963,
+          "clicks": 0,
+          "reach": 736,
+          "frequency": 1.3,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 26.96,
+          "roas": 0.0,
+          "creatives": {
+            "PurpleCarrot_OTT|1280x720": {
+              "creativeName": "PurpleCarrot_OTT",
+              "creativeSize": "1280x720",
+              "impressions": 13,
+              "clicks": 0,
+              "reach": 12,
+              "frequency": 1.1,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.36,
+              "roas": 0.0
+            },
+            "PurpleCarrot_OTT|1920x1080": {
+              "creativeName": "PurpleCarrot_OTT",
+              "creativeSize": "1920x1080",
+              "impressions": 950,
+              "clicks": 0,
+              "reach": 726,
+              "frequency": 1.3,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 26.6,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_AllOTT_PROSP_RTW": {
+          "impressions": 23,
+          "clicks": 0,
+          "reach": 18,
+          "frequency": 1.3,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.64,
+          "roas": 0.0,
+          "creatives": {
+            "PurpleCarrot_OTT|1280x720": {
+              "creativeName": "PurpleCarrot_OTT",
+              "creativeSize": "1280x720",
+              "impressions": 1,
+              "clicks": 0,
+              "reach": 1,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.03,
+              "roas": 0.0
+            },
+            "PurpleCarrot_OTT|1920x1080": {
+              "creativeName": "PurpleCarrot_OTT",
+              "creativeSize": "1920x1080",
+              "impressions": 22,
+              "clicks": 0,
+              "reach": 17,
+              "frequency": 1.3,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.62,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_AllOTT_PROSP_Seg": {
+          "impressions": 919,
+          "clicks": 0,
+          "reach": 671,
+          "frequency": 1.4,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 25.73,
+          "roas": 0.0,
+          "creatives": {
+            "PurpleCarrot_OTT|1280x720": {
+              "creativeName": "PurpleCarrot_OTT",
+              "creativeSize": "1280x720",
+              "impressions": 21,
+              "clicks": 0,
+              "reach": 18,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.59,
+              "roas": 0.0
+            },
+            "PurpleCarrot_OTT|1920x1080": {
+              "creativeName": "PurpleCarrot_OTT",
+              "creativeSize": "1920x1080",
+              "impressions": 898,
+              "clicks": 0,
+              "reach": 656,
+              "frequency": 1.4,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 25.14,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_CTV_PROSP_Aud": {
+          "impressions": 844,
+          "clicks": 0,
+          "reach": 693,
+          "frequency": 1.2,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 23.63,
+          "roas": 0.0,
+          "creatives": {
+            "PurpleCarrot_CTV|1280x720": {
+              "creativeName": "PurpleCarrot_CTV",
+              "creativeSize": "1280x720",
+              "impressions": 13,
+              "clicks": 0,
+              "reach": 12,
+              "frequency": 1.1,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.36,
+              "roas": 0.0
+            },
+            "PurpleCarrot_CTV|1920x1080": {
+              "creativeName": "PurpleCarrot_CTV",
+              "creativeSize": "1920x1080",
+              "impressions": 831,
+              "clicks": 0,
+              "reach": 686,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 23.27,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_CTV_PROSP_RTW": {
+          "impressions": 36,
+          "clicks": 0,
+          "reach": 23,
+          "frequency": 1.6,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 1.01,
+          "roas": 0.0,
+          "creatives": {
+            "PurpleCarrot_CTV|1920x1080": {
+              "creativeName": "PurpleCarrot_CTV",
+              "creativeSize": "1920x1080",
+              "impressions": 36,
+              "clicks": 0,
+              "reach": 23,
+              "frequency": 1.6,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 1.01,
+              "roas": 0.0
+            }
+          }
+        },
+        "4079_CTV_PROSP_Seg": {
+          "impressions": 601,
+          "clicks": 0,
+          "reach": 484,
+          "frequency": 1.2,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 16.83,
+          "roas": 0.0,
+          "creatives": {
+            "PurpleCarrot_CTV|1280x720": {
+              "creativeName": "PurpleCarrot_CTV",
+              "creativeSize": "1280x720",
+              "impressions": 24,
+              "clicks": 0,
+              "reach": 24,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.67,
+              "roas": 0.0
+            },
+            "PurpleCarrot_CTV|1920x1080": {
+              "creativeName": "PurpleCarrot_CTV",
+              "creativeSize": "1920x1080",
+              "impressions": 577,
+              "clicks": 0,
+              "reach": 465,
+              "frequency": 1.2,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 16.16,
+              "roas": 0.0
+            }
+          }
+        },
+        "{SA_CAMPAIGN_NAME}": {
+          "impressions": 14,
+          "clicks": 0,
+          "reach": 5,
+          "frequency": 2.8,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.39,
+          "roas": 0.0,
+          "creatives": {
+            "{SA_CREATIVE_NAME}|{SA_WIDTH}x{SA_HEIGHT}": {
+              "creativeName": "{SA_CREATIVE_NAME}",
+              "creativeSize": "{SA_WIDTH}x{SA_HEIGHT}",
+              "impressions": 14,
+              "clicks": 0,
+              "reach": 5,
+              "frequency": 2.8,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.39,
+              "roas": 0.0
+            }
+          }
+        }
+      }
+    }
+  },
+  "campaigns": {
+    "campaign_4079": {
+      "label": "Campaign 4079",
+      "campaignId": "4079",
+      "campaignName": "Campaign 4079",
+      "impressions": 10003,
+      "clicks": 0,
+      "reach": 4271,
+      "frequency": 2.34,
+      "attrOrders": 0,
+      "attrRevenue": 0,
+      "spend": 138.55,
+      "roas": 0.0
+    }
+  },
+  "dailyData": {
+    "2026-03-01": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 32,
+      "revenue": 2747.9,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 32,
+      "returningOrders": 0,
+      "nyPurchases": 1,
+      "trafficSources": {
+        "Direct / Internal": 22,
+        "Google Organic": 5,
+        "Email": 4,
+        "Direct": 1
+      }
+    },
+    "2026-03-02": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 29,
+      "revenue": 2221.92,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 29,
+      "returningOrders": 0,
+      "nyPurchases": 3,
+      "trafficSources": {
+        "Direct / Internal": 17,
+        "Google Ads": 3,
+        "Referral": 3,
+        "Google Organic": 3,
+        "Direct": 1,
+        "Email": 2
+      }
+    },
+    "2026-03-03": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 40,
+      "revenue": 3965.32,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 40,
+      "returningOrders": 0,
+      "nyPurchases": 1,
+      "trafficSources": {
+        "Direct / Internal": 33,
+        "Direct": 3,
+        "Google Organic": 3,
+        "Email": 1
+      }
+    },
+    "2026-03-04": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 36,
+      "revenue": 3515.36,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 36,
+      "returningOrders": 0,
+      "nyPurchases": 0,
+      "trafficSources": {
+        "Direct / Internal": 28,
+        "Direct": 2,
+        "Google Organic": 2,
+        "Referral": 1,
+        "Email": 3
+      }
+    },
+    "2026-03-05": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 21,
+      "revenue": 1890.97,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 21,
+      "returningOrders": 0,
+      "nyPurchases": 1,
+      "trafficSources": {
+        "Direct / Internal": 14,
+        "Google Organic": 4,
+        "Email": 1,
+        "Direct": 2
+      }
+    },
+    "2026-03-06": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 28,
+      "revenue": 2620.4,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 28,
+      "returningOrders": 0,
+      "nyPurchases": 3,
+      "trafficSources": {
+        "Direct / Internal": 19,
+        "Direct": 2,
+        "Google Organic": 4,
+        "Email": 3
+      }
+    },
+    "2026-03-07": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 20,
+      "revenue": 1770.93,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 20,
+      "returningOrders": 0,
+      "nyPurchases": 2,
+      "trafficSources": {
+        "Direct / Internal": 15,
+        "Referral": 3,
+        "Google Organic": 1,
+        "Direct": 1
+      }
+    },
+    "2026-03-08": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 25,
+      "revenue": 2418.88,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 25,
+      "returningOrders": 0,
+      "nyPurchases": 3,
+      "trafficSources": {
+        "Direct / Internal": 20,
+        "Email": 2,
+        "Direct": 1,
+        "Referral": 1,
+        "Google Organic": 1
+      }
+    },
+    "2026-03-09": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 35,
+      "revenue": 2705.35,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 35,
+      "returningOrders": 0,
+      "nyPurchases": 2,
+      "trafficSources": {
+        "Direct / Internal": 23,
+        "Referral": 1,
+        "Google Organic": 4,
+        "Email": 4,
+        "Direct": 2,
+        "Meta Organic": 1
+      }
+    },
+    "2026-03-10": {
+      "impressions": 0,
+      "clicks": 0,
+      "purchases": 21,
+      "revenue": 1861.4,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 21,
+      "returningOrders": 0,
+      "nyPurchases": 1,
+      "trafficSources": {
+        "Referral": 1,
+        "Email": 3,
+        "Direct / Internal": 13,
+        "Direct": 3,
+        "Google Organic": 1
+      }
+    },
+    "2026-03-11": {
+      "impressions": 3,
+      "clicks": 0,
+      "purchases": 31,
+      "revenue": 2881.41,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 31,
+      "returningOrders": 0,
+      "nyPurchases": 1,
+      "trafficSources": {
+        "Direct / Internal": 21,
+        "Referral": 3,
+        "Google Organic": 4,
+        "Email": 2,
+        "Direct": 1
+      }
+    },
+    "2026-03-12": {
+      "impressions": 10000,
+      "clicks": 0,
+      "purchases": 25,
+      "revenue": 1952.65,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 25,
+      "returningOrders": 0,
+      "nyPurchases": 3,
+      "trafficSources": {
+        "Direct / Internal": 13,
+        "Email": 4,
+        "Google Organic": 4,
+        "Direct": 3,
+        "Referral": 1
+      }
+    }
+  },
+  "allOrders": [
+    {
+      "orderId": "2976676",
+      "revenue": 100.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T04:13:03",
+      "region": "DC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976675",
+      "revenue": 93.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T03:56:28",
+      "region": "PA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976674",
+      "revenue": 102.49,
+      "date": "2026-03-02",
+      "time": "2026-03-02T02:56:17",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976673",
+      "revenue": 105.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T02:47:59",
+      "region": "NC",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976628",
+      "revenue": 68.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T00:59:34",
+      "region": "GA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976608",
+      "revenue": 26.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T00:51:13",
+      "region": "CA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2976607",
+      "revenue": 88.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T00:47:07",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976605",
+      "revenue": 113.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T00:37:30",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976604",
+      "revenue": 12.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T00:15:49",
+      "region": "IL",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2976601",
+      "revenue": 83.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T23:51:58",
+      "region": "DC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976591",
+      "revenue": 102.49,
+      "date": "2026-03-01",
+      "time": "2026-03-01T23:18:03",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976578",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T22:20:01",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976513",
+      "revenue": 124.49,
+      "date": "2026-03-01",
+      "time": "2026-03-01T20:48:59",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976515",
+      "revenue": 251.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T20:44:21",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976470",
+      "revenue": 80.47,
+      "date": "2026-03-01",
+      "time": "2026-03-01T20:31:46",
+      "region": "IN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976462",
+      "revenue": 12.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T20:21:07",
+      "region": "OH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976443",
+      "revenue": 12.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T19:44:24",
+      "region": "TX",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976431",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T19:35:37",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976432",
+      "revenue": 12.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T19:22:34",
+      "region": "IL",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2976430",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T19:17:40",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976417",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T19:06:03",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976398",
+      "revenue": 82.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T19:01:55",
+      "region": "IA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976380",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T18:16:07",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976379",
+      "revenue": 41.49,
+      "date": "2026-03-01",
+      "time": "2026-03-01T18:12:22",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976378",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T18:12:07",
+      "region": "WY",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2976350",
+      "revenue": 12.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T16:10:44",
+      "region": "IL",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2976344",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T15:38:43",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976341",
+      "revenue": 110.5,
+      "date": "2026-03-01",
+      "time": "2026-03-01T15:08:04",
+      "region": "IA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976331",
+      "revenue": 106.99,
+      "date": "2026-03-01",
+      "time": "2026-03-01T14:27:09",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976330",
+      "revenue": 104.99,
+      "date": "2026-03-01",
+      "time": "2026-03-01T14:00:51",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976329",
+      "revenue": 102.49,
+      "date": "2026-03-01",
+      "time": "2026-03-01T13:48:50",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976328",
+      "revenue": 100.0,
+      "date": "2026-03-01",
+      "time": "2026-03-01T13:04:36",
+      "region": "NJ",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976950",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T03:53:02",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976947",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T03:38:35",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976943",
+      "revenue": 107.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T02:58:29",
+      "region": "MD",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2976944",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T02:56:29",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976938",
+      "revenue": 87.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T02:05:04",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976936",
+      "revenue": 78.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T01:29:51",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976916",
+      "revenue": 12.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T01:26:24",
+      "region": "TX",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2976934",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T00:58:43",
+      "region": "MD",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976918",
+      "revenue": 87.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T00:09:21",
+      "region": "NH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976879",
+      "revenue": 122.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T22:23:52",
+      "region": "KS",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976878",
+      "revenue": 111.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T22:13:31",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976734",
+      "revenue": 100.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T21:39:04",
+      "region": "MA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976876",
+      "revenue": 100.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T21:35:45",
+      "region": "ID",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2976867",
+      "revenue": 129.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T21:06:21",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976825",
+      "revenue": 76.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T19:33:33",
+      "region": "ME",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976786",
+      "revenue": 48.46,
+      "date": "2026-03-02",
+      "time": "2026-03-02T18:40:35",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976785",
+      "revenue": 82.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T18:24:32",
+      "region": "OR",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976742",
+      "revenue": 102.49,
+      "date": "2026-03-02",
+      "time": "2026-03-02T17:00:12",
+      "region": "OH",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2976743",
+      "revenue": 83.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T16:57:13",
+      "region": "MD",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2976740",
+      "revenue": 113.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T16:08:13",
+      "region": "IA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976739",
+      "revenue": 12.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T16:01:39",
+      "region": "CO",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976737",
+      "revenue": 12.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T15:40:43",
+      "region": "KS",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2976735",
+      "revenue": 0.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T15:09:04",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2975978",
+      "revenue": 78.47,
+      "date": "2026-03-02",
+      "time": "2026-03-02T13:15:20",
+      "region": "FL",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2976730",
+      "revenue": 100.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T12:50:28",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976695",
+      "revenue": 49.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T10:11:01",
+      "region": "AL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976694",
+      "revenue": 12.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T10:10:30",
+      "region": "NC",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2976688",
+      "revenue": 0.0,
+      "date": "2026-03-02",
+      "time": "2026-03-02T05:21:11",
+      "region": "CA",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2976685",
+      "revenue": 117.5,
+      "date": "2026-03-02",
+      "time": "2026-03-02T05:00:00",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977419",
+      "revenue": 87.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T04:38:31",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977392",
+      "revenue": 102.49,
+      "date": "2026-03-04",
+      "time": "2026-03-04T04:07:54",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977381",
+      "revenue": 108.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T04:00:37",
+      "region": "OR",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977360",
+      "revenue": 102.49,
+      "date": "2026-03-04",
+      "time": "2026-03-04T02:46:21",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977363",
+      "revenue": 102.49,
+      "date": "2026-03-04",
+      "time": "2026-03-04T02:43:57",
+      "region": "NH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977362",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T02:04:53",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977361",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T01:50:11",
+      "region": "IN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977357",
+      "revenue": 76.5,
+      "date": "2026-03-04",
+      "time": "2026-03-04T01:04:43",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977356",
+      "revenue": 102.49,
+      "date": "2026-03-04",
+      "time": "2026-03-04T01:03:46",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977329",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T00:35:56",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2975622",
+      "revenue": 102.49,
+      "date": "2026-03-04",
+      "time": "2026-03-04T00:02:48",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977265",
+      "revenue": 98.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T23:35:04",
+      "region": "AL",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2977097",
+      "revenue": 0.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T21:23:57",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977073",
+      "revenue": 139.48,
+      "date": "2026-03-03",
+      "time": "2026-03-03T20:18:42",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977052",
+      "revenue": 87.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T20:00:25",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977022",
+      "revenue": 101.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T19:39:38",
+      "region": "MA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2977020",
+      "revenue": 0.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T19:35:03",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977018",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T19:25:25",
+      "region": "CT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977017",
+      "revenue": 107.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T19:24:56",
+      "region": "IN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977016",
+      "revenue": 12.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T19:19:02",
+      "region": "VA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2977014",
+      "revenue": 166.5,
+      "date": "2026-03-03",
+      "time": "2026-03-03T18:33:35",
+      "region": "FL",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2976954",
+      "revenue": 207.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T18:29:25",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977012",
+      "revenue": 12.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T18:19:56",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2975855",
+      "revenue": 70.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T18:08:04",
+      "region": "OH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977011",
+      "revenue": 125.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T18:01:52",
+      "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977010",
+      "revenue": 271.39,
+      "date": "2026-03-03",
+      "time": "2026-03-03T17:57:01",
+      "region": "LA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977009",
+      "revenue": 87.5,
+      "date": "2026-03-03",
+      "time": "2026-03-03T17:54:11",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977007",
+      "revenue": 55.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T17:48:49",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976994",
+      "revenue": 80.5,
+      "date": "2026-03-03",
+      "time": "2026-03-03T17:09:35",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976990",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T16:11:47",
+      "region": "NJ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976987",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T15:46:04",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976983",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T15:16:22",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2975327",
+      "revenue": 12.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T15:12:20",
+      "region": "AZ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976982",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T15:09:50",
+      "region": "OH",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976978",
+      "revenue": 113.5,
+      "date": "2026-03-03",
+      "time": "2026-03-03T14:27:28",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2976971",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T13:09:29",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976969",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T13:03:42",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976968",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T12:25:00",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976965",
+      "revenue": 236.5,
+      "date": "2026-03-03",
+      "time": "2026-03-03T12:15:13",
+      "region": "NE",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976964",
+      "revenue": 100.0,
+      "date": "2026-03-03",
+      "time": "2026-03-03T11:27:59",
+      "region": "OH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977587",
+      "revenue": 169.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T04:34:05",
+      "region": "DC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977586",
+      "revenue": 100.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T03:55:56",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977584",
+      "revenue": 92.49,
+      "date": "2026-03-05",
+      "time": "2026-03-05T03:49:19",
+      "region": "GA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977583",
+      "revenue": 100.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T03:42:17",
+      "region": "NE",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977582",
+      "revenue": 75.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T03:15:54",
+      "region": "NJ",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2977581",
+      "revenue": 76.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T02:36:21",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977579",
+      "revenue": 100.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T02:03:43",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977578",
+      "revenue": 100.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T01:48:02",
+      "region": "SC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977576",
+      "revenue": 204.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T01:33:23",
+      "region": "DC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2975346",
+      "revenue": 93.46,
+      "date": "2026-03-05",
+      "time": "2026-03-05T01:28:36",
+      "region": "IN",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2977573",
+      "revenue": 70.5,
+      "date": "2026-03-05",
+      "time": "2026-03-05T00:22:52",
+      "region": "MD",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977568",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T23:40:41",
+      "region": "MO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977497",
+      "revenue": 307.48,
+      "date": "2026-03-04",
+      "time": "2026-03-04T21:55:52",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977494",
+      "revenue": 108.98,
+      "date": "2026-03-04",
+      "time": "2026-03-04T20:42:29",
+      "region": "NJ",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977493",
+      "revenue": 12.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T20:37:56",
+      "region": "CO",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2977466",
+      "revenue": 12.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T20:01:29",
+      "region": "SC",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2977479",
+      "revenue": 225.5,
+      "date": "2026-03-04",
+      "time": "2026-03-04T19:25:33",
+      "region": "MD",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2977483",
+      "revenue": 82.99,
+      "date": "2026-03-04",
+      "time": "2026-03-04T19:19:09",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977481",
+      "revenue": 12.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T18:55:20",
+      "region": "KY",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977480",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T18:53:06",
+      "region": "CT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977468",
+      "revenue": 12.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T18:16:39",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977475",
+      "revenue": 81.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T17:52:13",
+      "region": "TN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977474",
+      "revenue": 109.5,
+      "date": "2026-03-04",
+      "time": "2026-03-04T17:51:15",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977471",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T17:42:21",
+      "region": "DC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977470",
+      "revenue": 66.5,
+      "date": "2026-03-04",
+      "time": "2026-03-04T17:31:44",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977469",
+      "revenue": 121.5,
+      "date": "2026-03-04",
+      "time": "2026-03-04T17:24:41",
+      "region": "OR",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977464",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T16:02:04",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977462",
+      "revenue": 106.99,
+      "date": "2026-03-04",
+      "time": "2026-03-04T15:50:18",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977461",
+      "revenue": 147.49,
+      "date": "2026-03-04",
+      "time": "2026-03-04T15:38:34",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977459",
+      "revenue": 116.98,
+      "date": "2026-03-04",
+      "time": "2026-03-04T15:07:03",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977455",
+      "revenue": 0.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T14:03:15",
+      "region": "CO",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2977454",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T13:45:10",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977452",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T13:05:56",
+      "region": "GA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977449",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T11:10:57",
+      "region": "GA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977424",
+      "revenue": 100.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T06:32:52",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977421",
+      "revenue": 12.0,
+      "date": "2026-03-04",
+      "time": "2026-03-04T05:26:10",
+      "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977764",
+      "revenue": 58.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T04:42:34",
+      "region": "NJ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977738",
+      "revenue": 44.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T01:23:36",
+      "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977752",
+      "revenue": 86.5,
+      "date": "2026-03-06",
+      "time": "2026-03-06T01:16:57",
+      "region": "UT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977728",
+      "revenue": 128.5,
+      "date": "2026-03-05",
+      "time": "2026-03-05T23:34:42",
+      "region": "OH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977727",
+      "revenue": 12.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T23:28:38",
+      "region": "TN",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977635",
+      "revenue": 129.99,
+      "date": "2026-03-05",
+      "time": "2026-03-05T22:53:27",
+      "region": "MA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977722",
+      "revenue": 12.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T22:04:50",
+      "region": "NY",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2976736",
+      "revenue": 0.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T21:07:08",
+      "region": "WA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977694",
+      "revenue": 54.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T19:33:20",
+      "region": "ENG",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977692",
+      "revenue": 81.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T18:51:23",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977689",
+      "revenue": 0.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T17:40:58",
+      "region": "IN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977688",
+      "revenue": 248.49,
+      "date": "2026-03-05",
+      "time": "2026-03-05T17:02:11",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977686",
+      "revenue": 12.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T16:49:56",
+      "region": "VA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977685",
+      "revenue": 100.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T16:47:11",
+      "region": "ID",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977674",
+      "revenue": 29.5,
+      "date": "2026-03-05",
+      "time": "2026-03-05T15:57:20",
+      "region": "NJ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977672",
+      "revenue": 188.99,
+      "date": "2026-03-05",
+      "time": "2026-03-05T15:47:46",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977669",
+      "revenue": 68.5,
+      "date": "2026-03-05",
+      "time": "2026-03-05T15:11:14",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977668",
+      "revenue": 100.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T15:01:47",
+      "region": "WA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2977664",
+      "revenue": 100.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T12:40:14",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977640",
+      "revenue": 229.0,
+      "date": "2026-03-05",
+      "time": "2026-03-05T11:28:59",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977634",
+      "revenue": 208.5,
+      "date": "2026-03-05",
+      "time": "2026-03-05T05:25:21",
+      "region": "WA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2978243",
+      "revenue": 161.28,
+      "date": "2026-03-07",
+      "time": "2026-03-07T04:23:31",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978260",
+      "revenue": 12.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T04:16:02",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978259",
+      "revenue": 12.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T04:08:42",
+      "region": "DE",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978232",
+      "revenue": 18.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T02:41:07",
+      "region": "WV",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2978183",
+      "revenue": 82.97,
+      "date": "2026-03-06",
+      "time": "2026-03-06T23:46:48",
+      "region": "NJ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978126",
+      "revenue": 100.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T23:32:09",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978115",
+      "revenue": 120.99,
+      "date": "2026-03-06",
+      "time": "2026-03-06T22:01:15",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978114",
+      "revenue": 12.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T21:58:30",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2978059",
+      "revenue": 92.49,
+      "date": "2026-03-06",
+      "time": "2026-03-06T21:06:08",
+      "region": "OAX",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2978058",
+      "revenue": 83.5,
+      "date": "2026-03-06",
+      "time": "2026-03-06T20:10:03",
+      "region": "MA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2978031",
+      "revenue": 92.49,
+      "date": "2026-03-06",
+      "time": "2026-03-06T19:58:26",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978030",
+      "revenue": 165.5,
+      "date": "2026-03-06",
+      "time": "2026-03-06T19:36:22",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978029",
+      "revenue": 12.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T19:25:37",
+      "region": "FL",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2978013",
+      "revenue": 138.5,
+      "date": "2026-03-06",
+      "time": "2026-03-06T19:11:16",
+      "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977996",
+      "revenue": 12.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T19:04:46",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978011",
+      "revenue": 124.5,
+      "date": "2026-03-06",
+      "time": "2026-03-06T18:48:43",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977992",
+      "revenue": 102.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T17:26:33",
+      "region": "UT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977986",
+      "revenue": 107.5,
+      "date": "2026-03-06",
+      "time": "2026-03-06T16:55:28",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977564",
+      "revenue": 125.49,
+      "date": "2026-03-06",
+      "time": "2026-03-06T15:50:51",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977963",
+      "revenue": 100.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T15:37:58",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977954",
+      "revenue": 55.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T14:34:45",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977953",
+      "revenue": 400.71,
+      "date": "2026-03-06",
+      "time": "2026-03-06T14:30:59",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2977949",
+      "revenue": 12.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T14:11:38",
+      "region": "MA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2977948",
+      "revenue": 12.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T14:07:59",
+      "region": "MA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2977940",
+      "revenue": 100.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T13:11:22",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977773",
+      "revenue": 105.0,
+      "date": "2026-03-06",
+      "time": "2026-03-06T08:19:10",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977772",
+      "revenue": 92.49,
+      "date": "2026-03-06",
+      "time": "2026-03-06T07:53:24",
+      "region": "TN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977770",
+      "revenue": 167.99,
+      "date": "2026-03-06",
+      "time": "2026-03-06T06:51:01",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977748",
+      "revenue": 83.5,
+      "date": "2026-03-08",
+      "time": "2026-03-08T02:41:13",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978606",
+      "revenue": 100.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T02:28:49",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978605",
+      "revenue": 40.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T01:49:27",
+      "region": "MA",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2978602",
+      "revenue": 12.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T00:47:35",
+      "region": "WI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978600",
+      "revenue": 111.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T00:29:11",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978598",
+      "revenue": 100.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T00:07:38",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978597",
+      "revenue": 108.99,
+      "date": "2026-03-07",
+      "time": "2026-03-07T23:47:49",
+      "region": "AZ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978513",
+      "revenue": 109.5,
+      "date": "2026-03-07",
+      "time": "2026-03-07T21:58:29",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978510",
+      "revenue": 92.49,
+      "date": "2026-03-07",
+      "time": "2026-03-07T21:03:23",
+      "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978449",
+      "revenue": 100.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T19:52:26",
+      "region": "IN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978432",
+      "revenue": 12.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T19:40:34",
+      "region": "NY",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2978429",
+      "revenue": 89.99,
+      "date": "2026-03-07",
+      "time": "2026-03-07T19:14:16",
+      "region": "CA",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2978427",
+      "revenue": 100.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T18:54:08",
+      "region": "TX",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2978426",
+      "revenue": 100.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T18:37:09",
+      "region": "NJ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978425",
+      "revenue": 148.98,
+      "date": "2026-03-07",
+      "time": "2026-03-07T18:28:18",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978322",
+      "revenue": 82.5,
+      "date": "2026-03-07",
+      "time": "2026-03-07T17:06:18",
+      "region": "SC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978320",
+      "revenue": 68.5,
+      "date": "2026-03-07",
+      "time": "2026-03-07T16:33:47",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978319",
+      "revenue": 92.49,
+      "date": "2026-03-07",
+      "time": "2026-03-07T16:26:23",
+      "region": "AZ",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2978317",
+      "revenue": 100.0,
+      "date": "2026-03-07",
+      "time": "2026-03-07T16:04:14",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978311",
+      "revenue": 118.99,
+      "date": "2026-03-07",
+      "time": "2026-03-07T12:06:31",
+      "region": "NJ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978904",
+      "revenue": 83.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T03:38:49",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978829",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T00:49:54",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978788",
+      "revenue": 189.47,
+      "date": "2026-03-08",
+      "time": "2026-03-08T22:25:16",
+      "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978778",
+      "revenue": 128.97,
+      "date": "2026-03-08",
+      "time": "2026-03-08T22:22:48",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978786",
+      "revenue": 220.99,
+      "date": "2026-03-08",
+      "time": "2026-03-08T21:59:37",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978784",
+      "revenue": 12.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T21:54:10",
+      "region": "NC",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2978783",
+      "revenue": 100.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T21:21:31",
+      "region": "OH",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2978782",
+      "revenue": 107.49,
+      "date": "2026-03-08",
+      "time": "2026-03-08T20:46:11",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978777",
+      "revenue": 12.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T20:22:05",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2977565",
+      "revenue": 12.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T19:44:58",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978706",
+      "revenue": 105.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T18:05:35",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978701",
+      "revenue": 12.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T17:43:43",
+      "region": "GA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978704",
+      "revenue": 85.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T17:42:10",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978699",
+      "revenue": 280.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T16:26:58",
+      "region": "NM",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978692",
+      "revenue": 75.5,
+      "date": "2026-03-08",
+      "time": "2026-03-08T15:22:45",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978690",
+      "revenue": 81.49,
+      "date": "2026-03-08",
+      "time": "2026-03-08T15:17:11",
+      "region": "KY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2975856",
+      "revenue": 92.49,
+      "date": "2026-03-08",
+      "time": "2026-03-08T15:02:55",
+      "region": "OH",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2978688",
+      "revenue": 100.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T14:37:37",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978687",
+      "revenue": 90.49,
+      "date": "2026-03-08",
+      "time": "2026-03-08T14:31:39",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978685",
+      "revenue": 92.49,
+      "date": "2026-03-08",
+      "time": "2026-03-08T13:50:20",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978684",
+      "revenue": 12.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T13:41:07",
+      "region": "CA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2978683",
+      "revenue": 100.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T13:35:08",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978682",
+      "revenue": 126.5,
+      "date": "2026-03-08",
+      "time": "2026-03-08T13:33:48",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978671",
+      "revenue": 100.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T12:35:04",
+      "region": "NM",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978644",
+      "revenue": 100.0,
+      "date": "2026-03-08",
+      "time": "2026-03-08T11:51:01",
+      "region": "NJ",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979066",
+      "revenue": 111.5,
+      "date": "2026-03-10",
+      "time": "2026-03-10T02:56:37",
+      "region": "NM",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979064",
+      "revenue": 92.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T02:51:43",
+      "region": "NH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979061",
+      "revenue": 100.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T02:02:42",
+      "region": "VA",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2978642",
+      "revenue": 112.5,
+      "date": "2026-03-10",
+      "time": "2026-03-10T01:29:22",
+      "region": "IN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979057",
+      "revenue": 12.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T00:50:44",
+      "region": "AR",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2978830",
+      "revenue": 42.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T00:41:56",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979055",
+      "revenue": 138.99,
+      "date": "2026-03-10",
+      "time": "2026-03-10T00:10:21",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979053",
+      "revenue": 12.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T00:03:34",
+      "region": "VA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979051",
+      "revenue": 121.99,
+      "date": "2026-03-09",
+      "time": "2026-03-09T23:38:56",
+      "region": "UT",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979030",
+      "revenue": 73.98,
+      "date": "2026-03-09",
+      "time": "2026-03-09T21:53:50",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979029",
+      "revenue": 72.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T21:39:02",
+      "region": "OH",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979026",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T21:22:26",
+      "region": "CT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979025",
+      "revenue": 98.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T21:15:39",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976937",
+      "revenue": 12.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T20:58:38",
+      "region": "MD",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979023",
+      "revenue": 92.49,
+      "date": "2026-03-09",
+      "time": "2026-03-09T20:46:07",
+      "region": "MA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979019",
+      "revenue": 12.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T20:21:25",
+      "region": "UT",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979018",
+      "revenue": 12.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T19:06:01",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979007",
+      "revenue": 123.97,
+      "date": "2026-03-09",
+      "time": "2026-03-09T18:23:48",
+      "region": "MO",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979005",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T17:25:42",
+      "region": "SC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979003",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T16:58:44",
+      "region": "NJ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978984",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T16:14:06",
+      "region": "OR",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978981",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T16:04:26",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978980",
+      "revenue": 12.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T16:02:57",
+      "region": "CT",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2978978",
+      "revenue": 78.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T15:50:17",
+      "region": "SD",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978977",
+      "revenue": 12.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T15:48:48",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2978951",
+      "revenue": 95.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T15:36:10",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978950",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T15:23:06",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978949",
+      "revenue": 92.49,
+      "date": "2026-03-09",
+      "time": "2026-03-09T15:09:11",
+      "region": "FL",
+      "trafficSource": "Meta Organic"
+    },
+    {
+      "orderId": "2978947",
+      "revenue": 93.99,
+      "date": "2026-03-09",
+      "time": "2026-03-09T14:49:46",
+      "region": "NM",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978946",
+      "revenue": 92.49,
+      "date": "2026-03-09",
+      "time": "2026-03-09T14:45:35",
+      "region": "MA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978945",
+      "revenue": 92.49,
+      "date": "2026-03-09",
+      "time": "2026-03-09T14:40:45",
+      "region": "TN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978944",
+      "revenue": 92.49,
+      "date": "2026-03-09",
+      "time": "2026-03-09T14:22:29",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978935",
+      "revenue": 100.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T13:31:49",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978934",
+      "revenue": 12.0,
+      "date": "2026-03-09",
+      "time": "2026-03-09T13:16:38",
+      "region": "IL",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2978928",
+      "revenue": 92.49,
+      "date": "2026-03-09",
+      "time": "2026-03-09T09:05:35",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979159",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T01:43:57",
+      "region": "NH",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2979157",
+      "revenue": 12.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T01:34:34",
+      "region": "CA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979153",
+      "revenue": 0.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T23:58:26",
+      "region": "DC",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979020",
+      "revenue": 26.5,
+      "date": "2026-03-10",
+      "time": "2026-03-10T22:57:43",
+      "region": "MD",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979152",
+      "revenue": 283.99,
+      "date": "2026-03-10",
+      "time": "2026-03-10T22:40:15",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979150",
+      "revenue": 92.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T22:17:55",
+      "region": "TN",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979149",
+      "revenue": 92.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T21:49:09",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979126",
+      "revenue": 100.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T21:37:58",
+      "region": "CO",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979140",
+      "revenue": 100.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T20:56:30",
+      "region": "MD",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979139",
+      "revenue": 92.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T20:41:15",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979138",
+      "revenue": 92.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T20:22:59",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979135",
+      "revenue": 92.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T20:19:26",
+      "region": "PA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979129",
+      "revenue": 83.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T19:31:58",
+      "region": "NJ",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979132",
+      "revenue": 117.99,
+      "date": "2026-03-10",
+      "time": "2026-03-10T18:27:11",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979123",
+      "revenue": 119.99,
+      "date": "2026-03-10",
+      "time": "2026-03-10T15:32:47",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979122",
+      "revenue": 76.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T14:46:05",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2973526",
+      "revenue": 26.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T14:08:12",
+      "region": "CT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2975600",
+      "revenue": 83.5,
+      "date": "2026-03-10",
+      "time": "2026-03-10T12:06:59",
+      "region": "NV",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979115",
+      "revenue": 77.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T11:32:26",
+      "region": "DC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979114",
+      "revenue": 92.49,
+      "date": "2026-03-10",
+      "time": "2026-03-10T10:25:10",
+      "region": "NJ",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979091",
+      "revenue": 100.0,
+      "date": "2026-03-10",
+      "time": "2026-03-10T05:00:27",
+      "region": "CA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979271",
+      "revenue": 40.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T03:49:12",
+      "region": "PA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979257",
+      "revenue": 100.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T00:25:55",
+      "region": "CA",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2979255",
+      "revenue": 76.5,
+      "date": "2026-03-12",
+      "time": "2026-03-12T00:06:41",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979253",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T23:32:35",
+      "region": "CA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979252",
+      "revenue": 103.49,
+      "date": "2026-03-11",
+      "time": "2026-03-11T23:27:45",
+      "region": "NC",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2979238",
+      "revenue": 80.5,
+      "date": "2026-03-11",
+      "time": "2026-03-11T20:38:41",
+      "region": "AL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979237",
+      "revenue": 12.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T20:33:32",
+      "region": "CO",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979233",
+      "revenue": 12.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T20:03:13",
+      "region": "AL",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979236",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T19:59:54",
+      "region": "UT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979231",
+      "revenue": 103.49,
+      "date": "2026-03-11",
+      "time": "2026-03-11T18:54:09",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979225",
+      "revenue": 103.49,
+      "date": "2026-03-11",
+      "time": "2026-03-11T18:21:34",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979174",
+      "revenue": 85.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T17:59:08",
+      "region": "CA",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979222",
+      "revenue": 103.49,
+      "date": "2026-03-11",
+      "time": "2026-03-11T17:48:45",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979220",
+      "revenue": 85.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T17:00:34",
+      "region": "NV",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979215",
+      "revenue": 85.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T16:36:42",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979214",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T16:26:02",
+      "region": "VA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979204",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T15:45:36",
+      "region": "CT",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2979213",
+      "revenue": 217.49,
+      "date": "2026-03-11",
+      "time": "2026-03-11T15:43:39",
+      "region": "AL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979212",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T15:20:19",
+      "region": "FL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979201",
+      "revenue": 195.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T15:15:11",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979211",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T15:13:31",
+      "region": "WA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979205",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T14:40:46",
+      "region": "MI",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979203",
+      "revenue": 26.5,
+      "date": "2026-03-11",
+      "time": "2026-03-11T14:09:51",
+      "region": "WI",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979202",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T13:58:43",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979200",
+      "revenue": 12.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T13:51:16",
+      "region": "IL",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979198",
+      "revenue": 329.98,
+      "date": "2026-03-11",
+      "time": "2026-03-11T13:38:05",
+      "region": "AL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979196",
+      "revenue": 12.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T13:10:21",
+      "region": "MA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979191",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T13:06:25",
+      "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979185",
+      "revenue": 12.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T10:33:33",
+      "region": "MI",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979184",
+      "revenue": 100.0,
+      "date": "2026-03-11",
+      "time": "2026-03-11T06:53:31",
+      "region": "OH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979173",
+      "revenue": 86.48,
+      "date": "2026-03-11",
+      "time": "2026-03-11T04:32:01",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979403",
+      "revenue": 103.49,
+      "date": "2026-03-13",
+      "time": "2026-03-13T03:41:48",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979396",
+      "revenue": 12.0,
+      "date": "2026-03-13",
+      "time": "2026-03-13T01:13:42",
+      "region": "TX",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979395",
+      "revenue": 99.0,
+      "date": "2026-03-13",
+      "time": "2026-03-13T01:06:17",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979394",
+      "revenue": 108.48,
+      "date": "2026-03-13",
+      "time": "2026-03-13T00:06:12",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2978603",
+      "revenue": 118.48,
+      "date": "2026-03-12",
+      "time": "2026-03-12T23:53:40",
+      "region": "TX",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979391",
+      "revenue": 100.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T23:51:25",
+      "region": "LA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2976130",
+      "revenue": 100.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T23:36:13",
+      "region": "NY",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979389",
+      "revenue": 26.5,
+      "date": "2026-03-12",
+      "time": "2026-03-12T22:33:54",
+      "region": "CO",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979379",
+      "revenue": 131.99,
+      "date": "2026-03-12",
+      "time": "2026-03-12T21:42:32",
+      "region": "PA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979377",
+      "revenue": 70.5,
+      "date": "2026-03-12",
+      "time": "2026-03-12T21:19:09",
+      "region": "VA",
+      "trafficSource": "Referral"
+    },
+    {
+      "orderId": "2979374",
+      "revenue": 103.49,
+      "date": "2026-03-12",
+      "time": "2026-03-12T21:00:31",
+      "region": "MA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979373",
+      "revenue": 103.49,
+      "date": "2026-03-12",
+      "time": "2026-03-12T20:57:56",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979372",
+      "revenue": 12.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T20:45:08",
+      "region": "TN",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979369",
+      "revenue": 100.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T19:10:04",
+      "region": "IL",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979358",
+      "revenue": 58.49,
+      "date": "2026-03-12",
+      "time": "2026-03-12T18:19:16",
+      "region": "MA",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979346",
+      "revenue": 103.49,
+      "date": "2026-03-12",
+      "time": "2026-03-12T15:51:49",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979336",
+      "revenue": 103.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T15:46:59",
+      "region": "IN",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979326",
+      "revenue": 1.76,
+      "date": "2026-03-12",
+      "time": "2026-03-12T15:33:37",
+      "region": "TX",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979296",
+      "revenue": 12.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T13:52:27",
+      "region": "WA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2979295",
+      "revenue": 12.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T13:34:09",
+      "region": "IL",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2979294",
+      "revenue": 12.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T13:24:11",
+      "region": "CO",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2978681",
+      "revenue": 103.49,
+      "date": "2026-03-12",
+      "time": "2026-03-12T12:58:56",
+      "region": "FL",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2979292",
+      "revenue": 100.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T12:40:11",
+      "region": "OR",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979291",
+      "revenue": 142.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T12:04:28",
+      "region": "CT",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2979290",
+      "revenue": 115.0,
+      "date": "2026-03-12",
+      "time": "2026-03-12T10:20:38",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    }
+  ]
 }
