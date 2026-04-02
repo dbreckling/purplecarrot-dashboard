@@ -4,18 +4,18 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-04-02T09:37:32.442715Z",
+  "lastUpdated": "2026-04-02T10:00:00.954452Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-04-02"
   },
   "global": {
-    "totalOrders": 740,
+    "totalOrders": 741,
     "totalRevenue": 66207.28,
-    "aov": 89.47,
-    "uniqueVisitors": 720,
+    "aov": 89.35,
+    "uniqueVisitors": 721,
     "repeatPurchaseRate": 1.1,
-    "newOrders": 720,
+    "newOrders": 721,
     "returningOrders": 20,
     "newCustomerPct": 97.3,
     "avgCartSize": 1.0
@@ -25,21 +25,21 @@
     "customerIdCoverage": 98.5,
     "zipCodeCoverage": 95.7,
     "loggedInBreakdown": {
-      "yes": 198,
+      "yes": 199,
       "no": 230,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 740,
+    "ordersuccess": 741,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 489,
+      "orders": 490,
       "revenue": 48531.96,
-      "aov": 99.25,
+      "aov": 99.04,
       "pctOfOrders": 66.1
     },
     "Google Organic": {
@@ -156,13 +156,13 @@
       "orders": 13,
       "revenue": 862.71
     },
+    "DC": {
+      "orders": 12,
+      "revenue": 1054.99
+    },
     "UT": {
       "orders": 12,
       "revenue": 1084.93
-    },
-    "DC": {
-      "orders": 11,
-      "revenue": 1054.99
     },
     "AL": {
       "orders": 10,
@@ -192,7 +192,7 @@
     },
     "Windows": {
       "orders": 170,
-      "pctOfOrders": 23.0
+      "pctOfOrders": 22.9
     },
     "Android": {
       "orders": 79,
@@ -201,6 +201,10 @@
     "Chromium OS": {
       "orders": 6,
       "pctOfOrders": 0.8
+    },
+    "Linux": {
+      "orders": 1,
+      "pctOfOrders": 0.1
     }
   },
   "programmatic": {
@@ -215,7 +219,7 @@
     "roas": 0.01,
     "costPerSubscription": 6235.86,
     "ctVisits": 130,
-    "vtVisits": 135256,
+    "vtVisits": 135387,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -2703,14 +2707,15 @@
     "2026-04-02": {
       "impressions": 3189,
       "clicks": 2,
-      "purchases": 2,
+      "purchases": 3,
       "revenue": 24.0,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 2,
+      "newOrders": 3,
       "returningOrders": 0,
       "nyPurchases": 0,
       "trafficSources": {
+        "Direct / Internal": 1,
         "Email": 1,
         "Referral": 1
       }
@@ -8619,6 +8624,14 @@
       "date": "2026-04-01",
       "time": "2026-04-01T04:08:26",
       "region": "NC",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2981622",
+      "revenue": 0.0,
+      "date": "2026-04-02",
+      "time": "2026-04-02T09:34:36",
+      "region": "DC",
       "trafficSource": "Direct / Internal"
     },
     {
