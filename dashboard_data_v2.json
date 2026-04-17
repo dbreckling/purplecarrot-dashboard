@@ -4,20 +4,20 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-04-17T15:39:55.709607Z",
+  "lastUpdated": "2026-04-17T17:19:10.081573Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-04-17"
   },
   "global": {
-    "totalOrders": 996,
-    "totalRevenue": 85667.48,
-    "aov": 86.01,
+    "totalOrders": 999,
+    "totalRevenue": 85980.95,
+    "aov": 86.07,
     "uniqueVisitors": 967,
     "repeatPurchaseRate": 0.9,
     "newOrders": 967,
-    "returningOrders": 29,
-    "newCustomerPct": 97.1,
+    "returningOrders": 32,
+    "newCustomerPct": 96.8,
     "avgCartSize": 1.0
   },
   "identity": {
@@ -26,12 +26,12 @@
     "zipCodeCoverage": 95.2,
     "loggedInBreakdown": {
       "yes": 327,
-      "no": 357,
+      "no": 360,
       "unknown": 312
     }
   },
   "orderSources": {
-    "ordersuccess": 996,
+    "ordersuccess": 999,
     "cartFallback": 0,
     "unknown": 0
   },
@@ -40,7 +40,7 @@
       "orders": 561,
       "revenue": 54367.79,
       "aov": 96.91,
-      "pctOfOrders": 56.3
+      "pctOfOrders": 56.2
     },
     "Email": {
       "orders": 97,
@@ -79,10 +79,10 @@
       "pctOfOrders": 2.7
     },
     "Meta Ads": {
-      "orders": 15,
-      "revenue": 1400.9,
-      "aov": 93.39,
-      "pctOfOrders": 1.5
+      "orders": 18,
+      "revenue": 1714.37,
+      "aov": 95.24,
+      "pctOfOrders": 1.8
     },
     "Meta Organic": {
       "orders": 8,
@@ -135,8 +135,8 @@
       "revenue": 4465.68
     },
     "IL": {
-      "orders": 43,
-      "revenue": 3005.09
+      "orders": 46,
+      "revenue": 3318.56
     },
     "WA": {
       "orders": 43,
@@ -214,15 +214,15 @@
   "devices": {
     "iOS": {
       "orders": 405,
-      "pctOfOrders": 40.7
+      "pctOfOrders": 40.5
     },
     "Mac OS": {
       "orders": 248,
-      "pctOfOrders": 24.9
+      "pctOfOrders": 24.8
     },
     "Windows": {
-      "orders": 228,
-      "pctOfOrders": 22.9
+      "orders": 231,
+      "pctOfOrders": 23.1
     },
     "Android": {
       "orders": 106,
@@ -239,17 +239,17 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 2910004,
+    "impressions": 2918804,
     "clicks": 299,
-    "reach": 804058,
+    "reach": 806830,
     "frequency": 3.62,
     "attrOrders": 2,
     "attrRevenue": 153.99,
-    "spend": 23752.42,
+    "spend": 23830.92,
     "roas": 0.01,
-    "costPerSubscription": 11876.21,
+    "costPerSubscription": 11915.46,
     "ctVisits": 258,
-    "vtVisits": 181099,
+    "vtVisits": 179180,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -339,33 +339,33 @@
   },
   "channels": {
     "display": {
-      "impressions": 1463971,
+      "impressions": 1466366,
       "clicks": 297,
-      "reach": 443201,
+      "reach": 444229,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 6.0,
-      "spend": 8783.83,
+      "spend": 8798.2,
       "roas": 0.0
     },
     "video": {
-      "impressions": 1244894,
+      "impressions": 1250514,
       "clicks": 0,
-      "reach": 445866,
+      "reach": 447713,
       "attrOrders": 2,
       "attrRevenue": 153.99,
       "cpm": 7.5,
-      "spend": 9336.7,
+      "spend": 9378.85,
       "roas": 0.02
     },
     "ctv": {
-      "impressions": 201139,
+      "impressions": 201924,
       "clicks": 2,
-      "reach": 41573,
+      "reach": 41729,
       "attrOrders": 0,
       "attrRevenue": 0,
       "cpm": 28.0,
-      "spend": 5631.89,
+      "spend": 5653.87,
       "roas": 0.0
     }
   },
@@ -663,49 +663,49 @@
           }
         },
         "4079_Display_PROSP_Aud": {
-          "impressions": 103837,
+          "impressions": 104969,
           "clicks": 15,
-          "reach": 64109,
+          "reach": 64875,
           "frequency": 1.6,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 623.02,
+          "spend": 629.81,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 90871,
+              "impressions": 91868,
               "clicks": 12,
-              "reach": 56975,
+              "reach": 57668,
               "frequency": 1.6,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 545.23,
+              "spend": 551.21,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 7921,
+              "impressions": 8007,
               "clicks": 2,
-              "reach": 5363,
+              "reach": 5416,
               "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 47.53,
+              "spend": 48.04,
               "roas": 0.0
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 2640,
+              "impressions": 2689,
               "clicks": 1,
-              "reach": 2072,
+              "reach": 2112,
               "frequency": 1.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 15.84,
+              "spend": 16.13,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -747,49 +747,49 @@
           }
         },
         "4079_Display_PROSP_RTE": {
-          "impressions": 662541,
+          "impressions": 663268,
           "clicks": 85,
-          "reach": 130101,
+          "reach": 130275,
           "frequency": 5.1,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 3975.25,
+          "spend": 3979.61,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 442431,
+              "impressions": 443039,
               "clicks": 53,
-              "reach": 97256,
+              "reach": 97396,
               "frequency": 4.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 2654.59,
+              "spend": 2658.23,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 39862,
+              "impressions": 39895,
               "clicks": 4,
-              "reach": 9965,
+              "reach": 9973,
               "frequency": 4.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 239.17,
+              "spend": 239.37,
               "roas": 0.0
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 11013,
+              "impressions": 11099,
               "clicks": 3,
-              "reach": 4424,
+              "reach": 4472,
               "frequency": 2.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 66.08,
+              "spend": 66.59,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -831,49 +831,49 @@
           }
         },
         "4079_Display_PROSP_RTW": {
-          "impressions": 67479,
+          "impressions": 68015,
           "clicks": 30,
-          "reach": 15955,
+          "reach": 16121,
           "frequency": 4.2,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 404.87,
+          "spend": 408.09,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 55185,
+              "impressions": 55635,
               "clicks": 21,
-              "reach": 13913,
+              "reach": 14056,
               "frequency": 4.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 331.11,
+              "spend": 333.81,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 8337,
+              "impressions": 8397,
               "clicks": 7,
-              "reach": 2502,
+              "reach": 2530,
               "frequency": 3.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 50.02,
+              "spend": 50.38,
               "roas": 0.0
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 2526,
+              "impressions": 2552,
               "clicks": 2,
-              "reach": 1097,
+              "reach": 1115,
               "frequency": 2.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 15.16,
+              "spend": 15.31,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -1377,97 +1377,97 @@
           }
         },
         "4079_BannerVideo_PROSP_Aud": {
-          "impressions": 165978,
+          "impressions": 171329,
           "clicks": 0,
-          "reach": 76819,
+          "reach": 78699,
           "frequency": 2.2,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1244.84,
+          "spend": 1284.97,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 152963,
+              "impressions": 158000,
               "clicks": 0,
-              "reach": 70951,
+              "reach": 72704,
               "frequency": 2.2,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1147.22,
+              "spend": 1185.0,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x600",
-              "impressions": 9477,
+              "impressions": 9585,
               "clicks": 0,
-              "reach": 6465,
+              "reach": 6535,
               "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 71.08,
+              "spend": 71.89,
               "roas": 0.0
             },
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 3538,
+              "impressions": 3744,
               "clicks": 0,
-              "reach": 2450,
+              "reach": 2585,
               "frequency": 1.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 26.54,
+              "spend": 28.08,
               "roas": 0.0
             }
           }
         },
         "4079_BannerVideo_PROSP_RTE": {
-          "impressions": 160961,
+          "impressions": 161230,
           "clicks": 0,
-          "reach": 39853,
+          "reach": 39906,
           "frequency": 4.0,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1207.21,
+          "spend": 1209.22,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 143576,
+              "impressions": 143817,
               "clicks": 0,
-              "reach": 36821,
+              "reach": 36867,
               "frequency": 3.9,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1076.82,
+              "spend": 1078.63,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x600",
-              "impressions": 14208,
+              "impressions": 14234,
               "clicks": 0,
-              "reach": 4660,
+              "reach": 4675,
               "frequency": 3.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 106.56,
+              "spend": 106.75,
               "roas": 0.0
             },
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 3177,
+              "impressions": 3179,
               "clicks": 0,
-              "reach": 1418,
+              "reach": 1420,
               "frequency": 2.2,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 23.83,
+              "spend": 23.84,
               "roas": 0.0
             }
           }
@@ -1647,13 +1647,13 @@
       "cpm": 28.0,
       "campaigns": {
         "4079_AllOTT_PROSP_Aud": {
-          "impressions": 54249,
+          "impressions": 54511,
           "clicks": 0,
-          "reach": 19102,
+          "reach": 19249,
           "frequency": 2.8,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1518.97,
+          "spend": 1526.31,
           "roas": 0.0,
           "creatives": {
             "PurpleCarrot_OTT|0x0": {
@@ -1683,13 +1683,13 @@
             "PurpleCarrot_OTT|1280x720": {
               "creativeName": "PurpleCarrot_OTT",
               "creativeSize": "1280x720",
-              "impressions": 1837,
+              "impressions": 1841,
               "clicks": 0,
-              "reach": 1177,
+              "reach": 1181,
               "frequency": 1.6,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 51.44,
+              "spend": 51.55,
               "roas": 0.0
             },
             "PurpleCarrot_OTT|1700x956": {
@@ -1707,13 +1707,13 @@
             "PurpleCarrot_OTT|1920x1080": {
               "creativeName": "PurpleCarrot_OTT",
               "creativeSize": "1920x1080",
-              "impressions": 52173,
+              "impressions": 52431,
               "clicks": 0,
-              "reach": 18236,
+              "reach": 18379,
               "frequency": 2.9,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1460.84,
+              "spend": 1468.07,
               "roas": 0.0
             },
             "PurpleCarrot_OTT|3840x2160": {
@@ -1755,13 +1755,13 @@
           }
         },
         "4079_AllOTT_PROSP_RTW": {
-          "impressions": 13076,
+          "impressions": 13260,
           "clicks": 0,
-          "reach": 1239,
+          "reach": 1253,
           "frequency": 10.6,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 366.13,
+          "spend": 371.28,
           "roas": 0.0,
           "creatives": {
             "PurpleCarrot_OTT|0x0": {
@@ -1815,13 +1815,13 @@
             "PurpleCarrot_OTT|1920x1080": {
               "creativeName": "PurpleCarrot_OTT",
               "creativeSize": "1920x1080",
-              "impressions": 12649,
+              "impressions": 12833,
               "clicks": 0,
-              "reach": 1220,
+              "reach": 1234,
               "frequency": 10.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 354.17,
+              "spend": 359.32,
               "roas": 0.0
             },
             "PurpleCarrot_OTT|3840x2160": {
@@ -2019,13 +2019,13 @@
           }
         },
         "4079_CTV_PROSP_Aud": {
-          "impressions": 34098,
+          "impressions": 34268,
           "clicks": 0,
-          "reach": 14562,
+          "reach": 14585,
           "frequency": 2.3,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 954.74,
+          "spend": 959.5,
           "roas": 0.0,
           "creatives": {
             "PurpleCarrot_CTV|0x0": {
@@ -2079,13 +2079,13 @@
             "PurpleCarrot_CTV|1920x1080": {
               "creativeName": "PurpleCarrot_CTV",
               "creativeSize": "1920x1080",
-              "impressions": 32853,
+              "impressions": 33023,
               "clicks": 0,
-              "reach": 14059,
+              "reach": 14082,
               "frequency": 2.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 919.88,
+              "spend": 924.64,
               "roas": 0.0
             },
             "PurpleCarrot_CTV|3840x2160": {
@@ -2115,13 +2115,13 @@
           }
         },
         "4079_CTV_PROSP_RTW": {
-          "impressions": 9587,
+          "impressions": 9756,
           "clicks": 0,
-          "reach": 1084,
-          "frequency": 8.8,
+          "reach": 1095,
+          "frequency": 8.9,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 268.44,
+          "spend": 273.17,
           "roas": 0.0,
           "creatives": {
             "PurpleCarrot_CTV|0x1080": {
@@ -2139,13 +2139,13 @@
             "PurpleCarrot_CTV|1280x720": {
               "creativeName": "PurpleCarrot_CTV",
               "creativeSize": "1280x720",
-              "impressions": 126,
+              "impressions": 128,
               "clicks": 0,
-              "reach": 56,
+              "reach": 58,
               "frequency": 2.2,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 3.53,
+              "spend": 3.58,
               "roas": 0.0
             },
             "PurpleCarrot_CTV|1366x768": {
@@ -2163,13 +2163,13 @@
             "PurpleCarrot_CTV|1920x1080": {
               "creativeName": "PurpleCarrot_CTV",
               "creativeSize": "1920x1080",
-              "impressions": 9441,
+              "impressions": 9608,
               "clicks": 0,
-              "reach": 1064,
+              "reach": 1074,
               "frequency": 8.9,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 264.35,
+              "spend": 269.02,
               "roas": 0.0
             },
             "PurpleCarrot_CTV|3840x2160": {
@@ -2470,13 +2470,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 2909999,
+      "impressions": 2918799,
       "clicks": 299,
-      "reach": 804055,
+      "reach": 806827,
       "frequency": 3.62,
       "attrOrders": 1,
       "attrRevenue": 75.99,
-      "spend": 23752.39,
+      "spend": 23830.89,
       "roas": 0.0
     }
   },
@@ -3325,16 +3325,18 @@
       }
     },
     "2026-04-17": {
-      "impressions": 21993,
+      "impressions": 30793,
       "clicks": 3,
-      "purchases": 0,
-      "revenue": 0.0,
+      "purchases": 3,
+      "revenue": 313.47,
       "conversions": 0,
       "attrRevenue": 0.0,
-      "newOrders": 0,
+      "newOrders": 3,
       "returningOrders": 0,
       "nyPurchases": 0,
-      "trafficSources": {}
+      "trafficSources": {
+        "Meta Ads": 3
+      }
     }
   },
   "allOrders": [
@@ -11305,6 +11307,30 @@
       "time": "2026-04-16T07:33:22",
       "region": "CA",
       "trafficSource": "Email"
+    },
+    {
+      "orderId": "2986337",
+      "revenue": 104.49,
+      "date": "2026-04-17",
+      "time": "2026-04-17T16:08:52",
+      "region": "IL",
+      "trafficSource": "Meta Ads"
+    },
+    {
+      "orderId": "2986306",
+      "revenue": 104.49,
+      "date": "2026-04-17",
+      "time": "2026-04-17T15:24:26",
+      "region": "IL",
+      "trafficSource": "Meta Ads"
+    },
+    {
+      "orderId": "2986305",
+      "revenue": 104.49,
+      "date": "2026-04-17",
+      "time": "2026-04-17T15:20:28",
+      "region": "IL",
+      "trafficSource": "Meta Ads"
     }
   ]
 }
