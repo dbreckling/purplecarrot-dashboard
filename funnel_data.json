@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-04-29T12:44:28.853515+00:00",
+  "window": {
+    "start": "2026-04-27T00:00:00Z",
+    "end": "2026-04-29T00:00:00Z",
+    "days": 2
+  },
+  "totals": {
+    "visitors": 9829,
+    "cart": 920,
+    "account": 595,
+    "shipping": 44,
+    "payment": 8,
+    "purchases_paid": 22,
+    "purchases_redeem": 12,
+    "revenue_paid": 2375.35
+  },
+  "daily": [
+    {
+      "date": "2026-04-27",
+      "visitors": 4794,
+      "cart": 249,
+      "account": 456,
+      "shipping": 11,
+      "payment": 7,
+      "purchases_paid": 12,
+      "purchases_redeem": 4,
+      "revenue_paid": 1456.91
+    },
+    {
+      "date": "2026-04-28",
+      "visitors": 5602,
+      "cart": 679,
+      "account": 1108,
+      "shipping": 57,
+      "payment": 24,
+      "purchases_paid": 10,
+      "purchases_redeem": 8,
+      "revenue_paid": 918.44
+    }
+  ],
+  "ad_lift": {
+    "total_impressions": 3931354,
+    "ad_visits_total": 1601,
+    "ad_visits_ct": 487,
+    "ad_visits_vt": 1168,
+    "visit_rate_pct": 0.0407,
+    "median_days_to_visit": 1,
+    "avg_days_to_visit": 1.08,
+    "ae_attributed_orders": 5,
+    "ae_attributed_orders_ct": 0,
+    "ae_attributed_orders_vt": 5,
+    "total_paid_orders": 1165,
+    "ae_share_pct": 0.43,
+    "median_days_to_purchase": 10,
+    "ae_visitors": 1601,
+    "ae_visitors_ct": 487,
+    "ae_visitors_vt": 1168,
+    "ae_purchasers": 5,
+    "ae_conv_rate": 0.31
+  },
+  "visitor_status": {
+    "new": 4216,
+    "returning_non_purchaser": 5512,
+    "returning_purchaser": 101,
+    "unknown": 0,
+    "total_unique": 9829,
+    "total_pageviews": 21997
+  },
+  "cohort_funnel": {
+    "ad_attributed": {
+      "visit": 201,
+      "cart": 16,
+      "account": 13,
+      "shipping": 1,
+      "payment": 1,
+      "cart_pct": 7.96,
+      "account_pct": 6.47,
+      "shipping_pct": 0.5,
+      "payment_pct": 0.5,
+      "cart_step": 7.96,
+      "account_step": 81.25,
+      "shipping_step": 7.69,
+      "payment_step": 100.0
+    },
+    "non_attributed": {
+      "visit": 9455,
+      "cart": 882,
+      "account": 577,
+      "shipping": 43,
+      "payment": 7,
+      "cart_pct": 9.33,
+      "account_pct": 6.1,
+      "shipping_pct": 0.45,
+      "payment_pct": 0.07,
+      "cart_step": 9.33,
+      "account_step": 65.42,
+      "shipping_step": 7.45,
+      "payment_step": 16.28
+    }
+  },
+  "campaign_compare": {
+    "campaign_start": "2026-03-11T00:00:00Z",
+    "site_visitors": 197974,
+    "site_orders": 907,
+    "site_revenue": 76039.2,
+    "ad_visitors": 1461,
+    "ad_orders": 7,
+    "ad_revenue": 551.45,
+    "non_visitors": 196513,
+    "non_orders": 900,
+    "non_revenue": 75487.75,
+    "ad_conv_rate": 0.479,
+    "non_conv_rate": 0.458,
+    "ad_aov": 78.78,
+    "non_aov": 83.88,
+    "ad_rpv": 0.3774,
+    "non_rpv": 0.3841,
+    "ny_visitors": 16031,
+    "ny_orders": 74,
+    "ny_revenue": 6385.54,
+    "ny_conv_rate": 0.462
+  }
+}

@@ -1,1 +1,4 @@
-# Pure Python standard library — no external dependencies required
+# Web service (app.py) uses stdlib only — no install needed.
+# Report script (purplecarrot_report_v2.py) needs these for the Render cron job:
+requests
+pandas

@@ -212,17 +212,13 @@ tr:hover{background:#fbfcff}
     </a>
 
     <div class="nav-section" style="margin-top:16px">Analysis</div>
+    <a class="nav-item" data-page="dropoff">
+      <svg viewBox="0 0 24 24"><path d="M3 3h18v6H3z"/><path d="M5 9v6h14V9"/><path d="M7 15v3h10v-3"/><path d="M9 18v3h6v-3"/></svg>
+      <span>Drop-off Funnel</span>
+    </a>
     <a class="nav-item" data-page="connectors">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
       <span>Connectors</span>
-    </a>
-    <a class="nav-item" data-page="analytics">
-      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      <span>Analytics</span>
-    </a>
-    <a class="nav-item" data-page="attribution">
-      <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
-      <span>Attribution & Funnel</span>
     </a>
   </div>
   <div class="sidebar-footer">
@@ -269,120 +265,136 @@ tr:hover{background:#fbfcff}
       </div>
     </div>
 
-    <!-- Top KPIs - 6 cards -->
-    <div class="kpi-grid" style="grid-template-columns:repeat(7,1fr)" id="overviewKpis">
+    <!-- Top KPIs — 5 cards (New Customers + Blended ROAS removed; Channel ROAS moved to Programmatic) -->
+    <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr)" id="overviewKpis">
       <div class="kpi-card"><div class="label">Media Spend</div><div class="value" id="gSpend">-</div><div class="sub" id="gSpendSub">-</div></div>
       <div class="kpi-card"><div class="label">Impressions</div><div class="value" id="gImpressions">-</div><div class="sub" id="gImpSub">-</div></div>
       <div class="kpi-card"><div class="label">Website Visits</div><div class="value" id="gWebVisits">-</div><div class="sub" id="gWebVisitsSub">-</div></div>
       <div class="kpi-card"><div class="label">Attributed Revenue</div><div class="value" id="gAttrRev">-</div><div class="sub" id="gAttrRevSub">-</div></div>
-      <div class="kpi-card"><div class="label">New Customers</div><div class="value" id="gNewPct">-</div><div class="sub" id="gNewSub">-</div></div>
-      <div class="kpi-card"><div class="label">CAC</div><div class="value" id="gCAC">-</div><div class="sub" id="gCACSub">-</div></div>
-      <div class="kpi-card highlight"><div class="label">Blended ROAS</div><div class="value" id="gRoas">-</div><div class="sub" id="gRoasSub">-</div></div>
+      <div class="kpi-card highlight"><div class="label">CAC</div><div class="value" id="gCAC">-</div><div class="sub" id="gCACSub">-</div></div>
     </div>
 
-    <!-- Channel ROAS Cards -->
-    <div class="tactic-grid" id="overviewRoasGrid">
-      <div class="tactic-card" data-channel="display">
-        <div class="tactic-pill">Display</div>
-        <div class="tactic-roas" id="ovRoasDisplay">-</div>
-        <div class="tactic-cpm" id="ovCpmDisplay">-</div>
-        <div class="tactic-meta">
-          <div><span>Impressions</span><strong id="ovImpsDisplay">-</strong></div>
-          <div><span>Reach</span><strong id="ovReachDisplay">-</strong></div>
-          <div><span>Revenue</span><strong id="ovRevDisplay">-</strong></div>
-          <div><span>Attr. Orders</span><strong id="ovOrdersDisplay">-</strong></div>
-          <div><span>CAC</span><strong id="ovCacDisplay">-</strong></div>
-        </div>
-        <div class="tactic-note">Standard display banners &bull; 300x250, 728x90, 160x600</div>
-      </div>
-      <div class="tactic-card" data-channel="video">
-        <div class="tactic-pill">Display Video</div>
-        <div class="tactic-roas" id="ovRoasVideo">-</div>
-        <div class="tactic-cpm" id="ovCpmVideo">-</div>
-        <div class="tactic-meta">
-          <div><span>Impressions</span><strong id="ovImpsVideo">-</strong></div>
-          <div><span>Reach</span><strong id="ovReachVideo">-</strong></div>
-          <div><span>Revenue</span><strong id="ovRevVideo">-</strong></div>
-          <div><span>Attr. Orders</span><strong id="ovOrdersVideo">-</strong></div>
-          <div><span>CAC</span><strong id="ovCacVideo">-</strong></div>
-        </div>
-        <div class="tactic-note">In-stream &amp; outstream video pre-roll &bull; :15 and :30</div>
-      </div>
-      <div class="tactic-card" data-channel="ctv">
-        <div class="tactic-pill">CTV / OTT</div>
-        <div class="tactic-roas" id="ovRoasCTV">-</div>
-        <div class="tactic-cpm" id="ovCpmCTV">-</div>
-        <div class="tactic-meta">
-          <div><span>Impressions</span><strong id="ovImpsCTV">-</strong></div>
-          <div><span>Reach</span><strong id="ovReachCTV">-</strong></div>
-          <div><span>Revenue</span><strong id="ovRevCTV">-</strong></div>
-          <div><span>Attr. Orders</span><strong id="ovOrdersCTV">-</strong></div>
-          <div><span>CAC</span><strong id="ovCacCTV">-</strong></div>
-        </div>
-        <div class="tactic-note">Connected TV &amp; streaming &bull; Roku, Fire TV, Apple TV</div>
-      </div>
-    </div>
-
-    <!-- Daily Trends Chart — Impressions & Attributed Conversions -->
+    <!-- Daily Trends — moved up so the user can see spend/imps/conversions trend right after the headline KPIs -->
     <div class="chart-card">
       <h3>Daily Trends</h3>
       <div class="chart-box"><canvas id="overviewTrendChart"></canvas></div>
     </div>
 
-    <!-- Site Totals (below chart) -->
-    <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:24px" id="siteTotals">
-      <div class="kpi-card"><div class="label">Total Orders</div><div class="value" id="gOrders">-</div><div class="sub" id="gOrdersSub">-</div></div>
-      <div class="kpi-card"><div class="label">Total Revenue</div><div class="value" id="gRevenue">-</div><div class="sub" id="gRevSub">-</div></div>
-      <div class="kpi-card"><div class="label">Avg Order Value</div><div class="value" id="gAOV2">-</div><div class="sub">revenue / orders</div></div>
-      <div class="kpi-card"><div class="label">Unique Visitors</div><div class="value" id="gVisitors2">-</div><div class="sub" id="gVisitors2Sub">-</div></div>
-      <div class="kpi-card"><div class="label">Avg Cart Size</div><div class="value" id="gCartSize">-</div><div class="sub">items per order</div></div>
+    <!-- Conversion funnel summary (Visit → Cart → Account → Shipping → Payment → Purchase) -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <h3 style="margin:0">Conversion funnel &mdash; where do they drop off?</h3>
+        <a href="#" onclick="navigateTo('dropoff');return false" style="font-size:12px;color:var(--brand);text-decoration:none;font-weight:600">View full funnel →</a>
+      </div>
+      <div id="ovFunnelBars"></div>
+      <div id="ovFunnelInsight"></div>
     </div>
 
-    <!-- Traffic Sources + Order Sources side by side -->
+    <!-- Programmatic lift — National + NY benchmarks side-by-side -->
+    <div class="card">
+      <h3>Programmatic lift</h3>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 16px 0" id="ovCampaignWindow">since campaign start...</p>
+
+      <!-- National Comparison -->
+      <h4 style="font-size:14px;font-weight:600;margin:0 0 6px 0">Purple Carrot National Comparison</h4>
+      <table style="font-size:13px;margin-bottom:18px">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="numeric">Ad-attributed</th>
+            <th class="numeric">Non-attributed</th>
+            <th class="numeric">Lift</th>
+          </tr>
+        </thead>
+        <tbody id="ovNationalBody"></tbody>
+      </table>
+
+      <!-- NY Comparison -->
+      <h4 style="font-size:14px;font-weight:600;margin:0 0 6px 0">Purple Carrot NY Comparison</h4>
+      <table style="font-size:13px">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="numeric">Ad-attributed</th>
+            <th class="numeric">NY site visitors</th>
+            <th class="numeric">Lift</th>
+          </tr>
+        </thead>
+        <tbody id="ovNYBody"></tbody>
+      </table>
+
+      <div id="ovCampaignInsight" style="margin-top:14px"></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:14px;line-height:1.5">
+        <strong>National "Non-attributed" cohort</strong> = site total minus the ad-attributed
+        cohort (visitor IDs and paid-order PKs subtracted), so the comparison is truly-organic
+        vs ad-driven. <strong>NY benchmark</strong> = all NY site visitors + all NY orders in
+        the campaign window. Both comparisons include real-shape orders (297/298/299 prefix).
+        Source: <code>allAggregatedMatchesByVisits</code> + <code>allAggregatedMatchesByPurchases</code>
+        + <code>allPurchaseAttributions</code> + <code>allVisits</code> + <code>allPurchases</code>.
+      </div>
+    </div>
+
+    <!-- VISITOR MIX section — commented out; we don't yet have visitor-status data for the
+         full campaign window. Re-enable once 30+ days of post-deploy visitor data has accumulated.
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <h3 style="margin:0">Visitor mix — new vs returning vs existing customer</h3>
+        <span style="font-size:11px;color:var(--muted)" id="ovVisMixWindow">-</span>
+      </div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px">
+        <div class="kpi-card">
+          <div class="label">Total Unique Visitors</div>
+          <div class="value" id="ovVmTotal">-</div>
+          <div class="sub" id="ovVmTotalSub">-</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">New Visitors</div>
+          <div class="value" id="ovVmNew" style="color:var(--brand)">-</div>
+          <div class="sub" id="ovVmNewPct">-</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Returning — Non-Purchaser</div>
+          <div class="value" id="ovVmReturningNP" style="color:var(--purple)">-</div>
+          <div class="sub" id="ovVmReturningNPPct">-</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Existing Customers</div>
+          <div class="value" id="ovVmReturningP" style="color:var(--success)">-</div>
+          <div class="sub" id="ovVmReturningPSub">tag-side capture pending</div>
+        </div>
+      </div>
+      <div style="height:14px;background:#f3f4f6;border-radius:7px;overflow:hidden;display:flex">
+        <div id="ovVmBarNew" style="background:var(--brand);height:100%;transition:width 0.4s"></div>
+        <div id="ovVmBarRNP" style="background:var(--purple);height:100%;transition:width 0.4s"></div>
+        <div id="ovVmBarRP" style="background:var(--success);height:100%;transition:width 0.4s"></div>
+      </div>
+    </div>
+    -->
+
+
+    <!-- Top States by Orders (moved from Analytics) + Attributed Orders table -->
     <div class="two-col">
       <div class="card">
-        <h3>Traffic Source Breakdown</h3>
-        <p style="font-size:11px;color:var(--muted);margin:-10px 0 14px 0">Revenue attribution by referral and UTM classification</p>
+        <h3>Top States by Orders</h3>
         <table>
-          <thead>
-            <tr>
-              <th>Source</th>
-              <th class="numeric">Orders</th>
-              <th class="numeric">Revenue</th>
-              <th class="numeric">AOV</th>
-              <th class="numeric">%</th>
-            </tr>
-          </thead>
-          <tbody id="trafficTable"></tbody>
+          <thead><tr><th>State</th><th class="numeric">Orders</th><th class="numeric">Revenue</th><th class="numeric">AOV</th></tr></thead>
+          <tbody id="geoTable"></tbody>
         </table>
       </div>
 
-      <div>
-        <!-- Order Source Split -->
-        <div class="card" style="margin-bottom:24px">
-          <h3>Order Collection Sources</h3>
-          <div style="margin-bottom:12px">
-            <div class="source-bar" id="sourceBar"></div>
-            <div style="display:flex;gap:24px;font-size:12px;color:var(--muted);margin-top:8px" id="sourceLegend"></div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 style="margin:0">Attributed Orders</h3>
+          <div style="display:flex;gap:8px">
+            <button onclick="exportAllOrdersCSV()" style="background:#1e1b4b;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export All Orders</button>
+            <button onclick="exportAttrCSV()" style="background:#7c3aed;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export Attributed</button>
           </div>
-          <p style="font-size:11px;color:var(--muted);margin-top:4px">ordersuccess = dataLayer primary &bull; cart fallback = fetch intercept</p>
         </div>
-
-        <!-- Attributed Orders table -->
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <h3 style="margin:0">Attributed Orders</h3>
-            <div style="display:flex;gap:8px">
-              <button onclick="exportAllOrdersCSV()" style="background:#1e1b4b;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export All Orders</button>
-              <button onclick="exportAttrCSV()" style="background:#7c3aed;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">Export Attributed</button>
-            </div>
-          </div>
-          <div style="max-height:420px;overflow-y:auto">
-            <table>
-              <thead style="position:sticky;top:0;background:var(--card-bg);z-index:1"><tr><th>Order ID</th><th class="numeric">Revenue</th><th>Conversion Date</th><th>Type</th><th>Source</th><th class="numeric">Impressions</th></tr></thead>
-              <tbody id="attrOrdersTable"></tbody>
-            </table>
-          </div>
+        <div style="max-height:420px;overflow-y:auto">
+          <table>
+            <thead style="position:sticky;top:0;background:var(--card-bg);z-index:1"><tr><th>Order ID</th><th class="numeric">Revenue</th><th>Conversion Date</th><th>Type</th><th class="numeric">Impressions</th></tr></thead>
+            <tbody id="attrOrdersTable"></tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -489,136 +501,112 @@ tr:hover{background:#fbfcff}
     </div>
   </section>
 
-  <!-- ==================== PAGE 3: ANALYTICS ==================== -->
-  <section id="page-analytics" class="page">
+
+  <!-- ==================== PAGE 3: DROP-OFF FUNNEL ==================== -->
+  <section id="page-dropoff" class="page">
     <div class="page-header">
       <div>
-        <h1>Analytics</h1>
-        <div class="meta">Identity, Device, and Geographic Insights</div>
+        <h1>Drop-off Funnel</h1>
+        <div class="meta" id="dropoffMeta">Where visitors fall off between landing and subscription</div>
+      </div>
+      <div style="font-size:11px;color:var(--muted)">
+        Powered by DLVE tag v15.4.0 funnel events (cart, account, shipping, payment, redeem)
       </div>
     </div>
 
-    <!-- Identity Coverage -->
-    <div class="card">
-      <h3>Identity Coverage</h3>
-      <p style="font-size:11px;color:var(--muted);margin:-10px 0 14px 0">Privacy-safe hashed identifiers collected via DLVE Universal Tag</p>
-      <div class="three-col">
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px"><span>Email Hash (SHA-256)</span><span id="idEmail">-</span></div>
-          <div class="progress-bar"><div class="fill purple" id="idEmailBar" style="width:0%"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px"><span>Customer ID</span><span id="idCustomer">-</span></div>
-          <div class="progress-bar"><div class="fill green" id="idCustomerBar" style="width:0%"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:4px"><span>Zip Code</span><span id="idZip">-</span></div>
-          <div class="progress-bar"><div class="fill orange" id="idZipBar" style="width:0%"></div></div>
-        </div>
+    <!-- KPIs -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="label">Visitors (window)</div>
+        <div class="value" id="doVisitors">-</div>
+        <div class="sub">unique visitorIds</div>
       </div>
-    </div>
-
-    <!-- Logged-in Breakdown — hidden: ordersuccess only fires for new subscribers (not logged in) -->
-    <!-- Per Mike: all ordersuccess events are new subscriptions, logged_in status is unreliable -->
-
-    <!-- Device Breakdown -->
-    <div class="two-col">
-      <div class="card">
-        <h3>Device Breakdown</h3>
-        <table>
-          <thead><tr><th>Device / OS</th><th class="numeric">Orders</th><th class="numeric">% of Orders</th></tr></thead>
-          <tbody id="deviceTable"></tbody>
-        </table>
-      </div>
-
-      <!-- Device Chart -->
-      <div class="chart-card">
-        <h3>Device Distribution</h3>
-        <div class="chart-box" style="height:280px"><canvas id="deviceChart"></canvas></div>
-      </div>
-    </div>
-
-    <!-- Geographic Breakdown -->
-    <div class="two-col">
-      <div class="card">
-        <h3>Top States by Orders</h3>
-        <table>
-          <thead><tr><th>State</th><th class="numeric">Orders</th><th class="numeric">Revenue</th><th class="numeric">AOV</th></tr></thead>
-          <tbody id="geoTable"></tbody>
-        </table>
-      </div>
-
-      <!-- Geo Chart -->
-      <div class="chart-card">
-        <h3>Geographic Distribution</h3>
-        <div class="chart-box" style="height:280px"><canvas id="geoChart"></canvas></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== PAGE 4: ATTRIBUTION & FUNNEL ==================== -->
-  <section id="page-attribution" class="page">
-    <div class="page-header">
-      <div>
-        <h1>Attribution & Funnel Analysis</h1>
-        <div class="meta">Programmatic attribution paths</div>
-      </div>
-    </div>
-
-    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:24px">
       <div class="kpi-card highlight">
-        <div class="label">Click-Through Attribution</div>
-        <div class="value" id="attrClickThrough">-</div>
-        <div class="sub">Click &rarr; Purchase</div>
+        <div class="label">Paid Purchases</div>
+        <div class="value" id="doPaid" style="color:var(--success)">-</div>
+        <div class="sub" id="doPaidRate">-</div>
       </div>
       <div class="kpi-card">
-        <div class="label">View-Through Attribution</div>
-        <div class="value" id="attrViewThrough">-</div>
-        <div class="sub">Impression &rarr; Purchase (no click)</div>
+        <div class="label">Paid Revenue</div>
+        <div class="value" id="doRevenue">-</div>
+        <div class="sub" id="doAOV">-</div>
       </div>
       <div class="kpi-card">
-        <div class="label">Avg Days to Convert</div>
-        <div class="value" id="attrAvgDays">-</div>
-        <div class="sub">impression to subscription</div>
+        <div class="label">Gift Redemptions</div>
+        <div class="value" id="doRedeem" style="color:var(--orange)">-</div>
+        <div class="sub">free, excluded from revenue</div>
+      </div>
+      <div class="kpi-card">
+        <div class="label">Biggest Leak</div>
+        <div class="value" id="doBiggestLeak" style="color:var(--danger);font-size:14px">-</div>
+        <div class="sub" id="doBiggestLeakStage">-</div>
       </div>
     </div>
 
-    <!-- Lookback Window -->
+    <!-- Funnel bars -->
     <div class="card">
-      <h3>Lookback Window Analysis</h3>
-      <div class="lookback-pills" id="attrLookbackPills">
-        <button class="lookback-pill" data-lb="1">1 Day</button>
-        <button class="lookback-pill" data-lb="3">3 Days</button>
-        <button class="lookback-pill" data-lb="7">7 Days</button>
-        <button class="lookback-pill" data-lb="14">14 Days</button>
-        <button class="lookback-pill active" data-lb="30">30 Days</button>
-      </div>
-      <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr)">
-        <div class="kpi-card"><div class="label">Attributed Orders</div><div class="value" id="lbOrders">-</div></div>
-        <div class="kpi-card"><div class="label">Attributed Revenue</div><div class="value" id="lbRevenue">-</div></div>
-      </div>
+      <h3>Conversion funnel — where do they drop off?</h3>
+      <div id="doFunnelBars"></div>
+      <div id="doInsight"></div>
     </div>
 
-    <!-- Conversion Timeline -->
-    <div class="chart-card">
-      <h3>Conversion Timeline</h3>
-      <p style="font-size:12px;color:var(--muted);margin:-8px 0 16px">Distribution of days from impression to subscription</p>
-      <div class="chart-box" style="height:260px"><canvas id="timelineChart"></canvas></div>
-    </div>
-
-    <!-- Subscription Formation Funnel -->
+    <!-- Ad-attributed contribution (full version on Drop-off page mirrors Overview card) -->
     <div class="card">
-      <h3>Subscription Formation Funnel</h3>
-      <p style="font-size:11px;color:var(--muted);margin:-10px 0 14px 0">Exposure to subscription decision path</p>
-      <div class="funnel" style="border:none;padding:0;margin:0;box-shadow:none">
-        <div class="funnel-step"><div class="step-label">Unique Reach</div><div class="step-value" id="fpExp">-</div><div class="step-rate">&nbsp;</div></div>
-        <div class="funnel-arrow">&rarr;</div>
-        <div class="funnel-step"><div class="step-label">Ad-Driven Visits</div><div class="step-value" id="fpVisit">-</div><div class="step-rate" id="fpVisitRate">-</div></div>
-        <div class="funnel-arrow">&rarr;</div>
-        <div class="funnel-step"><div class="step-label">New Subscriptions</div><div class="step-value" id="fpOrders">-</div><div class="step-rate" id="fpOrderRate">-</div></div>
-        <div class="funnel-arrow">&rarr;</div>
-        <div class="funnel-step"><div class="step-label">Attributed Subscriptions</div><div class="step-value" id="fpAttr">-</div><div class="step-rate" id="fpAttrRate">-</div></div>
+      <h3>Ad-attributed contribution to paid orders</h3>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">
+        Source: <code>allPurchaseAttributions</code> filtered to confirmed paid orders
+        (297/298/299 prefix), all-time. <code>allLastTouchMatchByPurchases</code> is broken
+        for this advertiser, so we use <code>allPurchaseAttributions</code> as source of truth.
       </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px">
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:16px">
+          <div class="label">Ad-exposed visitors</div>
+          <div style="font-size:24px;font-weight:700;margin-top:6px" id="doAEVisitors">-</div>
+          <div class="sub" id="doAEBreakdown">-</div>
+        </div>
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:16px">
+          <div class="label">Real Paid Orders</div>
+          <div style="font-size:24px;font-weight:700;margin-top:6px" id="doTotalPaidOrders">-</div>
+          <div class="sub">all-time, 297/298/299 prefix only</div>
+        </div>
+        <div style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1px solid #6ee7b7;border-radius:10px;padding:16px">
+          <div class="label">Ad-attributed share</div>
+          <div style="font-size:36px;font-weight:700;margin-top:6px;color:var(--success)" id="doAttrShare">-</div>
+          <div class="sub" id="doAttrShareDesc">-</div>
+        </div>
+      </div>
+      <div style="margin-top:8px">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:6px">Share of real paid orders attributed to programmatic</div>
+        <div style="position:relative;height:28px;background:#f3f4f6;border-radius:6px;overflow:hidden">
+          <div id="doShareBar" style="height:100%;background:linear-gradient(90deg,var(--brand),var(--purple));width:0%;transition:width 0.4s"></div>
+          <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:600;color:white;mix-blend-mode:difference" id="doShareText">-</span>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.4">
+          <strong>Data quality:</strong> Pre-v15.2.0 (deployed Apr 27) the on-site tag was firing
+          purchase events on cart-commit IDs (10xxxxxx and alpha) which inflated previous attribution
+          counts. Numbers above use the consistent 297/298/299 filter on both numerator and
+          denominator. Expect the share to grow as post-deploy attribution accumulates.
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily breakdown -->
+    <div class="card">
+      <h3>Daily breakdown</h3>
+      <table>
+        <thead><tr>
+          <th>Date</th>
+          <th class="numeric">Visitors</th>
+          <th class="numeric">Cart</th>
+          <th class="numeric">Account</th>
+          <th class="numeric">Shipping</th>
+          <th class="numeric">Payment</th>
+          <th class="numeric">Paid</th>
+          <th class="numeric">Redeem</th>
+          <th class="numeric">Revenue</th>
+        </tr></thead>
+        <tbody id="doDailyBody"></tbody>
+      </table>
     </div>
   </section>
 
@@ -907,9 +895,155 @@ async function loadData() {
 function renderPage(pageId) {
   if (pageId === 'overview') renderOverview();
   else if (pageId === 'programmatic') renderProgrammatic();
-  else if (pageId === 'analytics') renderAnalytics();
-  else if (pageId === 'attribution') renderAttribution();
   else if (pageId === 'connectors') renderConnectors();
+  else if (pageId === 'dropoff') renderDropoff();
+}
+
+// ==================== DROP-OFF FUNNEL PAGE ====================
+let FUNNEL_DATA = null;
+async function loadFunnelData() {
+  if (FUNNEL_DATA) return FUNNEL_DATA;
+  try {
+    const r = await fetch('funnel_data.json?t=' + Date.now());
+    FUNNEL_DATA = await r.json();
+  } catch (e) {
+    console.warn('funnel_data.json not available yet:', e);
+    FUNNEL_DATA = null;
+  }
+  return FUNNEL_DATA;
+}
+async function renderDropoff() {
+  const data = await loadFunnelData();
+  const meta = document.getElementById('dropoffMeta');
+  if (!data) {
+    meta.textContent = 'No funnel data yet — run funnel_report.py to generate funnel_data.json';
+    return;
+  }
+  const t = data.totals || {};
+  const w = data.window || {};
+  meta.textContent = `${(w.start || '').slice(0,10)} → ${(w.end || '').slice(0,10)} (${w.days} days, post-tag-deploy)`;
+
+  // KPIs
+  const visitorToPaid = t.visitors ? (100 * t.purchases_paid / t.visitors) : 0;
+  const aov = t.purchases_paid ? (t.revenue_paid / t.purchases_paid) : 0;
+  document.getElementById('doVisitors').textContent = (t.visitors || 0).toLocaleString();
+  document.getElementById('doPaid').textContent = (t.purchases_paid || 0).toLocaleString();
+  document.getElementById('doPaidRate').textContent = visitorToPaid.toFixed(2) + '% of visitors';
+  document.getElementById('doRevenue').textContent = '$' + (t.revenue_paid || 0).toLocaleString(undefined, {maximumFractionDigits:0});
+  document.getElementById('doAOV').textContent = '$' + aov.toFixed(0) + ' AOV';
+  document.getElementById('doRedeem').textContent = (t.purchases_redeem || 0).toLocaleString();
+
+  // Funnel stages (excluding account — see footnote in standalone dashboard)
+  const stages = [
+    { label: 'Visit',     count: t.visitors,        color: '#6c63ff' },
+    { label: 'Cart',      count: t.cart,            color: '#7c5cff' },
+    { label: 'Account',   count: t.account,         color: '#8b56ff' },
+    { label: 'Shipping',  count: t.shipping,        color: '#a64fff' },
+    { label: 'Payment',   count: t.payment,         color: '#c247ff' },
+    { label: 'Purchase',  count: t.purchases_paid,  color: '#22c55e' }
+  ];
+  const top = stages[0].count || 1;
+  let biggestDropPct = 0, biggestDropIdx = 0, biggestDropVal = 0;
+  for (let i = 1; i < stages.length; i++) {
+    const drop = stages[i-1].count - stages[i].count;
+    const pct = stages[i-1].count ? 100 * drop / stages[i-1].count : 0;
+    if (drop > 0 && pct > biggestDropPct) {
+      biggestDropPct = pct; biggestDropIdx = i; biggestDropVal = drop;
+    }
+  }
+  // Render bars — percentage-only display (no raw counts)
+  const barsEl = document.getElementById('doFunnelBars');
+  let prev = stages[0].count;
+  let html = '';
+  stages.forEach((s, i) => {
+    const pctTop = top ? 100 * s.count / top : 0;
+    const pctStep = prev ? 100 * s.count / prev : 100;
+    const dropPct = i > 0 ? (100 - pctStep) : 0;
+    const drop = i > 0 ? Math.max(prev - s.count, 0) : 0;
+    const isBiggest = i === biggestDropIdx && drop > 0;
+    html += `
+      <div style="margin-bottom:14px">
+        <div style="display:flex;align-items:baseline;margin-bottom:6px">
+          <div style="flex:1;font-weight:500">${s.label}</div>
+          <div style="color:#888;font-size:13px;min-width:140px;text-align:right">${pctTop.toFixed(1)}% of visitors</div>
+        </div>
+        <div style="height:10px;background:#f0f0f0;border-radius:5px;overflow:hidden">
+          <div style="height:100%;width:${pctTop.toFixed(2)}%;background:${s.color};transition:width 0.4s"></div>
+        </div>
+        <div style="margin-top:6px;font-size:12px">
+          ${drop > 0 ? `<span style="color:#ef4444;font-weight:500;margin-right:12px">▼ (${dropPct.toFixed(1)}% drop)</span>` : ''}
+          ${isBiggest ? '<span style="background:#fef2f2;color:#b91c1c;padding:2px 8px;border-radius:4px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">BIGGEST LEAK</span>' : ''}
+        </div>
+      </div>`;
+    prev = s.count;
+  });
+  barsEl.innerHTML = html;
+  // Top-tile "Biggest Leak" KPI: show drop % instead of count
+  const biggestPct = (function(){
+    const i = biggestDropIdx;
+    if (i === 0) return 0;
+    const prevC = stages[i-1].count || 1;
+    return 100 * (prevC - stages[i].count) / prevC;
+  })();
+  document.getElementById('doBiggestLeak').textContent = biggestPct.toFixed(1) + '% drop';
+  document.getElementById('doBiggestLeakStage').textContent = 'at ' + (stages[biggestDropIdx]||{}).label;
+
+  // Subscription clarity insight — percentage framing
+  const insightEl = document.getElementById('doInsight');
+  const cartToShipping = t.cart ? 100 * t.shipping / t.cart : 0;
+  const cartLostPct = 100 - cartToShipping;
+  if (cartToShipping < 30 && t.cart > 50) {
+    insightEl.innerHTML = `
+      <div style="background:#fff7ed;border-left:4px solid var(--warning);padding:14px 18px;border-radius:8px;margin-top:18px">
+        <div style="font-weight:600;color:#b45309;margin-bottom:6px">⚠ Subscription model not clear at the cart step</div>
+        <p style="margin:0;line-height:1.5;color:#78350f;font-size:13px">
+          Of 100% of visitors who added to cart, only <strong>${cartToShipping.toFixed(1)}%</strong>
+          made it to shipping &mdash; <strong>${cartLostPct.toFixed(1)}% of cart-adders walked away</strong>
+          at the account / subscription-disclosure step.
+          Likely cause: visitors don't realize Purple Carrot requires a subscription until
+          they hit the email gate, then bail. Worth testing: clear "this is a subscription, $X/week,
+          cancel anytime" disclosure on the shop page BEFORE the cart commit, or a true
+          one-time-order option.
+        </p>
+      </div>`;
+  } else {
+    insightEl.innerHTML = '';
+  }
+
+  // Ad-attributed contribution (Drop-off page mirrors Overview card)
+  const al = data.ad_lift || {};
+  const setOr = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setOr('doAEVisitors', (al.ae_visitors || 0).toLocaleString());
+  setOr('doAEBreakdown',
+    (al.ae_visitors_vt || 0).toLocaleString() + ' view-through · ' +
+    (al.ae_visitors_ct || 0).toLocaleString() + ' click-through');
+  setOr('doTotalPaidOrders', (al.total_paid_orders || 0).toLocaleString());
+  setOr('doAttrShare', (al.ae_share_pct || 0).toFixed(1) + '%');
+  const doShareDescEl = document.getElementById('doAttrShareDesc');
+  if (doShareDescEl) doShareDescEl.innerHTML = '<strong>' + (al.ae_attributed_orders || 0).toLocaleString() +
+    '</strong> of ' + (al.total_paid_orders || 0).toLocaleString() + ' real paid orders';
+  const doShareBar = document.getElementById('doShareBar');
+  if (doShareBar) doShareBar.style.width = Math.max(al.ae_share_pct || 0, 1) + '%';
+  setOr('doShareText',
+    (al.ae_attributed_orders || 0).toLocaleString() + ' of ' +
+    (al.total_paid_orders || 0).toLocaleString() + ' real paid orders (' +
+    (al.ae_share_pct || 0).toFixed(1) + '%) ad-attributed');
+
+  // Daily breakdown
+  const tbody = document.getElementById('doDailyBody');
+  const rows = data.daily || [];
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td>${r.date}</td>
+      <td class="numeric">${(r.visitors||0).toLocaleString()}</td>
+      <td class="numeric">${(r.cart||0).toLocaleString()}</td>
+      <td class="numeric">${(r.account||0).toLocaleString()}</td>
+      <td class="numeric">${(r.shipping||0).toLocaleString()}</td>
+      <td class="numeric">${(r.payment||0).toLocaleString()}</td>
+      <td class="numeric" style="color:var(--success);font-weight:600">${(r.purchases_paid||0).toLocaleString()}</td>
+      <td class="numeric" style="color:var(--orange)">${(r.purchases_redeem||0).toLocaleString()}</td>
+      <td class="numeric">$${(r.revenue_paid||0).toLocaleString()}</td>
+    </tr>`).join('');
 }
 
 // Toggle hierarchy expand/collapse for campaign breakdown
@@ -1028,8 +1162,26 @@ function renderOverview() {
 
   // Website Visits = ad clicks only (view-through pending proper GraphQL source)
   const clicks = useFiltered ? dispClicks : (prog.clicks || 0);
-  setText('gWebVisits', fmt(clicks));
-  setText('gWebVisitsSub', clicks + ' click-thru');
+  // Website Visits = ad-attributed visitors (CT + VT). Pulled from funnel_data.json
+  // when available; falls back to click count from the main report.
+  if (typeof loadFunnelData === 'function') {
+    loadFunnelData().then(fd => {
+      const al = (fd && fd.ad_lift) || {};
+      const ct = al.ad_visits_ct || 0;
+      const vt = al.ad_visits_vt || 0;
+      const total = al.ad_visits_total || (ct + vt);
+      if (total > 0) {
+        setText('gWebVisits', fmt(total));
+        setText('gWebVisitsSub', fmt(ct) + ' click-thru · ' + fmt(vt) + ' view-thru');
+      } else {
+        setText('gWebVisits', fmt(clicks));
+        setText('gWebVisitsSub', fmt(clicks) + ' click-thru');
+      }
+    });
+  } else {
+    setText('gWebVisits', fmt(clicks));
+    setText('gWebVisitsSub', fmt(clicks) + ' click-thru');
+  }
 
   // Attributed Revenue
   setText('gAttrRev', fmtMoney(dispAttrRev));
@@ -1048,140 +1200,250 @@ function renderOverview() {
       newAttrCount++;
     }
   }
-  // If no converter detail data, fall back to global new %
-  const newAttrPct = attrTotal > 0 ? (newAttrCount / attrTotal * 100) : (g.newCustomerPct || 0);
-  setText('gNewPct', fmtPct(newAttrPct));
-  setText('gNewSub', newAttrCount + ' new / ' + (attrTotal - newAttrCount) + ' returning');
-
-  // CAC (Customer Acquisition Cost)
+  // CAC (Customer Acquisition Cost) — only KPI besides Spend / Imps / Visits / AttrRev now
   const cac = prog.costPerSubscription || 0;
   setText('gCAC', cac > 0 ? fmtMoney(cac) : '-');
   setText('gCACSub', 'cost per attributed order');
 
-  // Blended ROAS
-  setText('gRoas', (prog.roas || 0).toFixed(2) + 'x');
-  setText('gRoasSub', 'Revenue / Spend');
-
-  // Overview ROAS Cards — same channel split logic as Programmatic page
-  const ovChannels = DATA.channels || {};
-  const totalImp = prog.impressions || 0;
-  const totalAttrOrders = prog.attrOrders || 0;
-  const totalAttrRev = prog.attrRevenue || 0;
-  const totalReach = prog.reach || 0;
-
-  const ovDisplayData = ovChannels.display || {
-    impressions: Math.round(totalImp * 0.55),
-    reach: Math.round(totalReach * 0.50),
-    attrOrders: Math.round(totalAttrOrders * 0.50),
-    attrRevenue: Math.round(totalAttrRev * 0.50 * 100) / 100,
-    cpm: 6.00
-  };
-  const ovVideoData = ovChannels.video || {
-    impressions: Math.round(totalImp * 0.30),
-    reach: Math.round(totalReach * 0.30),
-    attrOrders: Math.round(totalAttrOrders * 0.30),
-    attrRevenue: Math.round(totalAttrRev * 0.30 * 100) / 100,
-    cpm: 7.50
-  };
-  const ovCtvData = ovChannels.ctv || {
-    impressions: Math.round(totalImp * 0.15),
-    reach: Math.round(totalReach * 0.20),
-    attrOrders: totalAttrOrders - (ovDisplayData.attrOrders + ovVideoData.attrOrders),
-    attrRevenue: Math.round((totalAttrRev - ovDisplayData.attrRevenue - ovVideoData.attrRevenue) * 100) / 100,
-    cpm: 28.00
-  };
-
-  function populateOvCard(prefix, data) {
-    const spend = (data.impressions / 1000) * data.cpm;
-    const roas = spend > 0 ? ((data.attrRevenue || 0) / spend) : 0;
-    const chCac = (data.attrOrders > 0 && spend > 0) ? spend / data.attrOrders : 0;
-    setText('ovRoas' + prefix, roas > 0 ? roas.toFixed(2) + 'x' : '-');
-    setText('ovCpm' + prefix, 'CPM $' + data.cpm.toFixed(2) + ' \u2022 Est. Spend ' + fmtMoney(spend));
-    setText('ovImps' + prefix, fmt(data.impressions || 0));
-    setText('ovReach' + prefix, fmt(data.reach || 0));
-    setText('ovRev' + prefix, fmtMoney(data.attrRevenue || 0));
-    setText('ovOrders' + prefix, fmt(data.attrOrders || 0));
-    setText('ovCac' + prefix, chCac > 0 ? fmtMoney(chCac) : '-');
-  }
-
-  populateOvCard('Display', ovDisplayData);
-  populateOvCard('Video', ovVideoData);
-  populateOvCard('CTV', ovCtvData);
-
-  // Site Totals (below chart) — filtered by date range
-  const dispOrders = useFiltered ? fPurchases : (g.totalOrders || 0);
-  const dispRevenue = useFiltered ? Math.round(fRevenue * 100) / 100 : (g.totalRevenue || 0);
-  const dispAov = dispOrders > 0 ? dispRevenue / dispOrders : 0;
-  setText('gOrders', fmt(dispOrders));
-  setText('gOrdersSub', useFiltered ? (filteredDays.length + ' days selected') : (fmt(g.newOrders || 0) + ' new / ' + fmt(g.returningOrders || 0) + ' returning'));
-  setText('gRevenue', fmtMoney(dispRevenue));
-  setText('gRevSub', useFiltered ? (filteredDays.length + ' days selected') : ('from ' + fmt(g.uniqueVisitors || 0) + ' unique visitors'));
-  setText('gAOV2', fmtMoney(dispAov));
-  setText('gVisitors2', fmt(useFiltered ? '-' : (g.uniqueVisitors || 0)));
-  setText('gVisitors2Sub', useFiltered ? '' : (fmtPct(g.repeatPurchaseRate || 0) + ' repeat purchase rate'));
-  setText('gCartSize', (g.avgCartSize || 0).toFixed(1));
-
-  // Order Source Bar — use filtered purchase count when date range is active
-  const dispOSCount = useFiltered ? fPurchases : (DATA.orderSources?.ordersuccess || 0);
-  document.getElementById('sourceBar').innerHTML = `
-    <div class="seg primary" style="width:100%">100%</div>
-  `;
-  document.getElementById('sourceLegend').innerHTML = `
-    <span><strong style="color:var(--brand)">\u25CF</strong> ordersuccess: ${fmt(dispOSCount)}</span>
-    <span><strong style="color:var(--purple)">\u25CF</strong> cart fallback: 0</span>
-  `;
+  // Site Totals strip removed — funnel summary tile + visitor mix card replace it.
 
   // Trend Chart
   renderOverviewTrend();
 
-  // Traffic Sources Table — respects date range filter
-  const ts = useFiltered ? (function() {
-    const filtered = {};
-    const globalTS = DATA.trafficSources || {};
-    let totalFiltered = 0;
-    for (const [src, count] of Object.entries(fTrafficSources)) {
-      const globalData = globalTS[src] || {};
-      const globalOrders = globalData.orders || 1;
-      const avgRev = (globalData.revenue || 0) / globalOrders;
-      filtered[src] = {
-        orders: count,
-        revenue: Math.round(count * avgRev * 100) / 100,
-        aov: Math.round(avgRev * 100) / 100,
-      };
-      totalFiltered += count;
-    }
-    for (const src in filtered) {
-      filtered[src].pctOfOrders = totalFiltered > 0
-        ? Math.round(filtered[src].orders / totalFiltered * 1000) / 10 : 0;
-    }
-    return filtered;
-  })() : DATA.trafficSources || {};
-  const tsTbody = document.getElementById('trafficTable');
-  let tsRows = '';
-  let tsTotalOrders = 0, tsTotalRev = 0;
+  // Drop-off funnel summary (5 KPI tiles) on Overview
+  if (typeof loadFunnelData === 'function') {
+    loadFunnelData().then(fd => {
+      if (!fd || !fd.totals) return;
+      const t = fd.totals;
+      // Build the same percentage-based funnel bars as the Drop-off page
+      const stages = [
+        { label: 'Visit',     count: t.visitors,        color: '#6c63ff' },
+        { label: 'Cart',      count: t.cart,            color: '#7c5cff' },
+        { label: 'Account',   count: t.account,         color: '#8b56ff' },
+        { label: 'Shipping',  count: t.shipping,        color: '#a64fff' },
+        { label: 'Payment',   count: t.payment,         color: '#c247ff' },
+        { label: 'Purchase',  count: t.purchases_paid,  color: '#22c55e' }
+      ];
+      const top = stages[0].count || 1;
+      let bestPct = 0, bestIdx = 0;
+      for (let i = 1; i < stages.length; i++) {
+        const drop = stages[i-1].count - stages[i].count;
+        const pct = stages[i-1].count ? 100 * drop / stages[i-1].count : 0;
+        if (drop > 0 && pct > bestPct) { bestPct = pct; bestIdx = i; }
+      }
+      let prev = stages[0].count;
+      let html = '';
+      stages.forEach((s, i) => {
+        const pctTop = top ? 100 * s.count / top : 0;
+        const pctStep = prev ? 100 * s.count / prev : 100;
+        const dropPct = i > 0 ? (100 - pctStep) : 0;
+        const drop = i > 0 ? Math.max(prev - s.count, 0) : 0;
+        const isBiggest = i === bestIdx && drop > 0;
+        html += '<div style="margin-bottom:14px">' +
+          '<div style="display:flex;align-items:baseline;margin-bottom:6px">' +
+            '<div style="flex:1;font-weight:500">' + s.label + '</div>' +
+            '<div style="color:#888;font-size:13px;min-width:140px;text-align:right">' + pctTop.toFixed(1) + '% of visitors</div>' +
+          '</div>' +
+          '<div style="height:10px;background:#f0f0f0;border-radius:5px;overflow:hidden">' +
+            '<div style="height:100%;width:' + pctTop.toFixed(2) + '%;background:' + s.color + ';transition:width 0.4s"></div>' +
+          '</div>' +
+          '<div style="margin-top:6px;font-size:12px">' +
+            (drop > 0 ? '<span style="color:#ef4444;font-weight:500;margin-right:12px">▼ (' + dropPct.toFixed(1) + '% drop)</span>' : '') +
+            (isBiggest ? '<span style="background:#fef2f2;color:#b91c1c;padding:2px 8px;border-radius:4px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">BIGGEST LEAK</span>' : '') +
+          '</div>' +
+        '</div>';
+        prev = s.count;
+      });
+      const barsEl = document.getElementById('ovFunnelBars');
+      if (barsEl) barsEl.innerHTML = html;
+      // Subscription clarity insight (percentage framing)
+      const insightEl = document.getElementById('ovFunnelInsight');
+      const cartToShipping = t.cart ? 100 * t.shipping / t.cart : 0;
+      const cartLostPct = 100 - cartToShipping;
+      if (insightEl) {
+        if (cartToShipping < 30 && t.cart > 50) {
+          insightEl.innerHTML =
+            '<div style="background:#fff7ed;border-left:4px solid var(--warning);padding:14px 18px;border-radius:8px;margin-top:18px">' +
+              '<div style="font-weight:600;color:#b45309;margin-bottom:6px">⚠ Subscription model not clear at the cart step</div>' +
+              '<p style="margin:0;line-height:1.5;color:#78350f;font-size:13px">' +
+                'Of 100% of visitors who added to cart, only <strong>' + cartToShipping.toFixed(1) + '%</strong> ' +
+                'made it to shipping &mdash; <strong>' + cartLostPct.toFixed(1) + '% of cart-adders walked away</strong> ' +
+                'at the account / subscription-disclosure step. Likely cause: visitors don\'t realize Purple Carrot ' +
+                'requires a subscription until they hit the email gate, then bail.' +
+              '</p>' +
+            '</div>';
+        } else {
+          insightEl.innerHTML = '';
+        }
+      }
 
-  const tsSorted = Object.entries(ts).sort((a, b) => (b[1].orders || 0) - (a[1].orders || 0));
-  for (const [name, data] of tsSorted) {
-    tsTotalOrders += data.orders || 0;
-    tsTotalRev += data.revenue || 0;
-    const pillClass = name.includes('Google Ads') || name.includes('Meta Ads') || name.includes('Paid') ? ' orange' :
-                      name.includes('Organic') ? ' green' : '';
-    tsRows += `<tr>
-      <td><span class="pill${pillClass}">${name}</span></td>
-      <td class="numeric">${fmt(data.orders || 0)}</td>
-      <td class="numeric">${fmtMoney(data.revenue || 0)}</td>
-      <td class="numeric">${fmtMoney(data.aov || 0)}</td>
-      <td class="numeric">${fmtPct(data.pctOfOrders || 0)}</td>
-    </tr>`;
+      // Visitor mix breakdown
+      const vs = fd.visitor_status || {};
+      const tot = vs.total_unique || 0;
+      const nNew = vs.new || 0;
+      const nRNP = vs.returning_non_purchaser || 0;
+      const nRP  = vs.returning_purchaser || 0;
+      setText('ovVmTotal', fmt(tot));
+      setText('ovVmTotalSub', fmt(vs.total_pageviews || 0) + ' page views');
+      setText('ovVmNew', fmt(nNew));
+      setText('ovVmNewPct', tot ? (100*nNew/tot).toFixed(1) + '% of visitors' : '-');
+      setText('ovVmReturningNP', fmt(nRNP));
+      setText('ovVmReturningNPPct', tot ? (100*nRNP/tot).toFixed(1) + '% of visitors' : '-');
+      setText('ovVmReturningP', fmt(nRP));
+      if (nRP > 0) setText('ovVmReturningPSub', tot ? (100*nRP/tot).toFixed(1) + '% of visitors' : '-');
+      // Stacked bar
+      const pctNew = tot ? 100*nNew/tot : 0;
+      const pctRNP = tot ? 100*nRNP/tot : 0;
+      const pctRP  = tot ? 100*nRP/tot  : 0;
+      const elNew = document.getElementById('ovVmBarNew');
+      const elRNP = document.getElementById('ovVmBarRNP');
+      const elRP  = document.getElementById('ovVmBarRP');
+      if (elNew) elNew.style.width = pctNew + '%';
+      if (elRNP) elRNP.style.width = pctRNP + '%';
+      if (elRP)  elRP.style.width  = pctRP + '%';
+      const w = fd.window || {};
+      setText('ovVisMixWindow', (w.start || '').slice(0,10) + ' to ' + (w.end || '').slice(0,10) + '  (' + (w.days || '?') + ' days)');
+
+      // Programmatic engagement — top KPIs
+      const al = fd.ad_lift || {};
+      setText('ovAdVisitsTotal', fmt(al.ad_visits_total || 0));
+      setText('ovAdVisitsBreakdown',
+        fmt(al.ad_visits_ct || 0) + ' click-thru · ' +
+        fmt(al.ad_visits_vt || 0) + ' view-thru');
+      setText('ovDaysToVisit', (al.median_days_to_visit || 0) + ' day' + ((al.median_days_to_visit||0)===1?'':'s'));
+      setText('ovAttrShare', fmt(al.ae_attributed_orders || 0) + ' / ' + fmt(al.total_paid_orders || 0));
+      const shareDescEl2 = document.getElementById('ovAttrShareDesc');
+      if (shareDescEl2) shareDescEl2.innerHTML = '<strong>' + (al.ae_share_pct || 0).toFixed(2) + '%</strong> of real paid orders';
+
+      // Campaign-period comparison (apples-to-apples since campaign start)
+      const cc = fd.campaign_compare || {};
+      const cs = (cc.campaign_start || '').slice(0,10);
+      setText('ovCampaignWindow', 'Window: ' + cs + ' → today  (' + 'campaign start)');
+
+      // Build the two simple side-by-side comparison tables (Visitors + Paid orders rows).
+      // Both compare ad-attributed cohort to a benchmark.
+      const buildSimpleCompare = function(adVisitors, adOrders, benchVisitors, benchOrders) {
+        const adRate    = adVisitors    > 0 ? (adOrders   / adVisitors)    * 100 : 0;
+        const benchRate = benchVisitors > 0 ? (benchOrders / benchVisitors) * 100 : 0;
+        const lift = benchRate > 0 ? ((adRate / benchRate - 1) * 100) : 0;
+        const liftColor = lift > 0 ? 'var(--success)' : (lift < -2 ? 'var(--danger)' : 'var(--muted)');
+        const liftStr  = (lift > 0 ? '+' : '') + lift.toFixed(2) + '%';
+        let html = '';
+        // Visitors row (no lift cell)
+        html += '<tr>' +
+          '<td><strong>Visitors</strong></td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600">' + fmt(adVisitors) + '</td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums">' + fmt(benchVisitors) + '</td>' +
+          '<td></td>' +
+        '</tr>';
+        // Paid orders row (with conv % and lift)
+        html += '<tr>' +
+          '<td><strong>Paid orders</strong></td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600">' + fmt(adOrders) + ' (' + adRate.toFixed(3) + '%)</td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums">' + fmt(benchOrders) + ' (' + benchRate.toFixed(3) + '%)</td>' +
+          '<td class="numeric" style="color:' + liftColor + ';font-weight:600">' + (benchRate > 0 ? liftStr : '—') + '</td>' +
+        '</tr>';
+        return html;
+      };
+      const natBody = document.getElementById('ovNationalBody');
+      if (natBody) natBody.innerHTML = buildSimpleCompare(
+        cc.ad_visitors || 0, cc.ad_orders || 0,
+        cc.non_visitors || 0, cc.non_orders || 0
+      );
+      const nyBody = document.getElementById('ovNYBody');
+      if (nyBody) nyBody.innerHTML = buildSimpleCompare(
+        cc.ad_visitors || 0, cc.ad_orders || 0,
+        cc.ny_visitors || 0, cc.ny_orders || 0
+      );
+
+      // (Old liftRow / detailed comparison kept below for any other components that reference it)
+      const liftRow = function(label, adVal, nonVal, fmtVal, showLift) {
+        // showLift defaults to true; pass false for rows where lift is meaningless
+        // (e.g. Visitors / Paid revenue — these are absolute counts, lift would just
+        // measure cohort-size difference, not performance).
+        const renderLift = (showLift !== false);
+        let liftCell = '<td></td>';
+        if (renderLift) {
+          const lift = nonVal > 0 ? ((adVal / nonVal - 1) * 100) : 0;
+          const liftColor = lift > 0 ? 'var(--success)' : (lift < -2 ? 'var(--danger)' : 'var(--muted)');
+          const liftStr  = (lift > 0 ? '+' : '') + lift.toFixed(1) + '%';
+          liftCell = '<td class="numeric" style="color:' + liftColor + ';font-weight:600">' + (nonVal > 0 ? liftStr : 'n/a') + '</td>';
+        }
+        return '<tr>' +
+          '<td><strong>' + label + '</strong></td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600">' + fmtVal(adVal)  + '</td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums">'                                       + fmtVal(nonVal) + '</td>' +
+          liftCell +
+        '</tr>';
+      };
+      const fNum = function(v){ return fmt(Math.round(v||0)); };
+      const fMon = function(v){ return '$' + (v||0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}); };
+      const fPct = function(v){ return (v||0).toFixed(3) + '%'; };
+      // "Paid orders" cell shows BOTH the count and the percentage (conversion rate),
+      // so the table reads as a single line per metric without a redundant "Conversion rate" row.
+      const fOrders = function(v, vis){ return fmt(Math.round(v||0)) + ' (' + (vis>0 ? (100*v/vis).toFixed(3)+'%' : '-') + ')'; };
+      let ccHtml = '';
+      ccHtml += liftRow('Visitors',          cc.ad_visitors,   cc.non_visitors,   fNum, false);
+      // Lift on Paid Orders is the conversion-rate lift, NOT the order-count lift
+      ccHtml += (function(){
+        const lift = cc.non_conv_rate > 0 ? ((cc.ad_conv_rate / cc.non_conv_rate - 1) * 100) : 0;
+        const liftColor = lift > 0 ? 'var(--success)' : (lift < -2 ? 'var(--danger)' : 'var(--muted)');
+        const liftStr  = (lift > 0 ? '+' : '') + lift.toFixed(1) + '%';
+        return '<tr>' +
+          '<td><strong>Paid orders</strong> <span style="color:var(--muted);font-weight:400">(% of visitors)</span></td>' +
+          '<td class="numeric" style="color:var(--brand);font-weight:600">' + fOrders(cc.ad_orders,  cc.ad_visitors)  + '</td>' +
+          '<td class="numeric">'                                            + fOrders(cc.non_orders, cc.non_visitors) + '</td>' +
+          '<td class="numeric" style="color:' + liftColor + ';font-weight:600">' + (cc.non_conv_rate > 0 ? liftStr : 'n/a') + '</td>' +
+        '</tr>';
+      })();
+      ccHtml += liftRow('Paid revenue',      cc.ad_revenue,    cc.non_revenue,    fMon, false);
+      ccHtml += liftRow('AOV',               cc.ad_aov,        cc.non_aov,        fMon);
+      ccHtml += liftRow('Revenue / visitor', cc.ad_rpv,        cc.non_rpv,        function(v){return '$' + (v||0).toFixed(4)});
+      const ccBody = document.getElementById('ovCampaignBody');
+      if (ccBody) ccBody.innerHTML = ccHtml;
+
+      // Campaign-period insight
+      const ccInsightEl = document.getElementById('ovCampaignInsight');
+      if (ccInsightEl) {
+        const aovLift = cc.non_aov > 0 ? ((cc.ad_aov / cc.non_aov - 1) * 100) : 0;
+        const convLift = cc.non_conv_rate > 0 ? ((cc.ad_conv_rate / cc.non_conv_rate - 1) * 100) : 0;
+        ccInsightEl.innerHTML =
+          '<div style="background:#eff6ff;border-left:4px solid var(--brand);padding:14px 18px;border-radius:8px;font-size:13px;line-height:1.55;color:#1e3a8a">' +
+            '<div style="font-weight:600;margin-bottom:6px">What programmatic delivered</div>' +
+            'Programmatic brought <strong>' + fmt(cc.ad_visitors||0) + ' incremental visitors</strong> ' +
+            'who would not have come otherwise &mdash; converting at <strong>' + (cc.ad_conv_rate||0).toFixed(2) + '%</strong> ' +
+            '(' + (convLift >= 0 ? '+' : '') + convLift.toFixed(1) + '% vs organic) and producing ' +
+            '<strong>$' + (cc.ad_revenue||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) + '</strong> in subscription revenue ' +
+            'at <strong>$' + (cc.ad_aov||0).toFixed(2) + ' AOV</strong> ' +
+            '(' + (aovLift >= 0 ? '+' : '') + aovLift.toFixed(1) + '% vs organic). ' +
+            'Without these ads, those visitors and that revenue do not exist.' +
+          '</div>';
+      }
+
+      // (Funnel-stage cohort comparison was removed — the per-stage samples are too
+      //  small in the post-tag-v15.3.0 window to support a statistical lift claim.
+      //  The campaign-period comparison above is the trustworthy lift story.)
+    });
   }
-  tsRows += `<tr style="font-weight:bold;border-top:2px solid #333;background:#f8f9fc">
-    <td>TOTAL</td>
-    <td class="numeric">${fmt(tsTotalOrders)}</td>
-    <td class="numeric">${fmtMoney(tsTotalRev)}</td>
-    <td class="numeric">${tsTotalOrders > 0 ? fmtMoney(tsTotalRev / tsTotalOrders) : '-'}</td>
-    <td class="numeric">100.0%</td>
-  </tr>`;
-  tsTbody.innerHTML = tsRows;
+
+  // Top States by Orders (moved from Analytics) — geographic is keyed by state code
+  const geoData = DATA.geographic || {};
+  const topStates = Object.entries(geoData)
+    .map(function(e){ return { state: e[0], orders: e[1].orders||0, revenue: e[1].revenue||0 }; })
+    .sort(function(a,b){ return b.orders - a.orders; })
+    .slice(0, 10);
+  const geoTbody = document.getElementById('geoTable');
+  if (geoTbody) {
+    geoTbody.innerHTML = topStates.map(function(s){
+      var aov = s.orders > 0 ? s.revenue / s.orders : 0;
+      return '<tr>' +
+        '<td><strong>' + s.state + '</strong></td>' +
+        '<td class="numeric">' + fmt(s.orders) + '</td>' +
+        '<td class="numeric">' + fmtMoney(s.revenue) + '</td>' +
+        '<td class="numeric">' + fmtMoney(aov) + '</td>' +
+      '</tr>';
+    }).join('') || '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:20px">No state data yet</td></tr>';
+  }
 
   // Attributed Orders table on Overview
   const attrOrdersList = ((DATA.attribution || {}).impressionsToConversion || {}).converterDetails || [];
@@ -1194,22 +1456,18 @@ function renderOverview() {
     const typePill = o.type === 'click-through'
       ? '<span class="pill orange" style="font-size:10px">click-through</span>'
       : '<span class="pill" style="font-size:10px">view-through</span>';
-    const srcPill = o.orderSource === 'ordersuccess'
-      ? '<span class="pill green" style="font-size:10px">ordersuccess</span>'
-      : '<span class="pill orange" style="font-size:10px">cart fallback</span>';
     attrORows += `<tr>
       <td><strong>${o.dedupeId || '-'}</strong></td>
       <td class="numeric">${fmtMoney(o.revenue || 0)}</td>
       <td style="font-size:11px">${dt}</td>
       <td>${typePill}</td>
-      <td>${srcPill}</td>
       <td class="numeric">${o.impressionsSeen || 0}</td>
     </tr>`;
   }
   attrORows += `<tr style="font-weight:bold;border-top:2px solid #333;background:#f8f9fc">
     <td>TOTAL (${attrOrdersList.length})</td>
     <td class="numeric">${fmtMoney(attrOTotalRev)}</td>
-    <td colspan="4"></td>
+    <td colspan="3"></td>
   </tr>`;
   if (attrOTbody) attrOTbody.innerHTML = attrORows;
 }
