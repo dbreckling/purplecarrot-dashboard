@@ -514,12 +514,12 @@ tr:hover{background:#fbfcff}
       </div>
     </div>
 
-    <!-- KPIs -->
+    <!-- KPIs — campaign-period (since 3/11), so they match the rest of the dashboard -->
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="label">Visitors (window)</div>
+        <div class="label">Visitors</div>
         <div class="value" id="doVisitors">-</div>
-        <div class="sub">unique visitorIds</div>
+        <div class="sub" id="doVisitorsSub">campaign window</div>
       </div>
       <div class="kpi-card highlight">
         <div class="label">Paid Purchases</div>
@@ -534,7 +534,7 @@ tr:hover{background:#fbfcff}
       <div class="kpi-card">
         <div class="label">Gift Redemptions</div>
         <div class="value" id="doRedeem" style="color:var(--orange)">-</div>
-        <div class="sub">free, excluded from revenue</div>
+        <div class="sub">included in order count, $0 / near-$0 revenue</div>
       </div>
       <div class="kpi-card">
         <div class="label">Biggest Leak</div>
@@ -545,7 +545,16 @@ tr:hover{background:#fbfcff}
 
     <!-- Funnel bars -->
     <div class="card">
-      <h3>Conversion funnel — where do they drop off?</h3>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+        <h3 style="margin:0">Conversion funnel — where do they drop off?</h3>
+        <span style="font-size:11px;color:var(--muted)" id="doFunnelWindow">funnel-events window</span>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 12px 0">
+        Funnel-stage events (Cart, Account, Shipping, Payment) only fire post-tag-v15.3.0
+        deploy (Apr 27). Visit + Purchase counts cover the same shorter window for
+        consistency. The KPI tiles above use the longer campaign-period window for
+        the headline numbers.
+      </p>
       <div id="doFunnelBars"></div>
       <div id="doInsight"></div>
     </div>
@@ -921,17 +930,34 @@ async function renderDropoff() {
   }
   const t = data.totals || {};
   const w = data.window || {};
-  meta.textContent = `${(w.start || '').slice(0,10)} → ${(w.end || '').slice(0,10)} (${w.days} days, post-tag-deploy)`;
+  // Top-tile KPIs use the CAMPAIGN-PERIOD numbers (since 3/11) so they match the
+  // rest of the dashboard. Funnel-bar chart below still uses the post-deploy window
+  // because that's when funnel events fire.
+  const cc = data.campaign_compare || {};
+  const cs = (cc.campaign_start || '').slice(0,10);
+  meta.textContent = `Campaign window: ${cs} → today  ·  Funnel-event chart below uses ${(w.start || '').slice(0,10)} → ${(w.end || '').slice(0,10)} (post-tag-deploy)`;
 
-  // KPIs
-  const visitorToPaid = t.visitors ? (100 * t.purchases_paid / t.visitors) : 0;
-  const aov = t.purchases_paid ? (t.revenue_paid / t.purchases_paid) : 0;
-  document.getElementById('doVisitors').textContent = (t.visitors || 0).toLocaleString();
-  document.getElementById('doPaid').textContent = (t.purchases_paid || 0).toLocaleString();
-  document.getElementById('doPaidRate').textContent = visitorToPaid.toFixed(2) + '% of visitors';
-  document.getElementById('doRevenue').textContent = '$' + (t.revenue_paid || 0).toLocaleString(undefined, {maximumFractionDigits:0});
+  // Campaign-window totals: ad + non-attributed combined = full site
+  const siteVisitors = (cc.ad_visitors || 0) + (cc.non_visitors || 0);
+  const siteOrders   = (cc.ad_orders   || 0) + (cc.non_orders   || 0);
+  const siteRevenue  = (cc.ad_revenue  || 0) + (cc.non_revenue  || 0);
+  // Gift redemptions = real-shape orders included in siteOrders that aren't paid
+  // (we approximate by subtracting the post-deploy redeem count out of paid count;
+  // for the campaign window we use the values that funnel_report computed).
+  const visitorToPaid = siteVisitors ? (100 * siteOrders / siteVisitors) : 0;
+  const aov = siteOrders ? (siteRevenue / siteOrders) : 0;
+  document.getElementById('doVisitors').textContent = siteVisitors.toLocaleString();
+  setText('doVisitorsSub', cs + ' → today');
+  document.getElementById('doPaid').textContent = siteOrders.toLocaleString();
+  document.getElementById('doPaidRate').textContent = visitorToPaid.toFixed(3) + '% of visitors';
+  document.getElementById('doRevenue').textContent = '$' + siteRevenue.toLocaleString(undefined, {maximumFractionDigits:0});
   document.getElementById('doAOV').textContent = '$' + aov.toFixed(0) + ' AOV';
+  // Gift redemptions for campaign-period — count real-shape orders with $0 revenue
+  // or /redeem_signup/ URLs. For the dashboard we keep the post-deploy redeem count
+  // as a proxy since funnel_report doesn't currently emit a campaign-period redeem total.
   document.getElementById('doRedeem').textContent = (t.purchases_redeem || 0).toLocaleString();
+  // Funnel-bar window label
+  setText('doFunnelWindow', (w.start || '').slice(0,10) + ' → ' + (w.end || '').slice(0,10) + '  (' + (w.days || '?') + ' days, post-tag-deploy)');
 
   // Funnel stages (excluding account — see footnote in standalone dashboard)
   const stages = [
