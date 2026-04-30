@@ -991,13 +991,14 @@ async function renderDropoff() {
       <div style="margin-bottom:14px">
         <div style="display:flex;align-items:baseline;margin-bottom:6px">
           <div style="flex:1;font-weight:500">${s.label}</div>
+          <div style="font-size:18px;font-weight:700;margin:0 12px;font-variant-numeric:tabular-nums">${(s.count||0).toLocaleString()}</div>
           <div style="color:#888;font-size:13px;min-width:140px;text-align:right">${pctTop.toFixed(1)}% of visitors</div>
         </div>
         <div style="height:10px;background:#f0f0f0;border-radius:5px;overflow:hidden">
           <div style="height:100%;width:${pctTop.toFixed(2)}%;background:${s.color};transition:width 0.4s"></div>
         </div>
         <div style="margin-top:6px;font-size:12px">
-          ${drop > 0 ? `<span style="color:#ef4444;font-weight:500;margin-right:12px">▼ (${dropPct.toFixed(1)}% drop)</span>` : ''}
+          ${drop > 0 ? `<span style="color:#ef4444;font-weight:500;margin-right:12px">▼ ${drop.toLocaleString()} lost (${dropPct.toFixed(1)}% drop)</span>` : ''}
           ${isBiggest ? '<span style="background:#fef2f2;color:#b91c1c;padding:2px 8px;border-radius:4px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">BIGGEST LEAK</span>' : ''}
         </div>
       </div>`;
@@ -1268,13 +1269,14 @@ function renderOverview() {
         html += '<div style="margin-bottom:14px">' +
           '<div style="display:flex;align-items:baseline;margin-bottom:6px">' +
             '<div style="flex:1;font-weight:500">' + s.label + '</div>' +
+            '<div style="font-size:18px;font-weight:700;margin:0 12px;font-variant-numeric:tabular-nums">' + (s.count||0).toLocaleString() + '</div>' +
             '<div style="color:#888;font-size:13px;min-width:140px;text-align:right">' + pctTop.toFixed(1) + '% of visitors</div>' +
           '</div>' +
           '<div style="height:10px;background:#f0f0f0;border-radius:5px;overflow:hidden">' +
             '<div style="height:100%;width:' + pctTop.toFixed(2) + '%;background:' + s.color + ';transition:width 0.4s"></div>' +
           '</div>' +
           '<div style="margin-top:6px;font-size:12px">' +
-            (drop > 0 ? '<span style="color:#ef4444;font-weight:500;margin-right:12px">▼ (' + dropPct.toFixed(1) + '% drop)</span>' : '') +
+            (drop > 0 ? '<span style="color:#ef4444;font-weight:500;margin-right:12px">▼ ' + drop.toLocaleString() + ' lost (' + dropPct.toFixed(1) + '% drop)</span>' : '') +
             (isBiggest ? '<span style="background:#fef2f2;color:#b91c1c;padding:2px 8px;border-radius:4px;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">BIGGEST LEAK</span>' : '') +
           '</div>' +
         '</div>';
