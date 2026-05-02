@@ -396,6 +396,8 @@ tr:hover{background:#fbfcff}
             <tbody id="attrOrdersTable"></tbody>
           </table>
         </div>
+        <!-- Sticky TOTAL footer outside the scroll area so it doesn't get cut off -->
+        <table style="margin-top:0;border-top:2px solid #333"><tbody id="attrOrdersFooter"></tbody></table>
       </div>
     </div>
   </section>
@@ -1499,12 +1501,16 @@ function renderOverview() {
       <td class="numeric">${o.impressionsSeen || 0}</td>
     </tr>`;
   }
-  attrORows += `<tr style="font-weight:bold;border-top:2px solid #333;background:#f8f9fc">
-    <td>TOTAL (${attrOrdersList.length})<div style="font-weight:400;font-size:11px;color:var(--muted)">${purchaseCount} Purchase · ${redeemCount} Redeem</div></td>
-    <td class="numeric">${fmtMoney(attrOTotalRev)}</td>
-    <td colspan="3"></td>
-  </tr>`;
   if (attrOTbody) attrOTbody.innerHTML = attrORows;
+  // Footer total — rendered outside the scroll container so it never gets clipped
+  const attrFootEl = document.getElementById('attrOrdersFooter');
+  if (attrFootEl) {
+    attrFootEl.innerHTML = `<tr style="font-weight:bold;background:#f8f9fc">
+      <td><strong>TOTAL (${attrOrdersList.length})</strong> <span style="font-weight:400;font-size:11px;color:var(--muted)">· ${purchaseCount} Purchase · ${redeemCount} Redeem</span></td>
+      <td class="numeric">${fmtMoney(attrOTotalRev)}</td>
+      <td colspan="3"></td>
+    </tr>`;
+  }
 }
 
 // ==================== OVERVIEW TREND CHART ====================
