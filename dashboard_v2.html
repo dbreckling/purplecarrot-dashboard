@@ -1491,13 +1491,11 @@ function renderOverview() {
     const classPill = cls === 'Purchase'
       ? '<span class="pill green" style="font-size:10px">Purchase</span>'
       : '<span class="pill orange" style="font-size:10px">Redeem</span>';
-    const ctVtSub = '<div style="font-size:10px;color:var(--muted);margin-top:2px">'
-                    + (o.type || '-') + '</div>';
     attrORows += `<tr>
       <td><strong>${o.dedupeId || '-'}</strong></td>
       <td class="numeric">${fmtMoney(o.revenue || 0)}</td>
       <td style="font-size:11px">${dt}</td>
-      <td>${classPill}${ctVtSub}</td>
+      <td>${classPill}</td>
       <td class="numeric">${o.impressionsSeen || 0}</td>
     </tr>`;
   }
