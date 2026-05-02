@@ -694,7 +694,7 @@ def main():
     with open(json_path, "w") as f:
         json.dump({
             "generated_at":      datetime.now(timezone.utc).isoformat(),
-            "window":            {"start": start_iso, "end": end_iso, "days": DAYS_BACK},
+            "window":            {"start": start_iso, "end": end_iso, "days": days_in_window},
             "totals":            totals,
             "daily":             rows,
             "ad_lift":           ad_lift,
