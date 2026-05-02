@@ -38,7 +38,7 @@ LOCAL_TZ = ZoneInfo("America/New_York")  # Purple Carrot is East Coast
 START_DATE_STR = os.environ.get("START_DATE", "2026-03-01")
 END_DATE_STR = os.environ.get("END_DATE", "")
 
-REQUEST_TIMEOUT_SECONDS = 120
+REQUEST_TIMEOUT_SECONDS = 300
 MAX_RETRIES = 3
 
 DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "")
@@ -124,8 +124,34 @@ def extract_utm_params(url):
         return {}
 
 
-def classify_traffic_source(url, referrer):
-    """Classify traffic source from URL params and referrer."""
+def classify_traffic_source(url, referrer, blob=None):
+    """Classify traffic source. Priority: blob UTMs (v15+ tag) > URL UTMs > referrer."""
+    # Priority 1: UTMs stored by landing context (v15.0.0+ tag) — most reliable
+    if blob:
+        b_source = str(blob.get("utm_source", "") or "").lower()
+        b_medium = str(blob.get("utm_medium", "") or "").lower()
+        b_gclid  = blob.get("gclid", "") or ""
+        b_fbclid = blob.get("fbclid", "") or ""
+        if b_gclid or (b_source == "google" and b_medium in ("cpc", "paid", "ppc", "paidsearch")):
+            return "Google Ads"
+        if b_fbclid or (b_source in ("facebook", "fb", "instagram", "ig") and b_medium in ("paid", "cpc", "social", "paidsocial")):
+            return "Meta Ads"
+        if b_medium == "email" or b_source == "email":
+            return "Email"
+        if b_source == "bing" and b_medium in ("cpc", "paid", "ppc"):
+            return "Bing Ads"
+        if b_medium in ("affiliate", "aff") or b_source in ("affiliate", "aff", "shareasale", "cj", "impact"):
+            return "Affiliate"
+        if b_source == "google" and b_medium in ("organic", ""):
+            return "Google Organic"
+        if b_source in ("facebook", "fb", "instagram", "ig") and b_medium == "organic":
+            return "Meta Organic"
+        if b_source and b_medium in ("cpc", "paid", "ppc", "paidsearch", "paidsocial", "display"):
+            return f"Paid ({b_source})"
+        if b_source or b_medium:
+            return (b_source or b_medium).title()
+
+    # Priority 2: UTMs on the event URL (older tag versions)
     utms = extract_utm_params(url)
     source = utms.get("utm_source", "").lower()
     medium = utms.get("utm_medium", "").lower()
@@ -145,7 +171,7 @@ def classify_traffic_source(url, referrer):
     if medium in ("organic", "social"):
         return f"Organic ({source or 'social'})"
 
-    # Fallback to referrer analysis
+    # Priority 3: Referrer-based fallback
     ref = (referrer or "").lower()
     if "google.com" in ref:
         return "Google Organic"
@@ -352,6 +378,7 @@ def run_impressions_query(date_from, date_to, max_retries=MAX_RETRIES):
         }}
         """
 
+        page_success = False
         for attempt in range(1, max_retries + 1):
             try:
                 resp = requests.post(
@@ -361,9 +388,11 @@ def run_impressions_query(date_from, date_to, max_retries=MAX_RETRIES):
                     timeout=REQUEST_TIMEOUT_SECONDS
                 )
                 if resp.status_code != 200:
+                    print(f"[Impressions] HTTP {resp.status_code} at offset {offset} — returning partial data")
                     return all_nodes, total_count
                 data = resp.json()
                 if "errors" in data:
+                    print(f"[Impressions] GraphQL error at offset {offset} — returning partial data")
                     return all_nodes, total_count
                 nodes = data.get("data", {}).get("allImpressions", {}).get("nodes", []) or []
                 total_count = data.get("data", {}).get("allImpressions", {}).get("totalCount", total_count)
@@ -371,16 +400,18 @@ def run_impressions_query(date_from, date_to, max_retries=MAX_RETRIES):
                 if len(nodes) < limit:
                     return all_nodes, max(total_count, len(all_nodes))
                 offset += limit
+                page_success = True
                 break
             except requests.exceptions.ReadTimeout:
-                wait = 3 * attempt
-                print(f"[Timeout] attempt {attempt}/{max_retries} ... retrying in {wait}s")
+                wait = 5 * attempt
+                print(f"[Impressions] Timeout at offset {offset}, attempt {attempt}/{max_retries} — retrying in {wait}s")
                 time.sleep(wait)
             except Exception as e:
-                print(f"[Error] {type(e).__name__}: {e}")
+                print(f"[Impressions] Error at offset {offset}: {type(e).__name__}: {e}")
                 return all_nodes, total_count
-        else:
-            return all_nodes, total_count
+        if not page_success:
+            print(f"[Impressions] All retries exhausted at offset {offset} — returning {len(all_nodes)} partial impressions")
+            return all_nodes, max(total_count, len(all_nodes))
 
 
 def run_clicks_query(date_from, date_to, max_retries=MAX_RETRIES):
@@ -784,7 +815,7 @@ def main():
     for p in unique_purchases:
         blob = parse_data_blob(p)
         p["_data"] = blob
-        p["_traffic_source"] = classify_traffic_source(p.get("url", ""), p.get("referrer", ""))
+        p["_traffic_source"] = classify_traffic_source(p.get("url", ""), p.get("referrer", ""), blob=blob)
         p["_utms"] = extract_utm_params(p.get("url", ""))
         p["_order_source"] = classify_order_source(p.get("dedupeId", ""))
         p["_logged_in"] = extract_logged_in_status(blob)
@@ -1083,14 +1114,25 @@ def main():
         a_days = a.get("daysBetween", "")
         a_matching = a.get("matchingImpressions", pre_conv_count)
 
+        # Classify Purchase vs Redeem using both revenue and the purchase URL.
+        # Gift redemptions land on /redeem_signup/ pages, are usually $0 (sometimes
+        # a small non-zero amount for trial-tier redemptions). Anything with
+        # positive revenue and no /redeem_signup/ in the URL is a paid Purchase.
+        a_revenue = float(a.get("revenue") or 0)
+        a_url = str(purchase_rec.get("url") or "")
+        if a_revenue == 0 or "/redeem_signup/" in a_url:
+            order_class = "Redeem"
+        else:
+            order_class = "Purchase"
         converter_details.append({
             "dedupeId": did,
             "visitorId": vid,
             "ip": converter_ip[:8] + "***",  # partially mask IP
             "conversionTime": conv_time_str,
             "impressionsSeen": pre_conv_count,
-            "revenue": float(a.get("revenue") or 0),
+            "revenue": a_revenue,
             "type": "click-through" if vid in click_visitor_set else "view-through",
+            "orderClass": order_class,
             "orderSource": classify_order_source(did),
             "channel": a_ch,
             "placementId": a_pid,
@@ -1443,13 +1485,20 @@ def main():
             if camp and pid:
                 pid_to_campaigns[pid][camp] += 1
 
-        # Map attributed conversions to hierarchy
-        # Priority: 1) LTM-enriched impressionData, 2) attribution's campaignId/placementId
+        # Map attributed conversions to hierarchy.
+        # The DLVE attribution engine doesn't propagate creativeName / dlve_creative onto
+        # `allPurchaseAttributions` rows (they're null in our environment). So instead of
+        # bucketing every attributed order into "Unknown Creative", we distribute
+        # campaign-level attributed orders/revenue across the campaign's creatives in
+        # proportion to their impression share — using largest-remainder rounding so
+        # creative-level integer order counts sum exactly to the campaign total.
+        #
+        # Step 1: aggregate attributions to (channel, camp_name) keys.
+        camp_attr = defaultdict(lambda: {"attrOrders": 0, "attrRevenue": 0.0})
         for a in unique_attributed:
             a_pid = a.get("impressionPlacementId") or a.get("placementId", "")
             ch = PLACEMENT_CONFIG.get(a_pid, {}).get("channel", "display")
 
-            # Try LTM data blob first (has dlve_campaign from impression)
             blob = {}
             try:
                 raw = a.get("data", "{}")
@@ -1458,33 +1507,51 @@ def main():
                 pass
 
             camp_name = blob.get("dlve_campaign", "")
-            creative = blob.get("dlve_creative", "")
-            size = blob.get("dlve_size", "")
-
-            # Fallback: use placementId to find most common campaign name
             if not camp_name and a_pid:
                 top_camps = pid_to_campaigns.get(a_pid, {})
                 if top_camps:
                     camp_name = top_camps.most_common(1)[0][0]
-
-            # Final fallback
             if not camp_name:
                 cid = a.get("impressionCampaignId") or a.get("campaignId", "")
                 camp_name = f"Campaign {cid}" if cid else "Unknown"
 
-            if not creative:
-                cr_name = a.get("creativeName") or ""
-                cr_w = a.get("creativeWidth") or 0
-                cr_h = a.get("creativeHeight") or 0
-                if cr_name:
-                    creative = cr_name
-                    size = f"{cr_w}x{cr_h}" if cr_w and cr_h else ""
-                else:
-                    creative = "Unknown Creative"
+            camp_attr[(ch, camp_name)]["attrOrders"] += 1
+            camp_attr[(ch, camp_name)]["attrRevenue"] += float(a.get("revenue") or 0)
 
-            creative_key = f"{creative}|{size}" if size else creative
-            hier[ch][camp_name][creative_key]["attrOrders"] += 1
-            hier[ch][camp_name][creative_key]["attrRevenue"] += float(a.get("revenue") or 0)
+        # Step 2: distribute campaign attributions across creatives by impression share.
+        # If the attribution row HAS its own creativeName/Width/Height (rare today, but if
+        # the backend later starts populating these it should win), use that instead.
+        for (ch, camp_name), totals in camp_attr.items():
+            creatives = hier[ch].get(camp_name, {})
+            tot_orders = totals["attrOrders"]
+            tot_rev = totals["attrRevenue"]
+            tot_imps = sum(c["impressions"] for c in creatives.values())
+
+            if tot_imps > 0 and creatives:
+                # Largest-remainder rounding so integer order counts sum to tot_orders
+                shares = []
+                for cr_key, cr_data in creatives.items():
+                    share = cr_data["impressions"] / tot_imps
+                    raw_o = share * tot_orders
+                    raw_r = share * tot_rev
+                    shares.append([cr_key, int(raw_o), raw_o - int(raw_o), round(raw_r, 2)])
+                # Distribute the leftover orders to the largest fractional remainders
+                assigned = sum(s[1] for s in shares)
+                leftover = tot_orders - assigned
+                shares.sort(key=lambda x: -x[2])
+                for i in range(leftover):
+                    shares[i][1] += 1
+                # Apply
+                for cr_key, orders_i, _frac, rev in shares:
+                    creatives[cr_key]["attrOrders"] += orders_i
+                    creatives[cr_key]["attrRevenue"] += rev
+            else:
+                # No impressions for any creative under this campaign — last-resort
+                # bucket. Should be rare; means the campaign delivered zero impressions
+                # but somehow won attribution (data anomaly).
+                creative_key = "Unknown Creative"
+                hier[ch][camp_name][creative_key]["attrOrders"] += tot_orders
+                hier[ch][camp_name][creative_key]["attrRevenue"] += tot_rev
 
         # Serialize hierarchy
         for ch_key in ["display", "video", "ctv"]:

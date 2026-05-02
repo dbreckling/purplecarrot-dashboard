@@ -1473,27 +1473,36 @@ function renderOverview() {
     }).join('') || '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:20px">No state data yet</td></tr>';
   }
 
-  // Attributed Orders table on Overview
-  const attrOrdersList = ((DATA.attribution || {}).impressionsToConversion || {}).converterDetails || [];
+  // Attributed Orders table on Overview — sort newest first, show Purchase/Redeem
+  // primary pill with CT/VT as a smaller subtitle.
+  const attrOrdersList = (((DATA.attribution || {}).impressionsToConversion || {}).converterDetails || [])
+    .slice() // copy before sort
+    .sort(function(a,b){ return (b.conversionTime||'').localeCompare(a.conversionTime||''); });
   const attrOTbody = document.getElementById('attrOrdersTable');
   let attrORows = '';
   let attrOTotalRev = 0;
+  let purchaseCount = 0, redeemCount = 0;
   for (const o of attrOrdersList) {
     attrOTotalRev += o.revenue || 0;
     const dt = o.conversionTime ? o.conversionTime.slice(0, 10) : '-';
-    const typePill = o.type === 'click-through'
-      ? '<span class="pill orange" style="font-size:10px">click-through</span>'
-      : '<span class="pill" style="font-size:10px">view-through</span>';
+    // Fallback classification: if orderClass missing (older data), use revenue
+    const cls = o.orderClass || ((o.revenue || 0) === 0 ? 'Redeem' : 'Purchase');
+    if (cls === 'Redeem') redeemCount++; else purchaseCount++;
+    const classPill = cls === 'Purchase'
+      ? '<span class="pill green" style="font-size:10px">Purchase</span>'
+      : '<span class="pill orange" style="font-size:10px">Redeem</span>';
+    const ctVtSub = '<div style="font-size:10px;color:var(--muted);margin-top:2px">'
+                    + (o.type || '-') + '</div>';
     attrORows += `<tr>
       <td><strong>${o.dedupeId || '-'}</strong></td>
       <td class="numeric">${fmtMoney(o.revenue || 0)}</td>
       <td style="font-size:11px">${dt}</td>
-      <td>${typePill}</td>
+      <td>${classPill}${ctVtSub}</td>
       <td class="numeric">${o.impressionsSeen || 0}</td>
     </tr>`;
   }
   attrORows += `<tr style="font-weight:bold;border-top:2px solid #333;background:#f8f9fc">
-    <td>TOTAL (${attrOrdersList.length})</td>
+    <td>TOTAL (${attrOrdersList.length})<div style="font-weight:400;font-size:11px;color:var(--muted)">${purchaseCount} Purchase · ${redeemCount} Redeem</div></td>
     <td class="numeric">${fmtMoney(attrOTotalRev)}</td>
     <td colspan="3"></td>
   </tr>`;
