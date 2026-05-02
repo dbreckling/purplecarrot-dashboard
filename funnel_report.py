@@ -31,7 +31,7 @@ GRAPHQL_URL = "https://dev.graph.script.flowershop.media/graphql"
 AUTH = ("developer", "FlowerShop2024DevGraphQL123")
 SCRIPT_ID = "QwxIISziQhWR"
 ADVERTISER_ID = "1060"
-DAYS_BACK = int(os.environ.get("DAYS_BACK", "2"))  # default 2 = post v15.3.0 deploy
+DAYS_BACK = int(os.environ.get("DAYS_BACK", "0"))  # 0 = auto-detect from earliest allEvents row
 
 # Campaign start date — used for the "Programmatic engagement" section so the
 # ad vs non-ad comparison spans the full campaign rather than the funnel-events
@@ -340,11 +340,24 @@ def fetch_ad_lift():
 
 
 def main():
-    end = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    start = end - timedelta(days=DAYS_BACK)
+    end = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+    if DAYS_BACK > 0:
+        start = end - timedelta(days=DAYS_BACK)
+    else:
+        # Auto-detect: pull earliest allEvents row for this advertiser. The funnel
+        # window is "since funnel events started flowing" (v15.3.0 deploy time).
+        q = f'{{ allEvents(filter: {{ advertiserId: {{ equalTo: "{ADVERTISER_ID}" }} }} first: 1 orderBy: TIME_ASC) {{ nodes {{ time }} }} }}'
+        d = gq(q) or {}
+        nodes = (d.get("allEvents") or {}).get("nodes", [])
+        if nodes and nodes[0].get("time"):
+            start = datetime.fromisoformat(nodes[0]["time"].replace("Z","+00:00")).replace(hour=0, minute=0, second=0, microsecond=0)
+            print(f"Auto-detected funnel-events start: {start.strftime('%Y-%m-%d')}")
+        else:
+            start = end - timedelta(days=7)
     start_iso = start.strftime("%Y-%m-%dT%H:%M:%SZ")
     end_iso = end.strftime("%Y-%m-%dT%H:%M:%SZ")
-    print(f"Date range: {start_iso} → {end_iso}\n")
+    days_in_window = (end - start).days
+    print(f"Date range: {start_iso} → {end_iso}  ({days_in_window} days)\n")
 
     print("Fetching visits (day-by-day to avoid backend timeout)...")
     visits = []
