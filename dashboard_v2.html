@@ -280,15 +280,6 @@ tr:hover{background:#fbfcff}
       <div class="chart-box"><canvas id="overviewTrendChart"></canvas></div>
     </div>
 
-    <!-- Conversion funnel summary (Visit → Cart → Account → Shipping → Payment → Purchase) -->
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <h3 style="margin:0">Conversion funnel &mdash; where do they drop off?</h3>
-        <a href="#" onclick="navigateTo('dropoff');return false" style="font-size:12px;color:var(--brand);text-decoration:none;font-weight:600">View full funnel →</a>
-      </div>
-      <div id="ovFunnelBars"></div>
-      <div id="ovFunnelInsight"></div>
-    </div>
 
     <!-- Programmatic lift — National + NY benchmarks side-by-side -->
     <div class="card">
@@ -1348,10 +1339,20 @@ function renderOverview() {
       // Campaign-period comparison (apples-to-apples since campaign start)
       const cc = fd.campaign_compare || {};
       const cs = (cc.campaign_start || '').slice(0,10);
-      setText('ovCampaignWindow', 'Window: ' + cs + ' → today  (' + 'campaign start)');
+      const windowLabel = 'Window: ' + cs + ' → today  (campaign start)';
+      const windowEl = document.getElementById('ovCampaignWindow');
+      if (windowEl) {
+        if (cc.visit_attribution_available === false) {
+          windowEl.innerHTML = windowLabel +
+            '<br><span style="color:var(--warning);font-weight:500">⚠ Visit-attribution data is currently unavailable from the DLVE backend for this advertiser. Visitor counts and lift% are suppressed until the data returns. Order counts and revenue are unaffected (they use a separate attribution table that is still active).</span>';
+        } else {
+          windowEl.textContent = windowLabel;
+        }
+      }
 
       // Build the two simple side-by-side comparison tables (Visitors + Paid orders rows).
       // Both compare ad-attributed cohort to a benchmark.
+      const visitAttrOk = (cc.visit_attribution_available !== false);
       const buildSimpleCompare = function(adVisitors, adOrders, benchVisitors, benchOrders) {
         const adRate    = adVisitors    > 0 ? (adOrders   / adVisitors)    * 100 : 0;
         const benchRate = benchVisitors > 0 ? (benchOrders / benchVisitors) * 100 : 0;
@@ -1360,18 +1361,28 @@ function renderOverview() {
         const liftStr  = (lift > 0 ? '+' : '') + lift.toFixed(2) + '%';
         let html = '';
         // Visitors row (no lift cell)
+        const adVisitorsCell = visitAttrOk
+          ? fmt(adVisitors)
+          : '<span style="color:var(--muted)">data unavailable</span>';
         html += '<tr>' +
           '<td><strong>Visitors</strong></td>' +
-          '<td class="numeric" style="font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600">' + fmt(adVisitors) + '</td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600">' + adVisitorsCell + '</td>' +
           '<td class="numeric" style="font-variant-numeric:tabular-nums">' + fmt(benchVisitors) + '</td>' +
           '<td></td>' +
         '</tr>';
-        // Paid orders row (with conv % and lift)
+        // Paid orders row — only show conv % and lift if visit-attribution is available,
+        // otherwise the rate would be misleading (e.g. ad_visitors = ad_orders → 100%).
+        const adOrdersCell = visitAttrOk
+          ? (fmt(adOrders) + ' (' + adRate.toFixed(3) + '%)')
+          : fmt(adOrders);
+        const liftCell = visitAttrOk && benchRate > 0
+          ? '<td class="numeric" style="color:' + liftColor + ';font-weight:600">' + liftStr + '</td>'
+          : '<td class="numeric" style="color:var(--muted)">—</td>';
         html += '<tr>' +
           '<td><strong>Paid orders</strong></td>' +
-          '<td class="numeric" style="font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600">' + fmt(adOrders) + ' (' + adRate.toFixed(3) + '%)</td>' +
+          '<td class="numeric" style="font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600">' + adOrdersCell + '</td>' +
           '<td class="numeric" style="font-variant-numeric:tabular-nums">' + fmt(benchOrders) + ' (' + benchRate.toFixed(3) + '%)</td>' +
-          '<td class="numeric" style="color:' + liftColor + ';font-weight:600">' + (benchRate > 0 ? liftStr : '—') + '</td>' +
+          liftCell +
         '</tr>';
         return html;
       };

@@ -137,29 +137,44 @@ def fetch_campaign_period_comparison():
     while day <= end_dt:
         de = day + timedelta(days=1)
         flt = f'{{ scriptId: {{ equalTo: "{SCRIPT_ID}" }} time: {{ greaterThanOrEqualTo: "{day.strftime("%Y-%m-%dT%H:%M:%SZ")}" lessThan: "{de.strftime("%Y-%m-%dT%H:%M:%SZ")}" }} }}'
-        chunk = fetch_paginated("allVisits", flt, "visitorId pk")
+        chunk = fetch_paginated("allVisits", flt, "visitorId pk ip")
         visits.extend(chunk)
         day = de
     site_unique_visitors = {v["visitorId"] for v in visits if v.get("visitorId")}
 
-    # Ad-attributed visit pks in window
+    # Ad-attributed visit pks in window — primary source: allAggregatedMatchesByVisits.
+    # Fallback: if that table is empty (which has happened on the backend for adv 1060),
+    # reconstruct via IP intersection between allImpressions and allVisits within the
+    # campaign window. This is what the attribution engine does internally; we approximate
+    # it here so the dashboard isn't stuck at zero when the visit-attribution table is empty.
     attributed_visit_pks = set()
     for n in fp("allAggregatedMatchesByVisits",
                 f'{{ advertiserId: {{ equalTo: "{ADVERTISER_ID}" }} time: {{ greaterThanOrEqualTo: "{CAMPAIGN_START}" lessThanOrEqualTo: "{end_iso}" }} }}',
                 "visitPk"):
         if n.get("visitPk") is not None:
             attributed_visit_pks.add(n["visitPk"])
+    print(f"  attributed_visit_pks (allAggregatedMatchesByVisits): {len(attributed_visit_pks):,}")
 
-    # Resolve visit pks → visitorIds
+    visit_attribution_available = bool(attributed_visit_pks)
     ad_visitor_ids = set()
-    pk_list = list(attributed_visit_pks)
-    for i in range(0, len(pk_list), 500):
-        batch = pk_list[i:i+500]
-        pk_filter = "[" + ",".join('"' + str(p) + '"' for p in batch) + "]"
-        q = f'{{ allVisits(filter: {{ pk: {{ in: {pk_filter} }} }} first: 5000) {{ nodes {{ visitorId }} }} }}'
-        d = gq(q) or {}
-        for n in (d.get("allVisits") or {}).get("nodes", []):
-            if n.get("visitorId"): ad_visitor_ids.add(n["visitorId"])
+    if visit_attribution_available:
+        # Standard path — resolve visit pks to visitorIds
+        pk_list = list(attributed_visit_pks)
+        for i in range(0, len(pk_list), 500):
+            batch = pk_list[i:i+500]
+            pk_filter = "[" + ",".join('"' + str(p) + '"' for p in batch) + "]"
+            q = f'{{ allVisits(filter: {{ pk: {{ in: {pk_filter} }} }} first: 5000) {{ nodes {{ visitorId }} }} }}'
+            d = gq(q) or {}
+            for n in (d.get("allVisits") or {}).get("nodes", []):
+                if n.get("visitorId"): ad_visitor_ids.add(n["visitorId"])
+    else:
+        # Fallback: visit-attribution data is currently empty on the backend for this
+        # advertiser (allVisitAttributions and allAggregatedMatchesByVisits both return 0).
+        # We can't reliably reconstruct the visitor cohort, so we'll mark the data as
+        # unavailable and the dashboard will hide the lift comparison until it's fixed.
+        print("  WARNING: visit-attribution data unavailable from backend for this advertiser.")
+        print("  Dashboard will suppress the visitor-lift comparison until this returns.")
+    print(f"  ad_visitor_ids: {len(ad_visitor_ids):,}  (visit-attribution available: {visit_attribution_available})")
 
     # Ad-attributed orders (in window) — UNION of two attribution tables for
     # maximum coverage. allPurchaseAttributions tends to surface 2 extra rows
@@ -241,6 +256,10 @@ def fetch_campaign_period_comparison():
         "ny_orders":            ny_orders,
         "ny_revenue":           round(ny_revenue, 2),
         "ny_conv_rate":         round(100 * ny_orders / max(ny_visitors, 1), 3),
+        # Visit-attribution availability flag — when False, dashboard should suppress
+        # the visitor-count and conversion-rate lift comparisons (ad_visitors will fall
+        # back to ad_orders count, which makes the lift math meaningless).
+        "visit_attribution_available": visit_attribution_available,
     }
 
 
