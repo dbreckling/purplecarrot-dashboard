@@ -158,7 +158,7 @@ def fetch_campaign_period_comparison():
     visit_attribution_available = bool(attributed_visit_pks)
     ad_visitor_ids = set()
     if visit_attribution_available:
-        # Standard path — resolve visit pks to visitorIds
+        # Resolve visit pks → visitorIds via allVisits.pk lookup
         pk_list = list(attributed_visit_pks)
         for i in range(0, len(pk_list), 500):
             batch = pk_list[i:i+500]
@@ -167,14 +167,10 @@ def fetch_campaign_period_comparison():
             d = gq(q) or {}
             for n in (d.get("allVisits") or {}).get("nodes", []):
                 if n.get("visitorId"): ad_visitor_ids.add(n["visitorId"])
-    else:
-        # Fallback: visit-attribution data is currently empty on the backend for this
-        # advertiser (allVisitAttributions and allAggregatedMatchesByVisits both return 0).
-        # We can't reliably reconstruct the visitor cohort, so we'll mark the data as
-        # unavailable and the dashboard will hide the lift comparison until it's fixed.
-        print("  WARNING: visit-attribution data unavailable from backend for this advertiser.")
-        print("  Dashboard will suppress the visitor-lift comparison until this returns.")
-    print(f"  ad_visitor_ids: {len(ad_visitor_ids):,}  (visit-attribution available: {visit_attribution_available})")
+    # If the match table is empty, the ad cohort stays empty. The dashboard
+    # will pick up `visit_attribution_available: false` and suppress lift /
+    # show "data unavailable" rather than fall back to bogus numbers.
+    print(f"  ad_visitor_ids: {len(ad_visitor_ids):,}  (match-table available: {visit_attribution_available})")
 
     # Ad-attributed orders (in window) — UNION of two attribution tables for
     # maximum coverage. allPurchaseAttributions tends to surface 2 extra rows
