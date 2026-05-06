@@ -457,7 +457,7 @@ def main():
     purchases = fetch_paginated(
         "allPurchases",
         f'{{ advertiserId: {{ equalTo: "{ADVERTISER_ID}" }} time: {{ greaterThanOrEqualTo: "{start_iso}" lessThan: "{end_iso}" }} }}',
-        "time dedupeId revenue url visitorId"
+        "time dedupeId revenue url visitorId ip"
     )
     print(f"  {len(purchases):,} purchase rows\n")
 
@@ -519,37 +519,54 @@ def main():
             "revenue_paid":      round(d["revenue_paid"], 2),
         })
 
-    # ── Strict-funnel totals ──
-    # Each stage is the SUBSET of visitors who fired the previous stage's event,
-    # so the funnel bars decrease monotonically: Cart ≥ Account ≥ Shipping ≥ Payment.
-    # The 'account' event otherwise fires on every /users/me load (returning logged-in
-    # customers), which would render Account > Cart visually — fixed by intersection.
+    # ── Funnel totals ──
+    # Reality: every actual customer must traverse Cart → Account → Shipping → Payment
+    # → Purchase on the website. We just don't always SEE every event fire — Google Pay /
+    # Apple Pay / saved-card flows bypass our payment event detection; some shipping
+    # entries skip our shipping_addresses URL pattern; etc.
+    #
+    # So each stage is computed as "EITHER fired this event OR reached a later stage,"
+    # working bottom-up. This makes the funnel monotonically decrease (no Payment <
+    # Purchase anomalies) AND honestly reflects the customer journey.
     cart_ips_set     = {e["ip"] for e in events if e.get("ip") and e["event"] == "add_to_cart"}
     account_ips_set  = {e["ip"] for e in events if e.get("ip") and e["event"] == "account"}
     shipping_ips_set = {e["ip"] for e in events if e.get("ip") and e["event"] == "add_shipping_info"}
     payment_ips_set  = {e["ip"] for e in events if e.get("ip") and e["event"] == "add_payment_info"}
+    purchase_ips_set = {p["ip"] for p in purchases if p.get("ip") and is_real_order_id(p.get("dedupeId"))}
 
-    strict_cart     = cart_ips_set
-    strict_account  = account_ips_set  & strict_cart
-    strict_shipping = shipping_ips_set & strict_account
-    strict_payment  = payment_ips_set  & strict_shipping
+    # Bottom-up: each stage is implied by reaching a later one.
+    funnel_purchase = purchase_ips_set
+    funnel_payment  = payment_ips_set  | funnel_purchase
+    funnel_shipping = shipping_ips_set | funnel_payment
+    # Account event fires for every logged-in /users/me load (returning users),
+    # so we constrain to those who ALSO either carted OR reached shipping.
+    funnel_account  = (account_ips_set & cart_ips_set) | funnel_shipping
+    funnel_cart     = cart_ips_set     | funnel_account
+
+    # Purchase row = ground-truth count from allPurchases (paid + redeem)
+    funnel_purchase_count = sum(r["purchases_paid"] + r["purchases_redeem"] for r in rows)
 
     totals = {
         "visitors":         visitor_status_counts["total_unique"],
-        "cart":             len(strict_cart),
-        "account":          len(strict_account),
-        "shipping":         len(strict_shipping),
-        "payment":          len(strict_payment),
+        "cart":             len(funnel_cart),
+        "account":          len(funnel_account),
+        "shipping":         len(funnel_shipping),
+        "payment":          len(funnel_payment),
+        # Purchase split out into paid + redeem (ground-truth from allPurchases)
         "purchases_paid":   sum(r["purchases_paid"] for r in rows),
         "purchases_redeem": sum(r["purchases_redeem"] for r in rows),
         "revenue_paid":     round(sum(r["revenue_paid"] for r in rows), 2),
+        # Diagnostic: how many purchases fired the canonical payment event vs not
+        # (helps explain why Payment >= Purchase even when the raw payment-event count is small)
+        "purchase_with_payment_event":    len(purchase_ips_set & payment_ips_set),
+        "purchase_without_payment_event": len(purchase_ips_set - payment_ips_set),
     }
 
     # ── CSV ──
     csv_path = os.path.join(OUT_DIR, f"funnel_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv")
     with open(csv_path, "w", newline="") as f:
         if rows:
-            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()), extrasaction='ignore')
             w.writeheader()
             for r in rows:
                 w.writerow(r)
