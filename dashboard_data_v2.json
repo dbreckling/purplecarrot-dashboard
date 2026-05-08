@@ -4,7 +4,7 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-05-08T14:14:47.738809Z",
+  "lastUpdated": "2026-05-08T16:12:08.227507Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-05-08"
@@ -239,17 +239,17 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 4461076,
+    "impressions": 4464873,
     "clicks": 469,
-    "reach": 1281365,
+    "reach": 1282300,
     "frequency": 3.48,
     "attrOrders": 10,
     "attrRevenue": 736.32,
-    "spend": 35083.95,
+    "spend": 35109.61,
     "roas": 0.02,
-    "costPerSubscription": 3508.39,
+    "costPerSubscription": 3510.96,
     "ctVisits": 399,
-    "vtVisits": 244900,
+    "vtVisits": 240124,
     "stackadapt": {
       "convPixel": "xt5chVHtrnw0wJZcvE7Ael",
       "rtPixel": "5dEaYPe2HyCbyWjEIxHtem"
@@ -319,7 +319,21 @@
           "channel": "video",
           "placementId": "6011",
           "daysBetween": 15,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-03-14T18:31:12.447000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_RTW",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "bundle/br.com.golmobile.nypost",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         },
         {
           "dedupeId": "2981909",
@@ -334,7 +348,105 @@
           "channel": "display",
           "placementId": "6010",
           "daysBetween": 13,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-03-24T20:14:45.806000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_RTW",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "mashable.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-24T20:15:07.335000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_RTW",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "mashable.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-26T14:35:08.699000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "nytimes.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-28T03:26:30.951000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "word.tips",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-31T20:43:16.124000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x600",
+              "dlve_site": "variety.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-02T20:58:43.465000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_RTW",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "qz.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-06T23:11:48.195000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "storeurl/https://apps.apple.com/us/app/magic-jigsaw-puzzles-games-hd/id439873467?uo=4",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-08T13:10:11.245000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_RTW",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "nytimes.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         },
         {
           "dedupeId": "2988783",
@@ -349,7 +461,21 @@
           "channel": "display",
           "placementId": "6010",
           "daysBetween": 27,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-04-01T14:27:33.135000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_WL",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "nytimes.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         },
         {
           "dedupeId": "2989015",
@@ -364,7 +490,45 @@
           "channel": "display",
           "placementId": "6010",
           "daysBetween": 26,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-04-01T16:22:17.641000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Seg",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "nytimes.com",
+              "dlve_src": "stackadapt",
+              "region": "PA"
+            },
+            {
+              "time": "2026-04-03T12:21:16.926000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Seg",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "nytimes.com",
+              "dlve_src": "stackadapt",
+              "region": "PA"
+            },
+            {
+              "time": "2026-04-08T13:10:10.353000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_21+",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "nytimes.com",
+              "dlve_src": "stackadapt",
+              "region": "PA"
+            }
+          ]
         },
         {
           "dedupeId": "2989517",
@@ -379,7 +543,21 @@
           "channel": "video",
           "placementId": "6011",
           "daysBetween": 16,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-04-13T23:29:50.938000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "320x480",
+              "dlve_site": "apinchofhealthy.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         },
         {
           "dedupeId": "2990933",
@@ -394,7 +572,69 @@
           "channel": "video",
           "placementId": "6011",
           "daysBetween": 24,
-          "matchingImpressions": 5
+          "matchingImpressions": 5,
+          "impressions": [
+            {
+              "time": "2026-04-14T02:44:00.951000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x600",
+              "dlve_site": "storeurl/https://apps.apple.com/us/app/2048/id840919914",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-14T02:44:00.984000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x600",
+              "dlve_site": "storeurl/https://apps.apple.com/us/app/2048/id840919914",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-14T02:44:13.670000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x600",
+              "dlve_site": "storeurl/https://itunes.apple.com/app/2048/id840919914",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-14T02:44:19.735000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x600",
+              "dlve_site": "storeurl/https://apps.apple.com/us/app/2048/id840919914",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-14T02:44:19.843000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x600",
+              "dlve_site": "storeurl/https://apps.apple.com/us/app/2048/id840919914",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         },
         {
           "dedupeId": "2980113",
@@ -409,7 +649,21 @@
           "channel": "video",
           "placementId": "6011",
           "daysBetween": 1,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-03-31T19:29:12.928000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_21+",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "jambase.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         },
         {
           "dedupeId": "2988517",
@@ -424,7 +678,117 @@
           "channel": "display",
           "placementId": "6010",
           "daysBetween": 6,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-04-07T01:00:15.196000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_21+",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "usatoday.com",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-15T03:48:55.939000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Aud",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "fandom.com",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-15T14:34:31.013000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "storeurl/https://apps.apple.com/app/id341232718",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-15T19:15:12.360000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "boardingarea.com",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-16T04:26:24.216000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x600",
+              "dlve_site": "storeurl/https://apps.apple.com/us/app/tetris/id1491074310?uo=4",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-16T23:58:25.011000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Aud",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "320x480",
+              "dlve_site": "usnews.com",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-17T18:46:09.885000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "storeurl/https://itunes.apple.com/app/id1124197642",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-19T11:02:05.277000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Aud",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "firstpost.com",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            },
+            {
+              "time": "2026-04-21T18:27:56.968000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Aud",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "storeurl/https://apps.apple.com/app/id341232718",
+              "dlve_src": "stackadapt",
+              "region": "OH"
+            }
+          ]
         },
         {
           "dedupeId": "2989101",
@@ -439,7 +803,21 @@
           "channel": "display",
           "placementId": "6010",
           "daysBetween": 3,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-04-27T00:37:39.603000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "nytimes.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         },
         {
           "dedupeId": "2990005",
@@ -454,30 +832,224 @@
           "channel": "display",
           "placementId": "6010",
           "daysBetween": 3,
-          "matchingImpressions": 1
+          "matchingImpressions": 1,
+          "impressions": [
+            {
+              "time": "2026-03-18T22:51:19.450000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Seg",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "swimswam.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-19T18:14:41.523000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Seg",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "swimswam.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-20T04:22:33.666000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Seg",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "thesaurus.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-25T22:59:20.926000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Seg",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "swimswam.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-27T01:48:24.719000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Seg",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "wineberserkers.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-27T02:14:28.956000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Seg",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "wineberserkers.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-27T03:10:19.770000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Seg",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "wineberserkers.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-27T03:12:24.214000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Seg",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "wineberserkers.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-27T03:13:57.161000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Seg",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "wineberserkers.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-27T03:26:56.631000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Seg",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "wineberserkers.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-03-27T03:30:35.502000+00:00",
+              "placementId": "6011",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_BannerVideo_PROSP_Seg",
+              "dlve_creative": "EatBetter_bannervideo",
+              "dlve_size": "300x250",
+              "dlve_site": "wineberserkers.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-14T13:48:48.356000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Aud",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "fantrax.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-21T19:53:07.896000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_Aud",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "ndtv.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-27T22:34:40.416000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "bleacherreport.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-27T23:08:58.942000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "usatoday.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-04-28T17:21:47.075000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "320x480",
+              "dlve_site": "marketscreener.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
         }
       ]
     }
   },
   "channels": {
     "display": {
-      "impressions": 2192487,
+      "impressions": 2194363,
       "clicks": 467,
-      "reach": 678643,
+      "reach": 679279,
       "attrOrders": 6,
       "attrRevenue": 397.46,
       "cpm": 6.0,
-      "spend": 13154.92,
+      "spend": 13166.18,
       "roas": 0.03
     },
     "video": {
-      "impressions": 2028852,
+      "impressions": 2030773,
       "clicks": 0,
-      "reach": 726521,
+      "reach": 727102,
       "attrOrders": 4,
       "attrRevenue": 338.86,
       "cpm": 7.5,
-      "spend": 15216.39,
+      "spend": 15230.8,
       "roas": 0.02
     },
     "ctv": {
@@ -785,33 +1357,33 @@
           }
         },
         "4079_Display_PROSP_Aud": {
-          "impressions": 343379,
+          "impressions": 343402,
           "clicks": 39,
-          "reach": 207269,
+          "reach": 207282,
           "frequency": 1.7,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 2060.27,
+          "spend": 2060.41,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 301333,
+              "impressions": 301354,
               "clicks": 31,
-              "reach": 184706,
+              "reach": 184717,
               "frequency": 1.6,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1808.0,
+              "spend": 1808.12,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 29696,
+              "impressions": 29697,
               "clicks": 6,
-              "reach": 20141,
+              "reach": 20142,
               "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
@@ -821,9 +1393,9 @@
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 9943,
+              "impressions": 9944,
               "clicks": 2,
-              "reach": 7684,
+              "reach": 7685,
               "frequency": 1.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
@@ -869,49 +1441,49 @@
           }
         },
         "4079_Display_PROSP_RTE": {
-          "impressions": 959556,
+          "impressions": 960054,
           "clicks": 145,
-          "reach": 186170,
+          "reach": 186254,
           "frequency": 5.2,
           "attrOrders": 6,
-          "attrRevenue": 397.47,
-          "spend": 5757.34,
+          "attrRevenue": 397.45,
+          "spend": 5760.32,
           "roas": 0.07,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 691449,
+              "impressions": 691923,
               "clicks": 104,
-              "reach": 148920,
+              "reach": 149002,
               "frequency": 4.6,
               "attrOrders": 4,
-              "attrRevenue": 286.41,
-              "spend": 4148.69,
+              "attrRevenue": 286.45,
+              "spend": 4151.54,
               "roas": 0.07
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 73935,
+              "impressions": 73954,
               "clicks": 9,
-              "reach": 17166,
+              "reach": 17172,
               "frequency": 4.3,
               "attrOrders": 1,
               "attrRevenue": 30.62,
-              "spend": 443.61,
+              "spend": 443.72,
               "roas": 0.07
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 24929,
+              "impressions": 24934,
               "clicks": 7,
-              "reach": 8934,
+              "reach": 8936,
               "frequency": 2.8,
               "attrOrders": 0,
-              "attrRevenue": 10.33,
-              "spend": 149.57,
+              "attrRevenue": 10.32,
+              "spend": 149.6,
               "roas": 0.07
             },
             "EatBetter_display|300x250": {
@@ -922,7 +1494,7 @@
               "reach": 30884,
               "frequency": 5.1,
               "attrOrders": 1,
-              "attrRevenue": 65.58,
+              "attrRevenue": 65.54,
               "spend": 949.93,
               "roas": 0.07
             },
@@ -934,7 +1506,7 @@
               "reach": 3061,
               "frequency": 2.9,
               "attrOrders": 0,
-              "attrRevenue": 3.74,
+              "attrRevenue": 3.73,
               "spend": 54.13,
               "roas": 0.07
             },
@@ -953,49 +1525,49 @@
           }
         },
         "4079_Display_PROSP_RTW": {
-          "impressions": 253044,
+          "impressions": 253248,
           "clicks": 90,
-          "reach": 58494,
+          "reach": 58546,
           "frequency": 4.3,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1518.26,
+          "spend": 1519.49,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 211640,
+              "impressions": 211821,
               "clicks": 72,
-              "reach": 52574,
+              "reach": 52624,
               "frequency": 4.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1269.84,
+              "spend": 1270.93,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 32108,
+              "impressions": 32125,
               "clicks": 15,
-              "reach": 8912,
+              "reach": 8916,
               "frequency": 3.6,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 192.65,
+              "spend": 192.75,
               "roas": 0.0
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 7864,
+              "impressions": 7870,
               "clicks": 3,
-              "reach": 3634,
+              "reach": 3636,
               "frequency": 2.2,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 47.18,
+              "spend": 47.22,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -1037,49 +1609,49 @@
           }
         },
         "4079_Display_PROSP_Seg": {
-          "impressions": 463849,
+          "impressions": 465000,
           "clicks": 97,
-          "reach": 193940,
+          "reach": 194488,
           "frequency": 2.4,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 2783.09,
+          "spend": 2790.0,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 339505,
+              "impressions": 340527,
               "clicks": 64,
-              "reach": 149266,
+              "reach": 149756,
               "frequency": 2.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 2037.03,
+              "spend": 2043.16,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 53747,
+              "impressions": 53849,
               "clicks": 14,
-              "reach": 21398,
+              "reach": 21461,
               "frequency": 2.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 322.48,
+              "spend": 323.09,
               "roas": 0.0
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 10647,
+              "impressions": 10674,
               "clicks": 2,
-              "reach": 7144,
+              "reach": 7165,
               "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 63.88,
+              "spend": 64.04,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -1487,45 +2059,45 @@
           }
         },
         "4079_BannerVideo_PROSP_Aud": {
-          "impressions": 898789,
+          "impressions": 898967,
           "clicks": 0,
-          "reach": 351670,
+          "reach": 351760,
           "frequency": 2.6,
           "attrOrders": 4,
           "attrRevenue": 338.86,
-          "spend": 6740.92,
+          "spend": 6742.25,
           "roas": 0.05,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 806934,
+              "impressions": 807099,
               "clicks": 0,
-              "reach": 320336,
+              "reach": 320418,
               "frequency": 2.5,
               "attrOrders": 4,
               "attrRevenue": 304.23,
-              "spend": 6052.01,
+              "spend": 6053.24,
               "roas": 0.05
             },
             "EatBetter_bannervideo|300x600": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x600",
-              "impressions": 66597,
+              "impressions": 66609,
               "clicks": 0,
-              "reach": 35939,
+              "reach": 35947,
               "frequency": 1.9,
               "attrOrders": 0,
               "attrRevenue": 25.11,
-              "spend": 499.48,
+              "spend": 499.57,
               "roas": 0.05
             },
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 25258,
+              "impressions": 25259,
               "clicks": 0,
-              "reach": 15177,
+              "reach": 15178,
               "frequency": 1.7,
               "attrOrders": 0,
               "attrRevenue": 9.52,
@@ -1535,145 +2107,145 @@
           }
         },
         "4079_BannerVideo_PROSP_RTE": {
-          "impressions": 206312,
+          "impressions": 206860,
           "clicks": 0,
-          "reach": 51886,
+          "reach": 52000,
           "frequency": 4.0,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1547.34,
+          "spend": 1551.45,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 182486,
+              "impressions": 183012,
               "clicks": 0,
-              "reach": 47479,
+              "reach": 47589,
               "frequency": 3.8,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1368.64,
+              "spend": 1372.59,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x600",
-              "impressions": 19382,
+              "impressions": 19398,
               "clicks": 0,
-              "reach": 6388,
+              "reach": 6394,
               "frequency": 3.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 145.37,
+              "spend": 145.48,
               "roas": 0.0
             },
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 4444,
+              "impressions": 4450,
               "clicks": 0,
-              "reach": 2089,
+              "reach": 2093,
               "frequency": 2.1,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 33.33,
+              "spend": 33.38,
               "roas": 0.0
             }
           }
         },
         "4079_BannerVideo_PROSP_RTW": {
-          "impressions": 24116,
+          "impressions": 24398,
           "clicks": 0,
-          "reach": 7121,
+          "reach": 7207,
           "frequency": 3.4,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 180.87,
+          "spend": 182.98,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 20510,
+              "impressions": 20768,
               "clicks": 0,
-              "reach": 6325,
+              "reach": 6405,
               "frequency": 3.2,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 153.83,
+              "spend": 155.76,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x600",
-              "impressions": 2783,
+              "impressions": 2800,
               "clicks": 0,
-              "reach": 1156,
+              "reach": 1167,
               "frequency": 2.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 20.87,
+              "spend": 21.0,
               "roas": 0.0
             },
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 823,
+              "impressions": 830,
               "clicks": 0,
-              "reach": 350,
-              "frequency": 2.4,
+              "reach": 356,
+              "frequency": 2.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 6.17,
+              "spend": 6.22,
               "roas": 0.0
             }
           }
         },
         "4079_BannerVideo_PROSP_Seg": {
-          "impressions": 235176,
+          "impressions": 236089,
           "clicks": 0,
-          "reach": 108067,
+          "reach": 108456,
           "frequency": 2.2,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1763.82,
+          "spend": 1770.67,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 207554,
+              "impressions": 208356,
               "clicks": 0,
-              "reach": 98746,
+              "reach": 99100,
               "frequency": 2.1,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1556.65,
+              "spend": 1562.67,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x600",
-              "impressions": 20573,
+              "impressions": 20671,
               "clicks": 0,
-              "reach": 10136,
+              "reach": 10179,
               "frequency": 2.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 154.3,
+              "spend": 155.03,
               "roas": 0.0
             },
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 7049,
+              "impressions": 7062,
               "clicks": 0,
-              "reach": 4724,
+              "reach": 4734,
               "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 52.87,
+              "spend": 52.97,
               "roas": 0.0
             }
           }
@@ -2580,13 +3152,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 4461067,
+      "impressions": 4464864,
       "clicks": 469,
-      "reach": 1281360,
+      "reach": 1282295,
       "frequency": 3.48,
       "attrOrders": 4,
       "attrRevenue": 280.48,
-      "spend": 35083.89,
+      "spend": 35109.56,
       "roas": 0.01
     }
   },
@@ -3825,7 +4397,7 @@
       }
     },
     "2026-05-08": {
-      "impressions": 3976,
+      "impressions": 7773,
       "clicks": 1,
       "purchases": 1,
       "revenue": 154.49,
