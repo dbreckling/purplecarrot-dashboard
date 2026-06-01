@@ -403,10 +403,8 @@ tr:hover{background:#fbfcff}
     </div>
 
     <!-- Programmatic KPIs -->
-    <div class="kpi-grid" style="grid-template-columns:repeat(6,1fr);margin-bottom:24px">
+    <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:24px">
       <div class="kpi-card"><div class="label">Impressions</div><div class="value" id="pImpressions">-</div></div>
-      <div class="kpi-card"><div class="label">Reach</div><div class="value" id="pReach">-</div></div>
-      <div class="kpi-card"><div class="label">Frequency</div><div class="value" id="pFrequency">-</div></div>
       <div class="kpi-card"><div class="label">Clicks</div><div class="value" id="pClicks">-</div></div>
       <div class="kpi-card"><div class="label">Attributed Subscriptions</div><div class="value" id="pAttrOrders">-</div></div>
       <div class="kpi-card highlight"><div class="label">ROAS</div><div class="value" id="pRoas">-</div></div>
@@ -420,7 +418,6 @@ tr:hover{background:#fbfcff}
         <div class="tactic-cpm" id="cpmDisplay">CPM $6.00 &bull; Est. Spend -</div>
         <div class="tactic-meta">
           <div><span>Impressions</span><strong id="impsDisplay">-</strong></div>
-          <div><span>Reach</span><strong id="reachDisplay">-</strong></div>
           <div><span>Revenue</span><strong id="revDisplay">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ordersDisplay">-</strong></div>
           <div><span>CAC</span><strong id="cacDisplay">-</strong></div>
@@ -433,7 +430,6 @@ tr:hover{background:#fbfcff}
         <div class="tactic-cpm" id="cpmVideo">CPM $7.50 &bull; Est. Spend -</div>
         <div class="tactic-meta">
           <div><span>Impressions</span><strong id="impsVideo">-</strong></div>
-          <div><span>Reach</span><strong id="reachVideo">-</strong></div>
           <div><span>Revenue</span><strong id="revVideo">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ordersVideo">-</strong></div>
           <div><span>CAC</span><strong id="cacVideo">-</strong></div>
@@ -446,7 +442,6 @@ tr:hover{background:#fbfcff}
         <div class="tactic-cpm" id="cpmCTV">CPM $28.00 &bull; Est. Spend -</div>
         <div class="tactic-meta">
           <div><span>Impressions</span><strong id="impsCTV">-</strong></div>
-          <div><span>Reach</span><strong id="reachCTV">-</strong></div>
           <div><span>Revenue</span><strong id="revCTV">-</strong></div>
           <div><span>Attr. Orders</span><strong id="ordersCTV">-</strong></div>
           <div><span>CAC</span><strong id="cacCTV">-</strong></div>
@@ -475,8 +470,6 @@ tr:hover{background:#fbfcff}
             <th style="min-width:260px">Channel / Campaign / Creative</th>
             <th class="numeric">Impressions</th>
             <th class="numeric">Clicks</th>
-            <th class="numeric">Reach</th>
-            <th class="numeric">Frequency</th>
             <th class="numeric">Attr. Orders</th>
             <th class="numeric">Attr. Revenue</th>
             <th class="numeric">Spend</th>
@@ -828,19 +821,16 @@ function setupNavigation() {
 }
 setupNavigation();
 
-// Date range change handlers — re-render overview when dates change
-document.getElementById('dateFrom').addEventListener('change', function() {
-  if (DATA) {
-    document.getElementById('overviewDateRange').textContent = this.value + ' to ' + document.getElementById('dateTo').value;
-    renderOverview();
-  }
-});
-document.getElementById('dateTo').addEventListener('change', function() {
-  if (DATA) {
-    document.getElementById('overviewDateRange').textContent = document.getElementById('dateFrom').value + ' to ' + this.value;
-    renderOverview();
-  }
-});
+// Date range change handlers — re-render overview AND programmatic when dates change
+function reRenderForDateFilter() {
+  if (!DATA) return;
+  document.getElementById('overviewDateRange').textContent = document.getElementById('dateFrom').value + ' to ' + document.getElementById('dateTo').value;
+  renderOverview();
+  // Programmatic page also respects the filter via dailyData.placements
+  if (typeof renderProgrammatic === 'function') renderProgrammatic();
+}
+document.getElementById('dateFrom').addEventListener('change', reRenderForDateFilter);
+document.getElementById('dateTo').addEventListener('change', reRenderForDateFilter);
 
 function navigateTo(pageId) {
   currentPage = pageId;
@@ -1087,19 +1077,58 @@ function toggleHier(row, cls) {
   }
 }
 
-// CSV Export for attributed orders
+// CSV Export for attributed orders — one row PER IMPRESSION under each conversion.
+// Orders with zero pre-purchase impressions still emit a single summary row.
 function exportAttrCSV() {
   const details = (DATA.attribution || {}).impressionsToConversion?.converterDetails || [];
   if (!details.length) { alert('No attributed order data to export.'); return; }
-  let csv = 'Order ID,Revenue,Conversion Date,Attribution Type,Order Source,Impressions Seen\n';
+  const esc = v => {
+    const s = (v == null ? '' : String(v));
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  const headers = [
+    'Order ID','Revenue','Conversion Date','Conversion Time (UTC)','Order Class',
+    'Attribution Type','Order Source','Impressions Seen',
+    'Impression #','Impression Time (UTC)','Placement ID','Campaign ID',
+    'dlve_campaign (macro)','dlve_creative (macro)','dlve_size','dlve_site','dlve_src','Region'
+  ];
+  let csv = headers.join(',') + '\n';
   for (const d of details) {
     const dt = d.conversionTime ? d.conversionTime.slice(0, 10) : '';
-    csv += `${d.dedupeId || ''},${(d.revenue || 0).toFixed(2)},${dt},${d.type || ''},${d.orderSource || ''},${d.impressionsSeen || 0}\n`;
+    const orderBase = [
+      d.dedupeId || '',
+      (d.revenue || 0).toFixed(2),
+      dt,
+      d.conversionTime || '',
+      d.orderClass || '',
+      d.type || '',
+      d.orderSource || '',
+      d.impressionsSeen || 0,
+    ].map(esc);
+    const imps = Array.isArray(d.impressions) ? d.impressions : [];
+    if (!imps.length) {
+      csv += orderBase.concat(['', '', '', '', '', '', '', '', '', '']).join(',') + '\n';
+      continue;
+    }
+    imps.forEach((imp, i) => {
+      csv += orderBase.concat([
+        i + 1,
+        imp.time || '',
+        imp.placementId || '',
+        imp.campaignId || '',
+        imp.dlve_campaign || '',
+        imp.dlve_creative || '',
+        imp.dlve_size || '',
+        imp.dlve_site || '',
+        imp.dlve_src || '',
+        imp.region || ''
+      ].map(esc)).join(',') + '\n';
+    });
   }
   const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'purple_carrot_attributed_orders.csv';
+  a.download = 'purple_carrot_attributed_orders_with_impressions.csv';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1178,7 +1207,7 @@ function renderOverview() {
 
   // Impressions
   setText('gImpressions', fmt(dispImp));
-  setText('gImpSub', fmt(prog.reach || 0) + ' unique reach');
+  setText('gImpSub', '');
 
   // Website Visits = ad clicks only (view-through pending proper GraphQL source)
   const clicks = useFiltered ? dispClicks : (prog.clicks || 0);
@@ -1585,44 +1614,99 @@ function renderProgrammatic() {
   const prog = DATA.programmatic || {};
   const campaigns = DATA.campaigns || {};
 
+  // Apply the same date filter renderOverview uses so the Programmatic page
+  // respects the picker. Falls back to full programmatic totals when no filter.
+  const fromDate = document.getElementById('dateFrom')?.value || '';
+  const toDate = document.getElementById('dateTo')?.value || '';
+  const daily = DATA.dailyData || {};
+  const useFiltered = !!(fromDate || toDate);
+
+  // Roll up daily totals for the active window, plus per-placement breakdowns.
+  // PLACEMENT_TO_CHANNEL is built from DATA.placementConfig which the report
+  // writes out (PLACEMENT_CONFIG from purplecarrot_report_v2.py).
+  const placementConfig = DATA.placementConfig || {
+    "6001": {channel: "ctv",     cpm: 28.00},
+    "6010": {channel: "display", cpm: 6.00},
+    "6011": {channel: "video",   cpm: 7.50},
+  };
+  let fImp = 0, fClicks = 0;
+  const channelTotals = {display: {impressions: 0, clicks: 0},
+                         video:   {impressions: 0, clicks: 0},
+                         ctv:     {impressions: 0, clicks: 0}};
+  for (const d of Object.keys(daily)) {
+    if (useFiltered) {
+      if (fromDate && d < fromDate) continue;
+      if (toDate && d > toDate) continue;
+    }
+    const dd = daily[d] || {};
+    fImp += dd.impressions || 0;
+    fClicks += dd.clicks || 0;
+    const plcs = dd.placements || {};
+    for (const pid of Object.keys(plcs)) {
+      const cfg = placementConfig[pid];
+      const ch = cfg ? cfg.channel : null;
+      if (ch && channelTotals[ch]) {
+        channelTotals[ch].impressions += plcs[pid].impressions || 0;
+        channelTotals[ch].clicks += plcs[pid].clicks || 0;
+      }
+    }
+  }
+
+  const dispImp = useFiltered ? fImp : (prog.impressions || 0);
+  const dispClicks = useFiltered ? fClicks : (prog.clicks || 0);
+
   // KPIs
-  setText('pImpressions', fmt(prog.impressions || 0));
-  setText('pReach', fmt(prog.reach || 0));
-  setText('pFrequency', (prog.frequency || 0).toFixed(1) + 'x');
-  setText('pClicks', fmt(prog.clicks || 0));
+  setText('pImpressions', fmt(dispImp));
+  setText('pClicks', fmt(dispClicks));
   setText('pAttrOrders', fmt(prog.attrOrders || 0));
   setText('pRoas', (prog.roas || 0).toFixed(2) + 'x');
 
-  // Channel ROAS Cards — split total across Display, Display Video, CTV
-  // Use channel breakdown from data if available, otherwise estimate from totals
+  // Channel ROAS Cards — driven by real per-placement data, no fallback split.
+  // Attributed orders/revenue still come from prog.attrOrders/attrRevenue at the
+  // channel object level until the report breaks attribution out per channel;
+  // for now we leave those at 0 per channel when the data file doesn't supply them.
   const channels = DATA.channels || {};
-  const totalImp = prog.impressions || 0;
   const totalAttrOrders = prog.attrOrders || 0;
   const totalAttrRev = prog.attrRevenue || 0;
-  const totalReach = prog.reach || 0;
 
-  // Default channel splits if no per-channel data (fallback uses real DLVE placement CPMs)
-  const displayData = channels.display || {
-    impressions: Math.round(totalImp * 0.55),
-    reach: Math.round(totalReach * 0.50),
-    attrOrders: Math.round(totalAttrOrders * 0.50),
-    attrRevenue: Math.round(totalAttrRev * 0.50 * 100) / 100,
-    cpm: 6.00
-  };
-  const videoData = channels.video || {
-    impressions: Math.round(totalImp * 0.30),
-    reach: Math.round(totalReach * 0.30),
-    attrOrders: Math.round(totalAttrOrders * 0.30),
-    attrRevenue: Math.round(totalAttrRev * 0.30 * 100) / 100,
-    cpm: 7.50
-  };
-  const ctvData = channels.ctv || {
-    impressions: Math.round(totalImp * 0.15),
-    reach: Math.round(totalReach * 0.20),
-    attrOrders: totalAttrOrders - (displayData.attrOrders + videoData.attrOrders),
-    attrRevenue: Math.round((totalAttrRev - displayData.attrRevenue - videoData.attrRevenue) * 100) / 100,
-    cpm: 28.00
-  };
+  function chCpm(ch) {
+    for (const pid of Object.keys(placementConfig)) {
+      if (placementConfig[pid].channel === ch) return placementConfig[pid].cpm;
+    }
+    return 0;
+  }
+
+  const displayData = Object.assign(
+    {impressions: channelTotals.display.impressions,
+     clicks: channelTotals.display.clicks,
+     attrOrders: 0, attrRevenue: 0,
+     cpm: chCpm('display')},
+    channels.display || {}
+  );
+  // Always overwrite impressions/clicks with the filtered placement-level data
+  // so the cards reflect the date picker, not a stale lifetime total.
+  displayData.impressions = channelTotals.display.impressions;
+  displayData.clicks = channelTotals.display.clicks;
+
+  const videoData = Object.assign(
+    {impressions: channelTotals.video.impressions,
+     clicks: channelTotals.video.clicks,
+     attrOrders: 0, attrRevenue: 0,
+     cpm: chCpm('video')},
+    channels.video || {}
+  );
+  videoData.impressions = channelTotals.video.impressions;
+  videoData.clicks = channelTotals.video.clicks;
+
+  const ctvData = Object.assign(
+    {impressions: channelTotals.ctv.impressions,
+     clicks: channelTotals.ctv.clicks,
+     attrOrders: 0, attrRevenue: 0,
+     cpm: chCpm('ctv')},
+    channels.ctv || {}
+  );
+  ctvData.impressions = channelTotals.ctv.impressions;
+  ctvData.clicks = channelTotals.ctv.clicks;
 
   function populateChannelCard(prefix, data) {
     const spend = (data.impressions / 1000) * data.cpm;
@@ -1631,7 +1715,6 @@ function renderProgrammatic() {
     setText('roas' + prefix, roas > 0 ? roas.toFixed(2) + 'x' : '-');
     setText('cpm' + prefix, 'CPM $' + data.cpm.toFixed(2) + ' \u2022 Est. Spend ' + fmtMoney(spend));
     setText('imps' + prefix, fmt(data.impressions || 0));
-    setText('reach' + prefix, fmt(data.reach || 0));
     setText('rev' + prefix, fmtMoney(data.attrRevenue || 0));
     setText('orders' + prefix, fmt(data.attrOrders || 0));
     setText('cac' + prefix, chCac > 0 ? fmtMoney(chCac) : '-');
@@ -1641,13 +1724,13 @@ function renderProgrammatic() {
   populateChannelCard('Video', videoData);
   populateChannelCard('CTV', ctvData);
 
-  // Funnel
-  setText('pf-imp', fmt(prog.impressions || 0));
-  setText('pf-click', fmt(prog.clicks || 0));
-  const ctr = prog.impressions > 0 ? (prog.clicks / prog.impressions * 100) : 0;
+  // Funnel — also driven by the date filter
+  setText('pf-imp', fmt(dispImp));
+  setText('pf-click', fmt(dispClicks));
+  const ctr = dispImp > 0 ? (dispClicks / dispImp * 100) : 0;
   setText('pf-ctr', ctr > 0 ? fmtPct(ctr) + ' CTR' : '-');
   setText('pf-orders', fmt(prog.attrOrders || 0));
-  const convRate = prog.impressions > 0 ? (prog.attrOrders / prog.impressions * 100) : 0;
+  const convRate = dispImp > 0 ? ((prog.attrOrders || 0) / dispImp * 100) : 0;
   setText('pf-rate', convRate > 0 ? fmtPct(convRate) + ' conversion rate' : '-');
   setText('pf-revenue', fmtMoney(prog.attrRevenue || 0));
   setText('pf-roas', prog.spend > 0 ? (prog.attrRevenue / prog.spend).toFixed(2) + 'x ROAS' : '-');
@@ -1681,7 +1764,6 @@ function renderProgrammatic() {
     campRows += `<tr class="hier-channel" style="cursor:pointer;background:#f8f9fc" onclick="toggleHier(this,'ch${chIdx}')">
       <td><span class="hier-arrow">▶</span> <span class="tactic-pill" style="font-size:10px;padding:2px 8px;background:${chColor};color:#fff">${chLabel}</span></td>
       <td class="numeric">${fmt(chImp)}</td><td class="numeric">${fmt(chClk)}</td>
-      <td class="numeric">${fmt(chReach)}</td><td class="numeric">${chFreq}</td>
       <td class="numeric"><span class="pill purple">${chAttr}</span></td>
       <td class="numeric">${fmtMoney(chAttrRev)}</td><td class="numeric">${fmtMoney(chSpend)}</td>
       <td class="numeric">${chRoas}</td>
@@ -1698,7 +1780,6 @@ function renderProgrammatic() {
       campRows += `<tr class="hier-camp ch${chIdx}" style="display:none;${hasCreatives?'cursor:pointer':''}" ${hasCreatives?`onclick="toggleHier(this,'ch${chIdx}c${campIdx}')"`:''}>
         <td style="padding-left:32px"><span class="hier-arrow">${hasCreatives?'▶':''}</span> ${campName}</td>
         <td class="numeric">${fmt(campData.impressions||0)}</td><td class="numeric">${fmt(campData.clicks||0)}</td>
-        <td class="numeric">${fmt(campData.reach||0)}</td><td class="numeric">${cFreq}</td>
         <td class="numeric"><span class="pill purple">${campData.attrOrders||0}</span></td>
         <td class="numeric">${fmtMoney(campData.attrRevenue||0)}</td><td class="numeric">${fmtMoney(campData.spend||0)}</td>
         <td class="numeric">${cRoas}</td>
@@ -1712,7 +1793,6 @@ function renderProgrammatic() {
         campRows += `<tr class="hier-creative ch${chIdx}c${campIdx}" style="display:none;color:#64748b;font-size:12px">
           <td style="padding-left:56px">${crLabel}</td>
           <td class="numeric">${fmt(cr.impressions||0)}</td><td class="numeric">${fmt(cr.clicks||0)}</td>
-          <td class="numeric">${fmt(cr.reach||0)}</td><td class="numeric">${crFreq}</td>
           <td class="numeric"><span class="pill purple">${cr.attrOrders||0}</span></td>
           <td class="numeric">${fmtMoney(cr.attrRevenue||0)}</td><td class="numeric">${fmtMoney(cr.spend||0)}</td>
           <td class="numeric">${crRoas}</td>
@@ -1731,7 +1811,6 @@ function renderProgrammatic() {
       const cRoas = cdata.spend > 0 ? (cdata.attrRevenue/cdata.spend).toFixed(2)+'x' : '-';
       campRows += `<tr><td><strong>${cdata.label||ckey}</strong></td>
         <td class="numeric">${fmt(cdata.impressions||0)}</td><td class="numeric">${fmt(cdata.clicks||0)}</td>
-        <td class="numeric">${fmt(cdata.reach||0)}</td><td class="numeric">${(cdata.frequency||0).toFixed(1)}x</td>
         <td class="numeric"><span class="pill purple">${cdata.attrOrders||0}</span></td>
         <td class="numeric">${fmtMoney(cdata.attrRevenue||0)}</td><td class="numeric">${fmtMoney(cdata.spend||0)}</td>
         <td class="numeric">${cRoas}</td></tr>`;
@@ -1743,12 +1822,11 @@ function renderProgrammatic() {
   campRows += `<tr style="font-weight:bold;border-top:2px solid #333;background:#f8f9fc">
     <td>TOTAL</td>
     <td class="numeric">${fmt(tImp)}</td><td class="numeric">${fmt(tClicks)}</td>
-    <td class="numeric">${fmt(tReach)}</td><td class="numeric">${totalFreq}</td>
     <td class="numeric"><span class="pill">${tAttr}</span></td>
     <td class="numeric">${fmtMoney(tAttrRev)}</td><td class="numeric">${fmtMoney(tSpend)}</td>
     <td class="numeric">${totalRoas}</td>
   </tr>`;
-  campTbody.innerHTML = campRows || '<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:16px">No campaign data available yet</td></tr>';
+  campTbody.innerHTML = campRows || '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:16px">No campaign data available yet</td></tr>';
 
   // Programmatic daily chart
   renderProgChart();

@@ -66,8 +66,9 @@ def is_real_order_id(x):
     x = str(x).strip()
     if not x:
         return False
-    # Real Purple Carrot transactionId: 7-digit numeric starting with 297/298/299
-    if x.isdigit() and len(x) == 7 and x[:3] in ("297", "298", "299"):
+    # Real Purple Carrot transactionId: 7-digit numeric, first digit 2 or 3
+    # (covers 2.0M-3.99M range; widened from 297/298/299 prefix on 2026-05-09)
+    if x.isdigit() and len(x) == 7 and x[0] in ("2", "3"):
         return True
     # Also accept other numeric 7-8 digit IDs (cart.id from fetch intercept)
     if x.isdigit() and len(x) >= 7:
@@ -79,12 +80,34 @@ def is_real_order_id(x):
 
 
 def is_real_transaction_id(x):
-    """Check if a dedupeId is a real Purple Carrot transactionId (from ordersuccess dataLayer event).
-    Real transactionIds are 7-digit numeric starting with 297/298/299."""
+    """Check if a dedupeId is a real Purple Carrot subscription transactionId.
+
+    Widened 2026-05-13 after Mike confirmed PC's site fires real
+    subscription IDs in their full historical range (5-digit through 7-digit,
+    ~20,000 to ~3,000,000). The prior gate (7-digit, first digit 2 or 3)
+    was rejecting legitimate sub-2M orders that had recovered through
+    server-side DLQ replay.
+
+    Accept: all-numeric, value between 10,000 and 3,999,999.
+    This range covers every known PC subscription ID and excludes:
+      - Cart-save IDs in the 9M-10M range (different ID system, 8-digit)
+      - Cart-fallback alphanumeric tokens (e.g. "DBA4zjPy")
+      - Sub-10k values (clearly not subscription IDs)
+
+    Forward-looking, Stape server-side is the primary capture path and
+    has no gate at all, so this widening just brings the report's
+    visibility in line with what the database already contains. Tag-side
+    gate v15.5.0 unchanged — Stape is the backstop for anything it rejects."""
     if not x:
         return False
     d = str(x).strip()
-    return d.isdigit() and len(d) == 7 and d[:3] in ("297", "298", "299")
+    if not d.isdigit():
+        return False
+    try:
+        n = int(d)
+    except ValueError:
+        return False
+    return 10_000 <= n <= 3_999_999
 
 
 def classify_order_source(dedupe_id):
@@ -92,10 +115,10 @@ def classify_order_source(dedupe_id):
     if not dedupe_id:
         return "unknown"
     d = str(dedupe_id).strip()
-    # Real transactionId from ordersuccess dataLayer event (297/298/299 prefix)
+    # Real transactionId from ordersuccess dataLayer event (2/3-prefix 7-digit)
     if is_real_transaction_id(d):
         return "ordersuccess"
-    # Cart.id from fetch intercept (100xxxxx format — NOT real transactions)
+    # Cart.id from fetch intercept (1xxxxxx and 8-digit+ numeric — NOT real transactions)
     if d.isdigit() and len(d) >= 7:
         return "cart_save"
     # Alpha IDs from cart fallback (e.g. DBA4zjPy)
@@ -1008,16 +1031,33 @@ def main():
     # -------------------------
     # Impressions-to-conversion (how many ads did each converter see before purchasing?)
     # -------------------------
-    # Build IP index of impressions (IP → list of impression times)
+    # Build IP index of impressions (IP → list of impression dicts).
+    # We keep the full record so converter_details can carry per-impression
+    # macro detail (placement, campaign, creative, size, site) for export.
     imp_by_ip = defaultdict(list)
     for imp_node in clean_impressions_list:
         ip = imp_node.get("ip")
         imp_time_raw = imp_node.get("time")
-        if ip and imp_time_raw:
-            try:
-                imp_by_ip[ip].append(pd.to_datetime(imp_time_raw, utc=True))
-            except Exception:
-                imp_by_ip[ip].append(None)
+        if not ip or not imp_time_raw:
+            continue
+        try:
+            t_parsed = pd.to_datetime(imp_time_raw, utc=True)
+        except Exception:
+            t_parsed = None
+        macros = imp_node.get("data") or {}
+        imp_by_ip[ip].append({
+            "_t": t_parsed,
+            "time": imp_time_raw,
+            "placementId": imp_node.get("placementId") or "",
+            "campaignId": imp_node.get("campaignId") or "",
+            "campaignName": imp_node.get("campaignName") or "",
+            "dlve_campaign": macros.get("dlve_campaign") or "",
+            "dlve_creative": macros.get("dlve_creative") or "",
+            "dlve_size": macros.get("dlve_size") or "",
+            "dlve_site": macros.get("dlve_site") or "",
+            "dlve_src": macros.get("dlve_src") or "",
+            "region": imp_node.get("region") or "",
+        })
 
     # Build dedupeId → purchase lookup (to get IP for attributed orders)
     purchase_by_dedupe = {}
@@ -1104,7 +1144,14 @@ def main():
 
         # Count impressions from this IP that occurred before conversion
         ip_impressions = imp_by_ip.get(converter_ip, [])
-        pre_conv_count = sum(1 for t in ip_impressions if t is not None and t <= conv_time)
+        # Pre-conversion impressions, sorted oldest → newest
+        pre_conv_impressions = [r for r in ip_impressions if r.get("_t") is not None and r["_t"] <= conv_time]
+        pre_conv_impressions.sort(key=lambda r: r["_t"])
+        pre_conv_count = len(pre_conv_impressions)
+        # Strip the parsed-datetime helper before serializing
+        pre_conv_serializable = [
+            {k: v for k, v in r.items() if k != "_t"} for r in pre_conv_impressions
+        ]
 
         converter_impression_counts.append(pre_conv_count)
         # Determine campaign/placement info for this attributed order
@@ -1138,6 +1185,7 @@ def main():
             "placementId": a_pid,
             "daysBetween": a_days,
             "matchingImpressions": a_matching,
+            "impressions": pre_conv_serializable,
         })
 
     avg_imps_to_convert = round(sum(converter_impression_counts) / len(converter_impression_counts), 1) if converter_impression_counts else 0
@@ -1191,6 +1239,12 @@ def main():
         "newOrders": 0, "returningOrders": 0,
         "nyPurchases": 0,
         "trafficSources": defaultdict(int),
+        # Per-placement daily breakdown so the dashboard can compute channel
+        # totals within a date filter instead of falling back to a fixed
+        # percentage split. Keyed by placementId (e.g. "6001" = CTV,
+        # "6010" = Display, "6011" = Video). Channel mapping comes from
+        # PLACEMENT_CONFIG so the frontend doesn't need to hardcode.
+        "placements": defaultdict(lambda: {"impressions": 0, "clicks": 0}),
     })
 
     for p in unique_purchases:
@@ -1225,6 +1279,9 @@ def main():
         except Exception:
             continue
         daily_data[day_key]["impressions"] += 1
+        pid = str(imp.get("placementId") or "")
+        if pid:
+            daily_data[day_key]["placements"][pid]["impressions"] += 1
 
     for _, _, click in all_clicks_clean:
         t = click.get("time", "")
@@ -1236,6 +1293,9 @@ def main():
         except Exception:
             continue
         daily_data[day_key]["clicks"] += 1
+        pid = str(click.get("placementId") or "")
+        if pid:
+            daily_data[day_key]["placements"][pid]["clicks"] += 1
 
     for a in unique_attributed:
         t = a.get("time", "")
@@ -1264,6 +1324,7 @@ def main():
             "returningOrders": day["returningOrders"],
             "nyPurchases": day["nyPurchases"],
             "trafficSources": dict(day["trafficSources"]),
+            "placements": {pid: dict(pd_) for pid, pd_ in day["placements"].items()},
         }
 
     # -------------------------
@@ -1633,6 +1694,9 @@ def main():
             "start": start_date.strftime("%Y-%m-%d"),
             "end": run_end_date.strftime("%Y-%m-%d"),
         },
+        # Placement -> channel mapping so the dashboard can sum per-channel
+        # from dailyData.placements without hardcoding placement IDs.
+        "placementConfig": {pid: cfg for pid, cfg in PLACEMENT_CONFIG.items()},
         "global": {
             "totalOrders": total_orders,
             "totalRevenue": round(total_revenue, 2),
