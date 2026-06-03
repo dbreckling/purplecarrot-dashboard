@@ -4,85 +4,99 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-06-01T12:32:16.206150Z",
+  "lastUpdated": "2026-06-03T18:11:23.897941Z",
   "dateRange": {
     "start": "2026-03-01",
-    "end": "2026-06-01"
+    "end": "2026-06-03"
+  },
+  "placementConfig": {
+    "6001": {
+      "channel": "ctv",
+      "cpm": 28.0
+    },
+    "6010": {
+      "channel": "display",
+      "cpm": 6.0
+    },
+    "6011": {
+      "channel": "video",
+      "cpm": 7.5
+    }
   },
   "global": {
-    "totalOrders": 2028,
-    "totalRevenue": 175542.96,
-    "aov": 86.56,
-    "uniqueVisitors": 1828,
-    "repeatPurchaseRate": 0.7,
-    "newOrders": 1976,
+    "totalOrders": 2065,
+    "totalRevenue": 179028.18,
+    "aov": 86.7,
+    "uniqueVisitors": 1853,
+    "repeatPurchaseRate": 0.6,
+    "newOrders": 2013,
     "returningOrders": 52,
-    "newCustomerPct": 97.4,
+    "newCustomerPct": 97.5,
     "avgCartSize": 1.0
   },
   "identity": {
-    "emailHashCoverage": 89.6,
-    "customerIdCoverage": 89.6,
-    "zipCodeCoverage": 88.9,
+    "emailHashCoverage": 89.2,
+    "customerIdCoverage": 89.2,
+    "zipCodeCoverage": 88.5,
     "loggedInBreakdown": {
-      "yes": 806,
-      "no": 699,
-      "unknown": 523
+      "yes": 820,
+      "no": 710,
+      "unknown": 535
     }
   },
   "orderSources": {
-    "ordersuccess": 2028,
+    "ordersuccess": 2065,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 871,
-      "revenue": 82748.93,
-      "aov": 95.0,
-      "pctOfOrders": 42.9
+      "orders": 874,
+      "revenue": 83138.4,
+      "aov": 95.12,
+      "pctOfOrders": 42.3
     },
     "Google Ads": {
-      "orders": 310,
-      "revenue": 30376.47,
-      "aov": 97.99,
-      "pctOfOrders": 15.3
-    },
-    "Email": {
-      "orders": 221,
-      "revenue": 5376.08,
-      "aov": 24.33,
-      "pctOfOrders": 10.9
+      "orders": 320,
+      "revenue": 31483.36,
+      "aov": 98.39,
+      "pctOfOrders": 15.5
     },
     "Direct": {
-      "orders": 215,
-      "revenue": 20366.6,
-      "aov": 94.73,
-      "pctOfOrders": 10.6
+      "orders": 228,
+      "revenue": 21294.07,
+      "aov": 93.4,
+      "pctOfOrders": 11.0
+    },
+    "Email": {
+      "orders": 226,
+      "revenue": 5573.57,
+      "aov": 24.66,
+      "pctOfOrders": 10.9
     },
     "Affiliate": {
-      "orders": 146,
-      "revenue": 13895.33,
-      "aov": 95.17,
-      "pctOfOrders": 7.2
+      "orders": 150,
+      "revenue": 14560.74,
+      "aov": 97.07,
+      "pctOfOrders": 7.3
     },
     "Google Organic": {
-      "orders": 119,
-      "revenue": 8416.6,
-      "aov": 70.73,
-      "pctOfOrders": 5.9
+      "orders": 120,
+      "revenue": 8516.09,
+      "aov": 70.97,
+      "pctOfOrders": 5.8
     },
     "Referral": {
       "orders": 68,
       "revenue": 5871.64,
       "aov": 86.35,
-      "pctOfOrders": 3.4
+      "pctOfOrders": 3.3
     },
     "Meta Ads": {
       "orders": 36,
       "revenue": 4187.63,
       "aov": 116.32,
-      "pctOfOrders": 1.8
+      "pctOfOrders": 1.7
     },
     "Bing": {
       "orders": 15,
@@ -97,9 +111,9 @@
       "pctOfOrders": 0.5
     },
     "Friendbuy": {
-      "orders": 6,
-      "revenue": 338.37,
-      "aov": 56.4,
+      "orders": 7,
+      "revenue": 437.37,
+      "aov": 62.48,
       "pctOfOrders": 0.3
     },
     "Chatgpt.Com": {
@@ -123,28 +137,28 @@
   },
   "geographic": {
     "CA": {
-      "orders": 264,
-      "revenue": 21614.34
+      "orders": 267,
+      "revenue": 21959.3
     },
     "IA": {
-      "orders": 164,
-      "revenue": 16110.2
+      "orders": 176,
+      "revenue": 16966.17
     },
     "NY": {
-      "orders": 145,
-      "revenue": 11984.07
+      "orders": 147,
+      "revenue": 12141.07
     },
     "TX": {
-      "orders": 119,
-      "revenue": 10133.25
+      "orders": 120,
+      "revenue": 10319.24
     },
     "IL": {
       "orders": 108,
       "revenue": 8520.01
     },
     "FL": {
-      "orders": 105,
-      "revenue": 10014.9
+      "orders": 106,
+      "revenue": 10120.38
     },
     "VA": {
       "orders": 86,
@@ -155,52 +169,56 @@
       "revenue": 7557.4
     },
     "PA": {
-      "orders": 73,
-      "revenue": 7255.1
+      "orders": 74,
+      "revenue": 7267.1
     },
     "CO": {
-      "orders": 70,
-      "revenue": 5826.33
+      "orders": 71,
+      "revenue": 5955.83
     },
     "MA": {
       "orders": 62,
       "revenue": 5081.72
     },
     "OH": {
-      "orders": 58,
-      "revenue": 5387.14
+      "orders": 60,
+      "revenue": 5599.07
     },
     "NC": {
-      "orders": 56,
-      "revenue": 5544.88
+      "orders": 57,
+      "revenue": 5632.88
     },
     "GA": {
-      "orders": 48,
-      "revenue": 4005.21
+      "orders": 49,
+      "revenue": 4017.21
     },
     "NJ": {
-      "orders": 48,
-      "revenue": 4096.32
+      "orders": 49,
+      "revenue": 4108.32
     },
     "MI": {
-      "orders": 47,
-      "revenue": 3890.14
+      "orders": 48,
+      "revenue": 3961.64
     },
     "OR": {
-      "orders": 45,
-      "revenue": 3065.98
+      "orders": 46,
+      "revenue": 3165.47
     },
     "MD": {
       "orders": 38,
       "revenue": 3065.76
     },
     "TN": {
-      "orders": 32,
-      "revenue": 2404.64
+      "orders": 33,
+      "revenue": 2476.64
     },
     "IN": {
       "orders": 29,
       "revenue": 2450.33
+    },
+    "AZ": {
+      "orders": 28,
+      "revenue": 2172.27
     },
     "WI": {
       "orders": 27,
@@ -210,46 +228,42 @@
       "orders": 26,
       "revenue": 1885.96
     },
-    "AZ": {
-      "orders": 25,
-      "revenue": 1659.3
+    "MO": {
+      "orders": 26,
+      "revenue": 2413.32
     },
     "UT": {
       "orders": 25,
       "revenue": 2296.86
-    },
-    "MN": {
-      "orders": 24,
-      "revenue": 1664.91
     }
   },
   "devices": {
     "iOS": {
-      "orders": 752,
-      "pctOfOrders": 37.1
+      "orders": 763,
+      "pctOfOrders": 36.9
     },
     "Mac OS": {
-      "orders": 464,
-      "pctOfOrders": 22.9
+      "orders": 469,
+      "pctOfOrders": 22.7
     },
     "Windows": {
-      "orders": 438,
-      "pctOfOrders": 21.6
+      "orders": 444,
+      "pctOfOrders": 21.5
     },
     "Android": {
-      "orders": 207,
-      "pctOfOrders": 10.2
+      "orders": 208,
+      "pctOfOrders": 10.1
     },
     "Unknown": {
-      "orders": 147,
-      "pctOfOrders": 7.2
+      "orders": 159,
+      "pctOfOrders": 7.7
     },
     "Chromium OS": {
-      "orders": 11,
-      "pctOfOrders": 0.5
+      "orders": 12,
+      "pctOfOrders": 0.6
     },
     "Linux": {
-      "orders": 8,
+      "orders": 9,
       "pctOfOrders": 0.4
     },
     "Ubuntu": {
@@ -259,15 +273,15 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 5208482,
+    "impressions": 5208555,
     "clicks": 600,
-    "reach": 1470438,
+    "reach": 1470445,
     "frequency": 3.54,
-    "attrOrders": 11,
-    "attrRevenue": 805.32,
-    "spend": 40201.33,
+    "attrOrders": 12,
+    "attrRevenue": 877.82,
+    "spend": 40201.81,
     "roas": 0.02,
-    "costPerSubscription": 3654.67,
+    "costPerSubscription": 3350.15,
     "ctVisits": 508,
     "vtVisits": 0,
     "stackadapt": {
@@ -278,7 +292,7 @@
   "attribution": {
     "byType": {
       "clickThrough": 0,
-      "viewThrough": 11
+      "viewThrough": 12
     },
     "conversionTimeline": {
       "sameDay": 2,
@@ -286,7 +300,7 @@
       "2to3days": 2,
       "4to7days": 1,
       "8to14days": 1,
-      "15to30days": 5
+      "15to30days": 6
     },
     "lookbackData": {
       "1": {
@@ -306,20 +320,20 @@
         "revenue": 425.96
       },
       "30": {
-        "orders": 11,
-        "revenue": 805.32
+        "orders": 12,
+        "revenue": 877.82
       }
     },
-    "avgDaysToConversion": 12.0,
+    "avgDaysToConversion": 13.4,
     "sameDayConversions": 2,
-    "sameDayConversionRate": 18.2,
+    "sameDayConversionRate": 16.7,
     "impressionsToConversion": {
-      "avgImpressions": 24.2,
+      "avgImpressions": 22.4,
       "minImpressions": 1,
       "maxImpressions": 220,
       "medianImpressions": 3,
       "frequencyBuckets": {
-        "1-3": 6,
+        "1-3": 7,
         "4-7": 1,
         "8-14": 2,
         "15-30": 1,
@@ -3314,6 +3328,59 @@
           ]
         },
         {
+          "dedupeId": "2852473",
+          "visitorId": "",
+          "ip": "148.77.9***",
+          "conversionTime": "2026-06-03T12:36:59.719000+00:00",
+          "impressionsSeen": 3,
+          "revenue": 72.5,
+          "type": "view-through",
+          "orderClass": "Purchase",
+          "orderSource": "ordersuccess",
+          "channel": "display",
+          "placementId": "6010",
+          "daysBetween": 29,
+          "matchingImpressions": 2,
+          "impressions": [
+            {
+              "time": "2026-05-01T20:08:58.191000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "yahoo.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-05-05T16:21:37.198000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "fandom.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            },
+            {
+              "time": "2026-05-05T16:29:17.868000+00:00",
+              "placementId": "6010",
+              "campaignId": "4079",
+              "campaignName": "",
+              "dlve_campaign": "4079_Display_PROSP_RTW",
+              "dlve_creative": "EatBetter_Display",
+              "dlve_size": "300x250",
+              "dlve_site": "fandom.com",
+              "dlve_src": "stackadapt",
+              "region": "NY"
+            }
+          ]
+        },
+        {
           "dedupeId": "2980113",
           "visitorId": "VID772FFFE6556843CAAE",
           "ip": "158.106.***",
@@ -3710,23 +3777,23 @@
   },
   "channels": {
     "display": {
-      "impressions": 2517929,
+      "impressions": 2517973,
       "clicks": 598,
-      "reach": 791224,
-      "attrOrders": 7,
-      "attrRevenue": 466.46,
+      "reach": 791229,
+      "attrOrders": 8,
+      "attrRevenue": 538.96,
       "cpm": 6.0,
-      "spend": 15107.57,
-      "roas": 0.03
+      "spend": 15107.84,
+      "roas": 0.04
     },
     "video": {
-      "impressions": 2450816,
+      "impressions": 2450845,
       "clicks": 0,
-      "reach": 849714,
+      "reach": 849719,
       "attrOrders": 4,
       "attrRevenue": 338.86,
       "cpm": 7.5,
-      "spend": 18381.12,
+      "spend": 18381.34,
       "roas": 0.02
     },
     "ctv": {
@@ -4070,49 +4137,49 @@
           }
         },
         "4079_Display_PROSP_Aud": {
-          "impressions": 444280,
+          "impressions": 444303,
           "clicks": 75,
-          "reach": 252913,
+          "reach": 252918,
           "frequency": 1.8,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 2665.68,
+          "spend": 2665.82,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 390956,
+              "impressions": 390977,
               "clicks": 54,
-              "reach": 227130,
+              "reach": 227134,
               "frequency": 1.7,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 2345.74,
+              "spend": 2345.86,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 33945,
+              "impressions": 33946,
               "clicks": 6,
-              "reach": 22826,
+              "reach": 22827,
               "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 203.67,
+              "spend": 203.68,
               "roas": 0.0
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 16972,
+              "impressions": 16973,
               "clicks": 15,
-              "reach": 10409,
+              "reach": 10410,
               "frequency": 1.6,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 101.83,
+              "spend": 101.84,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -4154,26 +4221,26 @@
           }
         },
         "4079_Display_PROSP_RTE": {
-          "impressions": 1025692,
+          "impressions": 1025696,
           "clicks": 181,
           "reach": 199978,
           "frequency": 5.1,
-          "attrOrders": 7,
-          "attrRevenue": 466.45,
-          "spend": 6154.15,
-          "roas": 0.08,
+          "attrOrders": 8,
+          "attrRevenue": 538.96,
+          "spend": 6154.18,
+          "roas": 0.09,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 750112,
+              "impressions": 750115,
               "clicks": 126,
               "reach": 161833,
               "frequency": 4.6,
-              "attrOrders": 5,
-              "attrRevenue": 341.13,
-              "spend": 4500.67,
-              "roas": 0.08
+              "attrOrders": 6,
+              "attrRevenue": 394.15,
+              "spend": 4500.69,
+              "roas": 0.09
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
@@ -4183,21 +4250,21 @@
               "reach": 18186,
               "frequency": 4.2,
               "attrOrders": 1,
-              "attrRevenue": 35.05,
+              "attrRevenue": 40.5,
               "spend": 462.42,
-              "roas": 0.08
+              "roas": 0.09
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 29267,
+              "impressions": 29268,
               "clicks": 21,
               "reach": 9886,
               "frequency": 3.0,
               "attrOrders": 0,
-              "attrRevenue": 13.31,
-              "spend": 175.6,
-              "roas": 0.08
+              "attrRevenue": 15.38,
+              "spend": 175.61,
+              "roas": 0.09
             },
             "EatBetter_display|300x250": {
               "creativeName": "EatBetter_display",
@@ -4207,9 +4274,9 @@
               "reach": 30884,
               "frequency": 5.1,
               "attrOrders": 1,
-              "attrRevenue": 72.0,
+              "attrRevenue": 83.19,
               "spend": 949.93,
-              "roas": 0.08
+              "roas": 0.09
             },
             "EatBetter_display|300x600": {
               "creativeName": "EatBetter_display",
@@ -4219,9 +4286,9 @@
               "reach": 3061,
               "frequency": 2.9,
               "attrOrders": 0,
-              "attrRevenue": 4.1,
+              "attrRevenue": 4.74,
               "spend": 54.13,
-              "roas": 0.08
+              "roas": 0.09
             },
             "EatBetter_display|320x480": {
               "creativeName": "EatBetter_display",
@@ -4231,56 +4298,56 @@
               "reach": 791,
               "frequency": 2.4,
               "attrOrders": 0,
-              "attrRevenue": 0.86,
+              "attrRevenue": 1.0,
               "spend": 11.41,
-              "roas": 0.08
+              "roas": 0.09
             }
           }
         },
         "4079_Display_PROSP_RTW": {
-          "impressions": 312895,
+          "impressions": 312907,
           "clicks": 127,
-          "reach": 72283,
+          "reach": 72286,
           "frequency": 4.3,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1877.37,
+          "spend": 1877.44,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 265395,
+              "impressions": 265403,
               "clicks": 103,
               "reach": 65342,
               "frequency": 4.1,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1592.37,
+              "spend": 1592.42,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 35651,
+              "impressions": 35654,
               "clicks": 16,
-              "reach": 10343,
+              "reach": 10346,
               "frequency": 3.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 213.91,
+              "spend": 213.92,
               "roas": 0.0
             },
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 10417,
+              "impressions": 10418,
               "clicks": 8,
               "reach": 4523,
               "frequency": 2.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 62.5,
+              "spend": 62.51,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -4322,31 +4389,31 @@
           }
         },
         "4079_Display_PROSP_Seg": {
-          "impressions": 562394,
+          "impressions": 562397,
           "clicks": 115,
           "reach": 240479,
           "frequency": 2.3,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 3374.36,
+          "spend": 3374.38,
           "roas": 0.0,
           "creatives": {
             "EatBetter_Display|300x250": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x250",
-              "impressions": 427219,
+              "impressions": 427220,
               "clicks": 80,
               "reach": 191861,
               "frequency": 2.2,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 2563.31,
+              "spend": 2563.32,
               "roas": 0.0
             },
             "EatBetter_Display|300x600": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "300x600",
-              "impressions": 62251,
+              "impressions": 62252,
               "clicks": 16,
               "reach": 26009,
               "frequency": 2.4,
@@ -4358,13 +4425,13 @@
             "EatBetter_Display|320x480": {
               "creativeName": "EatBetter_Display",
               "creativeSize": "320x480",
-              "impressions": 12972,
+              "impressions": 12973,
               "clicks": 2,
               "reach": 8835,
               "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 77.83,
+              "spend": 77.84,
               "roas": 0.0
             },
             "EatBetter_display|300x250": {
@@ -4514,25 +4581,25 @@
           }
         },
         "Unknown": {
-          "impressions": 15,
+          "impressions": 17,
           "clicks": 0,
-          "reach": 8,
+          "reach": 9,
           "frequency": 1.9,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 0.09,
+          "spend": 0.1,
           "roas": 0.0,
           "creatives": {
             "Unknown": {
               "creativeName": "Unknown",
               "creativeSize": "",
-              "impressions": 15,
+              "impressions": 17,
               "clicks": 0,
-              "reach": 8,
+              "reach": 9,
               "frequency": 1.9,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.09,
+              "spend": 0.1,
               "roas": 0.0
             }
           }
@@ -4628,7 +4695,7 @@
           }
         },
         "4079_BannerVideo_PROSP_21+": {
-          "impressions": 642106,
+          "impressions": 642107,
           "clicks": 0,
           "reach": 244908,
           "frequency": 2.6,
@@ -4640,13 +4707,13 @@
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 575550,
+              "impressions": 575551,
               "clicks": 0,
               "reach": 225846,
               "frequency": 2.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 4316.62,
+              "spend": 4316.63,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
@@ -4772,61 +4839,61 @@
           }
         },
         "4079_BannerVideo_PROSP_Aud": {
-          "impressions": 1056832,
+          "impressions": 1056849,
           "clicks": 0,
-          "reach": 405191,
+          "reach": 405197,
           "frequency": 2.6,
           "attrOrders": 4,
-          "attrRevenue": 338.86,
-          "spend": 7926.24,
+          "attrRevenue": 338.87,
+          "spend": 7926.37,
           "roas": 0.04,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 951822,
+              "impressions": 951829,
               "clicks": 0,
-              "reach": 371103,
+              "reach": 371105,
               "frequency": 2.6,
               "attrOrders": 4,
               "attrRevenue": 305.19,
-              "spend": 7138.66,
+              "spend": 7138.72,
               "roas": 0.04
             },
             "EatBetter_bannervideo|300x600": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x600",
-              "impressions": 70341,
+              "impressions": 70346,
               "clicks": 0,
-              "reach": 38222,
+              "reach": 38224,
               "frequency": 1.8,
               "attrOrders": 0,
-              "attrRevenue": 22.55,
-              "spend": 527.56,
+              "attrRevenue": 22.56,
+              "spend": 527.6,
               "roas": 0.04
             },
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 34669,
+              "impressions": 34674,
               "clicks": 0,
-              "reach": 18265,
+              "reach": 18268,
               "frequency": 1.9,
               "attrOrders": 0,
               "attrRevenue": 11.12,
-              "spend": 260.02,
+              "spend": 260.06,
               "roas": 0.04
             }
           }
         },
         "4079_BannerVideo_PROSP_RTE": {
-          "impressions": 265011,
+          "impressions": 265015,
           "clicks": 0,
-          "reach": 65325,
+          "reach": 65326,
           "frequency": 4.1,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1987.58,
+          "spend": 1987.61,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
@@ -4856,37 +4923,37 @@
             "EatBetter_bannervideo|320x480": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "320x480",
-              "impressions": 8006,
+              "impressions": 8010,
               "clicks": 0,
-              "reach": 3009,
+              "reach": 3012,
               "frequency": 2.7,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 60.05,
+              "spend": 60.07,
               "roas": 0.0
             }
           }
         },
         "4079_BannerVideo_PROSP_RTW": {
-          "impressions": 66669,
+          "impressions": 66674,
           "clicks": 0,
-          "reach": 18286,
+          "reach": 18287,
           "frequency": 3.6,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 500.02,
+          "spend": 500.06,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 57449,
+              "impressions": 57454,
               "clicks": 0,
-              "reach": 16153,
+              "reach": 16154,
               "frequency": 3.6,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 430.87,
+              "spend": 430.91,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
@@ -4916,25 +4983,25 @@
           }
         },
         "4079_BannerVideo_PROSP_Seg": {
-          "impressions": 397834,
+          "impressions": 397836,
           "clicks": 0,
           "reach": 163920,
           "frequency": 2.4,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 2983.76,
+          "spend": 2983.77,
           "roas": 0.0,
           "creatives": {
             "EatBetter_bannervideo|300x250": {
               "creativeName": "EatBetter_bannervideo",
               "creativeSize": "300x250",
-              "impressions": 352089,
+              "impressions": 352091,
               "clicks": 0,
-              "reach": 149945,
+              "reach": 149946,
               "frequency": 2.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 2640.67,
+              "spend": 2640.68,
               "roas": 0.0
             },
             "EatBetter_bannervideo|300x600": {
@@ -5865,13 +5932,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 5208467,
+      "impressions": 5208538,
       "clicks": 600,
-      "reach": 1470430,
+      "reach": 1470436,
       "frequency": 3.54,
       "attrOrders": 5,
       "attrRevenue": 349.48,
-      "spend": 40201.24,
+      "spend": 40201.71,
       "roas": 0.01
     }
   },
@@ -5892,7 +5959,8 @@
         "Email": 4,
         "Direct": 1,
         "Meta Organic": 1
-      }
+      },
+      "placements": {}
     },
     "2026-03-02": {
       "impressions": 0,
@@ -5911,7 +5979,8 @@
         "Google Organic": 3,
         "Direct": 1,
         "Email": 2
-      }
+      },
+      "placements": {}
     },
     "2026-03-03": {
       "impressions": 0,
@@ -5928,7 +5997,8 @@
         "Direct": 3,
         "Google Organic": 3,
         "Email": 1
-      }
+      },
+      "placements": {}
     },
     "2026-03-04": {
       "impressions": 0,
@@ -5946,7 +6016,8 @@
         "Google Organic": 3,
         "Referral": 1,
         "Email": 3
-      }
+      },
+      "placements": {}
     },
     "2026-03-05": {
       "impressions": 0,
@@ -5964,7 +6035,8 @@
         "Email": 1,
         "Referral": 1,
         "Direct": 2
-      }
+      },
+      "placements": {}
     },
     "2026-03-06": {
       "impressions": 0,
@@ -5981,7 +6053,8 @@
         "Direct": 3,
         "Google Organic": 5,
         "Email": 3
-      }
+      },
+      "placements": {}
     },
     "2026-03-07": {
       "impressions": 0,
@@ -5998,7 +6071,8 @@
         "Referral": 3,
         "Google Organic": 1,
         "Direct": 1
-      }
+      },
+      "placements": {}
     },
     "2026-03-08": {
       "impressions": 0,
@@ -6016,7 +6090,8 @@
         "Direct": 1,
         "Referral": 1,
         "Google Organic": 1
-      }
+      },
+      "placements": {}
     },
     "2026-03-09": {
       "impressions": 0,
@@ -6035,7 +6110,8 @@
         "Google Organic": 4,
         "Direct": 2,
         "Meta Organic": 1
-      }
+      },
+      "placements": {}
     },
     "2026-03-10": {
       "impressions": 0,
@@ -6053,7 +6129,8 @@
         "Direct / Internal": 15,
         "Direct": 3,
         "Google Organic": 1
-      }
+      },
+      "placements": {}
     },
     "2026-03-11": {
       "impressions": 3,
@@ -6071,6 +6148,12 @@
         "Google Organic": 4,
         "Email": 2,
         "Direct": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 3,
+          "clicks": 0
+        }
       }
     },
     "2026-03-12": {
@@ -6089,6 +6172,20 @@
         "Google Organic": 5,
         "Direct": 3,
         "Referral": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12151,
+          "clicks": 1
+        },
+        "6011": {
+          "impressions": 5630,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5738,
+          "clicks": 0
+        }
       }
     },
     "2026-03-13": {
@@ -6106,6 +6203,20 @@
         "Direct": 2,
         "Referral": 3,
         "Google Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 28379,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 11581,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 6301,
+          "clicks": 1
+        }
       }
     },
     "2026-03-14": {
@@ -6123,6 +6234,20 @@
         "Direct / Internal": 24,
         "Google Organic": 1,
         "Email": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 41007,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 13498,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 7712,
+          "clicks": 0
+        }
       }
     },
     "2026-03-15": {
@@ -6141,6 +6266,20 @@
         "Google Ads": 2,
         "Email": 1,
         "Referral": 5
+      },
+      "placements": {
+        "6010": {
+          "impressions": 53754,
+          "clicks": 9
+        },
+        "6011": {
+          "impressions": 31047,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 7559,
+          "clicks": 0
+        }
       }
     },
     "2026-03-16": {
@@ -6158,6 +6297,20 @@
         "Referral": 2,
         "Direct / Internal": 19,
         "Direct": 2
+      },
+      "placements": {
+        "6011": {
+          "impressions": 21823,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 46387,
+          "clicks": 6
+        },
+        "6001": {
+          "impressions": 5624,
+          "clicks": 0
+        }
       }
     },
     "2026-03-17": {
@@ -6177,6 +6330,20 @@
         "Meta Organic": 1,
         "Email": 3,
         "Direct": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 44857,
+          "clicks": 15
+        },
+        "6011": {
+          "impressions": 14989,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5740,
+          "clicks": 0
+        }
       }
     },
     "2026-03-18": {
@@ -6197,6 +6364,20 @@
         "Email": 3,
         "Meta Organic": 1,
         "Google Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 41529,
+          "clicks": 9
+        },
+        "6011": {
+          "impressions": 22754,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5906,
+          "clicks": 0
+        }
       }
     },
     "2026-03-19": {
@@ -6215,6 +6396,20 @@
         "Direct": 1,
         "Google Ads": 1,
         "Email": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 40867,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 23880,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 6159,
+          "clicks": 0
+        }
       }
     },
     "2026-03-20": {
@@ -6234,6 +6429,20 @@
         "Google Organic": 2,
         "Direct": 2,
         "Google Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 48635,
+          "clicks": 13
+        },
+        "6011": {
+          "impressions": 12029,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5746,
+          "clicks": 0
+        }
       }
     },
     "2026-03-21": {
@@ -6251,6 +6460,20 @@
         "Referral": 2,
         "Direct": 1,
         "Direct / Internal": 9
+      },
+      "placements": {
+        "6010": {
+          "impressions": 45925,
+          "clicks": 10
+        },
+        "6011": {
+          "impressions": 17264,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5665,
+          "clicks": 0
+        }
       }
     },
     "2026-03-22": {
@@ -6269,6 +6492,20 @@
         "Google Organic": 3,
         "Referral": 2,
         "Google Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 47579,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 22197,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5873,
+          "clicks": 0
+        }
       }
     },
     "2026-03-23": {
@@ -6286,6 +6523,20 @@
         "Google Ads": 3,
         "Referral": 2,
         "Google Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 44238,
+          "clicks": 3
+        },
+        "6011": {
+          "impressions": 18706,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5828,
+          "clicks": 0
+        }
       }
     },
     "2026-03-24": {
@@ -6305,6 +6556,20 @@
         "Google Ads": 1,
         "Referral": 2,
         "Meta Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 41102,
+          "clicks": 6
+        },
+        "6011": {
+          "impressions": 15209,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5691,
+          "clicks": 0
+        }
       }
     },
     "2026-03-25": {
@@ -6323,6 +6588,20 @@
         "Direct / Internal": 11,
         "Direct": 2,
         "Email": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 40751,
+          "clicks": 5
+        },
+        "6011": {
+          "impressions": 12737,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5433,
+          "clicks": 0
+        }
       }
     },
     "2026-03-26": {
@@ -6340,6 +6619,20 @@
         "Email": 4,
         "Direct": 2,
         "Bing Organic": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 12471,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 38753,
+          "clicks": 7
+        },
+        "6001": {
+          "impressions": 5668,
+          "clicks": 0
+        }
       }
     },
     "2026-03-27": {
@@ -6356,6 +6649,20 @@
         "Google Organic": 6,
         "Direct / Internal": 8,
         "Google Ads": 4
+      },
+      "placements": {
+        "6010": {
+          "impressions": 22394,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 50475,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5701,
+          "clicks": 0
+        }
       }
     },
     "2026-03-28": {
@@ -6374,6 +6681,20 @@
         "Meta Organic": 2,
         "Email": 1,
         "Google Ads": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 18379,
+          "clicks": 4
+        },
+        "6011": {
+          "impressions": 51694,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5750,
+          "clicks": 0
+        }
       }
     },
     "2026-03-29": {
@@ -6392,6 +6713,20 @@
         "Google Ads": 4,
         "Email": 3,
         "Direct": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 23727,
+          "clicks": 9
+        },
+        "6011": {
+          "impressions": 54633,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5563,
+          "clicks": 0
+        }
       }
     },
     "2026-03-30": {
@@ -6411,6 +6746,20 @@
         "Meta Organic": 1,
         "Direct": 1,
         "Google Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 28282,
+          "clicks": 4
+        },
+        "6011": {
+          "impressions": 52866,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5867,
+          "clicks": 0
+        }
       }
     },
     "2026-03-31": {
@@ -6430,6 +6779,20 @@
         "Email": 1,
         "Direct": 1,
         "Referral": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 34022,
+          "clicks": 10
+        },
+        "6011": {
+          "impressions": 50240,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5346,
+          "clicks": 0
+        }
       }
     },
     "2026-04-01": {
@@ -6447,6 +6810,20 @@
         "Direct / Internal": 13,
         "Email": 2,
         "Direct": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 44260,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 50365,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5251,
+          "clicks": 1
+        }
       }
     },
     "2026-04-02": {
@@ -6465,6 +6842,20 @@
         "Referral": 6,
         "Email": 4,
         "Meta Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 42034,
+          "clicks": 11
+        },
+        "6011": {
+          "impressions": 49598,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5182,
+          "clicks": 0
+        }
       }
     },
     "2026-04-03": {
@@ -6483,6 +6874,20 @@
         "Meta Ads": 1,
         "Google Ads": 2,
         "Direct": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 37025,
+          "clicks": 4
+        },
+        "6011": {
+          "impressions": 50878,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5287,
+          "clicks": 0
+        }
       }
     },
     "2026-04-04": {
@@ -6501,6 +6906,20 @@
         "Affiliate": 2,
         "Email": 4,
         "Bing": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 36689,
+          "clicks": 9
+        },
+        "6011": {
+          "impressions": 50783,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5070,
+          "clicks": 0
+        }
       }
     },
     "2026-04-05": {
@@ -6520,6 +6939,20 @@
         "Meta Ads": 1,
         "Affiliate": 2,
         "Google Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 43002,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 50444,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5348,
+          "clicks": 0
+        }
       }
     },
     "2026-04-06": {
@@ -6540,6 +6973,20 @@
         "Meta Ads": 1,
         "Bing": 1,
         "Affiliate": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 34372,
+          "clicks": 8
+        },
+        "6011": {
+          "impressions": 49799,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5158,
+          "clicks": 0
+        }
       }
     },
     "2026-04-07": {
@@ -6559,6 +7006,20 @@
         "Direct": 2,
         "Affiliate": 6,
         "Email": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 53813,
+          "clicks": 9
+        },
+        "6011": {
+          "impressions": 42057,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 4828,
+          "clicks": 0
+        }
       }
     },
     "2026-04-08": {
@@ -6579,6 +7040,20 @@
         "Friendbuy": 1,
         "Meta Ads": 3,
         "Affiliate": 3
+      },
+      "placements": {
+        "6010": {
+          "impressions": 52212,
+          "clicks": 6
+        },
+        "6001": {
+          "impressions": 4848,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 43206,
+          "clicks": 0
+        }
       }
     },
     "2026-04-09": {
@@ -6599,6 +7074,20 @@
         "Bing": 1,
         "Email": 1,
         "Meta Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 54201,
+          "clicks": 14
+        },
+        "6011": {
+          "impressions": 43732,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5161,
+          "clicks": 0
+        }
       }
     },
     "2026-04-10": {
@@ -6616,6 +7105,20 @@
         "Affiliate": 3,
         "Email": 1,
         "Bing": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 42046,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 51638,
+          "clicks": 9
+        },
+        "6001": {
+          "impressions": 5123,
+          "clicks": 0
+        }
       }
     },
     "2026-04-11": {
@@ -6635,6 +7138,20 @@
         "Friendbuy": 1,
         "Referral": 1,
         "Meta Ads": 2
+      },
+      "placements": {
+        "6011": {
+          "impressions": 42732,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 52202,
+          "clicks": 13
+        },
+        "6001": {
+          "impressions": 5160,
+          "clicks": 0
+        }
       }
     },
     "2026-04-12": {
@@ -6653,6 +7170,20 @@
         "Google Ads": 11,
         "Affiliate": 4,
         "Google Organic": 4
+      },
+      "placements": {
+        "6010": {
+          "impressions": 54624,
+          "clicks": 20
+        },
+        "6011": {
+          "impressions": 42046,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5017,
+          "clicks": 0
+        }
       }
     },
     "2026-04-13": {
@@ -6672,6 +7203,20 @@
         "Google Ads": 5,
         "Meta Ads": 1,
         "Bing": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 39073,
+          "clicks": 5
+        },
+        "6001": {
+          "impressions": 6341,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 42576,
+          "clicks": 0
+        }
       }
     },
     "2026-04-14": {
@@ -6691,6 +7236,20 @@
         "Direct": 1,
         "Google Ads": 7,
         "Meta Ads": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 32817,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 32871,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 5326,
+          "clicks": 0
+        }
       }
     },
     "2026-04-15": {
@@ -6709,6 +7268,20 @@
         "Google Ads": 4,
         "Affiliate": 4,
         "Direct / Internal": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 42187,
+          "clicks": 8
+        },
+        "6001": {
+          "impressions": 4254,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 40558,
+          "clicks": 0
+        }
       }
     },
     "2026-04-16": {
@@ -6728,6 +7301,20 @@
         "Affiliate": 2,
         "Google Ads": 4,
         "Meta Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 44370,
+          "clicks": 11
+        },
+        "6011": {
+          "impressions": 40484,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 4644,
+          "clicks": 0
+        }
       }
     },
     "2026-04-17": {
@@ -6747,6 +7334,20 @@
         "Affiliate": 1,
         "Bing": 1,
         "Direct / Internal": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 44687,
+          "clicks": 8
+        },
+        "6001": {
+          "impressions": 4640,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 40702,
+          "clicks": 0
+        }
       }
     },
     "2026-04-18": {
@@ -6764,6 +7365,20 @@
         "Google Ads": 1,
         "Affiliate": 2,
         "Email": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 44849,
+          "clicks": 8
+        },
+        "6011": {
+          "impressions": 40629,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 4784,
+          "clicks": 0
+        }
       }
     },
     "2026-04-19": {
@@ -6783,6 +7398,20 @@
         "Email": 4,
         "Google Organic": 1,
         "Bing": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 50827,
+          "clicks": 3
+        },
+        "6001": {
+          "impressions": 4583,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 41061,
+          "clicks": 0
+        }
       }
     },
     "2026-04-20": {
@@ -6801,6 +7430,20 @@
         "Direct / Internal": 8,
         "Google Ads": 3,
         "Affiliate": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 48105,
+          "clicks": 3
+        },
+        "6011": {
+          "impressions": 40732,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 4770,
+          "clicks": 0
+        }
       }
     },
     "2026-04-21": {
@@ -6819,6 +7462,20 @@
         "Google Ads": 3,
         "Email": 3,
         "Meta Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 47803,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 40815,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 4706,
+          "clicks": 0
+        }
       }
     },
     "2026-04-22": {
@@ -6836,6 +7493,20 @@
         "Friendbuy": 1,
         "Email": 3,
         "Direct / Internal": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 39728,
+          "clicks": 12
+        },
+        "6011": {
+          "impressions": 52436,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 2237,
+          "clicks": 0
+        }
       }
     },
     "2026-04-23": {
@@ -6856,6 +7527,20 @@
         "Affiliate": 4,
         "Meta Ads": 1,
         "Referral": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 33760,
+          "clicks": 8
+        },
+        "6011": {
+          "impressions": 45846,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 1012,
+          "clicks": 0
+        }
       }
     },
     "2026-04-24": {
@@ -6876,6 +7561,20 @@
         "Meta Ads": 1,
         "Bing": 1,
         "Referral": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 33447,
+          "clicks": 8
+        },
+        "6011": {
+          "impressions": 45488,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 924,
+          "clicks": 0
+        }
       }
     },
     "2026-04-25": {
@@ -6898,6 +7597,20 @@
         "Bing": 1,
         "Referral": 1,
         "Affiliate": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 36367,
+          "clicks": 10
+        },
+        "6001": {
+          "impressions": 1116,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 45467,
+          "clicks": 0
+        }
       }
     },
     "2026-04-26": {
@@ -6915,6 +7628,20 @@
         "Affiliate": 2,
         "Direct / Internal": 9,
         "Google Ads": 6
+      },
+      "placements": {
+        "6010": {
+          "impressions": 33450,
+          "clicks": 6
+        },
+        "6011": {
+          "impressions": 45218,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 1138,
+          "clicks": 0
+        }
       }
     },
     "2026-04-27": {
@@ -6932,6 +7659,20 @@
         "Email": 3,
         "Google Ads": 2,
         "Affiliate": 3
+      },
+      "placements": {
+        "6010": {
+          "impressions": 32711,
+          "clicks": 9
+        },
+        "6001": {
+          "impressions": 1175,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 45242,
+          "clicks": 0
+        }
       }
     },
     "2026-04-28": {
@@ -6952,6 +7693,20 @@
         "Friendbuy": 2,
         "Google Ads": 6,
         "Referral": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 32077,
+          "clicks": 8
+        },
+        "6011": {
+          "impressions": 45365,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 1135,
+          "clicks": 0
+        }
       }
     },
     "2026-04-29": {
@@ -6972,6 +7727,20 @@
         "Bing": 1,
         "Email": 3,
         "Referral": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 35323,
+          "clicks": 21
+        },
+        "6001": {
+          "impressions": 1124,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 45451,
+          "clicks": 0
+        }
       }
     },
     "2026-04-30": {
@@ -6991,6 +7760,20 @@
         "Direct / Internal": 4,
         "Google Ads": 2,
         "Bing": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 34945,
+          "clicks": 11
+        },
+        "6001": {
+          "impressions": 1122,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 45621,
+          "clicks": 0
+        }
       }
     },
     "2026-05-01": {
@@ -7011,6 +7794,20 @@
         "Direct / Internal": 2,
         "Bing": 1,
         "Google Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 34099,
+          "clicks": 9
+        },
+        "6011": {
+          "impressions": 46102,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 1088,
+          "clicks": 0
+        }
       }
     },
     "2026-05-02": {
@@ -7031,6 +7828,20 @@
         "Google Organic": 2,
         "Meta Ads": 1,
         "Affiliate": 3
+      },
+      "placements": {
+        "6010": {
+          "impressions": 36925,
+          "clicks": 11
+        },
+        "6001": {
+          "impressions": 988,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 45854,
+          "clicks": 0
+        }
       }
     },
     "2026-05-03": {
@@ -7051,6 +7862,20 @@
         "Referral": 1,
         "Direct / Internal": 3,
         "Google Ads": 6
+      },
+      "placements": {
+        "6010": {
+          "impressions": 36009,
+          "clicks": 13
+        },
+        "6011": {
+          "impressions": 45184,
+          "clicks": 0
+        },
+        "6001": {
+          "impressions": 1129,
+          "clicks": 0
+        }
       }
     },
     "2026-05-04": {
@@ -7069,6 +7894,20 @@
         "Direct / Internal": 4,
         "Email": 3,
         "Affiliate": 3
+      },
+      "placements": {
+        "6010": {
+          "impressions": 25616,
+          "clicks": 9
+        },
+        "6001": {
+          "impressions": 1198,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 39468,
+          "clicks": 0
+        }
       }
     },
     "2026-05-05": {
@@ -7089,6 +7928,16 @@
         "Affiliate": 2,
         "Friendbuy": 1,
         "Meta Ads": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 299,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 18866,
+          "clicks": 2
+        }
       }
     },
     "2026-05-06": {
@@ -7107,6 +7956,16 @@
         "Direct": 2,
         "Email": 3,
         "Affiliate": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 17791,
+          "clicks": 2
+        },
+        "6011": {
+          "impressions": 261,
+          "clicks": 0
+        }
       }
     },
     "2026-05-07": {
@@ -7127,6 +7986,16 @@
         "Affiliate": 1,
         "Bing": 1,
         "Google Organic": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 15301,
+          "clicks": 4
+        },
+        "6011": {
+          "impressions": 289,
+          "clicks": 0
+        }
       }
     },
     "2026-05-08": {
@@ -7144,6 +8013,16 @@
         "Direct": 3,
         "Email": 3,
         "Affiliate": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 25059,
+          "clicks": 4
+        },
+        "6011": {
+          "impressions": 33363,
+          "clicks": 0
+        }
       }
     },
     "2026-05-09": {
@@ -7162,6 +8041,16 @@
         "Affiliate": 6,
         "Direct / Internal": 4,
         "Direct": 2
+      },
+      "placements": {
+        "6010": {
+          "impressions": 23675,
+          "clicks": 5
+        },
+        "6011": {
+          "impressions": 31529,
+          "clicks": 0
+        }
       }
     },
     "2026-05-10": {
@@ -7182,6 +8071,16 @@
         "Direct / Internal": 3,
         "Direct": 1,
         "Google Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 20103,
+          "clicks": 7
+        },
+        "6011": {
+          "impressions": 24627,
+          "clicks": 0
+        }
       }
     },
     "2026-05-11": {
@@ -7201,6 +8100,16 @@
         "Direct / Internal": 7,
         "Meta Ads": 2,
         "Direct": 9
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12185,
+          "clicks": 3
+        },
+        "6011": {
+          "impressions": 16240,
+          "clicks": 0
+        }
       }
     },
     "2026-05-12": {
@@ -7221,6 +8130,16 @@
         "Google Ads": 8,
         "Google Organic": 1,
         "Affiliate": 3
+      },
+      "placements": {
+        "6010": {
+          "impressions": 11854,
+          "clicks": 2
+        },
+        "6011": {
+          "impressions": 16124,
+          "clicks": 0
+        }
       }
     },
     "2026-05-13": {
@@ -7239,6 +8158,16 @@
         "Affiliate": 3,
         "Google Ads": 5,
         "Email": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 16426,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12270,
+          "clicks": 9
+        }
       }
     },
     "2026-05-14": {
@@ -7257,6 +8186,16 @@
         "Email": 5,
         "Google Ads": 2,
         "Paid (bing)": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 16367,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12301,
+          "clicks": 3
+        }
       }
     },
     "2026-05-15": {
@@ -7276,6 +8215,16 @@
         "Google Ads": 3,
         "Direct": 8,
         "Google Organic": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 11766,
+          "clicks": 1
+        },
+        "6011": {
+          "impressions": 16053,
+          "clicks": 0
+        }
       }
     },
     "2026-05-16": {
@@ -7295,6 +8244,16 @@
         "Direct / Internal": 2,
         "Meta Ads": 1,
         "Chatgpt.Com": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 16376,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12136,
+          "clicks": 0
+        }
       }
     },
     "2026-05-17": {
@@ -7313,6 +8272,16 @@
         "Email": 1,
         "Affiliate": 2,
         "Chatgpt.Com": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 16201,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12102,
+          "clicks": 1
+        }
       }
     },
     "2026-05-18": {
@@ -7332,6 +8301,16 @@
         "Google Ads": 9,
         "Meta Organic": 1,
         "Affiliate": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 16480,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12226,
+          "clicks": 2
+        }
       }
     },
     "2026-05-19": {
@@ -7351,6 +8330,16 @@
         "Google Organic": 2,
         "Direct / Internal": 1,
         "Referral": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12265,
+          "clicks": 6
+        },
+        "6011": {
+          "impressions": 16366,
+          "clicks": 0
+        }
       }
     },
     "2026-05-20": {
@@ -7372,6 +8361,16 @@
         "Affiliate": 3,
         "Direct": 1,
         "Referral": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 16346,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12238,
+          "clicks": 3
+        }
       }
     },
     "2026-05-21": {
@@ -7389,6 +8388,16 @@
         "Direct": 5,
         "Direct / Internal": 5,
         "Email": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12470,
+          "clicks": 25
+        },
+        "6011": {
+          "impressions": 16482,
+          "clicks": 0
+        }
       }
     },
     "2026-05-22": {
@@ -7408,6 +8417,16 @@
         "Affiliate": 3,
         "Direct / Internal": 2,
         "Paid (bing)": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 16846,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 13667,
+          "clicks": 12
+        }
       }
     },
     "2026-05-23": {
@@ -7426,6 +8445,16 @@
         "Meta Ads": 1,
         "Email": 2,
         "Google Ads": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12297,
+          "clicks": 15
+        },
+        "6011": {
+          "impressions": 15358,
+          "clicks": 0
+        }
       }
     },
     "2026-05-24": {
@@ -7443,6 +8472,16 @@
         "Direct": 6,
         "Direct / Internal": 3,
         "Paid (bing)": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12372,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 15164,
+          "clicks": 0
+        }
       }
     },
     "2026-05-25": {
@@ -7461,6 +8500,16 @@
         "Google Ads": 5,
         "Direct / Internal": 3,
         "Affiliate": 4
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12453,
+          "clicks": 1
+        },
+        "6011": {
+          "impressions": 15417,
+          "clicks": 0
+        }
       }
     },
     "2026-05-26": {
@@ -7482,6 +8531,16 @@
         "Email": 2,
         "Referral": 1,
         "Affiliate": 4
+      },
+      "placements": {
+        "6011": {
+          "impressions": 15288,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12151,
+          "clicks": 2
+        }
       }
     },
     "2026-05-27": {
@@ -7500,6 +8559,16 @@
         "Direct": 2,
         "Affiliate": 2,
         "Email": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 15143,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12128,
+          "clicks": 1
+        }
       }
     },
     "2026-05-28": {
@@ -7518,6 +8587,16 @@
         "Direct": 2,
         "Email": 2,
         "Meta Ads": 1
+      },
+      "placements": {
+        "6011": {
+          "impressions": 15317,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12679,
+          "clicks": 7
+        }
       }
     },
     "2026-05-29": {
@@ -7536,6 +8615,16 @@
         "Email": 2,
         "Direct": 4,
         "Affiliate": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12371,
+          "clicks": 5
+        },
+        "6011": {
+          "impressions": 15321,
+          "clicks": 0
+        }
       }
     },
     "2026-05-30": {
@@ -7552,6 +8641,16 @@
         "Direct / Internal": 2,
         "Affiliate": 4,
         "Google Ads": 2
+      },
+      "placements": {
+        "6011": {
+          "impressions": 15295,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 12668,
+          "clicks": 11
+        }
       }
     },
     "2026-05-31": {
@@ -7570,20 +8669,97 @@
         "Direct": 7,
         "Email": 3,
         "Affiliate": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 12541,
+          "clicks": 6
+        },
+        "6011": {
+          "impressions": 15241,
+          "clicks": 0
+        }
       }
     },
     "2026-06-01": {
-      "impressions": 29,
+      "impressions": 68,
       "clicks": 1,
-      "purchases": 2,
-      "revenue": 169.42,
+      "purchases": 16,
+      "revenue": 1700.25,
       "conversions": 0,
       "attrRevenue": 0.0,
       "newOrders": 0,
-      "returningOrders": 2,
+      "returningOrders": 13,
       "nyPurchases": 0,
       "trafficSources": {
+        "Direct / Internal": 3,
+        "Affiliate": 1,
+        "Direct": 3,
+        "Google Ads": 6,
+        "Google Organic": 1,
+        "Email": 2
+      },
+      "placements": {
+        "6011": {
+          "impressions": 28,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 40,
+          "clicks": 1
+        }
+      }
+    },
+    "2026-06-02": {
+      "impressions": 21,
+      "clicks": 0,
+      "purchases": 21,
+      "revenue": 1793.89,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 0,
+      "returningOrders": 12,
+      "nyPurchases": 1,
+      "trafficSources": {
+        "Direct": 10,
+        "Google Ads": 4,
+        "Email": 3,
+        "Affiliate": 3,
+        "Friendbuy": 1
+      },
+      "placements": {
+        "6010": {
+          "impressions": 8,
+          "clicks": 0
+        },
+        "6011": {
+          "impressions": 11,
+          "clicks": 0
+        }
+      }
+    },
+    "2026-06-03": {
+      "impressions": 13,
+      "clicks": 0,
+      "purchases": 2,
+      "revenue": 160.5,
+      "conversions": 1,
+      "attrRevenue": 72.5,
+      "newOrders": 0,
+      "returningOrders": 2,
+      "nyPurchases": 1,
+      "trafficSources": {
         "Google Ads": 2
+      },
+      "placements": {
+        "6011": {
+          "impressions": 8,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 5,
+          "clicks": 0
+        }
       }
     }
   },
@@ -23797,6 +24973,118 @@
       "trafficSource": "Direct"
     },
     {
+      "orderId": "2993659",
+      "revenue": 102.98,
+      "date": "2026-06-02",
+      "time": "2026-06-02T03:47:05",
+      "region": "AZ",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2993650",
+      "revenue": 185.99,
+      "date": "2026-06-02",
+      "time": "2026-06-02T03:46:48",
+      "region": "TX",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2993657",
+      "revenue": 99.49,
+      "date": "2026-06-02",
+      "time": "2026-06-02T02:44:10",
+      "region": "CA",
+      "trafficSource": "Affiliate"
+    },
+    {
+      "orderId": "2838443",
+      "revenue": 101.99,
+      "date": "2026-06-02",
+      "time": "2026-06-02T00:27:36",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993647",
+      "revenue": 239.47,
+      "date": "2026-06-02",
+      "time": "2026-06-02T00:23:58",
+      "region": "MO",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993646",
+      "revenue": 100.5,
+      "date": "2026-06-01",
+      "time": "2026-06-01T23:34:23",
+      "region": "OH",
+      "trafficSource": "Direct / Internal"
+    },
+    {
+      "orderId": "2993643",
+      "revenue": 55.0,
+      "date": "2026-06-01",
+      "time": "2026-06-01T22:20:40",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993640",
+      "revenue": 105.49,
+      "date": "2026-06-01",
+      "time": "2026-06-01T20:57:59",
+      "region": "RI",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993609",
+      "revenue": 99.49,
+      "date": "2026-06-01",
+      "time": "2026-06-01T19:57:08",
+      "region": "OR",
+      "trafficSource": "Google Organic"
+    },
+    {
+      "orderId": "2993637",
+      "revenue": 146.47,
+      "date": "2026-06-01",
+      "time": "2026-06-01T17:44:36",
+      "region": "CA",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993636",
+      "revenue": 105.48,
+      "date": "2026-06-01",
+      "time": "2026-06-01T17:13:28",
+      "region": "FL",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993635",
+      "revenue": 99.49,
+      "date": "2026-06-01",
+      "time": "2026-06-01T16:53:19",
+      "region": "ME",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2992086",
+      "revenue": 76.99,
+      "date": "2026-06-01",
+      "time": "2026-06-01T12:51:06",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993630",
+      "revenue": 12.0,
+      "date": "2026-06-01",
+      "time": "2026-06-01T11:24:18",
+      "region": "NJ",
+      "trafficSource": "Email"
+    },
+    {
       "orderId": "2993625",
       "revenue": 112.49,
       "date": "2026-06-01",
@@ -23810,6 +25098,190 @@
       "date": "2026-06-01",
       "time": "2026-06-01T06:15:30",
       "region": "AZ",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993700",
+      "revenue": 127.0,
+      "date": "2026-06-03",
+      "time": "2026-06-03T03:56:10",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993701",
+      "revenue": 63.48,
+      "date": "2026-06-03",
+      "time": "2026-06-03T03:53:26",
+      "region": "KS",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993661",
+      "revenue": 109.0,
+      "date": "2026-06-03",
+      "time": "2026-06-03T03:09:06",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "1993015",
+      "revenue": 12.0,
+      "date": "2026-06-03",
+      "time": "2026-06-03T02:35:52",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993692",
+      "revenue": 12.0,
+      "date": "2026-06-03",
+      "time": "2026-06-03T02:28:47",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993689",
+      "revenue": 12.0,
+      "date": "2026-06-03",
+      "time": "2026-06-03T01:59:11",
+      "region": "PA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2993687",
+      "revenue": 12.0,
+      "date": "2026-06-03",
+      "time": "2026-06-03T00:27:08",
+      "region": "GA",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2993686",
+      "revenue": 72.0,
+      "date": "2026-06-02",
+      "time": "2026-06-02T23:36:39",
+      "region": "TN",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993683",
+      "revenue": 71.5,
+      "date": "2026-06-02",
+      "time": "2026-06-02T22:03:10",
+      "region": "MI",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993681",
+      "revenue": 111.43,
+      "date": "2026-06-02",
+      "time": "2026-06-02T21:27:22",
+      "region": "OH",
+      "trafficSource": "Affiliate"
+    },
+    {
+      "orderId": "2993678",
+      "revenue": 12.0,
+      "date": "2026-06-02",
+      "time": "2026-06-02T19:20:30",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993674",
+      "revenue": 106.5,
+      "date": "2026-06-02",
+      "time": "2026-06-02T18:39:52",
+      "region": "MO",
+      "trafficSource": "Affiliate"
+    },
+    {
+      "orderId": "2993673",
+      "revenue": 129.5,
+      "date": "2026-06-02",
+      "time": "2026-06-02T18:36:17",
+      "region": "CO",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993672",
+      "revenue": 99.0,
+      "date": "2026-06-02",
+      "time": "2026-06-02T18:23:26",
+      "region": "CA",
+      "trafficSource": "Friendbuy"
+    },
+    {
+      "orderId": "2993566",
+      "revenue": 62.0,
+      "date": "2026-06-02",
+      "time": "2026-06-02T17:03:23",
+      "region": "AZ",
+      "trafficSource": "Email"
+    },
+    {
+      "orderId": "2993671",
+      "revenue": 99.49,
+      "date": "2026-06-02",
+      "time": "2026-06-02T16:29:54",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993670",
+      "revenue": 133.5,
+      "date": "2026-06-02",
+      "time": "2026-06-02T16:00:00",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993666",
+      "revenue": 84.5,
+      "date": "2026-06-02",
+      "time": "2026-06-02T14:22:00",
+      "region": "NY",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2993081",
+      "revenue": 57.0,
+      "date": "2026-06-02",
+      "time": "2026-06-02T10:48:15",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993664",
+      "revenue": 60.0,
+      "date": "2026-06-02",
+      "time": "2026-06-02T08:23:26",
+      "region": "IA",
+      "trafficSource": "Direct"
+    },
+    {
+      "orderId": "2993663",
+      "revenue": 347.99,
+      "date": "2026-06-02",
+      "time": "2026-06-02T05:39:31",
+      "region": "AZ",
+      "trafficSource": "Affiliate"
+    },
+    {
+      "orderId": "2993727",
+      "revenue": 88.0,
+      "date": "2026-06-03",
+      "time": "2026-06-03T15:11:42",
+      "region": "NC",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2852473",
+      "revenue": 72.5,
+      "date": "2026-06-03",
+      "time": "2026-06-03T12:36:59",
+      "region": "NY",
       "trafficSource": "Google Ads"
     }
   ]
