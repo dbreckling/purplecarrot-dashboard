@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Purple Carrot — Trade Area & Performance</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  /* Purple Carrot palette: deep purple brand color, fresh green accents,
+     cream paper, charcoal text. Inspired by purplecarrot.com. */
+  --pc-purple:        #4a1d6e;
+  --pc-purple-dark:   #3a1456;
+  --pc-purple-light:  #6b2c91;
+  --pc-purple-50:     #f4eef9;
+  --pc-green:         #5d8c3a;
+  --pc-green-light:   #88b04b;
+  --pc-green-50:      #f1f7e8;
+  --cream:            #faf8f3;
+  --paper:            #ffffff;
+  --paper-2:          #fbfaf6;
+  --text:             #1a1a1a;
+  --text-muted:       #6b6b6b;
+  --border:           #e8e4dd;
+  --shadow:           rgba(74,29,110,0.08);
+  --pill-bg:          #fff;
+
+  --sidebar-w: 220px;
+}
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ============== SIDEBAR ============== */
+.sidebar {
+  position: fixed; top:0; left:0; bottom:0;
+  width: var(--sidebar-w);
+  background: var(--pc-purple);
+  color: #fff;
+  display: flex; flex-direction: column;
+  z-index: 10;
+}
+.sidebar .brand {
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.sidebar .brand .logo {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #fff;
+  display: block;
+}
+.sidebar .brand .logo .row { display:block; }
+.sidebar .brand .tag {
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pc-green-light);
+  font-weight: 600;
+}
+.sidebar nav { padding: 14px 0; flex: 1; overflow-y: auto; }
+.sidebar nav a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 24px;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: background-color 0.12s, color 0.12s, border-color 0.12s;
+}
+.sidebar nav a:hover { background: rgba(255,255,255,0.06); color:#fff; }
+.sidebar nav a.active {
+  background: rgba(255,255,255,0.10);
+  border-left-color: var(--pc-green-light);
+  color: #fff;
+}
+.sidebar nav a .icon { width: 16px; text-align: center; opacity: 0.85; }
+.sidebar .footer {
+  padding: 14px 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+.sidebar .footer .dlve { color: var(--pc-green-light); font-weight: 600; }
+
+/* ============== MAIN ============== */
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+.topbar {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar h1 { margin: 0; font-size: 18px; font-weight: 700; }
+.topbar .sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.topbar .filter {
+  display: flex; align-items: center; gap: 12px;
+}
+.topbar .filter label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text-muted); font-weight: 600;
+}
+.topbar .filter input[type="date"] {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  background: var(--paper);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.page { display: none; padding: 28px; }
+.page.active { display: block; }
+
+/* ============== KPIs ============== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.kpi {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 2px var(--shadow);
+}
+.kpi .label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-muted); font-weight: 600;
+}
+.kpi .value {
+  font-size: 26px; font-weight: 700; color: var(--text);
+  margin-top: 4px; line-height: 1.1;
+}
+.kpi .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.kpi.accent {
+  background: linear-gradient(135deg, var(--pc-purple) 0%, var(--pc-purple-light) 100%);
+  border-color: transparent;
+  color: #fff;
+}
+.kpi.accent .label { color: rgba(255,255,255,0.75); }
+.kpi.accent .value { color: #fff; }
+.kpi.accent .sub { color: rgba(255,255,255,0.75); }
+.kpi.green {
+  background: linear-gradient(135deg, var(--pc-green) 0%, var(--pc-green-light) 100%);
+  border-color: transparent;
+  color: #fff;
+}
+.kpi.green .label { color: rgba(255,255,255,0.85); }
+.kpi.green .value { color: #fff; }
+.kpi.green .sub { color: rgba(255,255,255,0.85); }
+
+/* ============== PANELS ============== */
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 2px var(--shadow);
+  margin-bottom: 18px;
+}
+.panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--pc-purple);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.panel-title .accent {
+  width: 3px; height: 14px; background: var(--pc-green); border-radius: 2px;
+}
+
+.two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; }
+@media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } }
+
+/* ============== MAP ============== */
+#tradeAreaMap {
+  height: 560px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #e8eedb;
+}
+.map-controls {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+}
+.map-controls .control-group { display: flex; gap: 4px; }
+.map-controls button {
+  border: 1px solid var(--border);
+  background: var(--paper);
+  color: var(--text);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.12s, color 0.12s;
+}
+.map-controls button.active {
+  background: var(--pc-purple);
+  color: #fff;
+  border-color: var(--pc-purple);
+}
+.map-controls button:hover:not(.active) { background: var(--pc-purple-50); }
+
+/* ============== TABLES ============== */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 700;
+  background: var(--paper-2);
+}
+td.numeric, th.numeric { text-align: right; font-variant-numeric: tabular-nums; }
+tr:hover td { background: var(--pc-purple-50); }
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.pill.purple { background: var(--pc-purple-50); color: var(--pc-purple); }
+.pill.green  { background: var(--pc-green-50); color: var(--pc-green); }
+.pill.gray   { background: #f0f0eb; color: var(--text-muted); }
+
+.loading { color: var(--text-muted); padding: 40px; text-align: center; font-size: 13px; }
+.empty   { color: var(--text-muted); padding: 24px; text-align: center; font-size: 13px; font-style: italic; }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="logo">
+      <span class="row">PURPLE</span>
+      <span class="row">CARROT</span>
+    </div>
+    <div class="tag">Performance & Trade Area</div>
+  </div>
+  <nav>
+    <a href="#trade-area"   data-page="trade-area"   class="active"><span class="icon">📍</span> Trade Area</a>
+    <a href="#overview"     data-page="overview"><span class="icon">📊</span> Executive Overview</a>
+    <a href="#paid"         data-page="paid"><span class="icon">💸</span> Paid Channels</a>
+    <a href="#organic"      data-page="organic"><span class="icon">🌱</span> Organic</a>
+    <a href="#attribution"  data-page="attribution"><span class="icon">🎯</span> Attribution & Overlap</a>
+    <a href="#funnel"       data-page="funnel"><span class="icon">📉</span> Conversion Funnel</a>
+    <a href="#skus"         data-page="skus"><span class="icon">🥗</span> Subscription Tiers</a>
+  </nav>
+  <div class="footer">
+    Powered by <span class="dlve">DLVE</span><br>
+    <span id="lastUpdated">—</span>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div>
+      <h1 id="pageTitle">Trade Area</h1>
+      <div class="sub" id="pageSub">Where Purple Carrot subscribers live</div>
+    </div>
+    <div class="filter">
+      <label>Date</label>
+      <input type="date" id="dateFrom">
+      <span style="color:var(--text-muted)">to</span>
+      <input type="date" id="dateTo">
+    </div>
+  </div>
+
+  <!-- ============== TRADE AREA ============== -->
+  <section class="page active" id="page-trade-area">
+    <div class="kpi-grid">
+      <div class="kpi accent">
+        <div class="label">Total Subscribers</div>
+        <div class="value" id="ta-subs">—</div>
+        <div class="sub" id="ta-zips">—</div>
+      </div>
+      <div class="kpi green">
+        <div class="label">Total Revenue</div>
+        <div class="value" id="ta-revenue">—</div>
+        <div class="sub" id="ta-aov">—</div>
+      </div>
+      <div class="kpi">
+        <div class="label">States Reached</div>
+        <div class="value" id="ta-states">—</div>
+        <div class="sub">U.S. coverage</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Ad-Attributed</div>
+        <div class="value" id="ta-attributed">—</div>
+        <div class="sub">Programmatic-driven subs</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Subscriber Distribution Map</div>
+      <div class="map-controls">
+        <div class="control-group">
+          <button class="active" data-metric="subs">Subscribers</button>
+          <button data-metric="revenue">Revenue</button>
+          <button data-metric="aov">AOV</button>
+          <button data-metric="attributed">Ad-attributed</button>
+        </div>
+        <div style="flex:1"></div>
+        <div style="font-size:11px;color:var(--text-muted)">Click a marker for ZIP-level detail</div>
+      </div>
+      <div id="tradeAreaMap"></div>
+      <div id="unmappedNote" style="margin-top:12px;padding:10px 14px;background:var(--pc-purple-50);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text-muted);line-height:1.6"></div>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title"><span class="accent"></span> Top Cities</div>
+        <table>
+          <thead><tr><th>City</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
+          <tbody id="topCitiesBody"></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><span class="accent"></span> Top States</div>
+        <table>
+          <thead><tr><th>State</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
+          <tbody id="topStatesBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== EXECUTIVE OVERVIEW ============== -->
+  <section class="page" id="page-overview">
+    <div class="kpi-grid">
+      <div class="kpi accent"><div class="label">Total Subscribers</div><div class="value" id="ov-subs">—</div></div>
+      <div class="kpi"><div class="label">Total Revenue</div><div class="value" id="ov-rev">—</div></div>
+      <div class="kpi"><div class="label">Avg Order Value</div><div class="value" id="ov-aov">—</div></div>
+      <div class="kpi green"><div class="label">Paid Share</div><div class="value" id="ov-paid">—</div></div>
+      <div class="kpi"><div class="label">Programmatic Impressions</div><div class="value" id="ov-imps">—</div></div>
+      <div class="kpi"><div class="label">Programmatic Spend</div><div class="value" id="ov-spend">—</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Subscribers + Spend Over Time</div>
+      <canvas id="overviewChart" height="80"></canvas>
+    </div>
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title"><span class="accent"></span> Channel Mix</div>
+        <table>
+          <thead><tr><th>Channel</th><th class="numeric">Subs</th><th class="numeric">Share</th></tr></thead>
+          <tbody id="channelMixBody"></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><span class="accent"></span> Traffic Sources</div>
+        <table>
+          <thead><tr><th>Source</th><th class="numeric">Subs</th></tr></thead>
+          <tbody id="trafficSourcesBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PAID CHANNELS ============== -->
+  <section class="page" id="page-paid">
+    <div class="kpi-grid">
+      <div class="kpi accent"><div class="label">Programmatic Impressions</div><div class="value" id="paid-imps">—</div></div>
+      <div class="kpi"><div class="label">Programmatic Spend</div><div class="value" id="paid-spend">—</div></div>
+      <div class="kpi"><div class="label">Clicks</div><div class="value" id="paid-clicks">—</div></div>
+      <div class="kpi green"><div class="label">Attributed Subs</div><div class="value" id="paid-attr">—</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Programmatic by Channel</div>
+      <table>
+        <thead><tr>
+          <th>Channel</th><th class="numeric">Impressions</th>
+          <th class="numeric">Clicks</th><th class="numeric">Spend</th>
+          <th class="numeric">CPM</th>
+        </tr></thead>
+        <tbody id="paidChannelBody"></tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Paid Search & Social (Click-based)</div>
+      <table>
+        <thead><tr><th>Source</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
+        <tbody id="paidSearchBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== ORGANIC ============== -->
+  <section class="page" id="page-organic">
+    <div class="kpi-grid">
+      <div class="kpi accent"><div class="label">Organic Subscribers</div><div class="value" id="org-subs">—</div></div>
+      <div class="kpi"><div class="label">Organic Revenue</div><div class="value" id="org-rev">—</div></div>
+      <div class="kpi green"><div class="label">Organic Share</div><div class="value" id="org-share">—</div></div>
+      <div class="kpi"><div class="label">Direct + Email + Referral</div><div class="value" id="org-channels">—</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Organic Sources</div>
+      <table>
+        <thead><tr><th>Source</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
+        <tbody id="organicBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== ATTRIBUTION ============== -->
+  <section class="page" id="page-attribution">
+    <div class="kpi-grid">
+      <div class="kpi accent"><div class="label">Attributed Subs</div><div class="value" id="attr-subs">—</div></div>
+      <div class="kpi"><div class="label">Attributed Revenue</div><div class="value" id="attr-rev">—</div></div>
+      <div class="kpi green"><div class="label">Multi-Channel %</div><div class="value" id="attr-multi">—</div></div>
+      <div class="kpi"><div class="label">Solo-Channel %</div><div class="value" id="attr-solo">—</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Channel Overlap</div>
+      <table>
+        <thead><tr><th>Channels Touched</th><th class="numeric">Subs</th><th>Type</th></tr></thead>
+        <tbody id="overlapBody"></tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Programmatic-Attributed Orders</div>
+      <table>
+        <thead><tr>
+          <th>Date</th><th>Order ID</th><th>Channel(s)</th>
+          <th class="numeric">Days to Convert</th><th>Type</th><th class="numeric">Revenue</th>
+        </tr></thead>
+        <tbody id="attrOrdersBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== FUNNEL ============== -->
+  <section class="page" id="page-funnel">
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Conversion Funnel</div>
+      <div id="funnelStages" style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:16px"></div>
+    </div>
+  </section>
+
+  <!-- ============== SKU TIERS ============== -->
+  <section class="page" id="page-skus">
+    <div class="kpi-grid">
+      <div class="kpi accent"><div class="label">Total Paid Subs</div><div class="value" id="sku-subs">—</div></div>
+      <div class="kpi"><div class="label">Subscription Tiers</div><div class="value" id="sku-tiers">—</div></div>
+      <div class="kpi green"><div class="label">Avg Tier Value</div><div class="value" id="sku-avg">—</div></div>
+      <div class="kpi"><div class="label">Highest Value Tier</div><div class="value" id="sku-top">—</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Subscription Price Tier Breakdown</div>
+      <table>
+        <thead><tr>
+          <th>Tier</th><th class="numeric">Subs</th>
+          <th class="numeric">Revenue</th><th class="numeric">AOV</th>
+          <th class="numeric">Share</th>
+        </tr></thead>
+        <tbody id="skuTiersBody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+/* ====================================================================
+   DATA LOAD
+   ==================================================================== */
+let V2 = null, V3 = null;
+
+async function loadData() {
+  const [v2, v3] = await Promise.all([
+    fetch('dashboard_data_v2.json').then(r => r.json()),
+    fetch('dashboard_v3_data.json').then(r => r.json()),
+  ]);
+  V2 = v2; V3 = v3;
+
+  // Populate date filter
+  const range = V2.dateRange || {};
+  if (range.start) document.getElementById('dateFrom').value = range.start;
+  if (range.end)   document.getElementById('dateTo').value = range.end;
+  document.getElementById('lastUpdated').textContent = 'Updated ' + (V2.lastUpdated || '').slice(0,10);
+
+  renderAll();
+}
+
+function fmt(n)      { return (n == null) ? '—' : Number(n).toLocaleString('en-US'); }
+function fmtMoney(n) { return (n == null) ? '—' : '$' + Number(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+function fmtMoneyK(n){ if (n == null) return '—'; const v=Number(n); return v >= 1000 ? '$' + (v/1000).toFixed(1) + 'k' : '$' + v.toFixed(0); }
+function fmtPct(n,d) { if (n == null || !d) return '—'; return ((n/d)*100).toFixed(1) + '%'; }
+
+/* ====================================================================
+   NAV
+   ==================================================================== */
+const pageTitles = {
+  'trade-area':   ['Trade Area', 'Where Purple Carrot subscribers live'],
+  'overview':     ['Executive Overview', 'Headline performance'],
+  'paid':         ['Paid Channels', 'Programmatic, search, and social'],
+  'organic':      ['Organic', 'Direct, email, affiliate, referral'],
+  'attribution':  ['Attribution & Overlap', 'Multi-touch and channel interaction'],
+  'funnel':       ['Conversion Funnel', 'Cart to purchase drop-off'],
+  'skus':         ['Subscription Tiers', 'Price-tier breakdown'],
+};
+
+document.querySelectorAll('.sidebar nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const page = a.getAttribute('data-page');
+    document.querySelectorAll('.sidebar nav a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    const [title, sub] = pageTitles[page] || ['', ''];
+    document.getElementById('pageTitle').textContent = title;
+    document.getElementById('pageSub').textContent = sub;
+  });
+});
+
+/* ====================================================================
+   RENDER
+   ==================================================================== */
+function renderAll() {
+  renderTradeArea();
+  renderOverview();
+  renderPaid();
+  renderOrganic();
+  renderAttribution();
+  renderFunnel();
+  renderSkus();
+}
+
+/* ---- TRADE AREA ---- */
+let mapInstance = null, currentMetric = 'subs';
+let zipMarkers = [];
+
+function renderTradeArea() {
+  const s = V3.summary;
+  document.getElementById('ta-subs').textContent       = fmt(s.totalSubs);
+  document.getElementById('ta-zips').textContent       = `Across ${fmt(s.uniqueCities)} cities`;
+  document.getElementById('ta-revenue').textContent    = fmtMoneyK(s.totalRevenue);
+  const aov = s.totalSubs > 0 ? (s.totalRevenue / s.totalSubs) : 0;
+  document.getElementById('ta-aov').textContent        = 'AOV ' + fmtMoney(aov);
+  document.getElementById('ta-states').textContent     = fmt(s.uniqueStates);
+  document.getElementById('ta-attributed').textContent = fmt(s.totalAttributed);
+
+  if (!mapInstance) initMap();
+  drawMarkers(currentMetric);
+  renderUnmappedNote();
+
+  // Top cities
+  const cities = (V3.topCities || []).slice(0, 15);
+  document.getElementById('topCitiesBody').innerHTML = cities.map(c =>
+    `<tr><td>${c.name}</td><td class="numeric">${fmt(c.subs)}</td><td class="numeric">${fmtMoneyK(c.revenue)}</td></tr>`
+  ).join('');
+
+  // Top states
+  const states = Object.entries(V3.stateRollup || {})
+    .sort((a,b) => b[1].subs - a[1].subs)
+    .slice(0, 15);
+  document.getElementById('topStatesBody').innerHTML = states.map(([st, r]) =>
+    `<tr><td>${st}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">${fmtMoneyK(r.revenue)}</td></tr>`
+  ).join('');
+
+  document.querySelectorAll('.map-controls [data-metric]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.map-controls [data-metric]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentMetric = btn.getAttribute('data-metric');
+      drawMarkers(currentMetric);
+    });
+  });
+}
+
+function renderUnmappedNote() {
+  const u = (V3.cityRollup || {})['Unknown / Unmapped'];
+  if (!u || !u.subs) {
+    document.getElementById('unmappedNote').style.display = 'none';
+    return;
+  }
+  const stape = u.source_stape || 0;
+  const other = (u.source_browser || 0) + (u.source_other || 0);
+  document.getElementById('unmappedNote').style.display = '';
+  document.getElementById('unmappedNote').innerHTML =
+    `<strong>${fmt(u.subs)} subscribers</strong> not plotted: ` +
+    (stape ? `${fmt(stape)} from the server-side tag (customer zip not yet forwarded by Stape) ` : '') +
+    (stape && other ? '+ ' : '') +
+    (other ? `${fmt(other)} from browser-side captures missing zip_code` : '') +
+    `. Bucketed as "Unknown / Unmapped" until Stape forwards the customer zip.`;
+}
+
+function initMap() {
+  mapInstance = L.map('tradeAreaMap', {
+    center: [39.5, -98.0],
+    zoom: 4,
+    scrollWheelZoom: true,
+  });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(mapInstance);
+}
+
+function drawMarkers(metric) {
+  zipMarkers.forEach(m => mapInstance.removeLayer(m));
+  zipMarkers = [];
+
+  const cities = Object.values(V3.cityRollup || {}).filter(c =>
+    c.name !== 'Unknown / Unmapped' && c.lat != null && c.lng != null
+  );
+  if (!cities.length) return;
+
+  // Pick metric value per city
+  const valueOf = (c) => {
+    if (metric === 'subs')       return c.subs;
+    if (metric === 'revenue')    return c.revenue;
+    if (metric === 'aov')        return c.aov;
+    if (metric === 'attributed') return c.attributedSubs;
+    return c.subs;
+  };
+
+  const values = cities.map(valueOf).filter(v => v > 0);
+  if (!values.length) return;
+  const maxVal = Math.max(...values);
+
+  for (const c of cities) {
+    const value = valueOf(c);
+    if (value <= 0) continue;
+    const ratio = Math.sqrt(value / maxVal); // sqrt-scale so smaller cities still show
+    const radius = 4 + ratio * 22;
+    const opacity = 0.40 + ratio * 0.45;
+    const m = L.circleMarker([c.lat, c.lng], {
+      radius: radius,
+      fillColor: '#4a1d6e',
+      color: '#4a1d6e',
+      weight: 1,
+      opacity: 0.85,
+      fillOpacity: opacity,
+    }).addTo(mapInstance);
+    m.bindPopup(`<strong>${c.name}</strong><br>
+      Subscribers: ${fmt(c.subs)}<br>
+      Revenue: ${fmtMoneyK(c.revenue)}<br>
+      AOV: ${fmtMoney(c.aov)}<br>
+      Paid / Organic: ${fmt(c.paidSubs)} / ${fmt(c.organicSubs)}<br>
+      Ad-attributed: ${fmt(c.attributedSubs)}<br>
+      <span style="color:#6b6b6b;font-size:11px">ZIPs: ${(c.zips||[]).slice(0,5).join(', ')}${(c.zips||[]).length > 5 ? '...' : ''}</span>`);
+    zipMarkers.push(m);
+  }
+}
+
+// US state centroids for the trade-area map (lat/lng pairs).
+const STATE_LATLNG = {
+  AL:[32.806671,-86.791130], AK:[61.370716,-152.404419], AZ:[33.729759,-111.431221], AR:[34.969704,-92.373123],
+  CA:[36.116203,-119.681564], CO:[39.059811,-105.311104], CT:[41.597782,-72.755371], DE:[39.318523,-75.507141],
+  DC:[38.897438,-77.026817], FL:[27.766279,-81.686783], GA:[33.040619,-83.643074], HI:[21.094318,-157.498337],
+  ID:[44.240459,-114.478828], IL:[40.349457,-88.986137], IN:[39.849426,-86.258278], IA:[42.011539,-93.210526],
+  KS:[38.526600,-96.726486], KY:[37.668140,-84.670067], LA:[31.169546,-91.867805], ME:[44.693947,-69.381927],
+  MD:[39.063946,-76.802101], MA:[42.230171,-71.530106], MI:[43.326618,-84.536095], MN:[45.694454,-93.900192],
+  MS:[32.741646,-89.678696], MO:[38.456085,-92.288368], MT:[46.921925,-110.454353], NE:[41.125370,-98.268082],
+  NV:[38.313515,-117.055374], NH:[43.452492,-71.563896], NJ:[40.298904,-74.521011], NM:[34.840515,-106.248482],
+  NY:[42.165726,-74.948051], NC:[35.630066,-79.806419], ND:[47.528912,-99.784012], OH:[40.388783,-82.764915],
+  OK:[35.565342,-96.928917], OR:[44.572021,-122.070938], PA:[40.590752,-77.209755], RI:[41.680893,-71.511780],
+  SC:[33.856892,-80.945007], SD:[44.299782,-99.438828], TN:[35.747845,-86.692345], TX:[31.054487,-97.563461],
+  UT:[40.150032,-111.862434], VT:[44.045876,-72.710686], VA:[37.769337,-78.169968], WA:[47.400902,-121.490494],
+  WV:[38.491226,-80.954456], WI:[44.268543,-89.616508], WY:[42.755966,-107.302490],
+  PR:[18.220833,-66.590149]
+};
+
+/* ---- EXECUTIVE OVERVIEW ---- */
+function renderOverview() {
+  const s = V3.summary;
+  const g = V2.global || {};
+  const prog = V2.programmatic || {};
+  document.getElementById('ov-subs').textContent  = fmt(s.totalSubs);
+  document.getElementById('ov-rev').textContent   = fmtMoneyK(s.totalRevenue);
+  const aov = s.totalSubs > 0 ? s.totalRevenue / s.totalSubs : 0;
+  document.getElementById('ov-aov').textContent   = fmtMoney(aov);
+
+  // Paid share — paid subs from zip rollup
+  let paidSubs = 0;
+  for (const z of Object.values(V3.zipRollup || {})) paidSubs += z.paidSubs;
+  document.getElementById('ov-paid').textContent  = fmtPct(paidSubs, s.totalSubs);
+  document.getElementById('ov-imps').textContent  = fmt(prog.impressions || 0);
+  document.getElementById('ov-spend').textContent = fmtMoneyK(prog.spend || 0);
+
+  // Channel mix from V3 channelOverlap
+  const overlap = V3.channelOverlap || [];
+  const channelMixBody = overlap.slice(0, 10).map(r =>
+    `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">${fmtPct(r.subs, s.totalSubs)}</td></tr>`
+  ).join('');
+  document.getElementById('channelMixBody').innerHTML = channelMixBody || '<tr><td colspan="3" class="empty">No data</td></tr>';
+
+  // Traffic sources from V2
+  const ts = (V2.trafficSources || {});
+  const tsRows = Object.entries(ts).sort((a,b) => b[1] - a[1]).slice(0, 12)
+    .map(([src, n]) => `<tr><td>${src}</td><td class="numeric">${fmt(n)}</td></tr>`).join('');
+  document.getElementById('trafficSourcesBody').innerHTML = tsRows || '<tr><td colspan="2" class="empty">No data</td></tr>';
+
+  // Daily chart
+  const daily = V2.dailyData || {};
+  const days = Object.keys(daily).sort();
+  const labels = days;
+  const subs = days.map(d => (daily[d] || {}).purchases || 0);
+  const spend = days.map(d => {
+    const dd = daily[d] || {};
+    const plcs = dd.placements || {};
+    let s = 0;
+    for (const pid of Object.keys(plcs)) {
+      const cfg = (V2.placementConfig || {})[pid];
+      if (cfg) s += (plcs[pid].impressions || 0) / 1000 * cfg.cpm;
+    }
+    return s;
+  });
+  const ctx = document.getElementById('overviewChart').getContext('2d');
+  if (window.__ovChart) window.__ovChart.destroy();
+  window.__ovChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {label: 'Subscribers', data: subs, borderColor: '#4a1d6e', backgroundColor: 'rgba(74,29,110,0.10)', fill: true, tension: 0.3, yAxisID: 'y'},
+        {label: 'Programmatic Spend ($)', data: spend, borderColor: '#5d8c3a', backgroundColor: 'rgba(93,140,58,0.10)', fill: false, tension: 0.3, yAxisID: 'y1'},
+      ],
+    },
+    options: {
+      responsive: true,
+      interaction: {mode:'index', intersect:false},
+      scales: {
+        y:  {position:'left',  ticks:{color:'#4a1d6e'}, beginAtZero:true},
+        y1: {position:'right', ticks:{color:'#5d8c3a'}, beginAtZero:true, grid:{drawOnChartArea:false}},
+      },
+      plugins: {legend: {position: 'bottom'}},
+    },
+  });
+}
+
+/* ---- PAID ---- */
+function renderPaid() {
+  const prog = V2.programmatic || {};
+  document.getElementById('paid-imps').textContent  = fmt(prog.impressions || 0);
+  document.getElementById('paid-spend').textContent = fmtMoneyK(prog.spend || 0);
+  document.getElementById('paid-clicks').textContent = fmt(prog.clicks || 0);
+  document.getElementById('paid-attr').textContent  = fmt(V3.summary.totalAttributed);
+
+  // Per-channel from dailyData.placements
+  const cfg = V2.placementConfig || {};
+  const daily = V2.dailyData || {};
+  const channelAgg = {};
+  for (const d of Object.keys(daily)) {
+    const plcs = (daily[d] || {}).placements || {};
+    for (const pid of Object.keys(plcs)) {
+      const ch = (cfg[pid] || {}).channel || 'unknown';
+      const cpm = (cfg[pid] || {}).cpm || 0;
+      if (!channelAgg[ch]) channelAgg[ch] = {impressions:0, clicks:0, cpm};
+      channelAgg[ch].impressions += plcs[pid].impressions || 0;
+      channelAgg[ch].clicks += plcs[pid].clicks || 0;
+    }
+  }
+  const chLabels = {display:'Display', video:'Video', ctv:'CTV / OTT'};
+  const chRows = Object.entries(channelAgg).map(([ch, a]) => {
+    const spend = (a.impressions / 1000) * a.cpm;
+    return `<tr><td><span class="pill purple">${chLabels[ch] || ch}</span></td>
+      <td class="numeric">${fmt(a.impressions)}</td>
+      <td class="numeric">${fmt(a.clicks)}</td>
+      <td class="numeric">${fmtMoneyK(spend)}</td>
+      <td class="numeric">$${a.cpm.toFixed(2)}</td></tr>`;
+  }).join('');
+  document.getElementById('paidChannelBody').innerHTML = chRows || '<tr><td colspan="5" class="empty">No data</td></tr>';
+
+  // Paid search/social from V3 overlap (SEM and Meta rows)
+  const paidRows = (V3.channelOverlap || [])
+    .filter(r => ['SEM', 'Meta', 'Programmatic'].some(s => r.channels.includes(s)) && !r.channels.includes('+'))
+    .map(r => `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">—</td></tr>`)
+    .join('');
+  document.getElementById('paidSearchBody').innerHTML = paidRows || '<tr><td colspan="3" class="empty">No data</td></tr>';
+}
+
+/* ---- ORGANIC ---- */
+function renderOrganic() {
+  let orgSubs = 0, orgRev = 0;
+  for (const z of Object.values(V3.zipRollup || {})) {
+    orgSubs += z.organicSubs;
+    // organicSubs revenue approx: prorate by share
+    if (z.subs) orgRev += z.revenue * (z.organicSubs / z.subs);
+  }
+  const total = V3.summary.totalSubs;
+  document.getElementById('org-subs').textContent  = fmt(orgSubs);
+  document.getElementById('org-rev').textContent   = fmtMoneyK(orgRev);
+  document.getElementById('org-share').textContent = fmtPct(orgSubs, total);
+
+  const overlap = V3.channelOverlap || [];
+  const orgRows = overlap.filter(r =>
+    !['SEM','Meta','Programmatic'].some(s => r.channels.includes(s))
+  ).slice(0, 15).map(r =>
+    `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">—</td></tr>`
+  ).join('');
+  document.getElementById('organicBody').innerHTML = orgRows || '<tr><td colspan="3" class="empty">No data</td></tr>';
+
+  const ch = overlap.filter(r => !r.channels.includes('+') && r.channels !== 'Direct / Organic' && !['SEM','Meta','Programmatic'].some(s => r.channels.includes(s)));
+  document.getElementById('org-channels').textContent = fmt(ch.reduce((a,b) => a+b.subs, 0));
+}
+
+/* ---- ATTRIBUTION ---- */
+function renderAttribution() {
+  const attr = V2.attribution || {};
+  const converters = (attr.impressionsToConversion || {}).converterDetails || [];
+  const totalAttr = converters.length;
+  const totalAttrRev = converters.reduce((s,c) => s + (c.revenue || 0), 0);
+
+  document.getElementById('attr-subs').textContent = fmt(totalAttr);
+  document.getElementById('attr-rev').textContent  = fmtMoneyK(totalAttrRev);
+
+  const overlap = V3.channelOverlap || [];
+  const multi = overlap.filter(r => r.isMulti).reduce((s,r) => s + r.subs, 0);
+  const solo  = overlap.filter(r => !r.isMulti).reduce((s,r) => s + r.subs, 0);
+  const total = multi + solo;
+  document.getElementById('attr-multi').textContent = fmtPct(multi, total);
+  document.getElementById('attr-solo').textContent  = fmtPct(solo, total);
+
+  document.getElementById('overlapBody').innerHTML = overlap.map(r =>
+    `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td>
+     <td><span class="pill ${r.isMulti ? 'purple' : 'gray'}">${r.isMulti ? 'Multi-touch' : 'Solo'}</span></td></tr>`
+  ).join('') || '<tr><td colspan="3" class="empty">No data</td></tr>';
+
+  document.getElementById('attrOrdersBody').innerHTML = converters.map(c => {
+    const date = (c.conversionTime || '').slice(0, 10);
+    const days = c.daysBetween != null ? c.daysBetween : '—';
+    const cls = (c.orderClass || '').toLowerCase() === 'redeem' ? 'green' : 'purple';
+    return `<tr>
+      <td>${date}</td>
+      <td>${c.dedupeId || '—'}</td>
+      <td>${c.channel || '—'}</td>
+      <td class="numeric">${days}</td>
+      <td><span class="pill ${cls}">${c.orderClass || 'Purchase'}</span></td>
+      <td class="numeric">${fmtMoney(c.revenue || 0)}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="6" class="empty">No attributed orders in window</td></tr>';
+}
+
+/* ---- FUNNEL ---- */
+function renderFunnel() {
+  const stages = [
+    {label: 'Visits',     value: 0, color: '#4a1d6e'},
+    {label: 'Cart',       value: 0, color: '#5d2c91'},
+    {label: 'Account',    value: 0, color: '#7c3aed'},
+    {label: 'Shipping',   value: 0, color: '#5d8c3a'},
+    {label: 'Purchase',   value: V3.summary.totalSubs, color: '#88b04b'},
+  ];
+  const max = Math.max(...stages.map(s => s.value)) || 1;
+  document.getElementById('funnelStages').innerHTML = stages.map(s => {
+    const h = Math.max(20, Math.round((s.value / max) * 220));
+    return `<div style="text-align:center">
+      <div style="background:${s.color};color:#fff;border-radius:10px;padding:18px 12px;display:flex;flex-direction:column;justify-content:center;height:${h+40}px">
+        <div style="font-size:12px;text-transform:uppercase;letter-spacing:0.07em;font-weight:700;opacity:0.85">${s.label}</div>
+        <div style="font-size:24px;font-weight:700;margin-top:6px">${fmt(s.value)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ---- SKU TIERS ---- */
+function renderSkus() {
+  const tiers = V3.skuTiers || [];
+  const totalSubs = tiers.reduce((s,t) => s + t.subs, 0);
+  const totalRev = tiers.reduce((s,t) => s + t.revenue, 0);
+  document.getElementById('sku-subs').textContent  = fmt(totalSubs);
+  document.getElementById('sku-tiers').textContent = fmt(tiers.length);
+  document.getElementById('sku-avg').textContent   = totalSubs > 0 ? fmtMoney(totalRev / totalSubs) : '—';
+  document.getElementById('sku-top').textContent   = tiers.length ? tiers[0].tier.split(' (')[0] : '—';
+
+  document.getElementById('skuTiersBody').innerHTML = tiers.map(t =>
+    `<tr><td><strong>${t.tier}</strong></td>
+     <td class="numeric">${fmt(t.subs)}</td>
+     <td class="numeric">${fmtMoney(t.revenue)}</td>
+     <td class="numeric">${fmtMoney(t.aov)}</td>
+     <td class="numeric">${fmtPct(t.subs, totalSubs)}</td></tr>`
+  ).join('') || '<tr><td colspan="5" class="empty">No data</td></tr>';
+}
+
+/* ====================================================================
+   BOOT
+   ==================================================================== */
+loadData().catch(err => {
+  console.error('Failed to load data:', err);
+  document.body.innerHTML = '<div class="loading">Failed to load dashboard data. ' + err.message + '</div>';
+});
+</script>
+</body>
+</html>
