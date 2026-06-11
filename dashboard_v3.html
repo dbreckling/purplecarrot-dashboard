@@ -238,8 +238,104 @@ body {
 .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; }
 @media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } }
 
+/* ============== TRADE AREA full-bleed layout ============== */
+/* Hide page header on trade area for the cleaner pizza-demo look */
+.page-trade-area.active ~ .page-header { display: none; }
+body.on-trade-area #pageHeader { display: none; }
+
+.page-trade-area { padding: 0 !important; }
+
+/* Compact KPI strip directly under the filter bar */
+.ta-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 1400px) { .ta-kpi-row { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px)  { .ta-kpi-row { grid-template-columns: repeat(2, 1fr); } }
+.ta-kpi {
+  padding: 14px 18px;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+}
+.ta-kpi:last-child { border-right: none; }
+.ta-kpi-active {
+  background: linear-gradient(180deg, rgba(139,92,246,0.16) 0%, rgba(139,92,246,0.04) 100%);
+  position: relative;
+}
+.ta-kpi-active::after {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--pc-purple);
+}
+.ta-l { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); font-weight: 700; }
+.ta-v { font-size: 24px; font-weight: 700; color: var(--text); margin-top: 4px; line-height: 1.1; }
+.ta-s { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.ta-kpi-active .ta-l { color: var(--pc-purple); }
+.ta-kpi-active .ta-v { color: var(--pc-green); }
+
 /* ============== MAP ============== */
 .map-wrap { position: relative; }
+.map-wrap.fullbleed {
+  height: calc(100vh - 220px);
+  min-height: 480px;
+}
+.map-wrap.fullbleed #tradeAreaMap {
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* Metric toggle overlay on the map (top-left, like pizza demo) */
+.map-metric-toggle {
+  position: absolute;
+  top: 14px; left: 14px;
+  z-index: 1000;
+  display: flex; gap: 2px;
+  background: rgba(17,20,27,0.90);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px;
+  backdrop-filter: blur(8px);
+}
+.map-metric-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.map-metric-toggle button.active {
+  background: rgba(139,92,246,0.20);
+  color: var(--text);
+}
+.map-metric-toggle button:hover:not(.active) { color: var(--text); }
+
+/* Floating note overlay (bottom-right, like pizza demo's data note) */
+.map-legend {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  z-index: 1000;
+  max-width: 380px;
+  background: rgba(52,211,153,0.10);
+  border: 1px solid rgba(52,211,153,0.30);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  backdrop-filter: blur(8px);
+}
+.map-legend strong { color: var(--text); }
+.map-legend:empty { display: none; }
+
 #tradeAreaMap {
   height: 600px;
   border-radius: 12px;
@@ -422,88 +518,77 @@ tr:hover td { background: rgba(139,92,246,0.06); }
     <button class="reset-btn" id="filterReset">Reset</button>
   </div>
 
-  <div class="page-header">
+  <div class="page-header" id="pageHeader">
     <h1 id="pageTitle">Trade Area</h1>
     <div class="sub" id="pageSub">Where Purple Carrot subscribers live</div>
   </div>
 
-  <!-- ============== TRADE AREA ============== -->
-  <section class="page active" id="page-trade-area">
-    <div class="kpi-strip">
-      <div class="kpi-tile accent">
-        <div class="label">Total Subscribers</div>
-        <div class="value" id="ta-subs">—</div>
-        <div class="sub" id="ta-zips">—</div>
+  <!-- ============== TRADE AREA (full-bleed) ============== -->
+  <section class="page active page-trade-area" id="page-trade-area">
+    <div class="ta-kpi-row">
+      <div class="ta-kpi ta-kpi-active">
+        <div class="ta-l">National</div>
+        <div class="ta-v" id="ta-subs">—</div>
+        <div class="ta-s" id="ta-zips">—</div>
       </div>
-      <div class="kpi-tile">
-        <div class="label">Total Revenue</div>
-        <div class="value" id="ta-revenue">—</div>
-        <div class="sub" id="ta-aov">—</div>
+      <div class="ta-kpi">
+        <div class="ta-l">Revenue</div>
+        <div class="ta-v" id="ta-revenue">—</div>
+        <div class="ta-s" id="ta-aov">—</div>
       </div>
-      <div class="kpi-tile green">
-        <div class="label">Ad-Attributed</div>
-        <div class="value" id="ta-attributed">—</div>
-        <div class="sub">Programmatic-driven</div>
+      <div class="ta-kpi">
+        <div class="ta-l">AOV</div>
+        <div class="ta-v" id="ta-aov-tile">—</div>
+        <div class="ta-s">avg per order</div>
       </div>
-      <div class="kpi-tile">
-        <div class="label">States Reached</div>
-        <div class="value" id="ta-states">—</div>
-        <div class="sub">U.S. coverage</div>
+      <div class="ta-kpi">
+        <div class="ta-l">Ad-Attributed</div>
+        <div class="ta-v" id="ta-attributed">—</div>
+        <div class="ta-s">programmatic</div>
       </div>
-      <div class="kpi-tile">
-        <div class="label">Unmapped</div>
-        <div class="value" id="ta-unmapped">—</div>
-        <div class="sub">Awaiting Stape zip</div>
+      <div class="ta-kpi">
+        <div class="ta-l">States</div>
+        <div class="ta-v" id="ta-states">—</div>
+        <div class="ta-s">U.S. coverage</div>
+      </div>
+      <div class="ta-kpi">
+        <div class="ta-l">Cities</div>
+        <div class="ta-v" id="ta-cities">—</div>
+        <div class="ta-s">unique markets</div>
+      </div>
+      <div class="ta-kpi">
+        <div class="ta-l">Unmapped</div>
+        <div class="ta-v" id="ta-unmapped">—</div>
+        <div class="ta-s">awaiting Stape zip</div>
       </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-title"><span class="accent"></span> Subscriber Distribution Map</div>
-      <div class="map-controls">
-        <div class="control-group">
-          <button class="active" data-metric="subs">Subscribers</button>
-          <button data-metric="revenue">Revenue</button>
-          <button data-metric="aov">AOV</button>
-          <button data-metric="attributed">Ad-attributed</button>
-        </div>
-        <div style="flex:1"></div>
-        <div style="font-size:11px;color:var(--text-dim);letter-spacing:0.06em">CLICK A DOT FOR ORDER DETAIL</div>
-      </div>
-      <div class="map-wrap">
-        <div id="tradeAreaMap"></div>
-        <div class="detail-panel" id="cityDetail">
-          <button class="close" onclick="closeDetail()">×</button>
-          <h3 id="cd-title">—</h3>
-          <div class="meta" id="cd-meta">—</div>
-          <div class="detail-grid">
-            <div class="detail-tile"><div class="l">Subscribers</div><div class="v" id="cd-subs">—</div></div>
-            <div class="detail-tile"><div class="l">Revenue</div><div class="v" id="cd-rev">—</div></div>
-            <div class="detail-tile"><div class="l">AOV</div><div class="v" id="cd-aov">—</div></div>
-            <div class="detail-tile"><div class="l">Paid</div><div class="v" id="cd-paid">—</div></div>
-            <div class="detail-tile"><div class="l">Organic</div><div class="v" id="cd-org">—</div></div>
-            <div class="detail-tile"><div class="l">Ad-attributed</div><div class="v" id="cd-attr">—</div></div>
-          </div>
-          <div class="detail-section">Orders</div>
-          <div class="order-list" id="cd-orders"></div>
-        </div>
-      </div>
-      <div id="unmappedNote" style="margin-top:12px;padding:10px 14px;background:rgba(139,92,246,0.08);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text-muted);line-height:1.6"></div>
-    </div>
+    <div class="map-wrap fullbleed">
+      <div id="tradeAreaMap"></div>
 
-    <div class="two-col">
-      <div class="panel">
-        <div class="panel-title"><span class="accent"></span> Top Cities</div>
-        <table>
-          <thead><tr><th>City</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
-          <tbody id="topCitiesBody"></tbody>
-        </table>
+      <div class="map-metric-toggle">
+        <button class="active" data-metric="subs">Subs</button>
+        <button data-metric="revenue">Revenue</button>
+        <button data-metric="aov">AOV</button>
+        <button data-metric="attributed">Attributed</button>
       </div>
-      <div class="panel">
-        <div class="panel-title"><span class="accent"></span> Top States</div>
-        <table>
-          <thead><tr><th>State</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
-          <tbody id="topStatesBody"></tbody>
-        </table>
+
+      <div class="map-legend" id="unmappedNote"></div>
+
+      <div class="detail-panel" id="cityDetail">
+        <button class="close" onclick="closeDetail()">×</button>
+        <h3 id="cd-title">—</h3>
+        <div class="meta" id="cd-meta">—</div>
+        <div class="detail-grid">
+          <div class="detail-tile"><div class="l">Subscribers</div><div class="v" id="cd-subs">—</div></div>
+          <div class="detail-tile"><div class="l">Revenue</div><div class="v" id="cd-rev">—</div></div>
+          <div class="detail-tile"><div class="l">AOV</div><div class="v" id="cd-aov">—</div></div>
+          <div class="detail-tile"><div class="l">Paid</div><div class="v" id="cd-paid">—</div></div>
+          <div class="detail-tile"><div class="l">Organic</div><div class="v" id="cd-org">—</div></div>
+          <div class="detail-tile"><div class="l">Ad-attributed</div><div class="v" id="cd-attr">—</div></div>
+        </div>
+        <div class="detail-section">Orders</div>
+        <div class="order-list" id="cd-orders"></div>
       </div>
     </div>
   </section>
@@ -836,8 +921,14 @@ document.querySelectorAll('.sidebar nav a').forEach(a => {
     const [title, sub] = pageTitles[page] || ['', ''];
     document.getElementById('pageTitle').textContent = title;
     document.getElementById('pageSub').textContent = sub;
+    // Toggle full-bleed body class for trade area
+    document.body.classList.toggle('on-trade-area', page === 'trade-area');
+    // Resize the leaflet map when navigating back to trade area
+    if (page === 'trade-area' && mapInstance) setTimeout(() => mapInstance.invalidateSize(), 50);
   });
 });
+// Trade area is the default landing page
+document.body.classList.add('on-trade-area');
 
 /* ====================================================================
    RENDER
@@ -860,12 +951,16 @@ let zipMarkers = [];
 
 function renderTradeArea() {
   const s = V3.summary;
-  document.getElementById('ta-subs').textContent       = fmt(s.totalSubs);
-  document.getElementById('ta-zips').textContent       = `Across ${fmt(s.uniqueCities)} cities`;
-  document.getElementById('ta-revenue').textContent    = fmtMoneyK(s.totalRevenue);
   const aov = s.totalSubs > 0 ? (s.totalRevenue / s.totalSubs) : 0;
-  document.getElementById('ta-aov').textContent        = 'AOV ' + fmtMoney(aov);
+  document.getElementById('ta-subs').textContent       = fmt(s.totalSubs);
+  document.getElementById('ta-zips').textContent       = `${fmt(s.uniqueCities)} cities · ${fmt(s.uniqueStates)} states`;
+  document.getElementById('ta-revenue').textContent    = fmtMoneyK(s.totalRevenue);
+  document.getElementById('ta-aov').textContent        = 'avg ' + fmtMoney(aov);
+  const aovTile = document.getElementById('ta-aov-tile');
+  if (aovTile) aovTile.textContent = fmtMoney(aov);
   document.getElementById('ta-states').textContent     = fmt(s.uniqueStates);
+  const citiesTile = document.getElementById('ta-cities');
+  if (citiesTile) citiesTile.textContent = fmt(s.uniqueCities);
   document.getElementById('ta-attributed').textContent = fmt(s.totalAttributed);
   const unmappedTile = document.getElementById('ta-unmapped');
   if (unmappedTile) unmappedTile.textContent = fmt(s.unmappedSubs || 0);
@@ -874,23 +969,12 @@ function renderTradeArea() {
   drawMarkers(currentMetric);
   renderUnmappedNote();
 
-  // Top cities
-  const cities = (V3.topCities || []).slice(0, 15);
-  document.getElementById('topCitiesBody').innerHTML = cities.map(c =>
-    `<tr><td>${c.name}</td><td class="numeric">${fmt(c.subs)}</td><td class="numeric">${fmtMoneyK(c.revenue)}</td></tr>`
-  ).join('');
-
-  // Top states
-  const states = Object.entries(V3.stateRollup || {})
-    .sort((a,b) => b[1].subs - a[1].subs)
-    .slice(0, 15);
-  document.getElementById('topStatesBody').innerHTML = states.map(([st, r]) =>
-    `<tr><td>${st}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">${fmtMoneyK(r.revenue)}</td></tr>`
-  ).join('');
-
-  document.querySelectorAll('.map-controls [data-metric]').forEach(btn => {
+  // Wire the floating metric toggle
+  document.querySelectorAll('.map-metric-toggle [data-metric]').forEach(btn => {
+    if (btn.__wired) return;
+    btn.__wired = true;
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.map-controls [data-metric]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.map-metric-toggle [data-metric]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentMetric = btn.getAttribute('data-metric');
       drawMarkers(currentMetric);
@@ -899,20 +983,14 @@ function renderTradeArea() {
 }
 
 function renderUnmappedNote() {
+  const el = document.getElementById('unmappedNote');
   const u = (V3.cityRollup || {})['Unknown / Unmapped'];
-  if (!u || !u.subs) {
-    document.getElementById('unmappedNote').style.display = 'none';
-    return;
-  }
+  if (!u || !u.subs) { el.innerHTML = ''; return; }
   const stape = u.source_stape || 0;
   const other = (u.source_browser || 0) + (u.source_other || 0);
-  document.getElementById('unmappedNote').style.display = '';
-  document.getElementById('unmappedNote').innerHTML =
-    `<strong>${fmt(u.subs)} subscribers</strong> not plotted: ` +
-    (stape ? `${fmt(stape)} from the server-side tag (customer zip not yet forwarded by Stape) ` : '') +
-    (stape && other ? '+ ' : '') +
-    (other ? `${fmt(other)} from browser-side captures missing zip_code` : '') +
-    `. Bucketed as "Unknown / Unmapped" until Stape forwards the customer zip.`;
+  el.innerHTML = `<strong>${fmt(u.subs)} subscribers</strong> not plotted. ` +
+    (stape ? `${fmt(stape)} from Stape (no customer zip yet). ` : '') +
+    (other ? `${fmt(other)} browser-side missing zip.` : '');
 }
 
 function initMap() {
