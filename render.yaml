@@ -1,0 +1,53 @@
+# Render Blueprint for Purple Carrot Dashboard
+# https://render.com/docs/blueprint-spec
+#
+# Defines:
+#   1. Web service serving dashboard_v2.html, dashboard_v3.html, and the
+#      data JSONs. Stdlib-only HTTPServer (app.py).
+#   2. Cron job that refreshes both v2 and v3 data every 30 minutes and
+#      pushes the updated JSONs to GitHub, which triggers a redeploy.
+#
+# To apply changes here: Render Dashboard -> Blueprints -> Sync.
+
+services:
+  - type: web
+    name: purplecarrot-dashboard
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: PORT
+        value: "10000"
+      - key: UPLOAD_SECRET
+        sync: false  # set manually in Render UI; shared with the cron
+      - key: DASHBOARD_URL
+        sync: false  # set manually in Render UI; the web service's public URL
+      - key: ADVERTISER_ID
+        value: "1060"
+
+  - type: cron
+    name: purplecarrot-data-refresh
+    runtime: python
+    plan: starter
+    schedule: "*/30 * * * *"
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash refresh_all.sh
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: PYTHON_BIN
+        value: "python3"
+      - key: RENDER
+        value: "1"
+      - key: UPLOAD_SECRET
+        sync: false  # same value as the web service
+      - key: DASHBOARD_URL
+        sync: false  # https://<web-service>.onrender.com — used by report
+                     # script to POST fresh JSON to the web service via
+                     # /upload_cache_v2 (alternative path to git push)
+      - key: ADVERTISER_ID
+        value: "1060"
