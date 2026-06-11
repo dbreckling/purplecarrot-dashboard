@@ -246,20 +246,19 @@ body.on-trade-area #pageHeader { display: none; }
 
 .page-trade-area { padding: 0 !important; }
 
-/* Compact KPI strip directly under the filter bar */
+/* Compact KPI strip directly under the filter bar — always one row */
 .ta-kpi-row {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 0;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
-@media (max-width: 1400px) { .ta-kpi-row { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 900px)  { .ta-kpi-row { grid-template-columns: repeat(2, 1fr); } }
 .ta-kpi {
-  padding: 14px 18px;
+  padding: 8px 12px;
   border-right: 1px solid var(--border);
   background: var(--bg);
+  min-width: 0;
 }
 .ta-kpi:last-child { border-right: none; }
 .ta-kpi-active {
@@ -271,9 +270,9 @@ body.on-trade-area #pageHeader { display: none; }
   position: absolute; left: 0; top: 0; bottom: 0;
   width: 3px; background: var(--pc-purple);
 }
-.ta-l { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); font-weight: 700; }
-.ta-v { font-size: 24px; font-weight: 700; color: var(--text); margin-top: 4px; line-height: 1.1; }
-.ta-s { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.ta-l { font-size: 9px; text-transform: uppercase; letter-spacing: 0.10em; color: var(--text-dim); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ta-v { font-size: 18px; font-weight: 700; color: var(--text); margin-top: 2px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ta-s { font-size: 10px; color: var(--text-muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ta-kpi-active .ta-l { color: var(--pc-purple); }
 .ta-kpi-active .ta-v { color: var(--pc-green); }
 
