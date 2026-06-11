@@ -2,12 +2,12 @@
   "version": 3,
   "advertiserId": "1060",
   "advertiserName": "Purple Carrot",
-  "generatedAt": "2026-06-11T11:16:28.686915Z",
+  "generatedAt": "2026-06-11T14:06:06.021467Z",
   "summary": {
-    "totalSubs": 2197,
-    "totalRevenue": 190627.42,
+    "totalSubs": 2199,
+    "totalRevenue": 190744.91,
     "totalAttributed": 12,
-    "uniqueCities": 1045,
+    "uniqueCities": 1047,
     "uniqueStates": 49,
     "unmappedSubs": 279
   },
@@ -21458,6 +21458,46 @@
       "source_browser": 1,
       "source_stape": 0,
       "source_other": 0
+    },
+    "Towson, MD": {
+      "name": "Towson, MD",
+      "city": "Towson",
+      "state": "MD",
+      "lat": 39.4072,
+      "lng": -76.6038,
+      "subs": 1,
+      "revenue": 12.0,
+      "aov": 12.0,
+      "paidSubs": 0,
+      "organicSubs": 1,
+      "attributedSubs": 0,
+      "redeems": 1,
+      "zips": [
+        "21204"
+      ],
+      "source_browser": 1,
+      "source_stape": 0,
+      "source_other": 0
+    },
+    "Coos Bay, OR": {
+      "name": "Coos Bay, OR",
+      "city": "Coos Bay",
+      "state": "OR",
+      "lat": 43.2151,
+      "lng": -124.1984,
+      "subs": 1,
+      "revenue": 105.49,
+      "aov": 105.49,
+      "paidSubs": 0,
+      "organicSubs": 1,
+      "attributedSubs": 0,
+      "redeems": 0,
+      "zips": [
+        "97420"
+      ],
+      "source_browser": 1,
+      "source_stape": 0,
+      "source_other": 0
     }
   },
   "stateRollup": {
@@ -21504,10 +21544,10 @@
       "organic": 4
     },
     "MD": {
-      "subs": 45,
-      "revenue": 3854.7,
+      "subs": 46,
+      "revenue": 3866.7,
       "paid": 3,
-      "organic": 42
+      "organic": 43
     },
     "MI": {
       "subs": 51,
@@ -21636,10 +21676,10 @@
       "organic": 49
     },
     "OR": {
-      "subs": 47,
-      "revenue": 3997.51,
+      "subs": 48,
+      "revenue": 4103.0,
       "paid": 8,
-      "organic": 39
+      "organic": 40
     },
     "ME": {
       "subs": 11,
@@ -23115,9 +23155,9 @@
   "skuTiers": [
     {
       "tier": "Standard Box (~$85-115)",
-      "subs": 908,
-      "revenue": 90263.84,
-      "aov": 99.41
+      "subs": 909,
+      "revenue": 90369.33,
+      "aov": 99.42
     },
     {
       "tier": "Large Box ($115+)",
@@ -23147,7 +23187,7 @@
   "topItems": [
     {
       "name": "Subscription",
-      "count": 1375
+      "count": 1376
     },
     {
       "name": "chefs_choice",
@@ -23174,6 +23214,188 @@
       "count": 2
     }
   ],
+  "topRecipes": [
+    {
+      "slug": "just-egg-chorizo-burrito-potato-pepper-onion-cheese",
+      "name": "Just Egg Chorizo Burrito Potato Pepper Onion Cheese",
+      "subs_touched": 7,
+      "revenue_touched": 790.42
+    },
+    {
+      "slug": "french-toast-pudding-cinnamon-maple-syrup",
+      "name": "French Toast Pudding Cinnamon Maple Syrup",
+      "subs_touched": 7,
+      "revenue_touched": 712.97
+    },
+    {
+      "slug": "super-greens-fried-rice-with-peanut-drizzle-pepita-lime-crunch",
+      "name": "Super Greens Fried Rice With Peanut Drizzle Pepita Lime Crunch",
+      "subs_touched": 5,
+      "revenue_touched": 526.46
+    },
+    {
+      "slug": "chorizo-style-burrito-duo-pinto-beans-brown-rice-tomatillo-salsa",
+      "name": "Chorizo Style Burrito Duo Pinto Beans Brown Rice Tomatillo Salsa",
+      "subs_touched": 4,
+      "revenue_touched": 439.43
+    },
+    {
+      "slug": "spicy-black-beans-tacos-with-chipotle-banana-salsa",
+      "name": "Spicy Black Beans Tacos With Chipotle Banana Salsa",
+      "subs_touched": 4,
+      "revenue_touched": 448.49
+    },
+    {
+      "slug": "crispy-lemon-chik-n-with-brown-rice-gai-lan",
+      "name": "Crispy Lemon Chik N With Brown Rice Gai Lan",
+      "subs_touched": 4,
+      "revenue_touched": 336.98
+    },
+    {
+      "slug": "mafaldine-alfredo-with-garlicky-broccolini-buttery-hazelnuts",
+      "name": "Mafaldine Alfredo With Garlicky Broccolini Buttery Hazelnuts",
+      "subs_touched": 4,
+      "revenue_touched": 392.99
+    },
+    {
+      "slug": "spicy-kfc-fried-rice-white-rice-mixed-veggies-fried-chicken-gochujang-sauce",
+      "name": "Spicy Kfc Fried Rice White Rice Mixed Veggies Fried Chicken Gochujang Sauce",
+      "subs_touched": 4,
+      "revenue_touched": 418.26
+    },
+    {
+      "slug": "thai-udon-noodles-with-peanut-curry-onion-lime-crunch",
+      "name": "Thai Udon Noodles With Peanut Curry Onion Lime Crunch",
+      "subs_touched": 4,
+      "revenue_touched": 313.0
+    },
+    {
+      "slug": "jackfruit-gyros-with-quick-pickles-tzatziki",
+      "name": "Jackfruit Gyros With Quick Pickles Tzatziki",
+      "subs_touched": 4,
+      "revenue_touched": 343.0
+    },
+    {
+      "slug": "burrito-bowl-with-mojo-verde-plantains",
+      "name": "Burrito Bowl With Mojo Verde Plantains",
+      "subs_touched": 4,
+      "revenue_touched": 460.49
+    },
+    {
+      "slug": "chocolate-caramel-layer-cakes",
+      "name": "Chocolate Caramel Layer Cakes",
+      "subs_touched": 3,
+      "revenue_touched": 281.49
+    },
+    {
+      "slug": "black-bean-burger-with-mojo-verde-aioli-oregano-fries",
+      "name": "Black Bean Burger With Mojo Verde Aioli Oregano Fries",
+      "subs_touched": 3,
+      "revenue_touched": 275.99
+    },
+    {
+      "slug": "french-onion-burgers-with-cheese-fries",
+      "name": "French Onion Burgers With Cheese Fries",
+      "subs_touched": 3,
+      "revenue_touched": 381.99
+    },
+    {
+      "slug": "chicken-parm-cavatappi-breaded-chicken-breast-mozzarella-marinara-sauce",
+      "name": "Chicken Parm Cavatappi Breaded Chicken Breast Mozzarella Marinara Sauce",
+      "subs_touched": 3,
+      "revenue_touched": 237.99
+    },
+    {
+      "slug": "edamame-mac-cheese-chile-con-queso-sauce-broccoli",
+      "name": "Edamame Mac Cheese Chile Con Queso Sauce Broccoli",
+      "subs_touched": 3,
+      "revenue_touched": 310.0
+    },
+    {
+      "slug": "chickpea-tikka-masala-curried-cauliflower-rice",
+      "name": "Chickpea Tikka Masala Curried Cauliflower Rice",
+      "subs_touched": 3,
+      "revenue_touched": 528.46
+    },
+    {
+      "slug": "sunshine-chia-parfait-with-strawberry-coconut",
+      "name": "Sunshine Chia Parfait With Strawberry Coconut",
+      "subs_touched": 3,
+      "revenue_touched": 262.48
+    },
+    {
+      "slug": "samosa-burrito-duo-russet-potato-peas-samosa-style-seasoning",
+      "name": "Samosa Burrito Duo Russet Potato Peas Samosa Style Seasoning",
+      "subs_touched": 3,
+      "revenue_touched": 343.46
+    },
+    {
+      "slug": "summer-vegetable-ciabatta-with-cashew-cheese-roasted-tomato-vinaigrette",
+      "name": "Summer Vegetable Ciabatta With Cashew Cheese Roasted Tomato Vinaigrette",
+      "subs_touched": 3,
+      "revenue_touched": 282.17
+    },
+    {
+      "slug": "puerto-rican-rice-beans-with-adobo-roasted-tofu",
+      "name": "Puerto Rican Rice Beans With Adobo Roasted Tofu",
+      "subs_touched": 2,
+      "revenue_touched": 249.0
+    },
+    {
+      "slug": "mybacon-original-recipe",
+      "name": "Mybacon Original Recipe",
+      "subs_touched": 2,
+      "revenue_touched": 167.44
+    },
+    {
+      "slug": "chorizo-burrito-bowl-featuring-impossible-protein",
+      "name": "Chorizo Burrito Bowl Featuring Impossible Protein",
+      "subs_touched": 2,
+      "revenue_touched": 208.5
+    },
+    {
+      "slug": "spinach-mac-cheese-with-crispy-onions",
+      "name": "Spinach Mac Cheese With Crispy Onions",
+      "subs_touched": 2,
+      "revenue_touched": 352.98
+    },
+    {
+      "slug": "chilled-sesame-noodle-bowls",
+      "name": "Chilled Sesame Noodle Bowls",
+      "subs_touched": 2,
+      "revenue_touched": 189.0
+    },
+    {
+      "slug": "carolina-style-brisket-sammies-with-slaw",
+      "name": "Carolina Style Brisket Sammies With Slaw",
+      "subs_touched": 2,
+      "revenue_touched": 202.0
+    },
+    {
+      "slug": "breakfast-tamale-bake-with-spinach-choreezo",
+      "name": "Breakfast Tamale Bake With Spinach Choreezo",
+      "subs_touched": 2,
+      "revenue_touched": 251.0
+    },
+    {
+      "slug": "penne-ragu-lentils-carrot-rosemary",
+      "name": "Penne Ragu Lentils Carrot Rosemary",
+      "subs_touched": 2,
+      "revenue_touched": 148.96
+    },
+    {
+      "slug": "mushroom-walnut-tacos-dorados-with-smashed-frijoles-spicy-radish-salad",
+      "name": "Mushroom Walnut Tacos Dorados With Smashed Frijoles Spicy Radish Salad",
+      "subs_touched": 2,
+      "revenue_touched": 133.5
+    },
+    {
+      "slug": "elote-bowls-with-lime-chickpeas-black-quinoa",
+      "name": "Elote Bowls With Lime Chickpeas Black Quinoa",
+      "subs_touched": 2,
+      "revenue_touched": 183.98
+    }
+  ],
   "channelOverlap": [
     {
       "channels": "Direct / Organic",
@@ -23187,12 +23409,12 @@
     },
     {
       "channels": "Email",
-      "subs": 183,
+      "subs": 184,
       "isMulti": false
     },
     {
       "channels": "Affiliate",
-      "subs": 47,
+      "subs": 48,
       "isMulti": false
     },
     {

@@ -287,7 +287,55 @@ def main():
     )[:50]
 
     # =========================================================
-    # SKU / Price Tier
+    # Top Recipes — parse /recipe/{slug} from URL, referrer, landing_page
+    # of every real PC order. This is the closest thing to a per-product
+    # signal we have until PC's tag starts firing per-recipe data.
+    # We tally any time a recipe path appears in the customer's journey
+    # and dedupe per-purchase so a single order can't double-count.
+    # =========================================================
+    RECIPE_RE = re.compile(r"/recipe/([a-z0-9][a-z0-9\-_]+)", re.IGNORECASE)
+    recipe_counts = Counter()
+    recipe_revenue = defaultdict(float)
+    for p in real:
+        rev = float(p.get("revenue") or 0)
+        urls_seen = set()
+        for field in ("url", "referrer"):
+            v = p.get(field) or ""
+            if v: urls_seen.add(str(v))
+        data = p.get("data") or {}
+        for k in ("landing_page", "referrer"):
+            v = data.get(k) or ""
+            if v: urls_seen.add(str(v))
+        slugs = set()
+        for u in urls_seen:
+            for m in RECIPE_RE.finditer(u):
+                slug = m.group(1).lower().rstrip("?#/")
+                # Skip obvious non-recipe slugs that might match the regex
+                if slug in {"signup", "share", "search", "list", "all"}: continue
+                slugs.add(slug)
+        for slug in slugs:
+            recipe_counts[slug] += 1
+            recipe_revenue[slug] += rev
+
+    def slug_to_title(slug):
+        # crispy-lemon-chik-n-with-brown-rice  ->  Crispy Lemon Chik n With Brown Rice
+        # Replace separators, title-case, fix common words.
+        parts = slug.replace("_", "-").split("-")
+        words = [w.capitalize() for w in parts if w]
+        return " ".join(words)
+
+    top_recipes = [
+        {
+            "slug": s,
+            "name": slug_to_title(s),
+            "subs_touched": recipe_counts[s],
+            "revenue_touched": round(recipe_revenue[s], 2),
+        }
+        for s in sorted(recipe_counts, key=lambda x: -recipe_counts[x])[:30]
+    ]
+
+    # =========================================================
+    # SKU / Price Tier (kept as a fallback view)
     # =========================================================
     tier_counts = Counter()
     tier_revenue = defaultdict(float)
@@ -371,6 +419,7 @@ def main():
         "topCities":  top_cities,
         "skuTiers":   sku_tiers,
         "topItems":   top_items,
+        "topRecipes": top_recipes,
         "channelOverlap": overlap_rows,
     }
 

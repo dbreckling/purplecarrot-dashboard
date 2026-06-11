@@ -53,19 +53,20 @@ body {
 .sidebar .brand {
   padding: 22px 24px 18px;
   border-bottom: 1px solid var(--border);
+  text-align: center;
 }
 .sidebar .brand .logo {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   font-weight: 900;
   font-size: 19px;
-  letter-spacing: 0.02em;
-  line-height: 1;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
   color: var(--text);
   display: block;
 }
 .sidebar .brand .logo .row { display:block; }
 .sidebar .brand .tag {
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -289,10 +290,11 @@ body.on-trade-area #pageHeader { display: none; }
   border-top: 1px solid var(--border);
 }
 
-/* Metric toggle overlay on the map (top-left, like pizza demo) */
+/* Metric toggle overlay — top-center so it doesn't cover Leaflet's
+   +/- zoom controls in the top-left or the detail panel in the top-right. */
 .map-metric-toggle {
   position: absolute;
-  top: 14px; left: 14px;
+  top: 14px; left: 64px;
   z-index: 1000;
   display: flex; gap: 2px;
   background: rgba(17,20,27,0.90);
@@ -741,15 +743,16 @@ tr:hover td { background: rgba(139,92,246,0.06); }
       <div class="kpi-tile"><div class="label">Top Product</div><div class="value" id="prod-top" style="font-size:18px">—</div></div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="accent"></span> Subscription products by sales volume</div>
+      <div class="panel-title"><span class="accent"></span> Recipes that drove subscriptions</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:14px">Each recipe is counted whenever it appeared on a converter's landing page, referrer, or purchase URL.</div>
       <div id="productBars" style="margin-top:8px"></div>
     </div>
     <div class="panel">
       <div class="panel-title"><span class="accent"></span> Detail</div>
       <table>
         <thead><tr>
-          <th>Product</th><th class="numeric">Subs</th>
-          <th class="numeric">Revenue</th><th class="numeric">AOV</th>
+          <th>Recipe</th><th class="numeric">Subs Touched</th>
+          <th class="numeric">Revenue Touched</th><th class="numeric">Avg per Sub</th>
           <th class="numeric">Share</th>
         </tr></thead>
         <tbody id="productTableBody"></tbody>
@@ -1035,17 +1038,17 @@ function drawMarkers(metric) {
     const value = valueOf(c);
     if (value <= 0) continue;
     const ratio = Math.sqrt(value / maxVal);
-    // Smaller, no glow — matches the pizza-demo look.
-    const radius = 3 + ratio * 6;
+    // Fine dots — 2px floor, scales up to ~5px for the largest markets.
+    const radius = 2 + ratio * 3;
     const accent = (metric === 'attributed') ? '#34d399' : '#8b5cf6';
 
     const dot = L.circleMarker([c.lat, c.lng], {
       radius: radius,
       fillColor: accent,
       color: accent,
-      weight: 1,
-      opacity: 0.95,
-      fillOpacity: 0.85,
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9,
     }).addTo(mapInstance);
     dot.bindTooltip(`<strong>${c.name}</strong><br>${fmt(c.subs)} subs · ${fmtMoneyK(c.revenue)}`,
       {direction:'top', offset:[0,-4], className:'pc-tooltip', sticky:true});
@@ -1341,42 +1344,50 @@ function renderFunnel() {
 }
 
 /* ---- BEST SELLING PRODUCTS ---- */
-// Subscription products are inferred from order value (PC sells one SKU
-// "Subscription" but at different price points = different box sizes).
+// Surfaces top recipes parsed out of every purchaser's URL / referrer /
+// landing_page. PC's product feed only sends "Subscription" as the
+// item_name, so we read the recipe pages that touched each conversion's
+// journey instead. The slug list comes from V3.topRecipes.
 function renderProducts() {
-  const tiers = V3.skuTiers || [];
-  const totalSubs = tiers.reduce((s,t) => s + t.subs, 0);
-  const totalRev  = tiers.reduce((s,t) => s + t.revenue, 0);
+  const recipes = V3.topRecipes || [];
+  const totalSubs = V3.summary.totalSubs || 0;
+  const totalRev  = V3.summary.totalRevenue || 0;
   document.getElementById('prod-subs').textContent = fmt(totalSubs);
   document.getElementById('prod-rev').textContent  = fmtMoneyK(totalRev);
   document.getElementById('prod-aov').textContent  = totalSubs > 0 ? fmtMoney(totalRev/totalSubs) : '—';
-  document.getElementById('prod-top').textContent  = tiers.length ? tiers[0].tier.split(' (')[0] : '—';
+  document.getElementById('prod-top').textContent  = recipes.length ? recipes[0].name : '—';
 
-  // Horizontal bar chart
-  const maxSubs = Math.max(...tiers.map(t => t.subs), 1);
-  const colors = ['#8b5cf6', '#34d399', '#a78bfa', '#fb923c', '#4d7cff', '#f472b6'];
-  document.getElementById('productBars').innerHTML = tiers.map((t, i) => {
-    const pct = (t.subs / maxSubs) * 100;
+  if (!recipes.length) {
+    document.getElementById('productBars').innerHTML = '<div class="empty">No recipe pages observed yet. Once PC\'s tag fires on /recipe/{slug} URLs, top recipes will surface here.</div>';
+    document.getElementById('productTableBody').innerHTML = '<tr><td colspan="5" class="empty">No data</td></tr>';
+    return;
+  }
+
+  // Horizontal bar chart of top recipes
+  const maxSubs = Math.max(...recipes.map(r => r.subs_touched), 1);
+  const colors = ['#8b5cf6', '#34d399', '#a78bfa', '#fb923c', '#4d7cff', '#f472b6', '#fbbf24', '#22d3ee'];
+  document.getElementById('productBars').innerHTML = recipes.slice(0, 20).map((r, i) => {
+    const pct = (r.subs_touched / maxSubs) * 100;
     const color = colors[i % colors.length];
-    return `<div style="margin-bottom:14px">
+    return `<div style="margin-bottom:12px">
       <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px">
-        <span style="color:var(--text);font-weight:600">${t.tier}</span>
-        <span style="color:var(--text-muted)">${fmt(t.subs)} subs · ${fmtMoneyK(t.revenue)} · AOV ${fmtMoney(t.aov)}</span>
+        <span style="color:var(--text);font-weight:600">${r.name}</span>
+        <span style="color:var(--text-muted)">${fmt(r.subs_touched)} subs · ${fmtMoneyK(r.revenue_touched)}</span>
       </div>
-      <div style="background:var(--panel-2);border-radius:6px;height:18px;overflow:hidden">
-        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg, ${color}cc, ${color}66);border-radius:6px"></div>
+      <div style="background:var(--panel-2);border-radius:6px;height:14px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg, ${color}cc, ${color}55);border-radius:6px"></div>
       </div>
     </div>`;
-  }).join('') || '<div class="empty">No product data yet</div>';
+  }).join('');
 
-  // Detail table
-  document.getElementById('productTableBody').innerHTML = tiers.map(t =>
-    `<tr><td><strong>${t.tier}</strong></td>
-     <td class="numeric">${fmt(t.subs)}</td>
-     <td class="numeric">${fmtMoney(t.revenue)}</td>
-     <td class="numeric">${fmtMoney(t.aov)}</td>
-     <td class="numeric">${fmtPct(t.subs, totalSubs)}</td></tr>`
-  ).join('') || '<tr><td colspan="5" class="empty">No data</td></tr>';
+  const totalTouched = recipes.reduce((s,r) => s + r.subs_touched, 0);
+  document.getElementById('productTableBody').innerHTML = recipes.map(r =>
+    `<tr><td><strong>${r.name}</strong></td>
+     <td class="numeric">${fmt(r.subs_touched)}</td>
+     <td class="numeric">${fmtMoney(r.revenue_touched)}</td>
+     <td class="numeric">${fmtMoney(r.subs_touched > 0 ? r.revenue_touched/r.subs_touched : 0)}</td>
+     <td class="numeric">${fmtPct(r.subs_touched, totalTouched)}</td></tr>`
+  ).join('');
 }
 
 /* ====================================================================
