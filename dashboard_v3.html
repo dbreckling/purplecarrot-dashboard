@@ -376,13 +376,18 @@ tr:hover td { background: rgba(139,92,246,0.06); }
     <div class="tag">Performance & Trade Area</div>
   </div>
   <nav>
-    <a href="#trade-area"   data-page="trade-area"   class="active"><span class="icon">📍</span> Trade Area</a>
-    <a href="#overview"     data-page="overview"><span class="icon">📊</span> Executive Overview</a>
-    <a href="#paid"         data-page="paid"><span class="icon">💸</span> Paid Channels</a>
-    <a href="#organic"      data-page="organic"><span class="icon">🌱</span> Organic</a>
-    <a href="#attribution"  data-page="attribution"><span class="icon">🎯</span> Attribution & Overlap</a>
-    <a href="#funnel"       data-page="funnel"><span class="icon">📉</span> Conversion Funnel</a>
-    <a href="#skus"         data-page="skus"><span class="icon">🥗</span> Subscription Tiers</a>
+    <a href="#trade-area"      data-page="trade-area" class="active"><span class="icon">⌖</span> Trade Area</a>
+    <a href="#overview"        data-page="overview"><span class="icon">▦</span> Executive Overview</a>
+    <div class="section-label">Paid Channels</div>
+    <a href="#programmatic"    data-page="programmatic"><span class="icon">◎</span> Programmatic</a>
+    <a href="#sem"             data-page="sem"><span class="icon">⌕</span> SEM / Paid Search</a>
+    <a href="#meta"            data-page="meta"><span class="icon">𝑓</span> Meta</a>
+    <div class="section-label">Organic</div>
+    <a href="#seo"             data-page="seo"><span class="icon">◐</span> SEO / Organic Search</a>
+    <div class="section-label">Attribution & Action</div>
+    <a href="#channel-overlap" data-page="channel-overlap"><span class="icon">⇄</span> Channel Overlap</a>
+    <a href="#funnel"          data-page="funnel"><span class="icon">▼</span> Conversion Funnel</a>
+    <a href="#products"        data-page="products"><span class="icon">●</span> Best Selling Products</a>
   </nav>
   <div class="footer">
     Powered by <span class="dlve">DLVE</span><br>
@@ -535,13 +540,13 @@ tr:hover td { background: rgba(139,92,246,0.06); }
     </div>
   </section>
 
-  <!-- ============== PAID CHANNELS ============== -->
-  <section class="page" id="page-paid">
-    <div class="kpi-grid">
-      <div class="kpi accent"><div class="label">Programmatic Impressions</div><div class="value" id="paid-imps">—</div></div>
-      <div class="kpi"><div class="label">Programmatic Spend</div><div class="value" id="paid-spend">—</div></div>
-      <div class="kpi"><div class="label">Clicks</div><div class="value" id="paid-clicks">—</div></div>
-      <div class="kpi green"><div class="label">Attributed Subs</div><div class="value" id="paid-attr">—</div></div>
+  <!-- ============== PROGRAMMATIC ============== -->
+  <section class="page" id="page-programmatic">
+    <div class="kpi-strip">
+      <div class="kpi-tile accent"><div class="label">Impressions</div><div class="value" id="prog-imps">—</div></div>
+      <div class="kpi-tile"><div class="label">Clicks</div><div class="value" id="prog-clicks">—</div></div>
+      <div class="kpi-tile"><div class="label">Spend</div><div class="value" id="prog-spend">—</div></div>
+      <div class="kpi-tile green"><div class="label">Attributed Subs</div><div class="value" id="prog-attr">—</div></div>
     </div>
     <div class="panel">
       <div class="panel-title"><span class="accent"></span> Programmatic by Channel</div>
@@ -551,45 +556,72 @@ tr:hover td { background: rgba(139,92,246,0.06); }
           <th class="numeric">Clicks</th><th class="numeric">Spend</th>
           <th class="numeric">CPM</th>
         </tr></thead>
-        <tbody id="paidChannelBody"></tbody>
-      </table>
-    </div>
-    <div class="panel">
-      <div class="panel-title"><span class="accent"></span> Paid Search & Social (Click-based)</div>
-      <table>
-        <thead><tr><th>Source</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
-        <tbody id="paidSearchBody"></tbody>
+        <tbody id="progChannelBody"></tbody>
       </table>
     </div>
   </section>
 
-  <!-- ============== ORGANIC ============== -->
-  <section class="page" id="page-organic">
-    <div class="kpi-grid">
-      <div class="kpi accent"><div class="label">Organic Subscribers</div><div class="value" id="org-subs">—</div></div>
-      <div class="kpi"><div class="label">Organic Revenue</div><div class="value" id="org-rev">—</div></div>
-      <div class="kpi green"><div class="label">Organic Share</div><div class="value" id="org-share">—</div></div>
-      <div class="kpi"><div class="label">Direct + Email + Referral</div><div class="value" id="org-channels">—</div></div>
+  <!-- ============== SEM ============== -->
+  <section class="page" id="page-sem">
+    <div class="kpi-strip">
+      <div class="kpi-tile accent"><div class="label">SEM Subscribers</div><div class="value" id="sem-subs">—</div></div>
+      <div class="kpi-tile"><div class="label">Revenue</div><div class="value" id="sem-rev">—</div></div>
+      <div class="kpi-tile green"><div class="label">Share of Total</div><div class="value" id="sem-share">—</div></div>
+      <div class="kpi-tile"><div class="label">Avg Order Value</div><div class="value" id="sem-aov">—</div></div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="accent"></span> Organic Sources</div>
+      <div class="panel-title"><span class="accent"></span> Click-based attribution (Google + Bing)</div>
       <table>
-        <thead><tr><th>Source</th><th class="numeric">Subs</th><th class="numeric">Revenue</th></tr></thead>
-        <tbody id="organicBody"></tbody>
+        <thead><tr><th>Source</th><th class="numeric">Subs</th><th class="numeric">Share</th></tr></thead>
+        <tbody id="semBody"></tbody>
       </table>
     </div>
   </section>
 
-  <!-- ============== ATTRIBUTION ============== -->
-  <section class="page" id="page-attribution">
-    <div class="kpi-grid">
-      <div class="kpi accent"><div class="label">Attributed Subs</div><div class="value" id="attr-subs">—</div></div>
-      <div class="kpi"><div class="label">Attributed Revenue</div><div class="value" id="attr-rev">—</div></div>
-      <div class="kpi green"><div class="label">Multi-Channel %</div><div class="value" id="attr-multi">—</div></div>
-      <div class="kpi"><div class="label">Solo-Channel %</div><div class="value" id="attr-solo">—</div></div>
+  <!-- ============== META ============== -->
+  <section class="page" id="page-meta">
+    <div class="kpi-strip">
+      <div class="kpi-tile accent"><div class="label">Meta Subscribers</div><div class="value" id="meta-subs">—</div></div>
+      <div class="kpi-tile"><div class="label">Revenue</div><div class="value" id="meta-rev">—</div></div>
+      <div class="kpi-tile green"><div class="label">Share of Total</div><div class="value" id="meta-share">—</div></div>
+      <div class="kpi-tile"><div class="label">Avg Order Value</div><div class="value" id="meta-aov">—</div></div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="accent"></span> Channel Overlap</div>
+      <div class="panel-title"><span class="accent"></span> Meta-attributed conversions</div>
+      <table>
+        <thead><tr><th>Source</th><th class="numeric">Subs</th><th class="numeric">Share</th></tr></thead>
+        <tbody id="metaBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== SEO / ORGANIC ============== -->
+  <section class="page" id="page-seo">
+    <div class="kpi-strip">
+      <div class="kpi-tile accent"><div class="label">Organic Subscribers</div><div class="value" id="seo-subs">—</div></div>
+      <div class="kpi-tile"><div class="label">Organic Revenue</div><div class="value" id="seo-rev">—</div></div>
+      <div class="kpi-tile green"><div class="label">Organic Share</div><div class="value" id="seo-share">—</div></div>
+      <div class="kpi-tile"><div class="label">Distinct Sources</div><div class="value" id="seo-sources">—</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Direct, email, affiliate, organic search</div>
+      <table>
+        <thead><tr><th>Source</th><th class="numeric">Subs</th><th class="numeric">Share</th></tr></thead>
+        <tbody id="seoBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============== CHANNEL OVERLAP ============== -->
+  <section class="page" id="page-channel-overlap">
+    <div class="kpi-strip">
+      <div class="kpi-tile accent"><div class="label">Attributed Subs</div><div class="value" id="attr-subs">—</div></div>
+      <div class="kpi-tile"><div class="label">Attributed Revenue</div><div class="value" id="attr-rev">—</div></div>
+      <div class="kpi-tile green"><div class="label">Multi-Channel %</div><div class="value" id="attr-multi">—</div></div>
+      <div class="kpi-tile"><div class="label">Solo-Channel %</div><div class="value" id="attr-solo">—</div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Channels touched per subscriber</div>
       <table>
         <thead><tr><th>Channels Touched</th><th class="numeric">Subs</th><th>Type</th></tr></thead>
         <tbody id="overlapBody"></tbody>
@@ -615,23 +647,27 @@ tr:hover td { background: rgba(139,92,246,0.06); }
     </div>
   </section>
 
-  <!-- ============== SKU TIERS ============== -->
-  <section class="page" id="page-skus">
-    <div class="kpi-grid">
-      <div class="kpi accent"><div class="label">Total Paid Subs</div><div class="value" id="sku-subs">—</div></div>
-      <div class="kpi"><div class="label">Subscription Tiers</div><div class="value" id="sku-tiers">—</div></div>
-      <div class="kpi green"><div class="label">Avg Tier Value</div><div class="value" id="sku-avg">—</div></div>
-      <div class="kpi"><div class="label">Highest Value Tier</div><div class="value" id="sku-top">—</div></div>
+  <!-- ============== BEST SELLING PRODUCTS ============== -->
+  <section class="page" id="page-products">
+    <div class="kpi-strip">
+      <div class="kpi-tile accent"><div class="label">Total Paid Subs</div><div class="value" id="prod-subs">—</div></div>
+      <div class="kpi-tile"><div class="label">Total Revenue</div><div class="value" id="prod-rev">—</div></div>
+      <div class="kpi-tile green"><div class="label">Avg Order Value</div><div class="value" id="prod-aov">—</div></div>
+      <div class="kpi-tile"><div class="label">Top Product</div><div class="value" id="prod-top" style="font-size:18px">—</div></div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="accent"></span> Subscription Price Tier Breakdown</div>
+      <div class="panel-title"><span class="accent"></span> Subscription products by sales volume</div>
+      <div id="productBars" style="margin-top:8px"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="accent"></span> Detail</div>
       <table>
         <thead><tr>
-          <th>Tier</th><th class="numeric">Subs</th>
+          <th>Product</th><th class="numeric">Subs</th>
           <th class="numeric">Revenue</th><th class="numeric">AOV</th>
           <th class="numeric">Share</th>
         </tr></thead>
-        <tbody id="skuTiersBody"></tbody>
+        <tbody id="productTableBody"></tbody>
       </table>
     </div>
   </section>
@@ -778,13 +814,15 @@ function fmtPct(n,d) { if (n == null || !d) return '—'; return ((n/d)*100).toF
    NAV
    ==================================================================== */
 const pageTitles = {
-  'trade-area':   ['Trade Area', 'Where Purple Carrot subscribers live'],
-  'overview':     ['Executive Overview', 'Headline performance'],
-  'paid':         ['Paid Channels', 'Programmatic, search, and social'],
-  'organic':      ['Organic', 'Direct, email, affiliate, referral'],
-  'attribution':  ['Attribution & Overlap', 'Multi-touch and channel interaction'],
-  'funnel':       ['Conversion Funnel', 'Cart to purchase drop-off'],
-  'skus':         ['Subscription Tiers', 'Price-tier breakdown'],
+  'trade-area':      ['Trade Area', 'Where Purple Carrot subscribers live'],
+  'overview':        ['Executive Overview', 'Headline performance'],
+  'programmatic':    ['Programmatic', 'Display, Video, CTV / OTT'],
+  'sem':             ['SEM / Paid Search', 'Google + Bing click-based attribution'],
+  'meta':            ['Meta', 'Facebook + Instagram'],
+  'seo':             ['SEO / Organic Search', 'Direct, email, affiliate, organic search'],
+  'channel-overlap': ['Channel Overlap', 'Solo vs multi-touch attribution'],
+  'funnel':          ['Conversion Funnel', 'Cart to purchase drop-off'],
+  'products':        ['Best Selling Products', 'Subscription products by volume'],
 };
 
 document.querySelectorAll('.sidebar nav a').forEach(a => {
@@ -807,11 +845,13 @@ document.querySelectorAll('.sidebar nav a').forEach(a => {
 function renderAll() {
   renderTradeArea();
   renderOverview();
-  renderPaid();
-  renderOrganic();
-  renderAttribution();
+  renderProgrammatic();
+  renderSEM();
+  renderMeta();
+  renderSEO();
+  renderChannelOverlap();
   renderFunnel();
-  renderSkus();
+  renderProducts();
 }
 
 /* ---- TRADE AREA ---- */
@@ -917,32 +957,20 @@ function drawMarkers(metric) {
     const value = valueOf(c);
     if (value <= 0) continue;
     const ratio = Math.sqrt(value / maxVal);
-    const baseRadius = 4 + ratio * 20;
-    // Two-layer marker: outer glow halo + inner solid dot.
-    // Color shifts to green for ad-attributed metric so it pops.
+    // Smaller, no glow — matches the pizza-demo look.
+    const radius = 3 + ratio * 6;
     const accent = (metric === 'attributed') ? '#34d399' : '#8b5cf6';
 
-    const glow = L.circleMarker([c.lat, c.lng], {
-      radius: baseRadius + 8,
-      fillColor: accent,
-      color: 'transparent',
-      weight: 0,
-      fillOpacity: 0.15 + ratio * 0.20,
-      pane: 'overlayPane',
-      interactive: false,
-    }).addTo(mapInstance);
-    zipMarkers.push(glow);
-
     const dot = L.circleMarker([c.lat, c.lng], {
-      radius: baseRadius,
+      radius: radius,
       fillColor: accent,
       color: accent,
       weight: 1,
-      opacity: 0.9,
+      opacity: 0.95,
       fillOpacity: 0.85,
     }).addTo(mapInstance);
     dot.bindTooltip(`<strong>${c.name}</strong><br>${fmt(c.subs)} subs · ${fmtMoneyK(c.revenue)}`,
-      {direction:'top', offset:[0,-6], className:'pc-tooltip', sticky:true});
+      {direction:'top', offset:[0,-4], className:'pc-tooltip', sticky:true});
     dot.on('click', () => openDetail(c));
     zipMarkers.push(dot);
   }
@@ -1076,15 +1104,14 @@ function renderOverview() {
   });
 }
 
-/* ---- PAID ---- */
-function renderPaid() {
+/* ---- PROGRAMMATIC ---- */
+function renderProgrammatic() {
   const prog = V2.programmatic || {};
-  document.getElementById('paid-imps').textContent  = fmt(prog.impressions || 0);
-  document.getElementById('paid-spend').textContent = fmtMoneyK(prog.spend || 0);
-  document.getElementById('paid-clicks').textContent = fmt(prog.clicks || 0);
-  document.getElementById('paid-attr').textContent  = fmt(V3.summary.totalAttributed);
+  document.getElementById('prog-imps').textContent   = fmt(prog.impressions || 0);
+  document.getElementById('prog-clicks').textContent = fmt(prog.clicks || 0);
+  document.getElementById('prog-spend').textContent  = fmtMoneyK(prog.spend || 0);
+  document.getElementById('prog-attr').textContent   = fmt(V3.summary.totalAttributed);
 
-  // Per-channel from dailyData.placements
   const cfg = V2.placementConfig || {};
   const daily = V2.dailyData || {};
   const channelAgg = {};
@@ -1107,43 +1134,78 @@ function renderPaid() {
       <td class="numeric">${fmtMoneyK(spend)}</td>
       <td class="numeric">$${a.cpm.toFixed(2)}</td></tr>`;
   }).join('');
-  document.getElementById('paidChannelBody').innerHTML = chRows || '<tr><td colspan="5" class="empty">No data</td></tr>';
-
-  // Paid search/social from V3 overlap (SEM and Meta rows)
-  const paidRows = (V3.channelOverlap || [])
-    .filter(r => ['SEM', 'Meta', 'Programmatic'].some(s => r.channels.includes(s)) && !r.channels.includes('+'))
-    .map(r => `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">—</td></tr>`)
-    .join('');
-  document.getElementById('paidSearchBody').innerHTML = paidRows || '<tr><td colspan="3" class="empty">No data</td></tr>';
+  document.getElementById('progChannelBody').innerHTML = chRows || '<tr><td colspan="5" class="empty">No data</td></tr>';
 }
 
-/* ---- ORGANIC ---- */
-function renderOrganic() {
-  let orgSubs = 0, orgRev = 0;
-  for (const z of Object.values(V3.zipRollup || {})) {
-    orgSubs += z.organicSubs;
-    // organicSubs revenue approx: prorate by share
-    if (z.subs) orgRev += z.revenue * (z.organicSubs / z.subs);
+/* Helper: compute paid + organic subs from V3.zipRollup-style city rollup. */
+function aggregateBySource() {
+  let paid = 0, organic = 0, paidRev = 0, organicRev = 0;
+  for (const c of Object.values(V3.cityRollup || {})) {
+    paid    += c.paidSubs    || 0;
+    organic += c.organicSubs || 0;
+    if (c.subs) {
+      paidRev    += c.revenue * (c.paidSubs    / c.subs);
+      organicRev += c.revenue * (c.organicSubs / c.subs);
+    }
   }
-  const total = V3.summary.totalSubs;
-  document.getElementById('org-subs').textContent  = fmt(orgSubs);
-  document.getElementById('org-rev').textContent   = fmtMoneyK(orgRev);
-  document.getElementById('org-share').textContent = fmtPct(orgSubs, total);
+  return {paid, organic, paidRev, organicRev};
+}
+
+/* ---- SEM / PAID SEARCH ---- */
+function renderSEM() {
+  const overlap = V3.channelOverlap || [];
+  const semRows = overlap.filter(r => r.channels === 'SEM');
+  const subs = semRows.reduce((s,r) => s+r.subs, 0);
+  const total = V3.summary.totalSubs || 1;
+  // Approximate revenue using overall AOV (we don't store per-channel rev directly)
+  const aov = V3.summary.totalRevenue / total;
+  const rev = subs * aov;
+  document.getElementById('sem-subs').textContent  = fmt(subs);
+  document.getElementById('sem-rev').textContent   = fmtMoneyK(rev);
+  document.getElementById('sem-share').textContent = fmtPct(subs, total);
+  document.getElementById('sem-aov').textContent   = subs > 0 ? fmtMoney(aov) : '—';
+  const rows = overlap.filter(r => r.channels.includes('SEM'))
+    .map(r => `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">${fmtPct(r.subs, total)}</td></tr>`).join('');
+  document.getElementById('semBody').innerHTML = rows || '<tr><td colspan="3" class="empty">No SEM-attributed subs in window</td></tr>';
+}
+
+/* ---- META ---- */
+function renderMeta() {
+  const overlap = V3.channelOverlap || [];
+  const metaRows = overlap.filter(r => r.channels === 'Meta');
+  const subs = metaRows.reduce((s,r) => s+r.subs, 0);
+  const total = V3.summary.totalSubs || 1;
+  const aov = V3.summary.totalRevenue / total;
+  const rev = subs * aov;
+  document.getElementById('meta-subs').textContent  = fmt(subs);
+  document.getElementById('meta-rev').textContent   = fmtMoneyK(rev);
+  document.getElementById('meta-share').textContent = fmtPct(subs, total);
+  document.getElementById('meta-aov').textContent   = subs > 0 ? fmtMoney(aov) : '—';
+  const rows = overlap.filter(r => r.channels.includes('Meta'))
+    .map(r => `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">${fmtPct(r.subs, total)}</td></tr>`).join('');
+  document.getElementById('metaBody').innerHTML = rows || '<tr><td colspan="3" class="empty">No Meta-attributed subs in window</td></tr>';
+}
+
+/* ---- SEO / ORGANIC ---- */
+function renderSEO() {
+  const {organic, organicRev} = aggregateBySource();
+  const total = V3.summary.totalSubs || 1;
+  document.getElementById('seo-subs').textContent  = fmt(organic);
+  document.getElementById('seo-rev').textContent   = fmtMoneyK(organicRev);
+  document.getElementById('seo-share').textContent = fmtPct(organic, total);
 
   const overlap = V3.channelOverlap || [];
   const orgRows = overlap.filter(r =>
     !['SEM','Meta','Programmatic'].some(s => r.channels.includes(s))
-  ).slice(0, 15).map(r =>
-    `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">—</td></tr>`
-  ).join('');
-  document.getElementById('organicBody').innerHTML = orgRows || '<tr><td colspan="3" class="empty">No data</td></tr>';
-
-  const ch = overlap.filter(r => !r.channels.includes('+') && r.channels !== 'Direct / Organic' && !['SEM','Meta','Programmatic'].some(s => r.channels.includes(s)));
-  document.getElementById('org-channels').textContent = fmt(ch.reduce((a,b) => a+b.subs, 0));
+  );
+  document.getElementById('seo-sources').textContent = fmt(orgRows.length);
+  document.getElementById('seoBody').innerHTML = orgRows.slice(0, 20).map(r =>
+    `<tr><td>${r.channels}</td><td class="numeric">${fmt(r.subs)}</td><td class="numeric">${fmtPct(r.subs, total)}</td></tr>`
+  ).join('') || '<tr><td colspan="3" class="empty">No data</td></tr>';
 }
 
-/* ---- ATTRIBUTION ---- */
-function renderAttribution() {
+/* ---- CHANNEL OVERLAP ---- */
+function renderChannelOverlap() {
   const attr = V2.attribution || {};
   const converters = (attr.impressionsToConversion || {}).converterDetails || [];
   const totalAttr = converters.length;
@@ -1200,17 +1262,37 @@ function renderFunnel() {
   }).join('');
 }
 
-/* ---- SKU TIERS ---- */
-function renderSkus() {
+/* ---- BEST SELLING PRODUCTS ---- */
+// Subscription products are inferred from order value (PC sells one SKU
+// "Subscription" but at different price points = different box sizes).
+function renderProducts() {
   const tiers = V3.skuTiers || [];
   const totalSubs = tiers.reduce((s,t) => s + t.subs, 0);
-  const totalRev = tiers.reduce((s,t) => s + t.revenue, 0);
-  document.getElementById('sku-subs').textContent  = fmt(totalSubs);
-  document.getElementById('sku-tiers').textContent = fmt(tiers.length);
-  document.getElementById('sku-avg').textContent   = totalSubs > 0 ? fmtMoney(totalRev / totalSubs) : '—';
-  document.getElementById('sku-top').textContent   = tiers.length ? tiers[0].tier.split(' (')[0] : '—';
+  const totalRev  = tiers.reduce((s,t) => s + t.revenue, 0);
+  document.getElementById('prod-subs').textContent = fmt(totalSubs);
+  document.getElementById('prod-rev').textContent  = fmtMoneyK(totalRev);
+  document.getElementById('prod-aov').textContent  = totalSubs > 0 ? fmtMoney(totalRev/totalSubs) : '—';
+  document.getElementById('prod-top').textContent  = tiers.length ? tiers[0].tier.split(' (')[0] : '—';
 
-  document.getElementById('skuTiersBody').innerHTML = tiers.map(t =>
+  // Horizontal bar chart
+  const maxSubs = Math.max(...tiers.map(t => t.subs), 1);
+  const colors = ['#8b5cf6', '#34d399', '#a78bfa', '#fb923c', '#4d7cff', '#f472b6'];
+  document.getElementById('productBars').innerHTML = tiers.map((t, i) => {
+    const pct = (t.subs / maxSubs) * 100;
+    const color = colors[i % colors.length];
+    return `<div style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px">
+        <span style="color:var(--text);font-weight:600">${t.tier}</span>
+        <span style="color:var(--text-muted)">${fmt(t.subs)} subs · ${fmtMoneyK(t.revenue)} · AOV ${fmtMoney(t.aov)}</span>
+      </div>
+      <div style="background:var(--panel-2);border-radius:6px;height:18px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg, ${color}cc, ${color}66);border-radius:6px"></div>
+      </div>
+    </div>`;
+  }).join('') || '<div class="empty">No product data yet</div>';
+
+  // Detail table
+  document.getElementById('productTableBody').innerHTML = tiers.map(t =>
     `<tr><td><strong>${t.tier}</strong></td>
      <td class="numeric">${fmt(t.subs)}</td>
      <td class="numeric">${fmtMoney(t.revenue)}</td>
