@@ -32,9 +32,11 @@ services:
   - type: cron
     name: purplecarrot-data-refresh
     runtime: python
-    plan: standard   # 2GB RAM. The refresh pulls ~38k purchases + all
-                      # impressions + pgeocode ZIP DB into memory; starter
-                      # 512MB OOMs on full runs.
+    plan: pro   # 4GB RAM. v2 report still pulls ~5M impression rows + ~38k
+                # purchases + attribution table into pandas, which can spike
+                # past 2GB during the join phase. Pro tier has headroom.
+                # Long-term fix: stream/aggregate in the report script
+                # instead of loading everything into DataFrames.
     schedule: "*/30 * * * *"
     buildCommand: pip install -r requirements.txt
     startCommand: bash refresh_all.sh
