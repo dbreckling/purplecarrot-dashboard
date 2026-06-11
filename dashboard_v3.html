@@ -9,31 +9,32 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root {
-  /* Purple Carrot palette: deep purple brand color, fresh green accents,
-     cream paper, charcoal text. Inspired by purplecarrot.com. */
-  --pc-purple:        #4a1d6e;
-  --pc-purple-dark:   #3a1456;
-  --pc-purple-light:  #6b2c91;
-  --pc-purple-50:     #f4eef9;
-  --pc-green:         #5d8c3a;
-  --pc-green-light:   #88b04b;
-  --pc-green-50:      #f1f7e8;
-  --cream:            #faf8f3;
-  --paper:            #ffffff;
-  --paper-2:          #fbfaf6;
-  --text:             #1a1a1a;
-  --text-muted:       #6b6b6b;
-  --border:           #e8e4dd;
-  --shadow:           rgba(74,29,110,0.08);
-  --pill-bg:          #fff;
+  /* Purple Carrot dark theme: deep charcoal canvas with purple + green
+     accents reserved for highlights and the map glow. */
+  --bg:               #0b0d12;
+  --bg-2:             #11141b;
+  --panel:            #161a23;
+  --panel-2:          #1c2230;
+  --border:           #232a3a;
+  --border-2:         #2a3245;
+  --text:             #e6e9f0;
+  --text-muted:       #8a92a6;
+  --text-dim:         #5b6378;
 
-  --sidebar-w: 220px;
+  --pc-purple:        #8b5cf6;   /* brighter for dark bg */
+  --pc-purple-glow:   rgba(139,92,246,0.55);
+  --pc-purple-dark:   #4a1d6e;
+  --pc-green:         #34d399;
+  --pc-green-glow:    rgba(52,211,153,0.55);
+  --pc-green-dark:    #5d8c3a;
+
+  --sidebar-w: 230px;
 }
 * { box-sizing: border-box; }
 html, body { margin:0; padding:0; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  background: var(--cream);
+  background: var(--bg);
   color: var(--text);
   font-size: 14px;
   line-height: 1.5;
@@ -43,22 +44,23 @@ body {
 .sidebar {
   position: fixed; top:0; left:0; bottom:0;
   width: var(--sidebar-w);
-  background: var(--pc-purple);
-  color: #fff;
+  background: var(--bg-2);
+  border-right: 1px solid var(--border);
+  color: var(--text);
   display: flex; flex-direction: column;
   z-index: 10;
 }
 .sidebar .brand {
   padding: 22px 24px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  border-bottom: 1px solid var(--border);
 }
 .sidebar .brand .logo {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 19px;
   letter-spacing: 0.02em;
   line-height: 1;
-  color: #fff;
+  color: var(--text);
   display: block;
 }
 .sidebar .brand .logo .row { display:block; }
@@ -67,124 +69,165 @@ body {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--pc-green-light);
-  font-weight: 600;
+  color: var(--pc-green);
+  font-weight: 700;
 }
-.sidebar nav { padding: 14px 0; flex: 1; overflow-y: auto; }
+.sidebar .section-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  font-weight: 700;
+  padding: 16px 24px 6px;
+}
+.sidebar nav { padding: 6px 0 18px; flex: 1; overflow-y: auto; }
 .sidebar nav a {
   display: flex; align-items: center; gap: 10px;
-  padding: 11px 24px;
-  color: rgba(255,255,255,0.82);
+  padding: 10px 24px;
+  color: var(--text-muted);
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
   border-left: 3px solid transparent;
   transition: background-color 0.12s, color 0.12s, border-color 0.12s;
 }
-.sidebar nav a:hover { background: rgba(255,255,255,0.06); color:#fff; }
+.sidebar nav a:hover { background: rgba(255,255,255,0.03); color: var(--text); }
 .sidebar nav a.active {
-  background: rgba(255,255,255,0.10);
-  border-left-color: var(--pc-green-light);
-  color: #fff;
+  background: rgba(139,92,246,0.10);
+  border-left-color: var(--pc-purple);
+  color: var(--text);
 }
-.sidebar nav a .icon { width: 16px; text-align: center; opacity: 0.85; }
+.sidebar nav a .icon { width: 16px; text-align: center; opacity: 0.65; }
+.sidebar nav a.active .icon { opacity: 1; }
 .sidebar .footer {
   padding: 14px 24px;
   font-size: 11px;
-  color: rgba(255,255,255,0.55);
-  border-top: 1px solid rgba(255,255,255,0.10);
+  color: var(--text-dim);
+  border-top: 1px solid var(--border);
 }
-.sidebar .footer .dlve { color: var(--pc-green-light); font-weight: 600; }
+.sidebar .footer .dlve { color: var(--pc-green); font-weight: 600; }
 
 /* ============== MAIN ============== */
 .main {
   margin-left: var(--sidebar-w);
   min-height: 100vh;
+  background: var(--bg);
 }
-.topbar {
+
+/* Filter bar lifted from the pizza-demo: FILTER label + flat dark dropdowns. */
+.filterbar {
   position: sticky; top: 0; z-index: 5;
-  background: var(--paper);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 14px 28px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.topbar h1 { margin: 0; font-size: 18px; font-weight: 700; }
-.topbar .sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-.topbar .filter {
   display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
 }
-.topbar .filter label {
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em;
-  color: var(--text-muted); font-weight: 600;
+.filterbar .filter-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-dim); font-weight: 700;
 }
-.topbar .filter input[type="date"] {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 6px 10px;
-  font-size: 13px;
-  background: var(--paper);
+.filterbar select, .filterbar input[type="date"] {
+  background: var(--panel);
   color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 13px;
   font-weight: 500;
+  min-width: 140px;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a92a6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 26px;
 }
+.filterbar select:hover, .filterbar input[type="date"]:hover { border-color: var(--border-2); }
+.filterbar select:focus, .filterbar input[type="date"]:focus { border-color: var(--pc-purple); }
+.filterbar .reset-btn {
+  margin-left: auto;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.filterbar .reset-btn:hover { color: var(--text); border-color: var(--border-2); }
 
-.page { display: none; padding: 28px; }
+.page-header {
+  padding: 18px 28px 0;
+}
+.page-header h1 { margin: 0; font-size: 22px; font-weight: 700; }
+.page-header .sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+.page { display: none; padding: 18px 28px 28px; }
 .page.active { display: block; }
 
-/* ============== KPIs ============== */
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px;
-  margin-bottom: 24px;
+/* ============== KPI tiles (dark glow style from pizza demo) ============== */
+.kpi-strip {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-bottom: 18px;
 }
-.kpi {
-  background: var(--paper);
+.kpi-tile {
+  flex: 1 1 170px;
+  min-width: 170px;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 16px 18px;
-  box-shadow: 0 1px 2px var(--shadow);
+  padding: 14px 18px;
 }
-.kpi .label {
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--text-muted); font-weight: 600;
+.kpi-tile .label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-dim); font-weight: 700;
 }
-.kpi .value {
+.kpi-tile .value {
   font-size: 26px; font-weight: 700; color: var(--text);
-  margin-top: 4px; line-height: 1.1;
+  margin-top: 6px; line-height: 1.1;
 }
-.kpi .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-.kpi.accent {
-  background: linear-gradient(135deg, var(--pc-purple) 0%, var(--pc-purple-light) 100%);
-  border-color: transparent;
-  color: #fff;
+.kpi-tile .sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.kpi-tile.accent {
+  background: linear-gradient(135deg, rgba(139,92,246,0.18) 0%, rgba(139,92,246,0.05) 100%);
+  border-color: rgba(139,92,246,0.30);
 }
-.kpi.accent .label { color: rgba(255,255,255,0.75); }
-.kpi.accent .value { color: #fff; }
-.kpi.accent .sub { color: rgba(255,255,255,0.75); }
-.kpi.green {
-  background: linear-gradient(135deg, var(--pc-green) 0%, var(--pc-green-light) 100%);
-  border-color: transparent;
-  color: #fff;
+.kpi-tile.accent .label { color: var(--pc-purple); }
+.kpi-tile.green {
+  background: linear-gradient(135deg, rgba(52,211,153,0.16) 0%, rgba(52,211,153,0.04) 100%);
+  border-color: rgba(52,211,153,0.28);
 }
-.kpi.green .label { color: rgba(255,255,255,0.85); }
-.kpi.green .value { color: #fff; }
-.kpi.green .sub { color: rgba(255,255,255,0.85); }
+.kpi-tile.green .label { color: var(--pc-green); }
+
+/* legacy aliases used by older markup */
+.kpi-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.kpi { flex: 1 1 170px; min-width: 170px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; }
+.kpi .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); font-weight: 700; }
+.kpi .value { font-size: 26px; font-weight: 700; color: var(--text); margin-top: 6px; line-height: 1.1; }
+.kpi .sub   { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.kpi.accent { background: linear-gradient(135deg, rgba(139,92,246,0.18) 0%, rgba(139,92,246,0.05) 100%); border-color: rgba(139,92,246,0.30); }
+.kpi.accent .label { color: var(--pc-purple); }
+.kpi.accent .value, .kpi.accent .sub { color: var(--text); }
+.kpi.green { background: linear-gradient(135deg, rgba(52,211,153,0.16) 0%, rgba(52,211,153,0.04) 100%); border-color: rgba(52,211,153,0.28); }
+.kpi.green .label { color: var(--pc-green); }
+.kpi.green .value, .kpi.green .sub { color: var(--text); }
 
 /* ============== PANELS ============== */
 .panel {
-  background: var(--paper);
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 18px 20px;
-  box-shadow: 0 1px 2px var(--shadow);
   margin-bottom: 18px;
 }
 .panel-title {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--pc-purple);
+  letter-spacing: 0.10em;
+  color: var(--text-muted);
   margin-bottom: 14px;
   display: flex; align-items: center; gap: 8px;
 }
@@ -196,48 +239,117 @@ body {
 @media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } }
 
 /* ============== MAP ============== */
+.map-wrap { position: relative; }
 #tradeAreaMap {
-  height: 560px;
+  height: 600px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: #e8eedb;
+  background: #0a0d12;
 }
+.leaflet-container { background: #0a0d12; }
+.leaflet-popup-content-wrapper {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.leaflet-popup-tip { background: var(--panel); }
+.leaflet-popup-content { margin: 12px 14px; font-size: 12px; line-height: 1.55; }
+
 .map-controls {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 8px;
   margin-bottom: 12px;
 }
 .map-controls .control-group { display: flex; gap: 4px; }
 .map-controls button {
   border: 1px solid var(--border);
-  background: var(--paper);
-  color: var(--text);
+  background: var(--panel);
+  color: var(--text-muted);
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.12s, color 0.12s;
+  transition: background-color 0.12s, color 0.12s, border-color 0.12s;
 }
 .map-controls button.active {
-  background: var(--pc-purple);
-  color: #fff;
-  border-color: var(--pc-purple);
+  background: rgba(139,92,246,0.15);
+  color: var(--text);
+  border-color: rgba(139,92,246,0.40);
 }
-.map-controls button:hover:not(.active) { background: var(--pc-purple-50); }
+.map-controls button:hover:not(.active) { color: var(--text); border-color: var(--border-2); }
+
+/* Detail panel that slides in when a city marker is clicked. */
+.detail-panel {
+  position: absolute; top: 14px; right: 14px;
+  width: 360px; max-height: calc(100% - 28px);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 18px 14px;
+  overflow-y: auto;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+}
+.detail-panel.open { display: block; }
+.detail-panel .close {
+  position: absolute; top: 10px; right: 12px;
+  background: none; border: none; color: var(--text-muted);
+  font-size: 18px; cursor: pointer; padding: 2px 6px;
+}
+.detail-panel .close:hover { color: var(--text); }
+.detail-panel h3 {
+  margin: 0 28px 4px 0; font-size: 15px; font-weight: 700;
+}
+.detail-panel .meta {
+  font-size: 12px; color: var(--text-muted); margin-bottom: 14px;
+}
+.detail-panel .detail-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  margin-bottom: 14px;
+}
+.detail-panel .detail-tile {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.detail-panel .detail-tile .l { font-size:9px; text-transform:uppercase; letter-spacing:0.10em; color:var(--text-dim); font-weight:700; }
+.detail-panel .detail-tile .v { font-size:15px; font-weight:700; color:var(--text); margin-top:3px; }
+.detail-panel .detail-section {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.10em;
+  color: var(--text-muted); font-weight: 700; margin: 14px 0 8px;
+}
+.detail-panel .order-list {
+  max-height: 260px; overflow-y: auto;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--panel-2);
+}
+.detail-panel .order-row {
+  padding: 8px 12px; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 80px 1fr auto; gap: 8px;
+  font-size: 12px; align-items: center;
+}
+.detail-panel .order-row:last-child { border-bottom: none; }
+.detail-panel .order-row .date { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.detail-panel .order-row .id { font-family: ui-monospace, monospace; font-size: 11px; color: var(--text); }
+.detail-panel .order-row .rev { font-weight: 700; color: var(--pc-green); font-variant-numeric: tabular-nums; }
 
 /* ============== TABLES ============== */
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--border); }
 th {
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  letter-spacing: 0.10em;
+  color: var(--text-dim);
   font-weight: 700;
-  background: var(--paper-2);
+  background: var(--panel-2);
 }
+td { color: var(--text); }
 td.numeric, th.numeric { text-align: right; font-variant-numeric: tabular-nums; }
-tr:hover td { background: var(--pc-purple-50); }
+tr:hover td { background: rgba(139,92,246,0.06); }
 .pill {
   display: inline-block;
   padding: 2px 8px;
@@ -245,9 +357,9 @@ tr:hover td { background: var(--pc-purple-50); }
   font-size: 11px;
   font-weight: 600;
 }
-.pill.purple { background: var(--pc-purple-50); color: var(--pc-purple); }
-.pill.green  { background: var(--pc-green-50); color: var(--pc-green); }
-.pill.gray   { background: #f0f0eb; color: var(--text-muted); }
+.pill.purple { background: rgba(139,92,246,0.16); color: var(--pc-purple); }
+.pill.green  { background: rgba(52,211,153,0.16); color: var(--pc-green); }
+.pill.gray   { background: rgba(138,146,166,0.14); color: var(--text-muted); }
 
 .loading { color: var(--text-muted); padding: 40px; text-align: center; font-size: 13px; }
 .empty   { color: var(--text-muted); padding: 24px; text-align: center; font-size: 13px; font-style: italic; }
@@ -279,41 +391,64 @@ tr:hover td { background: var(--pc-purple-50); }
 </aside>
 
 <main class="main">
-  <div class="topbar">
-    <div>
-      <h1 id="pageTitle">Trade Area</h1>
-      <div class="sub" id="pageSub">Where Purple Carrot subscribers live</div>
-    </div>
-    <div class="filter">
-      <label>Date</label>
-      <input type="date" id="dateFrom">
-      <span style="color:var(--text-muted)">to</span>
-      <input type="date" id="dateTo">
-    </div>
+
+  <!-- ============== FILTER BAR ============== -->
+  <div class="filterbar">
+    <span class="filter-label">FILTER</span>
+    <select id="filterStatus">
+      <option value="">All statuses</option>
+      <option value="paid">Paid subs</option>
+      <option value="organic">Organic subs</option>
+      <option value="attributed">Ad-attributed</option>
+    </select>
+    <select id="filterOrderType">
+      <option value="">All order types</option>
+      <option value="Purchase">Purchase only</option>
+      <option value="Redeem">Redeem only</option>
+    </select>
+    <select id="filterState">
+      <option value="">All states</option>
+    </select>
+    <select id="filterCity">
+      <option value="">All cities</option>
+    </select>
+    <input type="date" id="dateFrom" title="From date">
+    <input type="date" id="dateTo"   title="To date">
+    <button class="reset-btn" id="filterReset">Reset</button>
+  </div>
+
+  <div class="page-header">
+    <h1 id="pageTitle">Trade Area</h1>
+    <div class="sub" id="pageSub">Where Purple Carrot subscribers live</div>
   </div>
 
   <!-- ============== TRADE AREA ============== -->
   <section class="page active" id="page-trade-area">
-    <div class="kpi-grid">
-      <div class="kpi accent">
+    <div class="kpi-strip">
+      <div class="kpi-tile accent">
         <div class="label">Total Subscribers</div>
         <div class="value" id="ta-subs">—</div>
         <div class="sub" id="ta-zips">—</div>
       </div>
-      <div class="kpi green">
+      <div class="kpi-tile">
         <div class="label">Total Revenue</div>
         <div class="value" id="ta-revenue">—</div>
         <div class="sub" id="ta-aov">—</div>
       </div>
-      <div class="kpi">
+      <div class="kpi-tile green">
+        <div class="label">Ad-Attributed</div>
+        <div class="value" id="ta-attributed">—</div>
+        <div class="sub">Programmatic-driven</div>
+      </div>
+      <div class="kpi-tile">
         <div class="label">States Reached</div>
         <div class="value" id="ta-states">—</div>
         <div class="sub">U.S. coverage</div>
       </div>
-      <div class="kpi">
-        <div class="label">Ad-Attributed</div>
-        <div class="value" id="ta-attributed">—</div>
-        <div class="sub">Programmatic-driven subs</div>
+      <div class="kpi-tile">
+        <div class="label">Unmapped</div>
+        <div class="value" id="ta-unmapped">—</div>
+        <div class="sub">Awaiting Stape zip</div>
       </div>
     </div>
 
@@ -327,10 +462,27 @@ tr:hover td { background: var(--pc-purple-50); }
           <button data-metric="attributed">Ad-attributed</button>
         </div>
         <div style="flex:1"></div>
-        <div style="font-size:11px;color:var(--text-muted)">Click a marker for ZIP-level detail</div>
+        <div style="font-size:11px;color:var(--text-dim);letter-spacing:0.06em">CLICK A DOT FOR ORDER DETAIL</div>
       </div>
-      <div id="tradeAreaMap"></div>
-      <div id="unmappedNote" style="margin-top:12px;padding:10px 14px;background:var(--pc-purple-50);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text-muted);line-height:1.6"></div>
+      <div class="map-wrap">
+        <div id="tradeAreaMap"></div>
+        <div class="detail-panel" id="cityDetail">
+          <button class="close" onclick="closeDetail()">×</button>
+          <h3 id="cd-title">—</h3>
+          <div class="meta" id="cd-meta">—</div>
+          <div class="detail-grid">
+            <div class="detail-tile"><div class="l">Subscribers</div><div class="v" id="cd-subs">—</div></div>
+            <div class="detail-tile"><div class="l">Revenue</div><div class="v" id="cd-rev">—</div></div>
+            <div class="detail-tile"><div class="l">AOV</div><div class="v" id="cd-aov">—</div></div>
+            <div class="detail-tile"><div class="l">Paid</div><div class="v" id="cd-paid">—</div></div>
+            <div class="detail-tile"><div class="l">Organic</div><div class="v" id="cd-org">—</div></div>
+            <div class="detail-tile"><div class="l">Ad-attributed</div><div class="v" id="cd-attr">—</div></div>
+          </div>
+          <div class="detail-section">Orders</div>
+          <div class="order-list" id="cd-orders"></div>
+        </div>
+      </div>
+      <div id="unmappedNote" style="margin-top:12px;padding:10px 14px;background:rgba(139,92,246,0.08);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text-muted);line-height:1.6"></div>
     </div>
 
     <div class="two-col">
@@ -504,7 +656,117 @@ async function loadData() {
   if (range.end)   document.getElementById('dateTo').value = range.end;
   document.getElementById('lastUpdated').textContent = 'Updated ' + (V2.lastUpdated || '').slice(0,10);
 
+  populateFilterDropdowns();
+  wireFilters();
   renderAll();
+}
+
+/* ====================================================================
+   FILTERS — drive the map and detail panel
+   ==================================================================== */
+const FILTERS = { status: '', orderType: '', state: '', city: '', from: '', to: '' };
+
+function populateFilterDropdowns() {
+  // Build state list from stateRollup, sorted alphabetically
+  const states = Object.keys(V3.stateRollup || {}).sort();
+  const stateSel = document.getElementById('filterState');
+  states.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s; opt.textContent = s + ` (${(V3.stateRollup[s]||{}).subs || 0})`;
+    stateSel.appendChild(opt);
+  });
+  // City list rebuilt whenever the state filter changes
+  rebuildCityDropdown('');
+}
+
+function rebuildCityDropdown(stateFilter) {
+  const sel = document.getElementById('filterCity');
+  // Preserve current value if still valid
+  const prev = sel.value;
+  sel.innerHTML = '<option value="">All cities</option>';
+  const cities = Object.values(V3.cityRollup || {})
+    .filter(c => c.name !== 'Unknown / Unmapped')
+    .filter(c => !stateFilter || c.state === stateFilter)
+    .sort((a,b) => b.subs - a.subs);
+  cities.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.name; opt.textContent = `${c.name} (${c.subs})`;
+    sel.appendChild(opt);
+  });
+  if (prev && Array.from(sel.options).some(o => o.value === prev)) {
+    sel.value = prev;
+  }
+}
+
+function wireFilters() {
+  document.getElementById('filterStatus').addEventListener('change', e => {
+    FILTERS.status = e.target.value;
+    drawMarkers(currentMetric);
+  });
+  document.getElementById('filterOrderType').addEventListener('change', e => {
+    FILTERS.orderType = e.target.value;
+    drawMarkers(currentMetric);
+  });
+  document.getElementById('filterState').addEventListener('change', e => {
+    FILTERS.state = e.target.value;
+    rebuildCityDropdown(FILTERS.state);
+    FILTERS.city = '';
+    drawMarkers(currentMetric);
+    if (FILTERS.state) zoomToState(FILTERS.state);
+  });
+  document.getElementById('filterCity').addEventListener('change', e => {
+    FILTERS.city = e.target.value;
+    drawMarkers(currentMetric);
+    if (FILTERS.city) {
+      const c = (V3.cityRollup || {})[FILTERS.city];
+      if (c && c.lat) {
+        mapInstance.setView([c.lat, c.lng], 10);
+        openDetail(c);
+      }
+    }
+  });
+  document.getElementById('dateFrom').addEventListener('change', e => { FILTERS.from = e.target.value; drawMarkers(currentMetric); });
+  document.getElementById('dateTo').addEventListener('change',   e => { FILTERS.to   = e.target.value; drawMarkers(currentMetric); });
+  document.getElementById('filterReset').addEventListener('click', () => {
+    Object.keys(FILTERS).forEach(k => FILTERS[k] = '');
+    document.getElementById('filterStatus').value = '';
+    document.getElementById('filterOrderType').value = '';
+    document.getElementById('filterState').value = '';
+    rebuildCityDropdown('');
+    document.getElementById('filterCity').value = '';
+    const range = V2.dateRange || {};
+    document.getElementById('dateFrom').value = range.start || '';
+    document.getElementById('dateTo').value   = range.end || '';
+    closeDetail();
+    drawMarkers(currentMetric);
+    mapInstance.setView([39.5, -98.0], 4);
+  });
+}
+
+function zoomToState(st) {
+  const ll = STATE_LATLNG[st];
+  if (ll) mapInstance.setView(ll, 6);
+}
+
+// Apply current filters to a city, returning the effective values to plot.
+// Returns null if city doesn't pass the state filter.
+function applyCityFilters(c) {
+  if (FILTERS.state && c.state !== FILTERS.state) return null;
+  if (FILTERS.city  && c.name  !== FILTERS.city)  return null;
+  // Status / order-type filters partially adjust the metric values.
+  // We compute a filtered "subs"/"revenue"/"attributedSubs" approximation
+  // using the breakdowns we have on cityRollup.
+  let subs = c.subs;
+  let revenue = c.revenue;
+  let attr = c.attributedSubs;
+  let paid = c.paidSubs, organic = c.organicSubs;
+  if (FILTERS.status === 'paid')        { subs = c.paidSubs;        revenue = c.revenue * (c.subs ? c.paidSubs/c.subs : 0); }
+  else if (FILTERS.status === 'organic'){ subs = c.organicSubs;     revenue = c.revenue * (c.subs ? c.organicSubs/c.subs : 0); }
+  else if (FILTERS.status === 'attributed'){ subs = c.attributedSubs; revenue = c.revenue * (c.subs ? c.attributedSubs/c.subs : 0); }
+  if (FILTERS.orderType === 'Redeem')   { subs = Math.min(subs, c.redeems); revenue = 0; }
+  else if (FILTERS.orderType === 'Purchase') { subs = Math.max(0, subs - c.redeems); }
+  if (subs <= 0) return null;
+  return {...c, subs, revenue, attributedSubs: attr, paidSubs: paid, organicSubs: organic};
 }
 
 function fmt(n)      { return (n == null) ? '—' : Number(n).toLocaleString('en-US'); }
@@ -565,6 +827,8 @@ function renderTradeArea() {
   document.getElementById('ta-aov').textContent        = 'AOV ' + fmtMoney(aov);
   document.getElementById('ta-states').textContent     = fmt(s.uniqueStates);
   document.getElementById('ta-attributed').textContent = fmt(s.totalAttributed);
+  const unmappedTile = document.getElementById('ta-unmapped');
+  if (unmappedTile) unmappedTile.textContent = fmt(s.unmappedSubs || 0);
 
   if (!mapInstance) initMap();
   drawMarkers(currentMetric);
@@ -616,8 +880,10 @@ function initMap() {
     center: [39.5, -98.0],
     zoom: 4,
     scrollWheelZoom: true,
+    zoomControl: true,
   });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  // CartoDB dark_all matches the pizza-demo aesthetic
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap &copy; CARTO',
     subdomains: 'abcd',
     maxZoom: 19,
@@ -628,12 +894,13 @@ function drawMarkers(metric) {
   zipMarkers.forEach(m => mapInstance.removeLayer(m));
   zipMarkers = [];
 
-  const cities = Object.values(V3.cityRollup || {}).filter(c =>
-    c.name !== 'Unknown / Unmapped' && c.lat != null && c.lng != null
-  );
+  // Apply current filter set to each plottable city
+  const cities = Object.values(V3.cityRollup || {})
+    .filter(c => c.name !== 'Unknown / Unmapped' && c.lat != null && c.lng != null)
+    .map(applyCityFilters)
+    .filter(Boolean);
   if (!cities.length) return;
 
-  // Pick metric value per city
   const valueOf = (c) => {
     if (metric === 'subs')       return c.subs;
     if (metric === 'revenue')    return c.revenue;
@@ -649,26 +916,78 @@ function drawMarkers(metric) {
   for (const c of cities) {
     const value = valueOf(c);
     if (value <= 0) continue;
-    const ratio = Math.sqrt(value / maxVal); // sqrt-scale so smaller cities still show
-    const radius = 4 + ratio * 22;
-    const opacity = 0.40 + ratio * 0.45;
-    const m = L.circleMarker([c.lat, c.lng], {
-      radius: radius,
-      fillColor: '#4a1d6e',
-      color: '#4a1d6e',
-      weight: 1,
-      opacity: 0.85,
-      fillOpacity: opacity,
+    const ratio = Math.sqrt(value / maxVal);
+    const baseRadius = 4 + ratio * 20;
+    // Two-layer marker: outer glow halo + inner solid dot.
+    // Color shifts to green for ad-attributed metric so it pops.
+    const accent = (metric === 'attributed') ? '#34d399' : '#8b5cf6';
+
+    const glow = L.circleMarker([c.lat, c.lng], {
+      radius: baseRadius + 8,
+      fillColor: accent,
+      color: 'transparent',
+      weight: 0,
+      fillOpacity: 0.15 + ratio * 0.20,
+      pane: 'overlayPane',
+      interactive: false,
     }).addTo(mapInstance);
-    m.bindPopup(`<strong>${c.name}</strong><br>
-      Subscribers: ${fmt(c.subs)}<br>
-      Revenue: ${fmtMoneyK(c.revenue)}<br>
-      AOV: ${fmtMoney(c.aov)}<br>
-      Paid / Organic: ${fmt(c.paidSubs)} / ${fmt(c.organicSubs)}<br>
-      Ad-attributed: ${fmt(c.attributedSubs)}<br>
-      <span style="color:#6b6b6b;font-size:11px">ZIPs: ${(c.zips||[]).slice(0,5).join(', ')}${(c.zips||[]).length > 5 ? '...' : ''}</span>`);
-    zipMarkers.push(m);
+    zipMarkers.push(glow);
+
+    const dot = L.circleMarker([c.lat, c.lng], {
+      radius: baseRadius,
+      fillColor: accent,
+      color: accent,
+      weight: 1,
+      opacity: 0.9,
+      fillOpacity: 0.85,
+    }).addTo(mapInstance);
+    dot.bindTooltip(`<strong>${c.name}</strong><br>${fmt(c.subs)} subs · ${fmtMoneyK(c.revenue)}`,
+      {direction:'top', offset:[0,-6], className:'pc-tooltip', sticky:true});
+    dot.on('click', () => openDetail(c));
+    zipMarkers.push(dot);
   }
+}
+
+/* ---- Detail panel ---- */
+function openDetail(city) {
+  document.getElementById('cd-title').textContent = city.name;
+  document.getElementById('cd-meta').textContent  =
+    (city.zips && city.zips.length ? `${city.zips.length} ZIP${city.zips.length>1?'s':''}: ` + city.zips.slice(0,6).join(', ') + (city.zips.length > 6 ? '…' : '') : city.state);
+  document.getElementById('cd-subs').textContent  = fmt(city.subs);
+  document.getElementById('cd-rev').textContent   = fmtMoneyK(city.revenue);
+  document.getElementById('cd-aov').textContent   = fmtMoney(city.aov);
+  document.getElementById('cd-paid').textContent  = fmt(city.paidSubs);
+  document.getElementById('cd-org').textContent   = fmt(city.organicSubs);
+  document.getElementById('cd-attr').textContent  = fmt(city.attributedSubs);
+
+  // Pull individual orders for this city from V2.allOrders (if available)
+  const orders = (V2.allOrders || []).filter(o => {
+    const oCity = (o.city || o.region || '').toString();
+    // City names in V2.allOrders may carry "City, ST" or just city — match either
+    if (!oCity) return false;
+    const cityOnly = city.name.split(',')[0].trim().toLowerCase();
+    return oCity.toLowerCase().includes(cityOnly);
+  });
+  const orderList = document.getElementById('cd-orders');
+  if (!orders.length) {
+    orderList.innerHTML = '<div class="empty" style="padding:14px">No individual order rows found in this snapshot.</div>';
+  } else {
+    orderList.innerHTML = orders.slice(0, 50).map(o => {
+      const date = (o.date || (o.time || '').slice(0,10)) || '—';
+      const id   = o.orderId || o.dedupeId || '—';
+      const rev  = Number(o.revenue || 0);
+      return `<div class="order-row">
+        <span class="date">${date}</span>
+        <span class="id">${id}</span>
+        <span class="rev">${fmtMoney(rev)}</span>
+      </div>`;
+    }).join('') + (orders.length > 50 ? `<div class="empty" style="padding:8px">…and ${orders.length - 50} more</div>` : '');
+  }
+  document.getElementById('cityDetail').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('cityDetail').classList.remove('open');
 }
 
 // US state centroids for the trade-area map (lat/lng pairs).
