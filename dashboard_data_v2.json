@@ -4,7 +4,7 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-06-12T22:46:20.417764Z",
+  "lastUpdated": "2026-06-12T23:20:59.279255Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-06-12"
@@ -24,12 +24,12 @@
     }
   },
   "global": {
-    "totalOrders": 2214,
-    "totalRevenue": 191597.78,
-    "aov": 86.54,
-    "uniqueVisitors": 1961,
+    "totalOrders": 2216,
+    "totalRevenue": 191821.76,
+    "aov": 86.56,
+    "uniqueVisitors": 1963,
     "repeatPurchaseRate": 0.7,
-    "newOrders": 2161,
+    "newOrders": 2163,
     "returningOrders": 53,
     "newCustomerPct": 97.6,
     "avgCartSize": 1.0
@@ -40,12 +40,12 @@
     "zipCodeCoverage": 87.3,
     "loggedInBreakdown": {
       "yes": 872,
-      "no": 767,
+      "no": 769,
       "unknown": 575
     }
   },
   "orderSources": {
-    "ordersuccess": 2214,
+    "ordersuccess": 2216,
     "cartFallback": 0,
     "unknown": 0
   },
@@ -54,12 +54,12 @@
       "orders": 898,
       "revenue": 85098.04,
       "aov": 94.76,
-      "pctOfOrders": 40.6
+      "pctOfOrders": 40.5
     },
     "Google Ads": {
-      "orders": 347,
-      "revenue": 34035.88,
-      "aov": 98.09,
+      "orders": 348,
+      "revenue": 34153.38,
+      "aov": 98.14,
       "pctOfOrders": 15.7
     },
     "Direct": {
@@ -72,13 +72,13 @@
       "orders": 247,
       "revenue": 5817.57,
       "aov": 23.55,
-      "pctOfOrders": 11.2
+      "pctOfOrders": 11.1
     },
     "Affiliate": {
-      "orders": 171,
-      "revenue": 17041.1,
-      "aov": 99.66,
-      "pctOfOrders": 7.7
+      "orders": 172,
+      "revenue": 17147.58,
+      "aov": 99.7,
+      "pctOfOrders": 7.8
     },
     "Google Organic": {
       "orders": 125,
@@ -153,8 +153,8 @@
       "revenue": 10993.69
     },
     "FL": {
-      "orders": 113,
-      "revenue": 10630.33
+      "orders": 114,
+      "revenue": 10747.83
     },
     "IL": {
       "orders": 111,
@@ -188,13 +188,13 @@
       "orders": 60,
       "revenue": 5599.07
     },
+    "MI": {
+      "orders": 53,
+      "revenue": 4389.62
+    },
     "GA": {
       "orders": 53,
       "revenue": 4463.04
-    },
-    "MI": {
-      "orders": 52,
-      "revenue": 4283.14
     },
     "NJ": {
       "orders": 52,
@@ -239,16 +239,16 @@
   },
   "devices": {
     "iOS": {
-      "orders": 805,
+      "orders": 806,
       "pctOfOrders": 36.4
     },
     "Mac OS": {
-      "orders": 499,
-      "pctOfOrders": 22.5
+      "orders": 500,
+      "pctOfOrders": 22.6
     },
     "Windows": {
       "orders": 464,
-      "pctOfOrders": 21.0
+      "pctOfOrders": 20.9
     },
     "Android": {
       "orders": 223,
@@ -8998,16 +8998,17 @@
     "2026-06-12": {
       "impressions": 5,
       "clicks": 0,
-      "purchases": 8,
-      "revenue": 515.97,
+      "purchases": 10,
+      "revenue": 739.95,
       "conversions": 0,
       "attrRevenue": 0.0,
       "newOrders": 0,
-      "returningOrders": 7,
+      "returningOrders": 9,
       "nyPurchases": 1,
       "trafficSources": {
+        "Google Ads": 2,
+        "Affiliate": 1,
         "Email": 3,
-        "Google Ads": 1,
         "Direct": 3,
         "Google Organic": 1
       },
@@ -26670,6 +26671,22 @@
       "date": "2026-06-11",
       "time": "2026-06-11T09:58:01",
       "region": "CO",
+      "trafficSource": "Affiliate"
+    },
+    {
+      "orderId": "2994616",
+      "revenue": 117.5,
+      "date": "2026-06-12",
+      "time": "2026-06-12T22:28:29",
+      "region": "FL",
+      "trafficSource": "Google Ads"
+    },
+    {
+      "orderId": "2994614",
+      "revenue": 106.48,
+      "date": "2026-06-12",
+      "time": "2026-06-12T22:08:08",
+      "region": "MI",
       "trafficSource": "Affiliate"
     },
     {
