@@ -853,6 +853,11 @@ def main():
     raw_click_nodes = [n for _, _, n in all_clicks]
     clean_impressions_list, filtered_imp = filter_clean_impressions(raw_imp_nodes)
     clean_clicks_list, filtered_click = filter_clean_clicks(raw_click_nodes)
+    # Free the intermediate node lists — we keep all_impressions / all_clicks
+    # tuples and clean_impressions_list / clean_clicks_list views, which are
+    # enough for downstream. The raw_ aliases held a duplicate reference list
+    # to ~5M dicts.
+    del raw_imp_nodes, raw_click_nodes
 
     imp_count = len(clean_impressions_list)
     click_count = len(clean_clicks_list)
@@ -1031,14 +1036,23 @@ def main():
     # -------------------------
     # Impressions-to-conversion (how many ads did each converter see before purchasing?)
     # -------------------------
-    # Build IP index of impressions (IP → list of impression dicts).
-    # We keep the full record so converter_details can carry per-impression
-    # macro detail (placement, campaign, creative, size, site) for export.
+    # Build IP index of impressions, but ONLY for IPs that actually purchased.
+    # Previously we kept every impression for every IP, which on a full
+    # campaign window meant ~5M dicts × ~10 fields each — ~3GB of memory.
+    # We only USE imp_by_ip for converter IPs downstream, so pre-filter.
+    purchase_ips = set()
+    for p in unique_purchases:
+        ip = p.get("ip")
+        if ip:
+            purchase_ips.add(ip)
+
     imp_by_ip = defaultdict(list)
     for imp_node in clean_impressions_list:
         ip = imp_node.get("ip")
+        if not ip or ip not in purchase_ips:
+            continue  # skip impressions that can never join to a purchase
         imp_time_raw = imp_node.get("time")
-        if not ip or not imp_time_raw:
+        if not imp_time_raw:
             continue
         try:
             t_parsed = pd.to_datetime(imp_time_raw, utc=True)
@@ -1058,6 +1072,7 @@ def main():
             "dlve_src": macros.get("dlve_src") or "",
             "region": imp_node.get("region") or "",
         })
+    print(f"  imp_by_ip indexed for {len(purchase_ips)} purchaser IPs ({sum(len(v) for v in imp_by_ip.values())} impressions retained out of {len(clean_impressions_list)} total)")
 
     # Build dedupeId → purchase lookup (to get IP for attributed orders)
     purchase_by_dedupe = {}
