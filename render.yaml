@@ -32,11 +32,11 @@ services:
   - type: cron
     name: purplecarrot-data-refresh
     runtime: python
-    plan: pro   # 4GB RAM. v2 report still pulls ~5M impression rows + ~38k
-                # purchases + attribution table into pandas, which can spike
-                # past 2GB during the join phase. Pro tier has headroom.
-                # Long-term fix: stream/aggregate in the report script
-                # instead of loading everything into DataFrames.
+    plan: pro_plus  # 8GB RAM. Pro 4GB still OOMs on full campaign window
+                    # despite the imp_by_ip purchaser-IP filter. Real fix
+                    # is to stream aggregations during impression fetch
+                    # instead of accumulating ~5M raw nodes; tracking
+                    # that as a follow-up refactor.
     schedule: "*/30 * * * *"
     buildCommand: pip install -r requirements.txt
     startCommand: bash refresh_all.sh

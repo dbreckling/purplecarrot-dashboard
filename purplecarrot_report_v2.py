@@ -19,9 +19,27 @@ import os
 import requests
 import pandas as pd
 from collections import defaultdict, Counter
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 from urllib.parse import urlparse, parse_qs
+
+
+def parse_iso_utc(s):
+    """Lightweight UTC ISO timestamp parser. Returns a timezone-aware datetime
+    or None. ~10-20x cheaper than pd.to_datetime(s, utc=True), which allocates
+    a temporary pandas Series per call. We have millions of timestamps to
+    parse on a full run, so this matters."""
+    if not s:
+        return None
+    try:
+        # Normalize trailing Z and any fractional-second precision.
+        if isinstance(s, str):
+            if s.endswith("Z"):
+                s = s[:-1] + "+00:00"
+            return datetime.fromisoformat(s)
+        return s  # already a datetime
+    except (ValueError, AttributeError, TypeError):
+        return None
 
 # -----------------------------
 # Config
@@ -1015,8 +1033,8 @@ def main():
         conv_time_str = a.get("time")
         if imp_time_str and conv_time_str:
             try:
-                imp_time = pd.to_datetime(imp_time_str, utc=True)
-                conv_time = pd.to_datetime(conv_time_str, utc=True)
+                imp_time = parse_iso_utc(imp_time_str)
+                conv_time = parse_iso_utc(conv_time_str)
                 delta_hours = (conv_time - imp_time).total_seconds() / 3600
                 delta_days = delta_hours / 24
                 days_to_conversion.append(delta_days)
@@ -1055,7 +1073,7 @@ def main():
         if not imp_time_raw:
             continue
         try:
-            t_parsed = pd.to_datetime(imp_time_raw, utc=True)
+            t_parsed = parse_iso_utc(imp_time_raw)
         except Exception:
             t_parsed = None
         macros = imp_node.get("data") or {}
@@ -1153,7 +1171,7 @@ def main():
             continue
 
         try:
-            conv_time = pd.to_datetime(conv_time_str, utc=True)
+            conv_time = parse_iso_utc(conv_time_str)
         except Exception:
             continue
 
@@ -1267,7 +1285,7 @@ def main():
         if not t:
             continue
         try:
-            dt = pd.to_datetime(t, utc=True).astimezone(LOCAL_TZ)
+            dt = parse_iso_utc(t).astimezone(LOCAL_TZ)
             day_key = dt.strftime("%Y-%m-%d")
         except Exception:
             continue
@@ -1289,7 +1307,7 @@ def main():
         if not t:
             continue
         try:
-            dt = pd.to_datetime(t, utc=True).astimezone(LOCAL_TZ)
+            dt = parse_iso_utc(t).astimezone(LOCAL_TZ)
             day_key = dt.strftime("%Y-%m-%d")
         except Exception:
             continue
@@ -1303,7 +1321,7 @@ def main():
         if not t:
             continue
         try:
-            dt = pd.to_datetime(t, utc=True).astimezone(LOCAL_TZ)
+            dt = parse_iso_utc(t).astimezone(LOCAL_TZ)
             day_key = dt.strftime("%Y-%m-%d")
         except Exception:
             continue
@@ -1317,7 +1335,7 @@ def main():
         if not t:
             continue
         try:
-            dt = pd.to_datetime(t, utc=True)
+            dt = parse_iso_utc(t)
             day_key = dt.strftime("%Y-%m-%d")
         except Exception:
             continue
@@ -1356,8 +1374,8 @@ def main():
             conv_time_str = a.get("time")
             if imp_time_str and conv_time_str:
                 try:
-                    imp_time = pd.to_datetime(imp_time_str, utc=True)
-                    conv_time = pd.to_datetime(conv_time_str, utc=True)
+                    imp_time = parse_iso_utc(imp_time_str)
+                    conv_time = parse_iso_utc(conv_time_str)
                     delta_days = (conv_time - imp_time).total_seconds() / 86400
                 except Exception:
                     pass
@@ -1853,7 +1871,7 @@ def main():
         for p in unique_purchases:
             t = p.get("time", "")
             try:
-                dt = pd.to_datetime(t, utc=True).astimezone(LOCAL_TZ)
+                dt = parse_iso_utc(t).astimezone(LOCAL_TZ)
                 time_est = dt.strftime("%Y-%m-%d %H:%M:%S")
             except Exception:
                 time_est = t[:19] if t else ""
