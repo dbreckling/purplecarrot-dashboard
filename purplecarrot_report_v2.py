@@ -56,6 +56,12 @@ LOCAL_TZ = ZoneInfo("America/New_York")  # Purple Carrot is East Coast
 START_DATE_STR = os.environ.get("START_DATE", "2026-03-01")
 END_DATE_STR = os.environ.get("END_DATE", "")
 
+# Impressions are by far the heaviest data class (~5M rows at full campaign
+# window). We cap their fetch to a rolling N-day lookback to keep memory
+# bounded. Purchases + attribution stay at the full START_DATE window since
+# they're small. Default 60 days; override via env var if needed.
+IMP_LOOKBACK_DAYS = int(os.environ.get("IMP_LOOKBACK_DAYS", "60"))
+
 REQUEST_TIMEOUT_SECONDS = 300
 MAX_RETRIES = 3
 
@@ -732,6 +738,17 @@ def main():
 
     end_date_exclusive = datetime.combine(run_end_date, datetime.min.time(), tzinfo=LOCAL_TZ) + timedelta(days=1)
 
+    # Impressions are only fetched for the rolling lookback window. Older
+    # impression data is excluded to keep memory bounded.
+    imp_window_start = datetime.combine(
+        run_end_date - timedelta(days=IMP_LOOKBACK_DAYS),
+        datetime.min.time(),
+        tzinfo=LOCAL_TZ,
+    )
+    if imp_window_start < start_date:
+        imp_window_start = start_date
+    print(f"Impression window: {imp_window_start.date()} to {run_end_date}  (rolling {IMP_LOOKBACK_DAYS}d cap)")
+
     # -------------------------
     # Fetch data day by day
     # -------------------------
@@ -751,21 +768,24 @@ def main():
         day_end = day_end_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
         day_label = current.strftime("%Y-%m-%d")
 
-        # Purchases
+        # Purchases — always full window (small data class)
         purchase_nodes = run_purchases_query(day_start, day_end)
         all_purchases.extend(purchase_nodes)
 
-        # Impressions (StackAdapt programmatic)
-        imp_nodes, imp_total = run_impressions_query(day_start, day_end)
-        all_impressions.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in imp_nodes])
-        total_impressions_count += len(imp_nodes)
+        # Impressions + clicks — only within the rolling lookback window
+        if current >= imp_window_start:
+            imp_nodes, imp_total = run_impressions_query(day_start, day_end)
+            all_impressions.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in imp_nodes])
+            total_impressions_count += len(imp_nodes)
 
-        # Clicks
-        click_nodes, click_total = run_clicks_query(day_start, day_end)
-        all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
-        total_clicks_count += len(click_nodes)
+            click_nodes, click_total = run_clicks_query(day_start, day_end)
+            all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
+            total_clicks_count += len(click_nodes)
+        else:
+            imp_nodes = []
+            click_nodes = []
 
-        # Attributed conversions
+        # Attributed conversions — always full window (small data class)
         attr_nodes = run_attributed_query(day_start, day_end)
         all_attributed.extend(attr_nodes)
 

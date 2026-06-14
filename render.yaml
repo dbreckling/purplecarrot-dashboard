@@ -32,11 +32,11 @@ services:
   - type: cron
     name: purplecarrot-data-refresh
     runtime: python
-    plan: pro_plus  # 8GB RAM. Pro 4GB still OOMs on full campaign window
-                    # despite the imp_by_ip purchaser-IP filter. Real fix
-                    # is to stream aggregations during impression fetch
-                    # instead of accumulating ~5M raw nodes; tracking
-                    # that as a follow-up refactor.
+    plan: pro   # 4GB RAM. Should comfortably fit now that impressions are
+                # capped to a rolling 60-day window (IMP_LOOKBACK_DAYS env
+                # var). Purchases + attribution stay at full campaign
+                # window since they're small. Set IMP_LOOKBACK_DAYS=90 or
+                # higher on the cron service if you need longer lookback.
     schedule: "*/30 * * * *"
     buildCommand: pip install -r requirements.txt
     startCommand: bash refresh_all.sh
