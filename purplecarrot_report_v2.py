@@ -41,6 +41,86 @@ def parse_iso_utc(s):
     except (ValueError, AttributeError, TypeError):
         return None
 
+
+# =========================================================================
+# IMPRESSION CACHE
+# =========================================================================
+# Progressive cache for impression aggregates. Once a day is "closed"
+# (older than LIVE_WINDOW_DAYS), its per-day aggregates are locked into
+# this file and never re-fetched. This keeps each run's memory bounded
+# to just the live window (~14 days) instead of pulling the full
+# campaign window (60-90 days) every time.
+#
+# Stored: per-day totals + per-placement + per-campaign counters.
+# NOT stored: raw impression rows. Converter-journey detail can only be
+# built from the live window; older converters get an incomplete journey
+# but their attribution count is unaffected (that comes from the
+# attribution table which we still pull at full window).
+
+CACHE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "impressions_cache.json")
+LIVE_WINDOW_DAYS = int(os.environ.get("LIVE_WINDOW_DAYS", "14"))
+
+
+class ImpressionCache:
+    """Per-day aggregate cache. Days older than LIVE_WINDOW_DAYS are
+    locked once and never re-fetched. Live-window days are recomputed
+    every run."""
+
+    def __init__(self, path=CACHE_PATH):
+        self.path = path
+        self.by_day = {}
+        try:
+            with open(path) as f:
+                doc = json.load(f)
+                self.by_day = doc.get("by_day", {}) or {}
+        except FileNotFoundError:
+            pass
+        except Exception as e:
+            print(f"[ImpressionCache] Failed to load {path}: {e} — starting empty")
+
+    def get(self, day_str):
+        return self.by_day.get(day_str)
+
+    def has_locked(self, day_str):
+        d = self.by_day.get(day_str)
+        return bool(d and d.get("locked_at"))
+
+    def write(self, day_str, agg):
+        """agg = dict of: impressions, clicks, by_placement, by_campaign."""
+        existing = self.by_day.get(day_str) or {}
+        # Don't blow away locked_at if it's already set.
+        locked_at = existing.get("locked_at")
+        self.by_day[day_str] = {
+            "impressions":  int(agg.get("impressions") or 0),
+            "clicks":       int(agg.get("clicks") or 0),
+            "by_placement": agg.get("by_placement") or {},
+            "by_campaign":  agg.get("by_campaign") or {},
+        }
+        if locked_at:
+            self.by_day[day_str]["locked_at"] = locked_at
+
+    def lock(self, day_str):
+        if day_str not in self.by_day:
+            return
+        if "locked_at" not in self.by_day[day_str]:
+            self.by_day[day_str]["locked_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def save(self):
+        tmp = self.path + ".tmp"
+        doc = {
+            "schema_version": 1,
+            "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "by_day": self.by_day,
+        }
+        with open(tmp, "w") as f:
+            json.dump(doc, f, separators=(",", ":"))  # compact format
+        os.replace(tmp, self.path)
+
+    def stats(self):
+        locked = sum(1 for d in self.by_day.values() if d.get("locked_at"))
+        live   = len(self.by_day) - locked
+        return locked, live
+
 # -----------------------------
 # Config
 # -----------------------------
@@ -738,16 +818,21 @@ def main():
 
     end_date_exclusive = datetime.combine(run_end_date, datetime.min.time(), tzinfo=LOCAL_TZ) + timedelta(days=1)
 
-    # Impressions are only fetched for the rolling lookback window. Older
-    # impression data is excluded to keep memory bounded.
-    imp_window_start = datetime.combine(
-        run_end_date - timedelta(days=IMP_LOOKBACK_DAYS),
+    # Live window for impression fetches. Days older than this come from
+    # the impression cache (locked aggregates). Days within this window
+    # are re-fetched every run.
+    live_window_start = datetime.combine(
+        run_end_date - timedelta(days=LIVE_WINDOW_DAYS),
         datetime.min.time(),
         tzinfo=LOCAL_TZ,
     )
-    if imp_window_start < start_date:
-        imp_window_start = start_date
-    print(f"Impression window: {imp_window_start.date()} to {run_end_date}  (rolling {IMP_LOOKBACK_DAYS}d cap)")
+    if live_window_start < start_date:
+        live_window_start = start_date
+
+    imp_cache = ImpressionCache()
+    locked, live = imp_cache.stats()
+    print(f"Impression cache: {locked} locked days, {live} unlocked days")
+    print(f"Live window:      {live_window_start.date()} to {run_end_date}  ({LIVE_WINDOW_DAYS}d)")
 
     # -------------------------
     # Fetch data day by day
@@ -761,6 +846,10 @@ def main():
     total_impressions_count = 0
     total_clicks_count = 0
 
+    cache_hits = 0  # Days served from cache (no API fetch)
+    cache_misses = 0  # Days re-fetched live
+    cached_days = set()  # Set of date strings for which we used the cache
+
     while current < end_date_exclusive:
         day_start_utc = current.astimezone(ZoneInfo("UTC"))
         day_end_utc = (current + timedelta(days=1)).astimezone(ZoneInfo("UTC"))
@@ -772,25 +861,74 @@ def main():
         purchase_nodes = run_purchases_query(day_start, day_end)
         all_purchases.extend(purchase_nodes)
 
-        # Impressions + clicks — only within the rolling lookback window
-        if current >= imp_window_start:
-            imp_nodes, imp_total = run_impressions_query(day_start, day_end)
-            all_impressions.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in imp_nodes])
-            total_impressions_count += len(imp_nodes)
+        # Impressions + clicks:
+        # - Inside live window OR not yet locked in cache → fetch fresh
+        # - Outside live window AND cached + locked → use cached aggregates only
+        in_live_window = current >= live_window_start
+        cached = imp_cache.get(day_label)
+        use_cache = (not in_live_window) and imp_cache.has_locked(day_label)
 
-            click_nodes, click_total = run_clicks_query(day_start, day_end)
-            all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
-            total_clicks_count += len(click_nodes)
-        else:
+        if use_cache:
             imp_nodes = []
             click_nodes = []
+            cache_hits += 1
+            cached_days.add(day_label)
+            # The cached daily aggregates are read later when building daily_data;
+            # we don't touch all_impressions for these days.
+        else:
+            imp_nodes, imp_total = run_impressions_query(day_start, day_end)
+            click_nodes, click_total = run_clicks_query(day_start, day_end)
+
+            # Aggregate this day's counts inline so we can store them in the
+            # cache regardless of whether we ultimately lock it.
+            day_imp_count = len(imp_nodes)
+            day_click_count = len(click_nodes)
+            day_by_placement = defaultdict(lambda: {"i": 0, "c": 0})
+            day_by_campaign  = defaultdict(lambda: {"i": 0, "c": 0, "name": ""})
+            for n in imp_nodes:
+                pid = str(n.get("placementId") or "")
+                cid = str(n.get("campaignId")  or "")
+                cname = n.get("campaignName") or ""
+                if pid: day_by_placement[pid]["i"] += 1
+                if cid:
+                    day_by_campaign[cid]["i"] += 1
+                    if cname: day_by_campaign[cid]["name"] = cname
+            for n in click_nodes:
+                pid = str(n.get("placementId") or "")
+                cid = str(n.get("campaignId")  or "")
+                if pid: day_by_placement[pid]["c"] += 1
+                if cid: day_by_campaign[cid]["c"] += 1
+
+            imp_cache.write(day_label, {
+                "impressions": day_imp_count,
+                "clicks":      day_click_count,
+                "by_placement": {k: dict(v) for k, v in day_by_placement.items()},
+                "by_campaign":  {k: dict(v) for k, v in day_by_campaign.items()},
+            })
+            # If this day is now outside the live window, lock it permanently.
+            if not in_live_window:
+                imp_cache.lock(day_label)
+            cache_misses += 1
+
+            all_impressions.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in imp_nodes])
+            total_impressions_count += day_imp_count
+            all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
+            total_clicks_count += day_click_count
 
         # Attributed conversions — always full window (small data class)
         attr_nodes = run_attributed_query(day_start, day_end)
         all_attributed.extend(attr_nodes)
 
-        print(f"{day_label} ... {len(imp_nodes):,} imp, {len(click_nodes):,} clicks, {len(purchase_nodes)} purchases, {len(attr_nodes)} attributed")
+        cache_tag = "  (cached)" if use_cache else ""
+        print(f"{day_label} ... {len(imp_nodes):,} imp, {len(click_nodes):,} clicks, {len(purchase_nodes)} purchases, {len(attr_nodes)} attributed{cache_tag}")
         current += timedelta(days=1)
+
+    # Persist cache after the run so next invocation can skip these days.
+    try:
+        imp_cache.save()
+        print(f"Impression cache: saved. Run summary: {cache_hits} cached, {cache_misses} live-fetched")
+    except Exception as e:
+        print(f"[ImpressionCache] Failed to save: {e}")
 
     # -------------------------
     # Dedupe purchases:
@@ -897,8 +1035,18 @@ def main():
     # to ~5M dicts.
     del raw_imp_nodes, raw_click_nodes
 
-    imp_count = len(clean_impressions_list)
-    click_count = len(clean_clicks_list)
+    # Add cached-day totals so the dashboard's cumulative impression/click
+    # numbers stay correct when older days are served from cache.
+    cached_imps = 0
+    cached_clicks = 0
+    for day_str in cached_days:
+        c = imp_cache.get(day_str) or {}
+        cached_imps   += int(c.get("impressions") or 0)
+        cached_clicks += int(c.get("clicks") or 0)
+    imp_count = len(clean_impressions_list) + cached_imps
+    click_count = len(clean_clicks_list) + cached_clicks
+    if cached_days:
+        print(f"  Cumulative totals: live {len(clean_impressions_list):,} imps + cached {cached_imps:,} = {imp_count:,}")
 
     # Build clean click set (by id(node)) for fast lookup, and
     # rebuild all_clicks_clean with campaign association for downstream use
@@ -1322,6 +1470,25 @@ def main():
         elif vs == "returning":
             daily_data[day_key]["returningOrders"] += 1
 
+    # Hydrate daily_data from the impression cache, but ONLY for days the
+    # current run served from cache (no all_impressions rows for those days).
+    # Live-window days are filled by the all_impressions loop below.
+    cached_days_used = 0
+    for day_str in cached_days:
+        cached = imp_cache.get(day_str)
+        if not cached:
+            continue
+        daily_data[day_str]["impressions"] += int(cached.get("impressions") or 0)
+        daily_data[day_str]["clicks"]      += int(cached.get("clicks") or 0)
+        for pid, pc in (cached.get("by_placement") or {}).items():
+            daily_data[day_str]["placements"][pid]["impressions"] += int(pc.get("i") or 0)
+            daily_data[day_str]["placements"][pid]["clicks"]      += int(pc.get("c") or 0)
+        cached_days_used += 1
+    if cached_days_used:
+        print(f"  Hydrated {cached_days_used} days from impression cache")
+
+    # Then add live-window data on top (only for days within the live window
+    # where we actually fetched impressions).
     for _, _, imp in all_impressions:
         t = imp.get("time", "")
         if not t:

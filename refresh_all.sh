@@ -41,7 +41,9 @@ echo "[$(date)] Running purplecarrot_v3_aggregator.py" >> "$LOG"
 }
 
 # 3. Commit + push any updated JSONs
-git add dashboard_data_v2.json dashboard_v3_data.json >> "$LOG" 2>&1 || true
+# impressions_cache.json carries the locked per-day aggregates so the
+# next run can skip those days entirely; must be committed alongside.
+git add dashboard_data_v2.json dashboard_v3_data.json impressions_cache.json >> "$LOG" 2>&1 || true
 if git diff --staged --quiet; then
   echo "[$(date)] No data changes to commit" >> "$LOG"
 else
