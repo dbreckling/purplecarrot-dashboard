@@ -861,9 +861,16 @@ def main():
         purchase_nodes = run_purchases_query(day_start, day_end)
         all_purchases.extend(purchase_nodes)
 
-        # Impressions + clicks:
-        # - Inside live window OR not yet locked in cache → fetch fresh
-        # - Outside live window AND cached + locked → use cached aggregates only
+        # Impressions + clicks. Three modes:
+        # - Outside live window AND cached + locked  → use cached aggregates
+        # - Outside live window AND cache cold       → fetch, aggregate, lock,
+        #                                              and DO NOT retain raw rows
+        # - Inside live window                       → fetch, aggregate, retain
+        #                                              raw rows in all_impressions
+        #
+        # The "fetch but don't retain" path lets us populate the cache for
+        # historical days without holding ~5M raw nodes in memory. Each day's
+        # raw rows are processed for aggregates and then immediately discarded.
         in_live_window = current >= live_window_start
         cached = imp_cache.get(day_label)
         use_cache = (not in_live_window) and imp_cache.has_locked(day_label)
@@ -873,14 +880,10 @@ def main():
             click_nodes = []
             cache_hits += 1
             cached_days.add(day_label)
-            # The cached daily aggregates are read later when building daily_data;
-            # we don't touch all_impressions for these days.
         else:
             imp_nodes, imp_total = run_impressions_query(day_start, day_end)
             click_nodes, click_total = run_clicks_query(day_start, day_end)
 
-            # Aggregate this day's counts inline so we can store them in the
-            # cache regardless of whether we ultimately lock it.
             day_imp_count = len(imp_nodes)
             day_click_count = len(click_nodes)
             day_by_placement = defaultdict(lambda: {"i": 0, "c": 0})
@@ -905,15 +908,29 @@ def main():
                 "by_placement": {k: dict(v) for k, v in day_by_placement.items()},
                 "by_campaign":  {k: dict(v) for k, v in day_by_campaign.items()},
             })
-            # If this day is now outside the live window, lock it permanently.
-            if not in_live_window:
-                imp_cache.lock(day_label)
             cache_misses += 1
 
-            all_impressions.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in imp_nodes])
-            total_impressions_count += day_imp_count
-            all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
-            total_clicks_count += day_click_count
+            if in_live_window:
+                # Retain raw rows for downstream consumers (channel hierarchy,
+                # converter journeys, etc.) only for the live window.
+                all_impressions.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in imp_nodes])
+                total_impressions_count += day_imp_count
+                all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
+                total_clicks_count += day_click_count
+            else:
+                # Lock immediately and discard raw rows. We've already pulled
+                # everything we need into the cache aggregates above.
+                imp_cache.lock(day_label)
+                cached_days.add(day_label)
+                # Save the cache incrementally so a mid-run OOM doesn't lose
+                # all our backfill progress. Once a day is locked, future
+                # runs skip it entirely.
+                try:
+                    imp_cache.save()
+                except Exception:
+                    pass
+                imp_nodes = []
+                click_nodes = []
 
         # Attributed conversions — always full window (small data class)
         attr_nodes = run_attributed_query(day_start, day_end)
