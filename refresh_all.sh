@@ -34,16 +34,12 @@ echo "[$(date)] Running purplecarrot_report_v2.py" >> "$LOG"
   exit 1
 }
 
-# 2. v3 — city-level trade area aggregator
-echo "[$(date)] Running purplecarrot_v3_aggregator.py" >> "$LOG"
-"$PYTHON" purplecarrot_v3_aggregator.py >> "$LOG" 2>&1 || {
-  echo "[$(date)] v3 aggregator FAILED (non-fatal, dashboard still works on prior data)" >> "$LOG"
-}
+# 2. v3 aggregator disabled — dashboard_v3.html removed from service.
 
 # 3. Commit + push any updated JSONs
 # impressions_cache.json carries the locked per-day aggregates so the
 # next run can skip those days entirely; must be committed alongside.
-git add dashboard_data_v2.json dashboard_v3_data.json impressions_cache.json >> "$LOG" 2>&1 || true
+git add dashboard_data_v2.json impressions_cache.json >> "$LOG" 2>&1 || true
 if git diff --staged --quiet; then
   echo "[$(date)] No data changes to commit" >> "$LOG"
 else
