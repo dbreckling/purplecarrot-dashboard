@@ -470,7 +470,11 @@ def run_purchases_query(date_from, date_to, max_retries=MAX_RETRIES):
 
 def run_impressions_query(date_from, date_to, max_retries=MAX_RETRIES):
     """Query all impressions for advertiser 1060 (StackAdapt programmatic)."""
-    limit = 10000
+    # DLVE 502s above ~5k rows/page when the take includes the `data` macro blob
+    # (this query fetches `data`). At 10k, high-volume days 502'd at offset 0 and
+    # the handler below returns partial data — recording those days as 0
+    # impressions, which undercounts reach and suppresses attribution matches.
+    limit = 5000
     offset = 0
     all_nodes = []
     total_count = 0
@@ -873,7 +877,12 @@ def main():
         # raw rows are processed for aggregates and then immediately discarded.
         in_live_window = current >= live_window_start
         cached = imp_cache.get(day_label)
-        use_cache = (not in_live_window) and imp_cache.has_locked(day_label)
+        # Self-heal: a locked day with 0 impressions is almost always a past
+        # fetch failure (e.g. the 502s on high-volume days that got locked at 0
+        # during the crash era), not a genuinely empty day on a live campaign.
+        # Re-fetch it instead of trusting the poisoned cache entry.
+        cached_ok = int((cached or {}).get("impressions") or 0) > 0
+        use_cache = (not in_live_window) and imp_cache.has_locked(day_label) and cached_ok
 
         if use_cache:
             imp_nodes = []
@@ -917,9 +926,12 @@ def main():
                 total_impressions_count += day_imp_count
                 all_clicks.extend([(n.get("campaignId", ""), n.get("placementId", ""), n) for n in click_nodes])
                 total_clicks_count += day_click_count
-            else:
+            elif day_imp_count > 0:
                 # Lock immediately and discard raw rows. We've already pulled
-                # everything we need into the cache aggregates above.
+                # everything we need into the cache aggregates above. Only lock
+                # days that actually returned impressions — a 0 here means the
+                # fetch failed (502/partial), so leave it unlocked to retry next
+                # run rather than freezing a bad day into the cache.
                 imp_cache.lock(day_label)
                 cached_days.add(day_label)
                 # Save the cache incrementally so a mid-run OOM doesn't lose
@@ -929,6 +941,11 @@ def main():
                     imp_cache.save()
                 except Exception:
                     pass
+                imp_nodes = []
+                click_nodes = []
+            else:
+                # Historical day with 0 impressions — likely a failed fetch.
+                # Don't lock; discard the raw rows but let it retry next run.
                 imp_nodes = []
                 click_nodes = []
 
@@ -1046,6 +1063,11 @@ def main():
     raw_click_nodes = [n for _, _, n in all_clicks]
     clean_impressions_list, filtered_imp = filter_clean_impressions(raw_imp_nodes)
     clean_clicks_list, filtered_click = filter_clean_clicks(raw_click_nodes)
+    # Capture the raw counts BEFORE freeing the node lists — they are referenced
+    # in the logging below. (Referencing raw_click_nodes after `del` raised
+    # UnboundLocalError every run, crashing the refresh before the JSON was
+    # written and freezing the dashboard at its last good output.)
+    raw_click_count = len(raw_click_nodes)
     # Free the intermediate node lists — we keep all_impressions / all_clicks
     # tuples and clean_impressions_list / clean_clicks_list views, which are
     # enough for downstream. The raw_ aliases held a duplicate reference list
@@ -1070,7 +1092,7 @@ def main():
     clean_click_ids = set(id(n) for n in clean_clicks_list)
     all_clicks_clean = [(cid, pid, n) for cid, pid, n in all_clicks if id(n) in clean_click_ids]
 
-    print(f"  Click filtering: {len(raw_click_nodes)} raw → {click_count} clean (US-only, no bots, IP deduped)")
+    print(f"  Click filtering: {raw_click_count} raw → {click_count} clean (US-only, no bots, IP deduped)")
 
     # Discover campaigns from impressions
     campaign_info = {}
