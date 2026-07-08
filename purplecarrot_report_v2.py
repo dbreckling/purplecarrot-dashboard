@@ -2034,6 +2034,14 @@ def main():
                 "time": (p.get("time") or "")[:19],
                 "region": p.get("region", ""),
                 "trafficSource": p.get("_traffic_source", ""),
+                # How the order reached DLVE: on-site browser tag vs Stape
+                # server-side feed. Server-side events carry no on-site referrer
+                # so they'd otherwise read as "Direct" and be indistinguishable.
+                "captureSource": (
+                    "Server-side (Stape)" if p.get("scriptId") == "nubvnAhNMDnm"
+                    else "Browser tag" if p.get("scriptId") == "QwxIISziQhWR"
+                    else (p.get("scriptId") or "")
+                ),
             }
             for p in unique_purchases
         ],
