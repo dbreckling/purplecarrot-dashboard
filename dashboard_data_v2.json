@@ -4,10 +4,10 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-08-04T15:48:19.745684Z",
+  "lastUpdated": "2026-08-07T07:31:37.395711Z",
   "dateRange": {
     "start": "2026-03-01",
-    "end": "2026-08-04"
+    "end": "2026-08-07"
   },
   "placementConfig": {
     "6001": {
@@ -24,79 +24,79 @@
     }
   },
   "global": {
-    "totalOrders": 2967,
-    "totalRevenue": 259203.55,
-    "aov": 87.36,
-    "uniqueVisitors": 2541,
-    "repeatPurchaseRate": 1.2,
-    "newOrders": 2824,
-    "returningOrders": 143,
-    "newCustomerPct": 95.2,
+    "totalOrders": 3109,
+    "totalRevenue": 273797.15,
+    "aov": 88.07,
+    "uniqueVisitors": 2629,
+    "repeatPurchaseRate": 2.9,
+    "newOrders": 2914,
+    "returningOrders": 195,
+    "newCustomerPct": 93.7,
     "avgCartSize": 1.0
   },
   "identity": {
-    "emailHashCoverage": 82.8,
-    "customerIdCoverage": 82.8,
-    "zipCodeCoverage": 82.6,
+    "emailHashCoverage": 82.7,
+    "customerIdCoverage": 82.7,
+    "zipCodeCoverage": 82.4,
     "loggedInBreakdown": {
-      "yes": 1106,
-      "no": 1031,
-      "unknown": 830
+      "yes": 1108,
+      "no": 1141,
+      "unknown": 860
     }
   },
   "orderSources": {
-    "ordersuccess": 2967,
+    "ordersuccess": 3109,
     "cartFallback": 0,
     "unknown": 0
   },
   "trafficSources": {
     "Direct / Internal": {
-      "orders": 1043,
-      "revenue": 99251.61,
-      "aov": 95.16,
-      "pctOfOrders": 35.2
+      "orders": 1046,
+      "revenue": 99447.09,
+      "aov": 95.07,
+      "pctOfOrders": 33.6
     },
     "Direct": {
-      "orders": 503,
-      "revenue": 47728.5,
-      "aov": 94.89,
-      "pctOfOrders": 17.0
+      "orders": 533,
+      "revenue": 50358.2,
+      "aov": 94.48,
+      "pctOfOrders": 17.1
     },
     "Google Ads": {
-      "orders": 486,
-      "revenue": 48073.94,
-      "aov": 98.92,
-      "pctOfOrders": 16.4
+      "orders": 488,
+      "revenue": 48279.94,
+      "aov": 98.93,
+      "pctOfOrders": 15.7
+    },
+    "Affiliate": {
+      "orders": 351,
+      "revenue": 36599.66,
+      "aov": 104.27,
+      "pctOfOrders": 11.3
     },
     "Email": {
       "orders": 347,
       "revenue": 8928.17,
       "aov": 25.73,
-      "pctOfOrders": 11.7
-    },
-    "Affiliate": {
-      "orders": 246,
-      "revenue": 25211.24,
-      "aov": 102.48,
-      "pctOfOrders": 8.3
+      "pctOfOrders": 11.2
     },
     "Google Organic": {
       "orders": 134,
       "revenue": 9388.45,
       "aov": 70.06,
-      "pctOfOrders": 4.5
+      "pctOfOrders": 4.3
     },
     "Referral": {
-      "orders": 78,
-      "revenue": 6738.55,
-      "aov": 86.39,
-      "pctOfOrders": 2.6
+      "orders": 79,
+      "revenue": 6840.05,
+      "aov": 86.58,
+      "pctOfOrders": 2.5
     },
     "Meta Ads": {
       "orders": 50,
       "revenue": 5712.51,
       "aov": 114.25,
-      "pctOfOrders": 1.7
+      "pctOfOrders": 1.6
     },
     "Paid (bing)": {
       "orders": 16,
@@ -135,9 +135,9 @@
       "pctOfOrders": 0.2
     },
     "Paid (rokt)": {
-      "orders": 3,
-      "revenue": 281.45,
-      "aov": 93.82,
+      "orders": 4,
+      "revenue": 353.95,
+      "aov": 88.49,
       "pctOfOrders": 0.1
     },
     "Mntn": {
@@ -161,64 +161,68 @@
   },
   "geographic": {
     "CA": {
-      "orders": 395,
-      "revenue": 32550.29
+      "orders": 415,
+      "revenue": 34546.01
     },
     "NY": {
-      "orders": 267,
-      "revenue": 22499.14
+      "orders": 287,
+      "revenue": 24619.76
     },
     "TX": {
-      "orders": 181,
-      "revenue": 16404.7
+      "orders": 185,
+      "revenue": 16838.62
     },
     "FL": {
-      "orders": 159,
-      "revenue": 14667.11
-    },
-    "IL": {
-      "orders": 159,
-      "revenue": 13657.61
+      "orders": 177,
+      "revenue": 16619.75
     },
     "MA": {
-      "orders": 158,
-      "revenue": 14438.22
+      "orders": 167,
+      "revenue": 15318.06
+    },
+    "IL": {
+      "orders": 166,
+      "revenue": 14416.97
     },
     "VA": {
-      "orders": 127,
-      "revenue": 11203.12
+      "orders": 128,
+      "revenue": 11286.61
+    },
+    "CO": {
+      "orders": 118,
+      "revenue": 10041.47
     },
     "WA": {
       "orders": 117,
       "revenue": 10773.05
     },
-    "CO": {
-      "orders": 113,
-      "revenue": 9699.01
-    },
     "PA": {
-      "orders": 105,
-      "revenue": 10038.16
+      "orders": 110,
+      "revenue": 10484.08
     },
     "NC": {
-      "orders": 89,
-      "revenue": 8511.54
+      "orders": 99,
+      "revenue": 9569.38
     },
     "NJ": {
-      "orders": 79,
-      "revenue": 6881.25
+      "orders": 87,
+      "revenue": 7749.09
     },
     "GA": {
-      "orders": 78,
-      "revenue": 6747.38
+      "orders": 82,
+      "revenue": 7084.82
     },
     "OH": {
       "orders": 77,
       "revenue": 7193.24
     },
     "MI": {
-      "orders": 67,
-      "revenue": 5478.59
+      "orders": 71,
+      "revenue": 5841.55
+    },
+    "MD": {
+      "orders": 62,
+      "revenue": 5128.71
     },
     "IA": {
       "orders": 60,
@@ -228,59 +232,55 @@
       "orders": 59,
       "revenue": 4087.39
     },
-    "MD": {
-      "orders": 58,
-      "revenue": 4694.79
-    },
     "AZ": {
-      "orders": 50,
-      "revenue": 4130.07
+      "orders": 52,
+      "revenue": 4399.91
     },
     "TN": {
-      "orders": 49,
-      "revenue": 3624.03
+      "orders": 51,
+      "revenue": 3840.99
     },
     "WI": {
-      "orders": 42,
-      "revenue": 3235.92
+      "orders": 44,
+      "revenue": 3617.68
+    },
+    "IN": {
+      "orders": 40,
+      "revenue": 3497.71
     },
     "MN": {
       "orders": 40,
       "revenue": 2880.57
     },
-    "IN": {
-      "orders": 39,
-      "revenue": 3412.72
-    },
     "DC": {
-      "orders": 37,
-      "revenue": 3024.4
+      "orders": 39,
+      "revenue": 3241.36
     },
     "MO": {
-      "orders": 37,
-      "revenue": 3103.29
+      "orders": 39,
+      "revenue": 3377.24
     }
   },
   "devices": {
     "iOS": {
-      "orders": 1012,
-      "pctOfOrders": 34.1
-    },
-    "Mac OS": {
-      "orders": 649,
-      "pctOfOrders": 21.9
+      "orders": 1018,
+      "pctOfOrders": 32.7
     },
     "Windows": {
-      "orders": 571,
-      "pctOfOrders": 19.2
+      "orders": 675,
+      "pctOfOrders": 21.7
+    },
+    "Mac OS": {
+      "orders": 650,
+      "pctOfOrders": 20.9
     },
     "Unknown": {
-      "orders": 425,
-      "pctOfOrders": 14.3
+      "orders": 455,
+      "pctOfOrders": 14.6
     },
     "Android": {
-      "orders": 283,
-      "pctOfOrders": 9.5
+      "orders": 284,
+      "pctOfOrders": 9.1
     },
     "Chromium OS": {
       "orders": 15,
@@ -297,15 +297,15 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 10030557,
+    "impressions": 10079892,
     "clicks": 1731,
-    "reach": 310919,
-    "frequency": 32.26,
-    "attrOrders": 27,
-    "attrRevenue": 1971.03,
-    "spend": 4874.09,
-    "roas": 0.4,
-    "costPerSubscription": 180.52,
+    "reach": 198085,
+    "frequency": 50.89,
+    "attrOrders": 28,
+    "attrRevenue": 2079.51,
+    "spend": 3264.31,
+    "roas": 0.64,
+    "costPerSubscription": 116.58,
     "ctVisits": 0,
     "vtVisits": 0,
     "stackadapt": {
@@ -316,7 +316,7 @@
   "attribution": {
     "byType": {
       "clickThrough": 0,
-      "viewThrough": 27
+      "viewThrough": 28
     },
     "conversionTimeline": {
       "sameDay": 4,
@@ -324,7 +324,7 @@
       "2to3days": 5,
       "4to7days": 1,
       "8to14days": 4,
-      "15to30days": 11
+      "15to30days": 12
     },
     "lookbackData": {
       "1": {
@@ -344,20 +344,20 @@
         "revenue": 1036.43
       },
       "30": {
-        "orders": 27,
-        "revenue": 1971.03
+        "orders": 28,
+        "revenue": 2079.51
       }
     },
-    "avgDaysToConversion": 11.9,
+    "avgDaysToConversion": 12.2,
     "sameDayConversions": 4,
-    "sameDayConversionRate": 14.8,
+    "sameDayConversionRate": 14.3,
     "impressionsToConversion": {
-      "avgImpressions": 0.1,
+      "avgImpressions": 0.0,
       "minImpressions": 0,
-      "maxImpressions": 2,
+      "maxImpressions": 1,
       "medianImpressions": 0,
       "frequencyBuckets": {
-        "1-3": 27,
+        "1-3": 28,
         "4-7": 0,
         "8-14": 0,
         "15-30": 0,
@@ -621,6 +621,22 @@
           "impressions": []
         },
         {
+          "dedupeId": "3000986",
+          "visitorId": "",
+          "ip": "99.68.65***",
+          "conversionTime": "2026-08-06T14:31:15.501000+00:00",
+          "impressionsSeen": 0,
+          "revenue": 108.48,
+          "type": "view-through",
+          "orderClass": "Purchase",
+          "orderSource": "ordersuccess",
+          "channel": "unknown",
+          "placementId": "6046",
+          "daysBetween": 22,
+          "matchingImpressions": 1,
+          "impressions": []
+        },
+        {
           "dedupeId": "2980113",
           "visitorId": "VID772FFFE6556843CAAE",
           "ip": "158.106.***",
@@ -769,7 +785,7 @@
           "visitorId": "VIDCB056520FC65412E88",
           "ip": "104.153.***",
           "conversionTime": "2026-07-25T13:10:55.323000+00:00",
-          "impressionsSeen": 2,
+          "impressionsSeen": 0,
           "revenue": 111.5,
           "type": "view-through",
           "orderClass": "Purchase",
@@ -778,32 +794,7 @@
           "placementId": "6047",
           "daysBetween": 24,
           "matchingImpressions": 1,
-          "impressions": [
-            {
-              "time": "2026-07-23T23:42:50.529000+00:00",
-              "placementId": "6047",
-              "campaignId": "4079",
-              "campaignName": "",
-              "dlve_campaign": "553591",
-              "dlve_creative": "24893260",
-              "dlve_size": "970x250",
-              "dlve_site": "3957166152",
-              "dlve_src": "fyllo",
-              "region": "IL"
-            },
-            {
-              "time": "2026-07-23T23:44:27.819000+00:00",
-              "placementId": "6047",
-              "campaignId": "4079",
-              "campaignName": "",
-              "dlve_campaign": "553591",
-              "dlve_creative": "24893266",
-              "dlve_size": "300x250",
-              "dlve_site": "1495568451",
-              "dlve_src": "fyllo",
-              "region": "IL"
-            }
-          ]
+          "impressions": []
         },
         {
           "dedupeId": "3000145",
@@ -839,14 +830,14 @@
   },
   "channels": {
     "display": {
-      "impressions": 812342,
+      "impressions": 544045,
       "clicks": 0,
-      "reach": 310917,
-      "attrOrders": 23,
-      "attrRevenue": 1632.17,
+      "reach": 198083,
+      "attrOrders": 24,
+      "attrRevenue": 1740.65,
       "cpm": 6.0,
-      "spend": 4874.05,
-      "roas": 0.33
+      "spend": 3264.27,
+      "roas": 0.53
     },
     "video": {
       "impressions": 1,
@@ -898,38 +889,14 @@
             }
           }
         },
-        "${campaign_name}": {
-          "impressions": 3,
-          "clicks": 0,
-          "reach": 2,
-          "frequency": 1.5,
-          "attrOrders": 0,
-          "attrRevenue": 0.0,
-          "spend": 0.02,
-          "roas": 0.0,
-          "creatives": {
-            "${creative_name}|${crid}": {
-              "creativeName": "${creative_name}",
-              "creativeSize": "${crid}",
-              "impressions": 3,
-              "clicks": 0,
-              "reach": 2,
-              "frequency": 1.5,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 0.02,
-              "roas": 0.0
-            }
-          }
-        },
         "0": {
-          "impressions": 198,
+          "impressions": 177,
           "clicks": 0,
-          "reach": 102,
+          "reach": 91,
           "frequency": 1.9,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 1.19,
+          "spend": 1.06,
           "roas": 0.0,
           "creatives": {
             "138563126874|1x1": {
@@ -947,13 +914,13 @@
             "138563766638|1x1": {
               "creativeName": "138563766638",
               "creativeSize": "1x1",
-              "impressions": 12,
+              "impressions": 2,
               "clicks": 0,
-              "reach": 12,
+              "reach": 2,
               "frequency": 1.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.07,
+              "spend": 0.01,
               "roas": 0.0
             },
             "138564119980|1x1": {
@@ -971,25 +938,25 @@
             "138564124021|1x1": {
               "creativeName": "138564124021",
               "creativeSize": "1x1",
-              "impressions": 33,
+              "impressions": 24,
               "clicks": 0,
-              "reach": 28,
-              "frequency": 1.2,
+              "reach": 23,
+              "frequency": 1.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.2,
+              "spend": 0.14,
               "roas": 0.0
             },
             "138564515203|1x1": {
               "creativeName": "138564515203",
               "creativeSize": "1x1",
-              "impressions": 28,
+              "impressions": 24,
               "clicks": 0,
-              "reach": 27,
+              "reach": 23,
               "frequency": 1.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.17,
+              "spend": 0.14,
               "roas": 0.0
             },
             "138564583967|300x250": {
@@ -1007,25 +974,25 @@
             "138564583970|360x300": {
               "creativeName": "138564583970",
               "creativeSize": "360x300",
-              "impressions": 24,
+              "impressions": 30,
               "clicks": 0,
-              "reach": 12,
-              "frequency": 2.0,
+              "reach": 14,
+              "frequency": 2.1,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.14,
+              "spend": 0.18,
               "roas": 0.0
             },
             "138564583973|402x335": {
               "creativeName": "138564583973",
               "creativeSize": "402x335",
-              "impressions": 12,
+              "impressions": 18,
               "clicks": 0,
-              "reach": 6,
+              "reach": 9,
               "frequency": 2.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.07,
+              "spend": 0.11,
               "roas": 0.0
             },
             "138564583976|440x366": {
@@ -1055,25 +1022,25 @@
             "138564583982|360x300": {
               "creativeName": "138564583982",
               "creativeSize": "360x300",
-              "impressions": 18,
+              "impressions": 12,
               "clicks": 0,
-              "reach": 9,
+              "reach": 6,
               "frequency": 2.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.11,
+              "spend": 0.07,
               "roas": 0.0
             },
             "138564583985|402x335": {
               "creativeName": "138564583985",
               "creativeSize": "402x335",
-              "impressions": 18,
+              "impressions": 14,
               "clicks": 0,
-              "reach": 9,
+              "reach": 7,
               "frequency": 2.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.11,
+              "spend": 0.08,
               "roas": 0.0
             },
             "138564583988|440x366": {
@@ -1091,649 +1058,601 @@
           }
         },
         "4106213917": {
-          "impressions": 301342,
+          "impressions": 189224,
           "clicks": 0,
-          "reach": 131660,
+          "reach": 81189,
           "frequency": 2.3,
-          "attrOrders": 9,
-          "attrRevenue": 514.97,
-          "spend": 1808.05,
-          "roas": 0.28,
+          "attrOrders": 10,
+          "attrRevenue": 623.47,
+          "spend": 1135.34,
+          "roas": 0.55,
           "creatives": {
-            "138563126874|1x1": {
-              "creativeName": "138563126874",
-              "creativeSize": "1x1",
-              "impressions": 10021,
-              "clicks": 0,
-              "reach": 3765,
-              "frequency": 2.7,
-              "attrOrders": 0,
-              "attrRevenue": 17.13,
-              "spend": 60.13,
-              "roas": 0.28
-            },
-            "138564124021|1x1": {
-              "creativeName": "138564124021",
-              "creativeSize": "1x1",
-              "impressions": 53366,
-              "clicks": 0,
-              "reach": 26995,
-              "frequency": 2.0,
-              "attrOrders": 2,
-              "attrRevenue": 91.2,
-              "spend": 320.2,
-              "roas": 0.28
-            },
-            "138564515203|1x1": {
-              "creativeName": "138564515203",
-              "creativeSize": "1x1",
-              "impressions": 52720,
-              "clicks": 0,
-              "reach": 25375,
-              "frequency": 2.1,
-              "attrOrders": 2,
-              "attrRevenue": 90.1,
-              "spend": 316.32,
-              "roas": 0.28
-            },
             "138564583967|600x500": {
               "creativeName": "138564583967",
               "creativeSize": "600x500",
-              "impressions": 1441,
+              "impressions": 1351,
               "clicks": 0,
-              "reach": 828,
-              "frequency": 1.7,
+              "reach": 757,
+              "frequency": 1.8,
               "attrOrders": 0,
-              "attrRevenue": 2.46,
-              "spend": 8.65,
-              "roas": 0.28
+              "attrRevenue": 4.45,
+              "spend": 8.11,
+              "roas": 0.55
             },
             "138564583970|720x600": {
               "creativeName": "138564583970",
               "creativeSize": "720x600",
-              "impressions": 59817,
+              "impressions": 61646,
               "clicks": 0,
-              "reach": 32147,
-              "frequency": 1.9,
-              "attrOrders": 2,
-              "attrRevenue": 102.22,
-              "spend": 358.9,
-              "roas": 0.28
+              "reach": 31309,
+              "frequency": 2.0,
+              "attrOrders": 3,
+              "attrRevenue": 203.11,
+              "spend": 369.88,
+              "roas": 0.55
             },
             "138564583973|804x670": {
               "creativeName": "138564583973",
               "creativeSize": "804x670",
-              "impressions": 33853,
+              "impressions": 42829,
               "clicks": 0,
-              "reach": 19862,
-              "frequency": 1.7,
-              "attrOrders": 1,
-              "attrRevenue": 57.85,
-              "spend": 203.12,
-              "roas": 0.28
+              "reach": 22522,
+              "frequency": 1.9,
+              "attrOrders": 2,
+              "attrRevenue": 141.11,
+              "spend": 256.97,
+              "roas": 0.55
             },
             "138564583976|880x732": {
               "creativeName": "138564583976",
               "creativeSize": "880x732",
-              "impressions": 8191,
+              "impressions": 12072,
               "clicks": 0,
-              "reach": 4704,
-              "frequency": 1.7,
-              "attrOrders": 0,
-              "attrRevenue": 14.0,
-              "spend": 49.15,
-              "roas": 0.28
+              "reach": 6164,
+              "frequency": 2.0,
+              "attrOrders": 1,
+              "attrRevenue": 39.78,
+              "spend": 72.43,
+              "roas": 0.55
             },
             "138564583979|600x500": {
               "creativeName": "138564583979",
               "creativeSize": "600x500",
-              "impressions": 1770,
+              "impressions": 1563,
               "clicks": 0,
-              "reach": 1000,
+              "reach": 865,
               "frequency": 1.8,
               "attrOrders": 0,
-              "attrRevenue": 3.02,
-              "spend": 10.62,
-              "roas": 0.28
+              "attrRevenue": 5.15,
+              "spend": 9.38,
+              "roas": 0.55
             },
             "138564583982|720x600": {
               "creativeName": "138564583982",
               "creativeSize": "720x600",
-              "impressions": 38441,
+              "impressions": 31712,
               "clicks": 0,
-              "reach": 23922,
-              "frequency": 1.6,
-              "attrOrders": 1,
-              "attrRevenue": 65.69,
-              "spend": 230.65,
-              "roas": 0.28
+              "reach": 20506,
+              "frequency": 1.5,
+              "attrOrders": 2,
+              "attrRevenue": 104.49,
+              "spend": 190.27,
+              "roas": 0.55
             },
             "138564583985|804x670": {
               "creativeName": "138564583985",
               "creativeSize": "804x670",
-              "impressions": 35935,
+              "impressions": 31706,
               "clicks": 0,
-              "reach": 20663,
+              "reach": 19056,
               "frequency": 1.7,
-              "attrOrders": 1,
-              "attrRevenue": 61.41,
-              "spend": 215.61,
-              "roas": 0.28
+              "attrOrders": 2,
+              "attrRevenue": 104.47,
+              "spend": 190.24,
+              "roas": 0.55
             },
             "138564583988|880x732": {
               "creativeName": "138564583988",
               "creativeSize": "880x732",
-              "impressions": 5787,
+              "impressions": 6345,
               "clicks": 0,
-              "reach": 3650,
-              "frequency": 1.6,
+              "reach": 4144,
+              "frequency": 1.5,
               "attrOrders": 0,
-              "attrRevenue": 9.89,
-              "spend": 34.72,
-              "roas": 0.28
+              "attrRevenue": 20.91,
+              "spend": 38.07,
+              "roas": 0.55
             }
           }
         },
         "549443": {
-          "impressions": 53465,
+          "impressions": 105,
           "clicks": 0,
-          "reach": 16832,
-          "frequency": 3.2,
+          "reach": 51,
+          "frequency": 2.1,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 320.79,
+          "spend": 0.63,
           "roas": 0.0,
           "creatives": {
             "24838179|300x250": {
               "creativeName": "24838179",
               "creativeSize": "300x250",
-              "impressions": 511,
+              "impressions": 7,
               "clicks": 0,
-              "reach": 459,
-              "frequency": 1.1,
+              "reach": 5,
+              "frequency": 1.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 3.07,
+              "spend": 0.04,
               "roas": 0.0
             },
             "24855119|300x600": {
               "creativeName": "24855119",
               "creativeSize": "300x600",
-              "impressions": 96,
+              "impressions": 5,
               "clicks": 0,
-              "reach": 86,
-              "frequency": 1.1,
+              "reach": 3,
+              "frequency": 1.7,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.58,
+              "spend": 0.03,
               "roas": 0.0
             },
             "24864589|300x250": {
               "creativeName": "24864589",
               "creativeSize": "300x250",
-              "impressions": 590,
+              "impressions": 14,
               "clicks": 0,
-              "reach": 528,
-              "frequency": 1.1,
+              "reach": 10,
+              "frequency": 1.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 3.54,
+              "spend": 0.08,
               "roas": 0.0
             },
             "24864590|320x50": {
               "creativeName": "24864590",
               "creativeSize": "320x50",
-              "impressions": 11383,
+              "impressions": 4,
               "clicks": 0,
-              "reach": 6049,
-              "frequency": 1.9,
+              "reach": 2,
+              "frequency": 2.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 68.3,
+              "spend": 0.02,
               "roas": 0.0
             },
             "24864601|320x50": {
               "creativeName": "24864601",
               "creativeSize": "320x50",
-              "impressions": 11481,
+              "impressions": 12,
               "clicks": 0,
-              "reach": 6131,
-              "frequency": 1.9,
+              "reach": 9,
+              "frequency": 1.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 68.89,
+              "spend": 0.07,
               "roas": 0.0
             },
             "24893243|300x250": {
               "creativeName": "24893243",
               "creativeSize": "300x250",
-              "impressions": 539,
+              "impressions": 2,
               "clicks": 0,
-              "reach": 478,
-              "frequency": 1.1,
+              "reach": 1,
+              "frequency": 2.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 3.23,
+              "spend": 0.01,
               "roas": 0.0
             },
             "24893244|300x250": {
               "creativeName": "24893244",
               "creativeSize": "300x250",
-              "impressions": 927,
+              "impressions": 9,
               "clicks": 0,
-              "reach": 778,
-              "frequency": 1.2,
+              "reach": 5,
+              "frequency": 1.8,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 5.56,
+              "spend": 0.05,
               "roas": 0.0
             },
             "24893245|320x50": {
               "creativeName": "24893245",
               "creativeSize": "320x50",
-              "impressions": 21081,
-              "clicks": 0,
-              "reach": 9150,
-              "frequency": 2.3,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 126.49,
-              "roas": 0.0
-            },
-            "24915676|300x250": {
-              "creativeName": "24915676",
-              "creativeSize": "300x250",
-              "impressions": 241,
-              "clicks": 0,
-              "reach": 229,
-              "frequency": 1.1,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 1.45,
-              "roas": 0.0
-            },
-            "24915677|300x250": {
-              "creativeName": "24915677",
-              "creativeSize": "300x250",
-              "impressions": 240,
-              "clicks": 0,
-              "reach": 222,
-              "frequency": 1.1,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 1.44,
-              "roas": 0.0
-            },
-            "24915680|300x250": {
-              "creativeName": "24915680",
-              "creativeSize": "300x250",
-              "impressions": 257,
-              "clicks": 0,
-              "reach": 229,
-              "frequency": 1.1,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 1.54,
-              "roas": 0.0
-            },
-            "24915681|320x50": {
-              "creativeName": "24915681",
-              "creativeSize": "320x50",
-              "impressions": 3861,
-              "clicks": 0,
-              "reach": 2293,
-              "frequency": 1.7,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 23.17,
-              "roas": 0.0
-            },
-            "24915682|300x250": {
-              "creativeName": "24915682",
-              "creativeSize": "300x250",
-              "impressions": 20,
-              "clicks": 0,
-              "reach": 18,
-              "frequency": 1.1,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 0.12,
-              "roas": 0.0
-            },
-            "24915684|300x250": {
-              "creativeName": "24915684",
-              "creativeSize": "300x250",
               "impressions": 19,
               "clicks": 0,
-              "reach": 17,
-              "frequency": 1.1,
+              "reach": 8,
+              "frequency": 2.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
               "spend": 0.11,
               "roas": 0.0
             },
+            "24915676|300x250": {
+              "creativeName": "24915676",
+              "creativeSize": "300x250",
+              "impressions": 6,
+              "clicks": 0,
+              "reach": 4,
+              "frequency": 1.5,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.04,
+              "roas": 0.0
+            },
+            "24915677|300x250": {
+              "creativeName": "24915677",
+              "creativeSize": "300x250",
+              "impressions": 1,
+              "clicks": 0,
+              "reach": 1,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.01,
+              "roas": 0.0
+            },
+            "24915680|300x250": {
+              "creativeName": "24915680",
+              "creativeSize": "300x250",
+              "impressions": 3,
+              "clicks": 0,
+              "reach": 2,
+              "frequency": 1.5,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.02,
+              "roas": 0.0
+            },
+            "24915681|320x50": {
+              "creativeName": "24915681",
+              "creativeSize": "320x50",
+              "impressions": 4,
+              "clicks": 0,
+              "reach": 2,
+              "frequency": 2.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.02,
+              "roas": 0.0
+            },
+            "24915682|300x250": {
+              "creativeName": "24915682",
+              "creativeSize": "300x250",
+              "impressions": 6,
+              "clicks": 0,
+              "reach": 4,
+              "frequency": 1.5,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.04,
+              "roas": 0.0
+            },
             "24915686|300x250": {
               "creativeName": "24915686",
               "creativeSize": "300x250",
-              "impressions": 68,
+              "impressions": 6,
               "clicks": 0,
-              "reach": 53,
-              "frequency": 1.3,
+              "reach": 4,
+              "frequency": 1.5,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.41,
+              "spend": 0.04,
               "roas": 0.0
             },
             "24915690|320x50": {
               "creativeName": "24915690",
               "creativeSize": "320x50",
-              "impressions": 2151,
+              "impressions": 7,
               "clicks": 0,
-              "reach": 780,
-              "frequency": 2.8,
+              "reach": 5,
+              "frequency": 1.4,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 12.91,
+              "spend": 0.04,
               "roas": 0.0
             }
           }
         },
         "550057": {
-          "impressions": 13147,
+          "impressions": 38,
           "clicks": 0,
-          "reach": 5782,
-          "frequency": 2.3,
+          "reach": 22,
+          "frequency": 1.7,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 78.88,
+          "spend": 0.23,
           "roas": 0.0,
           "creatives": {
             "24843338|970x250": {
               "creativeName": "24843338",
               "creativeSize": "970x250",
-              "impressions": 244,
+              "impressions": 7,
               "clicks": 0,
-              "reach": 171,
-              "frequency": 1.4,
+              "reach": 3,
+              "frequency": 2.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 1.46,
+              "spend": 0.04,
               "roas": 0.0
             },
             "24843339|300x600": {
               "creativeName": "24843339",
               "creativeSize": "300x600",
-              "impressions": 664,
+              "impressions": 10,
               "clicks": 0,
-              "reach": 470,
-              "frequency": 1.4,
+              "reach": 5,
+              "frequency": 2.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 3.98,
+              "spend": 0.06,
               "roas": 0.0
             },
             "24843357|300x250": {
               "creativeName": "24843357",
               "creativeSize": "300x250",
-              "impressions": 6027,
+              "impressions": 13,
               "clicks": 0,
-              "reach": 3477,
-              "frequency": 1.7,
+              "reach": 11,
+              "frequency": 1.2,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 36.16,
+              "spend": 0.08,
               "roas": 0.0
             },
             "24843407|300x250": {
               "creativeName": "24843407",
               "creativeSize": "300x250",
-              "impressions": 6212,
+              "impressions": 8,
               "clicks": 0,
-              "reach": 3496,
-              "frequency": 1.8,
+              "reach": 6,
+              "frequency": 1.3,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 37.27,
+              "spend": 0.05,
               "roas": 0.0
             }
           }
         },
         "551668": {
-          "impressions": 7853,
+          "impressions": 11,
           "clicks": 0,
-          "reach": 4552,
-          "frequency": 1.7,
+          "reach": 11,
+          "frequency": 1.0,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 47.12,
+          "spend": 0.07,
           "roas": 0.0,
           "creatives": {
             "24860295|640x360": {
               "creativeName": "24860295",
               "creativeSize": "640x360",
-              "impressions": 7853,
+              "impressions": 11,
               "clicks": 0,
-              "reach": 4552,
-              "frequency": 1.7,
+              "reach": 11,
+              "frequency": 1.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 47.12,
+              "spend": 0.07,
               "roas": 0.0
             }
           }
         },
         "553589": {
-          "impressions": 336825,
+          "impressions": 272945,
           "clicks": 0,
-          "reach": 115340,
-          "frequency": 2.9,
+          "reach": 84638,
+          "frequency": 3.2,
           "attrOrders": 6,
-          "attrRevenue": 578.22,
-          "spend": 2020.95,
-          "roas": 0.29,
+          "attrRevenue": 578.24,
+          "spend": 1637.67,
+          "roas": 0.35,
           "creatives": {
             "24893230|300x250": {
               "creativeName": "24893230",
               "creativeSize": "300x250",
-              "impressions": 1341,
+              "impressions": 734,
               "clicks": 0,
-              "reach": 1269,
+              "reach": 692,
               "frequency": 1.1,
               "attrOrders": 0,
-              "attrRevenue": 2.3,
-              "spend": 8.05,
-              "roas": 0.29
+              "attrRevenue": 1.55,
+              "spend": 4.4,
+              "roas": 0.35
             },
             "24893232|300x600": {
               "creativeName": "24893232",
               "creativeSize": "300x600",
-              "impressions": 357,
+              "impressions": 253,
               "clicks": 0,
-              "reach": 298,
-              "frequency": 1.2,
+              "reach": 198,
+              "frequency": 1.3,
               "attrOrders": 0,
-              "attrRevenue": 0.61,
-              "spend": 2.14,
-              "roas": 0.29
+              "attrRevenue": 0.54,
+              "spend": 1.52,
+              "roas": 0.36
             },
             "24893233|300x250": {
               "creativeName": "24893233",
               "creativeSize": "300x250",
-              "impressions": 1522,
+              "impressions": 909,
               "clicks": 0,
-              "reach": 1415,
+              "reach": 835,
               "frequency": 1.1,
               "attrOrders": 0,
-              "attrRevenue": 2.61,
-              "spend": 9.13,
-              "roas": 0.29
+              "attrRevenue": 1.93,
+              "spend": 5.45,
+              "roas": 0.35
             },
             "24893234|320x50": {
               "creativeName": "24893234",
               "creativeSize": "320x50",
-              "impressions": 64659,
+              "impressions": 52741,
               "clicks": 0,
-              "reach": 36905,
+              "reach": 28575,
               "frequency": 1.8,
               "attrOrders": 1,
-              "attrRevenue": 111.0,
-              "spend": 387.95,
-              "roas": 0.29
+              "attrRevenue": 111.73,
+              "spend": 316.45,
+              "roas": 0.35
             },
             "24893235|320x50": {
               "creativeName": "24893235",
               "creativeSize": "320x50",
-              "impressions": 64775,
+              "impressions": 52890,
               "clicks": 0,
-              "reach": 36947,
+              "reach": 28701,
               "frequency": 1.8,
               "attrOrders": 1,
-              "attrRevenue": 111.2,
-              "spend": 388.65,
-              "roas": 0.29
+              "attrRevenue": 112.05,
+              "spend": 317.34,
+              "roas": 0.35
             },
             "24893237|300x250": {
               "creativeName": "24893237",
               "creativeSize": "300x250",
-              "impressions": 1426,
+              "impressions": 875,
               "clicks": 0,
-              "reach": 1313,
+              "reach": 784,
               "frequency": 1.1,
               "attrOrders": 0,
-              "attrRevenue": 2.45,
-              "spend": 8.56,
-              "roas": 0.29
+              "attrRevenue": 1.85,
+              "spend": 5.25,
+              "roas": 0.35
             },
             "24893238|300x250": {
               "creativeName": "24893238",
               "creativeSize": "300x250",
-              "impressions": 1439,
+              "impressions": 832,
               "clicks": 0,
-              "reach": 1350,
+              "reach": 780,
               "frequency": 1.1,
               "attrOrders": 0,
-              "attrRevenue": 2.47,
-              "spend": 8.63,
-              "roas": 0.29
+              "attrRevenue": 1.76,
+              "spend": 4.99,
+              "roas": 0.35
             },
             "24893241|320x50": {
               "creativeName": "24893241",
               "creativeSize": "320x50",
-              "impressions": 64549,
+              "impressions": 52715,
               "clicks": 0,
-              "reach": 36837,
+              "reach": 28635,
               "frequency": 1.8,
               "attrOrders": 1,
-              "attrRevenue": 110.81,
-              "spend": 387.29,
-              "roas": 0.29
+              "attrRevenue": 111.68,
+              "spend": 316.29,
+              "roas": 0.35
             },
             "24914740|320x50": {
               "creativeName": "24914740",
               "creativeSize": "320x50",
-              "impressions": 64658,
+              "impressions": 52890,
               "clicks": 0,
-              "reach": 36954,
-              "frequency": 1.7,
+              "reach": 28744,
+              "frequency": 1.8,
               "attrOrders": 1,
-              "attrRevenue": 111.0,
-              "spend": 387.95,
-              "roas": 0.29
+              "attrRevenue": 112.05,
+              "spend": 317.34,
+              "roas": 0.35
             },
             "24914742|320x50": {
               "creativeName": "24914742",
               "creativeSize": "320x50",
-              "impressions": 68996,
+              "impressions": 56308,
               "clicks": 0,
-              "reach": 38472,
-              "frequency": 1.8,
+              "reach": 29877,
+              "frequency": 1.9,
               "attrOrders": 2,
-              "attrRevenue": 118.45,
-              "spend": 413.98,
-              "roas": 0.29
+              "attrRevenue": 119.29,
+              "spend": 337.85,
+              "roas": 0.35
             },
             "24914743|300x250": {
               "creativeName": "24914743",
               "creativeSize": "300x250",
-              "impressions": 1417,
+              "impressions": 812,
               "clicks": 0,
-              "reach": 1337,
+              "reach": 757,
               "frequency": 1.1,
               "attrOrders": 0,
-              "attrRevenue": 2.43,
-              "spend": 8.5,
-              "roas": 0.29
+              "attrRevenue": 1.72,
+              "spend": 4.87,
+              "roas": 0.35
             },
             "24914748|300x250": {
               "creativeName": "24914748",
               "creativeSize": "300x250",
-              "impressions": 1686,
+              "impressions": 986,
               "clicks": 0,
-              "reach": 1563,
+              "reach": 909,
               "frequency": 1.1,
               "attrOrders": 0,
-              "attrRevenue": 2.89,
-              "spend": 10.12,
-              "roas": 0.29
+              "attrRevenue": 2.09,
+              "spend": 5.92,
+              "roas": 0.35
             }
           }
         },
         "553591": {
-          "impressions": 99502,
+          "impressions": 81538,
           "clicks": 0,
-          "reach": 47103,
+          "reach": 37964,
           "frequency": 2.1,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 597.01,
+          "spend": 489.23,
           "roas": 0.0,
           "creatives": {
             "24893260|970x250": {
               "creativeName": "24893260",
               "creativeSize": "970x250",
-              "impressions": 3118,
+              "impressions": 2654,
               "clicks": 0,
-              "reach": 2014,
-              "frequency": 1.5,
+              "reach": 1708,
+              "frequency": 1.6,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 18.71,
+              "spend": 15.92,
               "roas": 0.0
             },
             "24893262|300x600": {
               "creativeName": "24893262",
               "creativeSize": "300x600",
-              "impressions": 5413,
+              "impressions": 4665,
               "clicks": 0,
-              "reach": 3274,
+              "reach": 2761,
               "frequency": 1.7,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 32.48,
+              "spend": 27.99,
               "roas": 0.0
             },
             "24893264|300x250": {
               "creativeName": "24893264",
               "creativeSize": "300x250",
-              "impressions": 44105,
+              "impressions": 36242,
               "clicks": 0,
-              "reach": 27012,
-              "frequency": 1.6,
+              "reach": 21838,
+              "frequency": 1.7,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 264.63,
+              "spend": 217.45,
               "roas": 0.0
             },
             "24893266|300x250": {
               "creativeName": "24893266",
               "creativeSize": "300x250",
-              "impressions": 46866,
+              "impressions": 37977,
               "clicks": 0,
-              "reach": 28144,
+              "reach": 22660,
               "frequency": 1.7,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 281.2,
+              "spend": 227.86,
               "roas": 0.0
             }
           }
@@ -1830,14 +1749,14 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 812344,
+      "impressions": 544047,
       "clicks": 0,
-      "reach": 310919,
-      "frequency": 2.61,
+      "reach": 198085,
+      "frequency": 2.75,
       "attrOrders": 12,
       "attrRevenue": 839.47,
-      "spend": 4874.09,
-      "roas": 0.17
+      "spend": 3264.31,
+      "roas": 0.26
     }
   },
   "dailyData": {
@@ -6458,26 +6377,106 @@
       }
     },
     "2026-08-04": {
-      "impressions": 1246,
+      "impressions": 17877,
       "clicks": 0,
-      "purchases": 4,
-      "revenue": 417.42,
+      "purchases": 10,
+      "revenue": 1029.28,
       "conversions": 1,
       "attrRevenue": 12.0,
       "newOrders": 0,
       "returningOrders": 3,
-      "nyPurchases": 1,
+      "nyPurchases": 2,
       "trafficSources": {
-        "Direct": 1,
+        "Direct": 7,
         "Affiliate": 3
       },
       "placements": {
         "6046": {
-          "impressions": 1233,
+          "impressions": 17853,
           "clicks": 0
         },
         "6047": {
-          "impressions": 13,
+          "impressions": 24,
+          "clicks": 0
+        }
+      }
+    },
+    "2026-08-05": {
+      "impressions": 17186,
+      "clicks": 0,
+      "purchases": 36,
+      "revenue": 3604.12,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 0,
+      "returningOrders": 23,
+      "nyPurchases": 4,
+      "trafficSources": {
+        "Direct": 12,
+        "Affiliate": 23,
+        "Paid (rokt)": 1
+      },
+      "placements": {
+        "6046": {
+          "impressions": 17162,
+          "clicks": 0
+        },
+        "6047": {
+          "impressions": 24,
+          "clicks": 0
+        }
+      }
+    },
+    "2026-08-06": {
+      "impressions": 14612,
+      "clicks": 0,
+      "purchases": 71,
+      "revenue": 7235.17,
+      "conversions": 1,
+      "attrRevenue": 108.48,
+      "newOrders": 0,
+      "returningOrders": 60,
+      "nyPurchases": 14,
+      "trafficSources": {
+        "Direct": 11,
+        "Direct / Internal": 2,
+        "Google Ads": 2,
+        "Affiliate": 56
+      },
+      "placements": {
+        "6046": {
+          "impressions": 14598,
+          "clicks": 0
+        },
+        "6047": {
+          "impressions": 14,
+          "clicks": 0
+        }
+      }
+    },
+    "2026-08-07": {
+      "impressions": 906,
+      "clicks": 0,
+      "purchases": 29,
+      "revenue": 3142.45,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 0,
+      "returningOrders": 28,
+      "nyPurchases": 1,
+      "trafficSources": {
+        "Affiliate": 26,
+        "Referral": 1,
+        "Direct": 1,
+        "Direct / Internal": 1
+      },
+      "placements": {
+        "6046": {
+          "impressions": 904,
+          "clicks": 0
+        },
+        "6047": {
+          "impressions": 2,
           "clicks": 0
         }
       }
@@ -33152,6 +33151,60 @@
       "captureSource": "Browser tag"
     },
     {
+      "orderId": "3000747",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T03:15:53",
+      "region": "IL",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "1039913",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T02:33:40",
+      "region": "WI",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "1375170",
+      "revenue": 97.0,
+      "date": "2026-08-04",
+      "time": "2026-08-04T23:08:26",
+      "region": "CA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000735",
+      "revenue": 102.96,
+      "date": "2026-08-04",
+      "time": "2026-08-04T21:27:04",
+      "region": "NY",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "2953779",
+      "revenue": 127.95,
+      "date": "2026-08-04",
+      "time": "2026-08-04T19:38:31",
+      "region": "MO",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000688",
+      "revenue": 66.99,
+      "date": "2026-08-04",
+      "time": "2026-08-04T18:08:32",
+      "region": "KY",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
       "orderId": "3000726",
       "revenue": 91.98,
       "date": "2026-08-04",
@@ -33185,6 +33238,1230 @@
       "time": "2026-08-04T11:56:37",
       "region": "NC",
       "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000890",
+      "revenue": 12.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T03:52:32",
+      "region": "CA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000857",
+      "revenue": 12.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T01:51:12",
+      "region": "CT",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000533",
+      "revenue": 96.84,
+      "date": "2026-08-06",
+      "time": "2026-08-06T00:40:08",
+      "region": "OK",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000836",
+      "revenue": 31.5,
+      "date": "2026-08-05",
+      "time": "2026-08-05T22:04:26",
+      "region": "CT",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000822",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T21:10:04",
+      "region": "NY",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000818",
+      "revenue": 84.99,
+      "date": "2026-08-05",
+      "time": "2026-08-05T20:33:05",
+      "region": "IN",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000817",
+      "revenue": 12.0,
+      "date": "2026-08-05",
+      "time": "2026-08-05T20:32:19",
+      "region": "MA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000799",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T17:46:38",
+      "region": "NY",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000797",
+      "revenue": 117.5,
+      "date": "2026-08-05",
+      "time": "2026-08-05T17:27:19",
+      "region": "NC",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000172",
+      "revenue": 146.0,
+      "date": "2026-08-05",
+      "time": "2026-08-05T17:08:56",
+      "region": "MO",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000794",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T16:00:15",
+      "region": "NY",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000792",
+      "revenue": 72.5,
+      "date": "2026-08-05",
+      "time": "2026-08-05T15:17:12",
+      "region": "NY",
+      "trafficSource": "Paid (rokt)",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000789",
+      "revenue": 129.99,
+      "date": "2026-08-05",
+      "time": "2026-08-05T14:39:19",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000788",
+      "revenue": 12.0,
+      "date": "2026-08-05",
+      "time": "2026-08-05T13:23:24",
+      "region": "CA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000787",
+      "revenue": 273.28,
+      "date": "2026-08-05",
+      "time": "2026-08-05T12:27:02",
+      "region": "WI",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000783",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T08:11:39",
+      "region": "MD",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000782",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T08:09:15",
+      "region": "MD",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000781",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:54:35",
+      "region": "MD",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000780",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:51:58",
+      "region": "MD",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000779",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:35:44",
+      "region": "CT",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000778",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:30:07",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000777",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:27:48",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000776",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:21:35",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000775",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:19:33",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000774",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:09:51",
+      "region": "MI",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000773",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:07:27",
+      "region": "MI",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000772",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:02:52",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000771",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T07:00:57",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000770",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T06:56:02",
+      "region": "PA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000769",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T06:54:04",
+      "region": "PA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000768",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T06:46:47",
+      "region": "PA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000767",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T06:43:59",
+      "region": "PA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000766",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T05:58:35",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000765",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T05:56:29",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000764",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T05:52:06",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000763",
+      "revenue": 108.48,
+      "date": "2026-08-05",
+      "time": "2026-08-05T05:48:22",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001053",
+      "revenue": 146.0,
+      "date": "2026-08-07",
+      "time": "2026-08-07T03:08:48",
+      "region": "MI",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "2948391",
+      "revenue": 197.34,
+      "date": "2026-08-07",
+      "time": "2026-08-07T02:13:54",
+      "region": "AZ",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3001052",
+      "revenue": 83.49,
+      "date": "2026-08-07",
+      "time": "2026-08-07T01:29:39",
+      "region": "VA",
+      "trafficSource": "Direct / Internal",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "2985014",
+      "revenue": 72.5,
+      "date": "2026-08-06",
+      "time": "2026-08-06T23:16:51",
+      "region": "NC",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "745061",
+      "revenue": 72.5,
+      "date": "2026-08-06",
+      "time": "2026-08-06T23:09:41",
+      "region": "AZ",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3001048",
+      "revenue": 12.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T22:23:02",
+      "region": "GA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000743",
+      "revenue": 0.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T20:41:08",
+      "region": "MI",
+      "trafficSource": "Direct / Internal",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "329782",
+      "revenue": 117.5,
+      "date": "2026-08-06",
+      "time": "2026-08-06T20:18:55",
+      "region": "CA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3001018",
+      "revenue": 105.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T19:09:14",
+      "region": "CA",
+      "trafficSource": "Google Ads",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001002",
+      "revenue": 101.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T16:37:19",
+      "region": "NY",
+      "trafficSource": "Google Ads",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001001",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T15:52:08",
+      "region": "IL",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000997",
+      "revenue": 12.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T15:19:53",
+      "region": "PA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000996",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:58:42",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000995",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:57:14",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000994",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:53:17",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000993",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:48:26",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000991",
+      "revenue": 12.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:47:46",
+      "region": "CO",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000992",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:44:02",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000990",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:42:37",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000989",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:37:33",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000988",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:35:59",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000986",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:31:15",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000985",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:29:52",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000984",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:26:17",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000983",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:24:57",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000982",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:20:13",
+      "region": "IL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000980",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:14:54",
+      "region": "IL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000979",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:13:33",
+      "region": "IL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000978",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:09:00",
+      "region": "TN",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000977",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:07:42",
+      "region": "TN",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000976",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:04:24",
+      "region": "TX",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000975",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:02:57",
+      "region": "TX",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000972",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T14:00:06",
+      "region": "TX",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000971",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T13:58:54",
+      "region": "TX",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000968",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T13:33:20",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000966",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T13:31:33",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000956",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T11:12:15",
+      "region": "NV",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000955",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T11:08:00",
+      "region": "ID",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000954",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T11:06:39",
+      "region": "ID",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000951",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T11:02:22",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000950",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T10:56:52",
+      "region": "GA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000948",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T10:55:25",
+      "region": "GA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000946",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T10:50:40",
+      "region": "IL",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3000945",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T10:27:13",
+      "region": "IL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000943",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:57:25",
+      "region": "DC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000942",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:55:12",
+      "region": "DC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000941",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:51:36",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000939",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:50:02",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000940",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:49:59",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000938",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:48:11",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000937",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:45:48",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000936",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:43:53",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000935",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:43:05",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000934",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:41:36",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000933",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:39:17",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000932",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:38:07",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000923",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:37:14",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000931",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:36:09",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000929",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:31:00",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000927",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:29:11",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000925",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:24:14",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000924",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:22:16",
+      "region": "CA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000922",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:17:15",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000920",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:15:08",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000921",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:14:45",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000918",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:10:04",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000917",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:07:59",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000915",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T09:03:54",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000911",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T08:48:43",
+      "region": "CO",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000910",
+      "revenue": 108.48,
+      "date": "2026-08-06",
+      "time": "2026-08-06T08:45:46",
+      "region": "CO",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3000187",
+      "revenue": 12.0,
+      "date": "2026-08-06",
+      "time": "2026-08-06T04:21:21",
+      "region": "CO",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3001087",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:29:54",
+      "region": "NY",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001088",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:29:35",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001086",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:28:14",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001084",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:24:53",
+      "region": "GA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001082",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:20:49",
+      "region": "CT",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001081",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:19:28",
+      "region": "CT",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001080",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:17:04",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001079",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:15:49",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001078",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:13:09",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001077",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:11:38",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001075",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T07:00:02",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001074",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:58:50",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001073",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:55:54",
+      "region": "HI",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001072",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:54:34",
+      "region": "HI",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001071",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:51:53",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001070",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:50:20",
+      "region": "FL",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001069",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:49:15",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001068",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:47:42",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001067",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:44:18",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001066",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:42:24",
+      "region": "MA",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001065",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:39:56",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001064",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:38:07",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001063",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:26:41",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001062",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:25:07",
+      "region": "NC",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001061",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:21:11",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001060",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T06:19:18",
+      "region": "NJ",
+      "trafficSource": "Affiliate",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "3001057",
+      "revenue": 101.5,
+      "date": "2026-08-07",
+      "time": "2026-08-07T04:38:37",
+      "region": "CO",
+      "trafficSource": "Referral",
+      "captureSource": "Browser tag"
+    },
+    {
+      "orderId": "636194",
+      "revenue": 108.48,
+      "date": "2026-08-07",
+      "time": "2026-08-07T04:12:14",
+      "region": "CA",
+      "trafficSource": "Direct",
+      "captureSource": "Server-side (Stape)"
+    },
+    {
+      "orderId": "3001055",
+      "revenue": 111.99,
+      "date": "2026-08-07",
+      "time": "2026-08-07T04:10:39",
+      "region": "CA",
+      "trafficSource": "Direct / Internal",
       "captureSource": "Browser tag"
     }
   ]
