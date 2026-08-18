@@ -4,7 +4,7 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-08-18T07:21:59.690178Z",
+  "lastUpdated": "2026-08-18T07:44:03.684500Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-08-18"
@@ -297,15 +297,15 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 10219361,
+    "impressions": 10219473,
     "clicks": 1731,
-    "reach": 66063,
-    "frequency": 154.69,
+    "reach": 66144,
+    "frequency": 154.5,
     "attrOrders": 32,
     "attrRevenue": 2426.97,
-    "spend": 1140.3,
+    "spend": 1140.97,
     "roas": 2.13,
-    "costPerSubscription": 35.63,
+    "costPerSubscription": 35.66,
     "ctVisits": 0,
     "vtVisits": 0,
     "stackadapt": {
@@ -943,13 +943,13 @@
   },
   "channels": {
     "display": {
-      "impressions": 190050,
+      "impressions": 190162,
       "clicks": 0,
-      "reach": 66063,
+      "reach": 66144,
       "attrOrders": 28,
       "attrRevenue": 2088.11,
       "cpm": 6.0,
-      "spend": 1140.3,
+      "spend": 1140.97,
       "roas": 1.83
     },
     "video": {
@@ -1123,69 +1123,69 @@
           }
         },
         "4106213917": {
-          "impressions": 189791,
+          "impressions": 189832,
           "clicks": 0,
-          "reach": 65953,
+          "reach": 65967,
           "frequency": 2.9,
           "attrOrders": 14,
-          "attrRevenue": 970.92,
-          "spend": 1138.75,
+          "attrRevenue": 970.91,
+          "spend": 1138.99,
           "roas": 0.85,
           "creatives": {
             "138564583967|600x500": {
               "creativeName": "138564583967",
               "creativeSize": "600x500",
-              "impressions": 1073,
+              "impressions": 1077,
               "clicks": 0,
-              "reach": 500,
+              "reach": 502,
               "frequency": 2.1,
               "attrOrders": 0,
-              "attrRevenue": 5.49,
-              "spend": 6.44,
+              "attrRevenue": 5.51,
+              "spend": 6.46,
               "roas": 0.85
             },
             "138564583970|720x600": {
               "creativeName": "138564583970",
               "creativeSize": "720x600",
-              "impressions": 58348,
+              "impressions": 58366,
               "clicks": 0,
-              "reach": 23854,
+              "reach": 23860,
               "frequency": 2.4,
               "attrOrders": 4,
-              "attrRevenue": 298.49,
-              "spend": 350.09,
+              "attrRevenue": 298.52,
+              "spend": 350.2,
               "roas": 0.85
             },
             "138564583973|804x670": {
               "creativeName": "138564583973",
               "creativeSize": "804x670",
-              "impressions": 60305,
+              "impressions": 60308,
               "clicks": 0,
-              "reach": 25169,
+              "reach": 25170,
               "frequency": 2.4,
               "attrOrders": 4,
-              "attrRevenue": 308.5,
-              "spend": 361.83,
+              "attrRevenue": 308.45,
+              "spend": 361.85,
               "roas": 0.85
             },
             "138564583976|880x732": {
               "creativeName": "138564583976",
               "creativeSize": "880x732",
-              "impressions": 21922,
+              "impressions": 21932,
               "clicks": 0,
-              "reach": 9123,
+              "reach": 9126,
               "frequency": 2.4,
               "attrOrders": 2,
-              "attrRevenue": 112.15,
-              "spend": 131.53,
+              "attrRevenue": 112.17,
+              "spend": 131.59,
               "roas": 0.85
             },
             "138564583979|600x500": {
               "creativeName": "138564583979",
               "creativeSize": "600x500",
-              "impressions": 1016,
+              "impressions": 1017,
               "clicks": 0,
-              "reach": 476,
+              "reach": 477,
               "frequency": 2.1,
               "attrOrders": 0,
               "attrRevenue": 5.2,
@@ -1195,13 +1195,13 @@
             "138564583982|720x600": {
               "creativeName": "138564583982",
               "creativeSize": "720x600",
-              "impressions": 19354,
+              "impressions": 19357,
               "clicks": 0,
-              "reach": 13003,
+              "reach": 13006,
               "frequency": 1.5,
               "attrOrders": 1,
-              "attrRevenue": 99.01,
-              "spend": 116.12,
+              "attrRevenue": 99.0,
+              "spend": 116.14,
               "roas": 0.85
             },
             "138564583985|804x670": {
@@ -1212,20 +1212,20 @@
               "reach": 13679,
               "frequency": 1.5,
               "attrOrders": 2,
-              "attrRevenue": 103.58,
+              "attrRevenue": 103.56,
               "spend": 121.49,
               "roas": 0.85
             },
             "138564583988|880x732": {
               "creativeName": "138564583988",
               "creativeSize": "880x732",
-              "impressions": 7525,
+              "impressions": 7527,
               "clicks": 0,
-              "reach": 5028,
+              "reach": 5030,
               "frequency": 1.5,
               "attrOrders": 1,
               "attrRevenue": 38.5,
-              "spend": 45.15,
+              "spend": 45.16,
               "roas": 0.85
             }
           }
@@ -1639,25 +1639,85 @@
           }
         },
         "MNTN_PC_SALES_TESTCAMPAIGN": {
-          "impressions": 10,
+          "impressions": 81,
           "clicks": 0,
-          "reach": 10,
-          "frequency": 1.0,
+          "reach": 77,
+          "frequency": 1.1,
           "attrOrders": 0,
           "attrRevenue": 0.0,
-          "spend": 0.06,
+          "spend": 0.49,
           "roas": 0.0,
           "creatives": {
-            "SarahM01|6442081": {
-              "creativeName": "SarahM01",
-              "creativeSize": "6442081",
-              "impressions": 10,
+            "FylloCTV01|6442090": {
+              "creativeName": "FylloCTV01",
+              "creativeSize": "6442090",
+              "impressions": 1,
               "clicks": 0,
-              "reach": 10,
+              "reach": 1,
               "frequency": 1.0,
               "attrOrders": 0,
               "attrRevenue": 0.0,
-              "spend": 0.06,
+              "spend": 0.01,
+              "roas": 0.0
+            },
+            "FylloCTV01|6442091": {
+              "creativeName": "FylloCTV01",
+              "creativeSize": "6442091",
+              "impressions": 15,
+              "clicks": 0,
+              "reach": 14,
+              "frequency": 1.1,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.09,
+              "roas": 0.0
+            },
+            "PhluantCTV01|6442087": {
+              "creativeName": "PhluantCTV01",
+              "creativeSize": "6442087",
+              "impressions": 14,
+              "clicks": 0,
+              "reach": 14,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.08,
+              "roas": 0.0
+            },
+            "SarahM01|6442081": {
+              "creativeName": "SarahM01",
+              "creativeSize": "6442081",
+              "impressions": 11,
+              "clicks": 0,
+              "reach": 11,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.07,
+              "roas": 0.0
+            },
+            "SarahM01|6442082": {
+              "creativeName": "SarahM01",
+              "creativeSize": "6442082",
+              "impressions": 4,
+              "clicks": 0,
+              "reach": 4,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.02,
+              "roas": 0.0
+            },
+            "SarahM01|6442083": {
+              "creativeName": "SarahM01",
+              "creativeSize": "6442083",
+              "impressions": 36,
+              "clicks": 0,
+              "reach": 36,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.22,
               "roas": 0.0
             }
           }
@@ -1748,13 +1808,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 190050,
+      "impressions": 190162,
       "clicks": 0,
-      "reach": 66063,
-      "frequency": 2.88,
+      "reach": 66144,
+      "frequency": 2.87,
       "attrOrders": 14,
       "attrRevenue": 1074.45,
-      "spend": 1140.3,
+      "spend": 1140.97,
       "roas": 0.94
     }
   },
@@ -6769,7 +6829,7 @@
       }
     },
     "2026-08-18": {
-      "impressions": 846,
+      "impressions": 958,
       "clicks": 0,
       "purchases": 1,
       "revenue": 129.5,
@@ -6783,11 +6843,11 @@
       },
       "placements": {
         "6046": {
-          "impressions": 844,
+          "impressions": 885,
           "clicks": 0
         },
         "6051": {
-          "impressions": 2,
+          "impressions": 73,
           "clicks": 0
         }
       }
