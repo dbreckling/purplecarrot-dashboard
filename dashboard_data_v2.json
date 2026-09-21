@@ -4,7 +4,7 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-09-21T08:14:35.363223Z",
+  "lastUpdated": "2026-09-21T10:16:16.299548Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-09-21"
@@ -297,13 +297,13 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 11217084,
+    "impressions": 11217088,
     "clicks": 1731,
-    "reach": 94794,
+    "reach": 94796,
     "frequency": 118.33,
     "attrOrders": 32,
     "attrRevenue": 2426.97,
-    "spend": 633.54,
+    "spend": 633.56,
     "roas": 3.83,
     "costPerSubscription": 19.8,
     "ctVisits": 0,
@@ -881,13 +881,13 @@
   },
   "channels": {
     "display": {
-      "impressions": 105590,
+      "impressions": 105594,
       "clicks": 0,
-      "reach": 94794,
+      "reach": 94796,
       "attrOrders": 28,
       "attrRevenue": 2088.11,
       "cpm": 6.0,
-      "spend": 633.54,
+      "spend": 633.56,
       "roas": 3.3
     },
     "video": {
@@ -941,14 +941,14 @@
           }
         },
         "0": {
-          "impressions": 14,
+          "impressions": 18,
           "clicks": 0,
-          "reach": 7,
+          "reach": 9,
           "frequency": 2.0,
           "attrOrders": 14,
           "attrRevenue": 970.92,
-          "spend": 0.08,
-          "roas": 12136.5,
+          "spend": 0.11,
+          "roas": 8826.55,
           "creatives": {
             "138564583970|360x300": {
               "creativeName": "138564583970",
@@ -958,9 +958,9 @@
               "reach": 1,
               "frequency": 2.0,
               "attrOrders": 2,
-              "attrRevenue": 138.7,
+              "attrRevenue": 107.88,
               "spend": 0.01,
-              "roas": 13870.0
+              "roas": 10788.0
             },
             "138564583973|402x335": {
               "creativeName": "138564583973",
@@ -969,10 +969,10 @@
               "clicks": 0,
               "reach": 2,
               "frequency": 2.0,
-              "attrOrders": 4,
-              "attrRevenue": 277.41,
+              "attrOrders": 3,
+              "attrRevenue": 215.76,
               "spend": 0.02,
-              "roas": 13870.5
+              "roas": 10788.0
             },
             "138564583976|440x366": {
               "creativeName": "138564583976",
@@ -981,10 +981,10 @@
               "clicks": 0,
               "reach": 2,
               "frequency": 2.0,
-              "attrOrders": 4,
-              "attrRevenue": 277.41,
+              "attrOrders": 3,
+              "attrRevenue": 215.76,
               "spend": 0.02,
-              "roas": 13870.5
+              "roas": 10788.0
             },
             "138564583979|300x250": {
               "creativeName": "138564583979",
@@ -993,10 +993,22 @@
               "clicks": 0,
               "reach": 1,
               "frequency": 2.0,
-              "attrOrders": 2,
-              "attrRevenue": 138.7,
+              "attrOrders": 1,
+              "attrRevenue": 107.88,
               "spend": 0.01,
-              "roas": 13870.0
+              "roas": 10788.0
+            },
+            "138564583982|360x300": {
+              "creativeName": "138564583982",
+              "creativeSize": "360x300",
+              "impressions": 4,
+              "clicks": 0,
+              "reach": 2,
+              "frequency": 2.0,
+              "attrOrders": 3,
+              "attrRevenue": 215.76,
+              "spend": 0.02,
+              "roas": 10788.0
             },
             "138564583988|440x366": {
               "creativeName": "138564583988",
@@ -1006,9 +1018,9 @@
               "reach": 1,
               "frequency": 2.0,
               "attrOrders": 2,
-              "attrRevenue": 138.7,
+              "attrRevenue": 107.88,
               "spend": 0.01,
-              "roas": 13870.0
+              "roas": 10788.0
             }
           }
         },
@@ -1470,13 +1482,13 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 105590,
+      "impressions": 105594,
       "clicks": 0,
-      "reach": 94794,
+      "reach": 94796,
       "frequency": 1.11,
       "attrOrders": 14,
       "attrRevenue": 1074.45,
-      "spend": 633.54,
+      "spend": 633.56,
       "roas": 1.7
     }
   },
@@ -7299,6 +7311,24 @@
       "trafficSources": {},
       "placements": {
         "6047": {
+          "impressions": 4,
+          "clicks": 0
+        }
+      }
+    },
+    "2026-09-21": {
+      "impressions": 4,
+      "clicks": 0,
+      "purchases": 0,
+      "revenue": 0.0,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 0,
+      "returningOrders": 0,
+      "nyPurchases": 0,
+      "trafficSources": {},
+      "placements": {
+        "6046": {
           "impressions": 4,
           "clicks": 0
         }
