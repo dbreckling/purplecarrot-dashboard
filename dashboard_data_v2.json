@@ -4,7 +4,7 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-10-07T13:39:36.144728Z",
+  "lastUpdated": "2026-10-07T14:10:00.187820Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-10-07"
@@ -297,14 +297,14 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 11217107,
+    "impressions": 11217114,
     "clicks": 1732,
-    "reach": 7,
-    "frequency": 1602443.86,
+    "reach": 14,
+    "frequency": 801222.43,
     "attrOrders": 32,
     "attrRevenue": 2426.97,
-    "spend": 0.08,
-    "roas": 30337.12,
+    "spend": 0.13,
+    "roas": 18669.0,
     "costPerSubscription": 0.0,
     "ctVisits": 0,
     "vtVisits": 0,
@@ -881,14 +881,14 @@
   },
   "channels": {
     "display": {
-      "impressions": 14,
+      "impressions": 21,
       "clicks": 0,
-      "reach": 7,
+      "reach": 14,
       "attrOrders": 28,
       "attrRevenue": 2088.11,
       "cpm": 6.0,
-      "spend": 0.08,
-      "roas": 26101.38
+      "spend": 0.13,
+      "roas": 16062.38
     },
     "video": {
       "impressions": 0,
@@ -916,6 +916,30 @@
       "label": "Display",
       "cpm": 6.0,
       "campaigns": {
+        "%ebuy!": {
+          "impressions": 4,
+          "clicks": 0,
+          "reach": 4,
+          "frequency": 1.0,
+          "attrOrders": 0,
+          "attrRevenue": 0.0,
+          "spend": 0.02,
+          "roas": 0.0,
+          "creatives": {
+            "%ecid!|%%WIDTH%%x%%HEIGHT%%": {
+              "creativeName": "%ecid!",
+              "creativeSize": "%%WIDTH%%x%%HEIGHT%%",
+              "impressions": 4,
+              "clicks": 0,
+              "reach": 4,
+              "frequency": 1.0,
+              "attrOrders": 0,
+              "attrRevenue": 0.0,
+              "spend": 0.02,
+              "roas": 0.0
+            }
+          }
+        },
         "0": {
           "impressions": 12,
           "clicks": 0,
@@ -981,8 +1005,8 @@
           "clicks": 0,
           "reach": 0,
           "frequency": 0,
-          "attrOrders": 14,
-          "attrRevenue": 1117.19,
+          "attrOrders": 6,
+          "attrRevenue": 578.23,
           "spend": 0.0,
           "roas": 0,
           "creatives": {
@@ -993,8 +1017,8 @@
               "clicks": 0,
               "reach": 0,
               "frequency": 0,
-              "attrOrders": 14,
-              "attrRevenue": 1117.19,
+              "attrOrders": 6,
+              "attrRevenue": 578.23,
               "spend": 0.0,
               "roas": 0
             }
@@ -1021,6 +1045,30 @@
               "attrRevenue": 0.0,
               "spend": 0.01,
               "roas": 0.0
+            }
+          }
+        },
+        "{SA_CAMPAIGN_NAME}": {
+          "impressions": 3,
+          "clicks": 0,
+          "reach": 3,
+          "frequency": 1.0,
+          "attrOrders": 8,
+          "attrRevenue": 538.96,
+          "spend": 0.02,
+          "roas": 26948.0,
+          "creatives": {
+            "{SA_CREATIVE_NAME}|{SA_WIDTH}x{SA_HEIGHT}": {
+              "creativeName": "{SA_CREATIVE_NAME}",
+              "creativeSize": "{SA_WIDTH}x{SA_HEIGHT}",
+              "impressions": 3,
+              "clicks": 0,
+              "reach": 3,
+              "frequency": 1.0,
+              "attrOrders": 8,
+              "attrRevenue": 538.96,
+              "spend": 0.02,
+              "roas": 26948.0
             }
           }
         }
@@ -1062,14 +1110,14 @@
       "label": "Campaign 4079",
       "campaignId": "4079",
       "campaignName": "Campaign 4079",
-      "impressions": 14,
+      "impressions": 21,
       "clicks": 0,
-      "reach": 7,
-      "frequency": 2.0,
+      "reach": 14,
+      "frequency": 1.5,
       "attrOrders": 14,
       "attrRevenue": 1074.45,
-      "spend": 0.08,
-      "roas": 13430.62
+      "spend": 0.13,
+      "roas": 8265.0
     }
   },
   "dailyData": {
@@ -7030,6 +7078,28 @@
         },
         "6051": {
           "impressions": 1,
+          "clicks": 0
+        }
+      }
+    },
+    "2026-10-07": {
+      "impressions": 7,
+      "clicks": 0,
+      "purchases": 0,
+      "revenue": 0.0,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 0,
+      "returningOrders": 0,
+      "nyPurchases": 0,
+      "trafficSources": {},
+      "placements": {
+        "6046": {
+          "impressions": 4,
+          "clicks": 0
+        },
+        "6010": {
+          "impressions": 3,
           "clicks": 0
         }
       }
