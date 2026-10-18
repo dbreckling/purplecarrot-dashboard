@@ -4,7 +4,7 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-10-18T12:08:42.248091Z",
+  "lastUpdated": "2026-10-18T12:09:36.644063Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-10-18"
@@ -301,10 +301,10 @@
     "clicks": 1732,
     "reach": 8,
     "frequency": 1402139.38,
-    "attrOrders": 32,
-    "attrRevenue": 2426.97,
+    "attrOrders": 31,
+    "attrRevenue": 2348.97,
     "spend": 0.05,
-    "roas": 48539.4,
+    "roas": 46979.4,
     "costPerSubscription": 0.0,
     "ctVisits": 0,
     "vtVisits": 0,
@@ -316,7 +316,7 @@
   "attribution": {
     "byType": {
       "clickThrough": 0,
-      "viewThrough": 32
+      "viewThrough": 31
     },
     "conversionTimeline": {
       "sameDay": 4,
@@ -324,7 +324,7 @@
       "2to3days": 5,
       "4to7days": 2,
       "8to14days": 4,
-      "15to30days": 14
+      "15to30days": 13
     },
     "lookbackData": {
       "1": {
@@ -344,20 +344,20 @@
         "revenue": 1271.41
       },
       "30": {
-        "orders": 32,
-        "revenue": 2426.97
+        "orders": 31,
+        "revenue": 2348.97
       }
     },
-    "avgDaysToConversion": 12.5,
+    "avgDaysToConversion": 12.4,
     "sameDayConversions": 4,
-    "sameDayConversionRate": 12.5,
+    "sameDayConversionRate": 12.9,
     "impressionsToConversion": {
       "avgImpressions": 0.0,
       "minImpressions": 0,
       "maxImpressions": 0,
       "medianImpressions": 0,
       "frequencyBuckets": {
-        "1-3": 32,
+        "1-3": 31,
         "4-7": 0,
         "8-14": 0,
         "15-30": 0,
@@ -365,18 +365,18 @@
       },
       "converterDetails": [
         {
-          "dedupeId": "2980954",
-          "visitorId": "",
-          "ip": "108.21.2***",
-          "conversionTime": "2026-03-29T00:31:01.388000+00:00",
+          "dedupeId": "2980113",
+          "visitorId": "VID772FFFE6556843CAAE",
+          "ip": "158.106.***",
+          "conversionTime": "2026-04-01T18:26:59.417000+00:00",
           "impressionsSeen": 0,
-          "revenue": 78.0,
+          "revenue": 75.99,
           "type": "view-through",
           "orderClass": "Purchase",
           "orderSource": "ordersuccess",
           "channel": "video",
           "placementId": "6011",
-          "daysBetween": 15,
+          "daysBetween": 1,
           "matchingImpressions": 1,
           "impressions": []
         },
@@ -685,22 +685,6 @@
           "impressions": []
         },
         {
-          "dedupeId": "2980113",
-          "visitorId": "VID772FFFE6556843CAAE",
-          "ip": "158.106.***",
-          "conversionTime": "2026-04-01T18:26:59.417000+00:00",
-          "impressionsSeen": 0,
-          "revenue": 75.99,
-          "type": "view-through",
-          "orderClass": "Purchase",
-          "orderSource": "ordersuccess",
-          "channel": "video",
-          "placementId": "6011",
-          "daysBetween": 1,
-          "matchingImpressions": 1,
-          "impressions": []
-        },
-        {
           "dedupeId": "2988517",
           "visitorId": "VID83EB74461B3746B2B0",
           "ip": "216.230.***",
@@ -894,8 +878,8 @@
       "impressions": 0,
       "clicks": 0,
       "reach": 0,
-      "attrOrders": 4,
-      "attrRevenue": 338.86,
+      "attrOrders": 3,
+      "attrRevenue": 260.86,
       "cpm": 6.0,
       "spend": 0.0,
       "roas": 0
@@ -1023,8 +1007,8 @@
           "clicks": 0,
           "reach": 0,
           "frequency": 0,
-          "attrOrders": 4,
-          "attrRevenue": 338.86,
+          "attrOrders": 3,
+          "attrRevenue": 260.86,
           "spend": 0.0,
           "roas": 0,
           "creatives": {
@@ -1035,8 +1019,8 @@
               "clicks": 0,
               "reach": 0,
               "frequency": 0,
-              "attrOrders": 4,
-              "attrRevenue": 338.86,
+              "attrOrders": 3,
+              "attrRevenue": 260.86,
               "spend": 0.0,
               "roas": 0
             }
@@ -1820,8 +1804,8 @@
       "clicks": 19,
       "purchases": 23,
       "revenue": 1999.9,
-      "conversions": 1,
-      "attrRevenue": 78.0,
+      "conversions": 0,
+      "attrRevenue": 0.0,
       "newOrders": 23,
       "returningOrders": 0,
       "nyPurchases": 4,
