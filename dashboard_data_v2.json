@@ -4,10 +4,10 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-10-22T03:39:42.251551Z",
+  "lastUpdated": "2026-10-22T04:09:18.281963Z",
   "dateRange": {
     "start": "2026-03-01",
-    "end": "2026-10-21"
+    "end": "2026-10-22"
   },
   "placementConfig": {
     "6001": {
@@ -299,12 +299,12 @@
     "enabled": true,
     "impressions": 11217115,
     "clicks": 1732,
-    "reach": 8,
-    "frequency": 1402139.38,
+    "reach": 0,
+    "frequency": 0,
     "attrOrders": 32,
     "attrRevenue": 2426.97,
-    "spend": 0.05,
-    "roas": 48539.4,
+    "spend": 0,
+    "roas": 0,
     "costPerSubscription": 0.0,
     "ctVisits": 0,
     "vtVisits": 0,
@@ -881,14 +881,14 @@
   },
   "channels": {
     "display": {
-      "impressions": 8,
+      "impressions": 0,
       "clicks": 0,
-      "reach": 8,
+      "reach": 0,
       "attrOrders": 28,
       "attrRevenue": 2088.11,
       "cpm": 6.0,
-      "spend": 0.05,
-      "roas": 41762.2
+      "spend": 0.0,
+      "roas": 0
     },
     "video": {
       "impressions": 0,
@@ -916,37 +916,13 @@
       "label": "Display",
       "cpm": 6.0,
       "campaigns": {
-        "%ebuy!": {
-          "impressions": 4,
-          "clicks": 0,
-          "reach": 4,
-          "frequency": 1.0,
-          "attrOrders": 14,
-          "attrRevenue": 970.92,
-          "spend": 0.02,
-          "roas": 48546.0,
-          "creatives": {
-            "%ecid!|%%WIDTH%%x%%HEIGHT%%": {
-              "creativeName": "%ecid!",
-              "creativeSize": "%%WIDTH%%x%%HEIGHT%%",
-              "impressions": 4,
-              "clicks": 0,
-              "reach": 4,
-              "frequency": 1.0,
-              "attrOrders": 14,
-              "attrRevenue": 970.92,
-              "spend": 0.02,
-              "roas": 48546.0
-            }
-          }
-        },
         "Campaign 4079": {
           "impressions": 0,
           "clicks": 0,
           "reach": 0,
           "frequency": 0,
-          "attrOrders": 6,
-          "attrRevenue": 578.23,
+          "attrOrders": 28,
+          "attrRevenue": 2088.11,
           "spend": 0.0,
           "roas": 0,
           "creatives": {
@@ -957,58 +933,10 @@
               "clicks": 0,
               "reach": 0,
               "frequency": 0,
-              "attrOrders": 6,
-              "attrRevenue": 578.23,
+              "attrOrders": 28,
+              "attrRevenue": 2088.11,
               "spend": 0.0,
               "roas": 0
-            }
-          }
-        },
-        "MNTN_PC_SALES_TESTCAMPAIGN": {
-          "impressions": 1,
-          "clicks": 0,
-          "reach": 1,
-          "frequency": 1.0,
-          "attrOrders": 0,
-          "attrRevenue": 0.0,
-          "spend": 0.01,
-          "roas": 0.0,
-          "creatives": {
-            "SarahM01|6442083": {
-              "creativeName": "SarahM01",
-              "creativeSize": "6442083",
-              "impressions": 1,
-              "clicks": 0,
-              "reach": 1,
-              "frequency": 1.0,
-              "attrOrders": 0,
-              "attrRevenue": 0.0,
-              "spend": 0.01,
-              "roas": 0.0
-            }
-          }
-        },
-        "{SA_CAMPAIGN_NAME}": {
-          "impressions": 3,
-          "clicks": 0,
-          "reach": 3,
-          "frequency": 1.0,
-          "attrOrders": 8,
-          "attrRevenue": 538.96,
-          "spend": 0.02,
-          "roas": 26948.0,
-          "creatives": {
-            "{SA_CREATIVE_NAME}|{SA_WIDTH}x{SA_HEIGHT}": {
-              "creativeName": "{SA_CREATIVE_NAME}",
-              "creativeSize": "{SA_WIDTH}x{SA_HEIGHT}",
-              "impressions": 3,
-              "clicks": 0,
-              "reach": 3,
-              "frequency": 1.0,
-              "attrOrders": 8,
-              "attrRevenue": 538.96,
-              "spend": 0.02,
-              "roas": 26948.0
             }
           }
         }
@@ -1045,21 +973,7 @@
       }
     }
   },
-  "campaigns": {
-    "campaign_4079": {
-      "label": "Campaign 4079",
-      "campaignId": "4079",
-      "campaignName": "Campaign 4079",
-      "impressions": 8,
-      "clicks": 0,
-      "reach": 8,
-      "frequency": 1.0,
-      "attrOrders": 14,
-      "attrRevenue": 1074.45,
-      "spend": 0.05,
-      "roas": 21489.0
-    }
-  },
+  "campaigns": {},
   "dailyData": {
     "2026-03-01": {
       "impressions": 0,
