@@ -4,7 +4,7 @@
   "advertiserName": "Purple Carrot",
   "model": "DTC Subscription",
   "tagVersion": "v14.10.0",
-  "lastUpdated": "2026-10-28T02:41:31.752303Z",
+  "lastUpdated": "2026-10-28T03:10:49.512770Z",
   "dateRange": {
     "start": "2026-03-01",
     "end": "2026-10-27"
@@ -297,14 +297,14 @@
   },
   "programmatic": {
     "enabled": true,
-    "impressions": 11217115,
+    "impressions": 11217116,
     "clicks": 1732,
-    "reach": 0,
-    "frequency": 0,
+    "reach": 1,
+    "frequency": 11217116.0,
     "attrOrders": 32,
     "attrRevenue": 2426.97,
-    "spend": 0,
-    "roas": 0,
+    "spend": 0.01,
+    "roas": 242697.0,
     "costPerSubscription": 0.0,
     "ctVisits": 0,
     "vtVisits": 0,
@@ -881,14 +881,14 @@
   },
   "channels": {
     "display": {
-      "impressions": 0,
+      "impressions": 1,
       "clicks": 0,
-      "reach": 0,
+      "reach": 1,
       "attrOrders": 28,
       "attrRevenue": 2088.11,
       "cpm": 6.0,
-      "spend": 0.0,
-      "roas": 0
+      "spend": 0.01,
+      "roas": 208811.0
     },
     "video": {
       "impressions": 0,
@@ -916,13 +916,37 @@
       "label": "Display",
       "cpm": 6.0,
       "campaigns": {
+        "553589": {
+          "impressions": 1,
+          "clicks": 0,
+          "reach": 1,
+          "frequency": 1.0,
+          "attrOrders": 6,
+          "attrRevenue": 578.23,
+          "spend": 0.01,
+          "roas": 57823.0,
+          "creatives": {
+            "24914742|320x50": {
+              "creativeName": "24914742",
+              "creativeSize": "320x50",
+              "impressions": 1,
+              "clicks": 0,
+              "reach": 1,
+              "frequency": 1.0,
+              "attrOrders": 6,
+              "attrRevenue": 578.23,
+              "spend": 0.01,
+              "roas": 57823.0
+            }
+          }
+        },
         "Campaign 4079": {
           "impressions": 0,
           "clicks": 0,
           "reach": 0,
           "frequency": 0,
-          "attrOrders": 28,
-          "attrRevenue": 2088.11,
+          "attrOrders": 22,
+          "attrRevenue": 1509.88,
           "spend": 0.0,
           "roas": 0,
           "creatives": {
@@ -933,8 +957,8 @@
               "clicks": 0,
               "reach": 0,
               "frequency": 0,
-              "attrOrders": 28,
-              "attrRevenue": 2088.11,
+              "attrOrders": 22,
+              "attrRevenue": 1509.88,
               "spend": 0.0,
               "roas": 0
             }
@@ -973,7 +997,21 @@
       }
     }
   },
-  "campaigns": {},
+  "campaigns": {
+    "campaign_4079": {
+      "label": "Campaign 4079",
+      "campaignId": "4079",
+      "campaignName": "Campaign 4079",
+      "impressions": 1,
+      "clicks": 0,
+      "reach": 1,
+      "frequency": 1.0,
+      "attrOrders": 14,
+      "attrRevenue": 1074.45,
+      "spend": 0.01,
+      "roas": 107445.0
+    }
+  },
   "dailyData": {
     "2026-03-01": {
       "impressions": 0,
@@ -6957,6 +6995,24 @@
           "clicks": 0
         },
         "6051": {
+          "impressions": 1,
+          "clicks": 0
+        }
+      }
+    },
+    "2026-10-27": {
+      "impressions": 1,
+      "clicks": 0,
+      "purchases": 0,
+      "revenue": 0.0,
+      "conversions": 0,
+      "attrRevenue": 0.0,
+      "newOrders": 0,
+      "returningOrders": 0,
+      "nyPurchases": 0,
+      "trafficSources": {},
+      "placements": {
+        "6047": {
           "impressions": 1,
           "clicks": 0
         }
